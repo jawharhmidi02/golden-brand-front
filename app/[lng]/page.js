@@ -1,5 +1,14 @@
 "use client";
+
+// Packages:
 import { useEffect } from "react";
+
+// Components:
+import TopHeader from "./home/top header/TopHeader";
+import Nav from "./home/nav/Nav";
+import Hero from "./home/Hero/Hero";
+
+// Styles:
 import "./page.css";
 
 export default function Home({ params: { lng } }) {
@@ -37,8 +46,12 @@ export default function Home({ params: { lng } }) {
     }, 5000);
   };
 
-  useEffect(() => {
-    showUpgradedToast("This is a sample message", "success");
-  }, []);
-  return <main className=""></main>;
+  useEffect(() => {}, []);
+  return (
+    <main>
+      <TopHeader lng={lng} />
+      <Nav lng={lng} />
+      <Hero lng={lng} />
+    </main>
+  );
 }

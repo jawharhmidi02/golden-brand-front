@@ -1,0 +1,78 @@
+
+.top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 2vw;
+  background-color: var(--first-color-primary);
+}
+
+.top-header .left,
+.top-header .middle,
+.top-header .right {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  font-family: var(--first-family);
+}
+
+.top-header .left i,
+.top-header .middle i,
+.top-header .right i {
+  color: var(--fourth-color-primary);
+}
+
+.top-header .left div,
+.top-header .middle div,
+.top-header .right div {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  color: var(--fourth-color-primary);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.top-header .left div:hover,
+.top-header .middle div:hover,
+.top-header .right div:hover {
+  color: var(--background-color-secondary);
+  scale: 1.02;
+}
+
+.top-header .left .mail i {
+  font-size: 1.2rem;
+}
+
+.top-header .left .location label {
+  cursor: pointer;
+  transition: all 0.5s;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.top-header .right {
+  gap: 20px;
+}
+
+.top-header .right .socials {
+  cursor: default;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.top-header .right .socials i {
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.top-header .right .socials i:hover {
+  scale: 1.1;
+  color: var(--first-color-secondary);
+}
