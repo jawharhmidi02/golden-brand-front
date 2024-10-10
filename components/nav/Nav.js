@@ -1,5 +1,6 @@
 "use client";
 
+import Menu from "../menu/Menu";
 import "./Nav.css";
 
 import Image from "next/image";
@@ -19,14 +20,15 @@ const Nav = () => {
           }}
         />
       </div>
-      <div className="middle">
-        <input type="text" placeholder="Search" />
+      <div>
+        {/* <input type="text" placeholder="Search" />
         <div className="select-category">
           Select Category <i className="fa-solid fa-chevron-down"></i>
         </div>
         <button>
           <i className="fa-solid fa-magnifying-glass"></i>
-        </button>
+        </button> */}
+        <Menu></Menu>
       </div>
       <div className="right">
         <div className="login">

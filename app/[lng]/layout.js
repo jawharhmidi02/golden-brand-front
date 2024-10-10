@@ -41,7 +41,7 @@ export default function RootLayout({ children, params: { lng } }) {
       <body>
         <TopHeader lng={lng} />
         <Nav lng={lng} />
-        <Menu lng={lng} />
+        {/* <Menu lng={lng} /> */}
         <main>{children}</main>
       </body>
     </html>
