@@ -31,7 +31,6 @@ nav .middle input[type="text"] {
   border: 0;
   height: 50px;
   padding: 0 10px;
-  font-size: 1.1rem;
   font-family: var(--third-family);
   border: 1px var(--fifth-color-secondary) solid;
 }
@@ -49,21 +48,16 @@ nav .middle .select-category {
   padding: 0 14px;
   font-family: var(--fourth-family);
   font-weight: 300;
-  font-size: 1.1rem;
   color: var(--fourth-color-primary);
   cursor: pointer;
 }
 
-nav .middle .select-category i {
-  font-size: 0.9rem;
-}
 
 nav .middle button {
   background-color: transparent;
   border: 1px var(--fifth-color-secondary) solid;
   aspect-ratio: 1 / 1;
   height: 50px;
-  font-size: 1.2rem;
   color: var(--fourth-color-primary);
   cursor: pointer;
 }
@@ -89,7 +83,6 @@ nav .right .login {
 }
 
 nav .right .login i {
-  font-size: 1.5rem;
   color: var(--first-color-secondary);
 }
 
@@ -114,7 +107,6 @@ nav .right .cart:hover {
 }
 
 nav .right .cart span {
-  font-size: 2rem;
   cursor: pointer;
   color: var(--fourth-color-primary);
 }
