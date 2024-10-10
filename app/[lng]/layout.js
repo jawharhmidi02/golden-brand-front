@@ -7,9 +7,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
 
-import TopHeader from "../../components/topHeader/TopHeader";
-import Menu from "../../components/menu/Menu";
-import Nav from "../../components/nav/Nav";
+import TopHeader from "../../components/TopHeader/TopHeader";
+import Menu from "../../components/Menu/Menu";
+import Nav from "../../components/Nav/Nav";
 
 export const metadata = {
   title: "GoldenBrand: Home",
