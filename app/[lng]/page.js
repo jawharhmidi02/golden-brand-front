@@ -5,8 +5,8 @@ import "./page.css";
 
 // Components:
 
-import Hero from "./home/Hero/Hero";
-import Categories from "./home/categories/Categories";
+import Hero from "../../components/Hero/Hero";
+import Categories from "../../components/categories/Categories";
 
 export default function Home({ params: { lng } }) {
   return (

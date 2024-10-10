@@ -7,9 +7,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
 
-import TopHeader from "./home/topHeader/TopHeader";
-import Menu from "./home/menu/Menu";
-import Nav from "./home/nav/Nav";
+import TopHeader from "../../components/topHeader/TopHeader";
+import Menu from "../../components/menu/Menu";
+import Nav from "../../components/nav/Nav";
 
 export const metadata = {
   title: "GoldenBrand: Home",
@@ -36,7 +36,6 @@ export default function RootLayout({ children, params: { lng } }) {
           href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
-
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body>
