@@ -35,7 +35,7 @@ export default function RootLayout({ children, params: { lng } }) {
 
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body>{children}</body>
+      <body>{children}h</body>
     </html>
   );
 }
