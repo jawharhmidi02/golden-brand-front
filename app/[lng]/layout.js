@@ -2,14 +2,14 @@ import "/public/assets/fontawesome/css/fontawesome.css";
 import "/public/assets/fontawesome/css/brands.css";
 import "/public/assets/fontawesome/css/solid.css";
 import "/public/assets/fontawesome/css/all.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
 
-import TopHeader from "../../components/TopHeader/TopHeader";
-import Menu from "../../components/Menu/Menu";
-import Nav from "../../components/Nav/Nav";
+import TopHeader from "@/components/topHeader/TopHeader";
+import Menu from "@/components/menu/Menu";
+import Nav from "@/components/nav/Nav";
 
 export const metadata = {
   title: "GoldenBrand: Home",
@@ -40,8 +40,8 @@ export default function RootLayout({ children, params: { lng } }) {
       </head>
       <body>
         <TopHeader lng={lng} />
-        <Menu lng={lng} />
         <Nav lng={lng} />
+        <Menu lng={lng} />
         <main>{children}</main>
       </body>
     </html>

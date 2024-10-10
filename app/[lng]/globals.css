@@ -322,3 +322,82 @@ abbr[title] {
     @apply bg-background text-foreground;
   }
 }
+
+.first-color-primary {
+  color: var(--first-color-primary);
+}
+.second-color-primary {
+  color: var(--second-color-primary);
+}
+.third-color-primary {
+  color: var(--third-color-primary);
+}
+.fourth-color-primary {
+  color: var(--fourth-color-primary);
+}
+.fifth-color-primary {
+  color: var(--fifth-color-primary);
+}
+.first-color-secondary {
+  color: var(--first-color-secondary);
+}
+.second-color-secondary {
+  color: var(--second-color-secondary);
+}
+.third-color-secondary {
+  color: var(--third-color-secondary);
+}
+.fourth-color-secondary {
+  color: var(--fourth-color-secondary);
+}
+.fifth-color-secondary {
+  color: var(--fifth-color-secondary);
+}
+.first-background-primary {
+  background-color: var(--first-color-primary);
+}
+.second-background-primary {
+  background-color: var(--second-color-primary);
+}
+.third-background-primary {
+  background-color: var(--third-color-primary);
+}
+.fourth-background-primary {
+  background-color: var(--fourth-color-primary);
+}
+.fifth-background-primary {
+  background-color: var(--fifth-color-primary);
+}
+.first-background-secondary {
+  background-color: var(--first-color-secondary);
+}
+.second-background-secondary {
+  background-color: var(--second-color-secondary);
+}
+.third-background-secondary {
+  background-color: var(--third-color-secondary);
+}
+.fourth-background-secondary {
+  background-color: var(--fourth-color-secondary);
+}
+.fifth-background-secondary {
+  background-color: var(--fifth-color-secondary);
+}
+.first-family {
+  font-family: var(--first-family);
+}
+.second-family {
+  font-family: var(--second-family);
+}
+.third-family {
+  font-family: var(--third-family);
+}
+.fourth-family {
+  font-family: var(--fourth-family);
+}
+.fifth-family {
+  font-family: var(--fifth-family);
+}
+.sixth-family {
+  font-family: var(--sixth-family);
+}
