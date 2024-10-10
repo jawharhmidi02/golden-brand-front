@@ -1,28 +1,41 @@
+"use client";
+
 import "./Menu.css";
 
+import { usePathname } from "next/navigation";
+
 const Menu = ({ lng }) => {
+  const pathname = usePathname();
+
   return (
     <div className="menu-container">
       <div className="menu">
-        <div className="link active">
-          <a href="#">Home</a>
+        <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
+          <a href="/">Home</a>
         </div>
-        <div className="link">
-          <a href="#">Our Services</a>
+        <div
+          className={`link ${pathname === `/${lng}/services` ? "active" : ""}`}
+        >
+          <a href="/services">Our Services</a>
         </div>
-        <div className="link">
-          <a href="#">Products</a>
+        <div
+          className={`link ${pathname === `/${lng}/products` ? "active" : ""}`}
+        >
+          <a href="/products">Products</a>
         </div>
-        <div className="link">
-          <a href="#">Blog</a>
+        <div className={`link ${pathname === `/${lng}/blog` ? "active" : ""}`}>
+          <a href="/blog">Blog</a>
         </div>
-        <div className="link">
-          <a href="#">About</a>
+        <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>
+          <a href="/about">About</a>
         </div>
-        <div className="link">
-          <a href="#">Contact</a>
+        <div
+          className={`link ${pathname === `/${lng}/contact` ? "active" : ""}`}
+        >
+          <a href="/contact">Contact</a>
         </div>
       </div>
+
       {/* <div className="lang">
         {lng !== "en" ? (
           <a href="#">

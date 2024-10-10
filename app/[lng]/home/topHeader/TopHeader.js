@@ -1,6 +1,8 @@
-import Image from "next/image";
+"use client";
 
 import "./TopHeader.css";
+
+import Image from "next/image";
 
 const TopHeader = () => {
   return (
@@ -72,7 +74,12 @@ const TopHeader = () => {
         <div className="contact-us">Contact Us</div>
         <div className="language">
           <abbr title="Change to Arabic">العربية</abbr>
-          <Image src="/images/arabic-language.png" width={20} height={20} alt="arabic"/>
+          <Image
+            src="/images/arabic-language.png"
+            width={20}
+            height={20}
+            alt="arabic"
+          />
         </div>
       </div>
     </div>

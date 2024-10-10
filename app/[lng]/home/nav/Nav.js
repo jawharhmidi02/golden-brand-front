@@ -1,5 +1,8 @@
-import Image from "next/image";
+"use client";
+
 import "./Nav.css";
+
+import Image from "next/image";
 
 const Nav = () => {
   return (
@@ -11,7 +14,9 @@ const Nav = () => {
           height={200}
           alt="icon"
           loading="lazy"
-          onClick={()=>{window.location.href = "./"}}
+          onClick={() => {
+            window.location.href = "./";
+          }}
         />
       </div>
       <div className="middle">

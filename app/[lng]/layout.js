@@ -7,6 +7,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
 
+import TopHeader from "./home/topHeader/TopHeader";
+import Menu from "./home/menu/Menu";
+import Nav from "./home/nav/Nav";
+
 export const metadata = {
   title: "GoldenBrand: Home",
 };
@@ -35,7 +39,12 @@ export default function RootLayout({ children, params: { lng } }) {
 
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <TopHeader lng={lng} />
+        <Menu lng={lng} />
+        <Nav lng={lng} />
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
