@@ -28,6 +28,7 @@
 
 :root {
   /* Primary */
+  --blue: #429bfa;
   --first-color-primary: #ffd700;
   --second-color-primary: #daa520;
   --third-color-primary: #f5f5dc;

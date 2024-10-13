@@ -4,7 +4,7 @@ import { Separator } from "../ui/separator";
 
 const CardPage = ({ product }) => {
   return (
-    <div className="flex rounded-xl bg-neutral-100 border-neutral-200 flex-row justify-start gap-5 p-[35px] border-2">
+    <div className="flex rounded-xl hover:cursor-pointer hover:bg-neutral-100  border-neutral-200 flex-row justify-start gap-5 p-[35px] border-2">
       <Image
         src={product.img}
         height={300}
