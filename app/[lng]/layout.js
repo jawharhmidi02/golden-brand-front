@@ -17,6 +17,7 @@ export const metadata = {
 
 import { dir } from "i18next";
 import { languages } from "@/app/i18n/settings";
+import Footer from "@/components/Footer/Footer";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -43,6 +44,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <Nav lng={lng} />
         {/* <Menu lng={lng} /> */}
         <main>{children}</main>
+        <Footer lng={lng} />
       </body>
     </html>
   );

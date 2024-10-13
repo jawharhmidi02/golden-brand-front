@@ -1,14 +1,27 @@
+"use client";
+
 // Styles
 import "./Hero.css";
 
 // Components
-import { useRef } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
 
 const Hero = () => {
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: false }));
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Dynamically load the Bootstrap JS only on the client side
+      const script = document.createElement("script");
+      script.src = "/assets/bootstrap/dist/js/bootstrap.bundle.min.js";
+      script.async = true;
+      document.body.appendChild(script);
 
+      // Cleanup script when component unmounts
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, []);
   return (
     <div className="hero">
       <div className="text">
@@ -24,199 +37,98 @@ const Hero = () => {
         </p>
         <a href="/products">Shop Now</a>
       </div>
-      {/* <Carousel
-        plugins={[plugin.current]}
-        className="w-full"
-        loop={true}
-        draggable={false}
+      <div
+        id="CarouselHero"
+        className="carousel slide carousel-fade"
+        data-bs-ride="carousel"
+        data-bs-interval="5000"
       >
-        <CarouselContent>
-          <CarouselItem
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              alt="Hero Photo"
-              src="/images/hero2.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero1.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero0.jpeg"
-              width={500}
-              height={500}
-            />
-          </CarouselItem>
-          <CarouselItem
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              src="/images/hero5.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero4.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero3.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-          </CarouselItem>
-          <CarouselItem
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              src="/images/hero8.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero7.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero6.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel> */}
-      <div id="carouselExampleIndicators" className="carousel slide">
-        <div className="carousel-indicators">
-          {/* <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button> */}
-        </div>
         <div className="carousel-inner">
-          <div
-            className="carousel-item active"
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              alt="Hero Photo"
-              src="/images/hero2.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero1.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero0.jpeg"
-              width={500}
-              height={500}
-            />
+          <div className="carousel-item active">
+            <div style={{ width: "100%", display: "flex", paddingLeft: "0" }}>
+              <Image
+                alt="Hero Photo"
+                src="/images/hero2.jpeg"
+                width={500}
+                height={500}
+              />
+              <Image
+                alt="Hero Photo"
+                src="/images/hero1.jpeg"
+                width={500}
+                height={500}
+              />
+              <Image
+                alt="Hero Photo"
+                src="/images/hero0.jpeg"
+                width={500}
+                height={500}
+              />
+            </div>
           </div>
-          <div
-            className="carousel-item"
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              src="/images/hero5.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero4.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero3.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
+          <div className="carousel-item">
+            <div style={{ width: "100%", display: "flex", paddingLeft: "0" }}>
+              <Image
+                src="/images/hero5.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+              <Image
+                src="/images/hero4.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+              <Image
+                src="/images/hero3.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+            </div>
           </div>
-          <div
-            className="carousel-item"
-            style={{ width: "100%", display: "flex", paddingLeft: "0" }}
-          >
-            <Image
-              src="/images/hero8.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero7.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero6.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
+          <div className="carousel-item">
+            <div style={{ width: "100%", display: "flex", paddingLeft: "0" }}>
+              <Image
+                src="/images/hero8.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+              <Image
+                src="/images/hero7.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+              <Image
+                src="/images/hero6.jpeg"
+                width={500}
+                height={500}
+                alt="hero"
+              />
+            </div>
           </div>
         </div>
-        {/* <button
+        <button
           className="carousel-control-prev"
           type="button"
-          data-bs-target="#carouselExampleIndicators"
+          data-bs-target="#CarouselHero"
           data-bs-slide="prev"
         >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Previous</span>
         </button>
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target="#carouselExampleIndicators"
+          data-bs-target="#CarouselHero"
           data-bs-slide="next"
         >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
           <span className="visually-hidden">Next</span>
-        </button> */}
+        </button>
       </div>
     </div>
   );

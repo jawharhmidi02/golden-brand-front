@@ -3,6 +3,7 @@
 import "./Categories.css";
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+
 import {
   Carousel,
   CarouselContent,
@@ -10,10 +11,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+
 import Image from "next/image";
+import Link from "next/link";
+
 import { useState } from "react";
 
-const Categories = () => {
+const Categories = ({ lng }) => {
   const [categories, setcategories] = useState([
     {
       id: 1,
@@ -64,6 +68,7 @@ const Categories = () => {
       name: "Waste Management",
     },
   ]);
+
   return (
     <section className="categories">
       <h1 className="section-title text-3xl ">Categories</h1>
@@ -77,9 +82,31 @@ const Categories = () => {
                   className="pl-1 md:basis-1/2 lg:basis-1/5 flex"
                 >
                   <div className="p-2 flex-1 flex">
-                    <Card className="categorie-card flex-1 flex flex-col">
+                    <Card
+                      className="categorie-card flex-1 flex flex-col"
+                      onClick={() => {
+                        location.href = `/${lng}/products?category=${encodeURIComponent(
+                          item.name
+                        )}`;
+                      }}
+                    >
+                      {/* <Link
+                        href={{
+                          pathname: `/${lng}/products`,
+                          query: {
+                            category: encodeURIComponent(
+                              item.name.toLowerCase()
+                            ),
+                          },
+                        }}
+                      > */}
                       <CardContent className="flex  items-center justify-center p-1">
-                        <Image src={item.img} width={200} height={200} />
+                        <Image
+                          src={item.img}
+                          width={200}
+                          height={200}
+                          alt="Category"
+                        />
                       </CardContent>
                       <CardFooter className="flex items-center justify-center flex-col m-auto">
                         <p className="text-lg font-bold first-family fifth-color-primary text-center ">
@@ -89,6 +116,7 @@ const Categories = () => {
                           {item.products_number + " "}Products
                         </p>
                       </CardFooter>
+                      {/* </Link> */}
                     </Card>
                   </div>
                 </CarouselItem>

@@ -1,12 +1,10 @@
-"use client";
-
 // Styles:
 import "./page.css";
 
 // Components:
 
 import Hero from "../../components/Hero/Hero";
-import Categories from "../../components/Categories/Categories";
+import Categories from "../../components/categories/Categories";
 
 export default function Home({ params: { lng } }) {
   return (
