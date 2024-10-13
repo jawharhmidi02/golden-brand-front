@@ -53,29 +53,45 @@ const ProductPage = ({ searchParams }) => {
   ]);
 
   return (
-    <div className="flex flex-col justify-center gap-4 max-w-[58vw] mx-auto ">
-      <div className="flex flex-col gap-4">
-        {products?.map((product, index) => (
-          <CardPage key={index} product={product}/>
-        ))}
-      </div>
-      <div>
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+    <div className=" px-10 pt-4 justify-center flex flex-row  gap-4  mx-auto">
+      <div className="min-w-96 bg-neutral-100 max-h-[100vh]"></div>
+      <div className="flex flex-col gap-4 max-w-[58vw]">
+        <div className="flex py-1 pr-3 flex-row min-w-full h-[5vh] border-2 border-neutral-200 rounded-xl">
+          <div className="flex min-w-10 justify-center items-center"><i class="fa-solid fa-magnifying-glass text-neutral-300"></i></div>
+          <input
+            placeholder="Search: Work table, Bowl sink, Cabinet..."
+            type="text"
+            className="flex-grow-[20] min-h-full"
+          ></input>
+          <button
+            className="flex-grow-[1] text-neutral-100 bg-neutral-400 rounded-lg"
+          >
+            Search
+          </button>
+        </div>
+        <div className="flex flex-col gap-4"> 
+          {products?.map((product, index) => (
+            <CardPage key={index} product={product} />
+          ))}
+        </div>
+        <div>
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
+        </div>
       </div>
     </div>
   );
