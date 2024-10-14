@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useRef, useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -8,24 +10,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useSearchParams } from "next/navigation";
 
-const SelectInterface = ({placeHolder, label, values}) => {
+const SelectInterface = ({ placeHolder, changeSortOption, values }) => {
+  const useParams = useSearchParams();
+  let optionParam = useParams.get("sortOption") || "nameAsc";
+
+  const [value, setValue] = useState(optionParam)
+  useEffect(() => {
+    changeSortOption(value);
+  }, [value]);
+  useEffect(() => {
+    setValue(optionParam)
+  }, [optionParam])
+  
   return (
     <div>
-      <Select>
+      <Select value={value} onValueChange={setValue}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder={placeHolder} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {/* <SelectLabel>{label}</SelectLabel> */}
             {values.map((value, index) => (
-                <SelectItem
-                    key={index}
-                    value={value[0]}
-                >
-                    {value[1]}
-                </SelectItem>
+              <SelectItem key={index} value={value[0]}>
+                {value[1]}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>

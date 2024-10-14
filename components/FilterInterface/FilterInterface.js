@@ -22,9 +22,12 @@ const FilterInterface = () => {
     "Waste Management",
   ]);
   const selectedCategories = searchParams.get("selectedCategories") || [];
-  const sortOption = searchParams.get("sortOption") || "nameAsc";
+  let sortOption = searchParams.get("sortOption") || "nameAsc";
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
+  const changeSortOption = (option) => {
+    sortOption = option;
+  }
   const changePrice = (MIN, MAX) => {
     minPrice = MIN;
     maxPrice = MAX;
@@ -38,7 +41,9 @@ const FilterInterface = () => {
         <span className="font-semibold text-xl text-neutral-800">Sort</span>
         <SelectInterface
           placeHolder="Name: A-Z"
-          label="Options"
+          changeSortOption={(sortOption) => {
+            changeSortOption(sortOption);
+          }}
           values={[
             ["date", "Date: Newest"],
             ["nameAsc", "Name: A-Z"],
