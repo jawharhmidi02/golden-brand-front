@@ -21,7 +21,7 @@ const FilterInterface = () => {
     "Gratings & Traps",
     "Waste Management",
   ]);
-  const selectedCategories = searchParams.get("selectedCategories") || [];
+  let selectedCategories = searchParams.get("selectedCategories") || [];
   let sortOption = searchParams.get("sortOption") || "nameAsc";
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
