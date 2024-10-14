@@ -110,7 +110,7 @@ const Categories = ({ lng }) => {
                       </CardContent>
                       <CardFooter className="flex items-center justify-center flex-col m-auto">
                         <p className="text-lg font-bold first-family fifth-color-primary text-center ">
-                          {item.name}
+                          {item.name.toUpperCase()}
                         </p>
                         <p className="text-center">
                           {item.products_number + " "}Products
