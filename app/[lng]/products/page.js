@@ -58,16 +58,16 @@ const ProductPage = ({ searchParams }) => {
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20  mx-auto">
       <FilterInterface></FilterInterface>
       <div className="flex flex-col gap-4 max-w-[58vw]">
-        <div className="flex py-1 pr-3 flex-row min-w-full h-[5vh] border-2 border-neutral-200 rounded-xl">
+        <div className="flex py-1 pr-3 flex-row min-w-full border-2 border-neutral-200 rounded-xl">
           <div className="flex min-w-10 justify-center items-center">
             <i className="fa-solid fa-magnifying-glass text-neutral-300"></i>
           </div>
           <input
             placeholder="Search: Work table, Bowl sink, Cabinet..."
             type="text"
-            className=" focus:outline-none flex-grow-[20] min-h-full"
+            className="focus:outline-none  min-h-full flex-1"
           ></input>
-          <button className="flex-grow-[1] text-neutral-100 bg-[var(--blue)] rounded-lg">
+          <button className="text-neutral-100 bg-[var(--blue)] rounded-lg py-1 px-2.5">
             Search
           </button>
         </div>
