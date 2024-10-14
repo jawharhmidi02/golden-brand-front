@@ -28,7 +28,9 @@
 
 :root {
   /* Primary */
-  --blue: #429bfa;
+  /* Alternative Blue #429bfa bg-blue-100 for active */
+  /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */ 
+  --blue: #001f3f;
   --first-color-primary: #ffd700;
   --second-color-primary: #daa520;
   --third-color-primary: #f5f5dc;
