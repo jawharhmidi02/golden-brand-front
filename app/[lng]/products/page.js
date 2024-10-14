@@ -57,7 +57,7 @@ const ProductPage = ({ searchParams }) => {
   return (
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20  mx-auto">
       <FilterInterface></FilterInterface>
-      <div className="flex flex-col gap-4 max-w-[58vw]">
+      <div className="flex flex-col gap-4">
         <div className="flex py-1 pr-3 flex-row min-w-full border-2 border-neutral-200 rounded-xl">
           <div className="flex min-w-10 justify-center items-center">
             <i className="fa-solid fa-magnifying-glass text-neutral-300"></i>
