@@ -10,6 +10,7 @@ const CardPage = ({ product }) => {
         height={300}
         width={300}
         className="rounded-sm"
+        alt="product"
       />
       <div className="flex flex-col">
         <span className="font-bold font-lato text-3xl mb-4 text-[var(--fifth-color-primary)]">
