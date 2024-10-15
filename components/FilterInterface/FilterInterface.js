@@ -43,7 +43,7 @@ const FilterInterface = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3">
-        <span className="font-bold text-2xl mb-2 text-neutral-300">
+        <span className="font-bold text-2xl mb-2 text-neutral-400">
           Filters:
         </span>
         <span className="font-semibold text-xl text-neutral-800">Sort</span>
@@ -85,7 +85,7 @@ const FilterInterface = () => {
       <div className="flex flex-col gap-1 mt-2">
         <button
           type="button"
-          className="w-full bg-[var(--blue)] font-semibold rounded-md text-xl py-2 border-2 border-[var(--blue)] text-white"
+          className="w-full bg-[var(--blue)] font-semibold rounded-md text-xl py-2 border-2 border-[var(--blue)] text-white transition-all duration-400  active:scale-95"
           onClick={() => {
             router.push(
               `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${encodeURIComponent(JSON.stringify(selectedCategories))}`,
@@ -100,7 +100,7 @@ const FilterInterface = () => {
           onClick={() => {
             resetFilters();
           }}
-          className="w-full font-semibold rounded-md text-xl py-2 text-[var(--blue)] border-2 border-[var(--blue)]"
+          className="w-full font-semibold rounded-md text-xl py-2 text-[var(--blue)] border-2 border-[var(--blue)] transition-all duration-400  active:scale-95"
         >
           Reset
         </button>
