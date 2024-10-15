@@ -21,13 +21,21 @@ const FilterInterface = () => {
     "Gratings & Traps",
     "Waste Management",
   ]);
-  let selectedCategories = searchParams.get("selectedCategories") || [];
+  const cats = {};
+  categories.forEach((val) => {
+    cats[val] = false;
+  });
+  let selectedCategories = searchParams.get('selectedCategories') ? JSON.parse(decodeURIComponent(searchParams.get('selectedCategories'))) : { ...cats }; 
   let sortOption = searchParams.get("sortOption") || "nameAsc";
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
+  const changeSelectedCategorie = (categorie) => {
+    console.log(selectedCategories)
+    selectedCategories[categorie] = !selectedCategories[categorie];
+  };
   const changeSortOption = (option) => {
     sortOption = option;
-  }
+  };
   const changePrice = (MIN, MAX) => {
     minPrice = MIN;
     maxPrice = MAX;
@@ -66,16 +74,21 @@ const FilterInterface = () => {
           Categories
         </span>
         {categories.map((categorie, index) => (
-          <CategorieItem key={index} item={categorie}></CategorieItem>
+          <CategorieItem
+            key={index}
+            active={selectedCategories[categorie]}
+            changeSelectedCategorie={(categorie) => changeSelectedCategorie(categorie)}
+            item={categorie}
+          ></CategorieItem>
         ))}
       </div>
       <div className="flex flex-col gap-1 mt-2">
         <button
           type="button"
-          className="w-full bg-[var(--blue)] font-semibold rounded-md text-xl py-2 text-white"
+          className="w-full bg-[var(--blue)] font-semibold rounded-md text-xl py-2 border-2 border-[var(--blue)] text-white"
           onClick={() => {
             router.push(
-              `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${selectedCategories}`,
+              `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${encodeURIComponent(JSON.stringify(selectedCategories))}`,
               { scroll: false }
             );
           }}
@@ -87,7 +100,7 @@ const FilterInterface = () => {
           onClick={() => {
             resetFilters();
           }}
-          className="w-full font-semibold rounded-md text-xl py-2 text-[var(--blue)]"
+          className="w-full font-semibold rounded-md text-xl py-2 text-[var(--blue)] border-2 border-[var(--blue)]"
         >
           Reset
         </button>

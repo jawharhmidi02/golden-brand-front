@@ -1,10 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { useSearchParams } from "next/navigation";
 
-const CategorieItem = ({ item }) => {
-  const [active, setActive] = useState(false)
+const CategorieItem = ({ item, changeSelectedCategorie }) => {
+  const searchParams = useSearchParams();
+  const selectedCategories = searchParams.get("selectedCategories")
+    ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
+    : {};
+  const [active, setActive] = useState(selectedCategories[item] == true);
+
+
+  useEffect(() => {
+    setActive(selectedCategories[item] == true);
+  }, [selectedCategories[item]]);
+
+
   return (
     <label
       className={cn(
@@ -16,6 +28,7 @@ const CategorieItem = ({ item }) => {
       onClick={(e) => {
         e.preventDefault();
         setActive(!active);
+        changeSelectedCategorie(item);
       }}
     >
       <input type="radio" style={{ display: "none" }} />
