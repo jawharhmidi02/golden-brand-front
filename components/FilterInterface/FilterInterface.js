@@ -32,7 +32,6 @@ const FilterInterface = () => {
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
   const changeSelectedCategorie = (categorie) => {
-    console.log(selectedCategories)
     selectedCategories[categorie] = selectedCategories[categorie] ? false : true
   };
   const changeSortOption = (option) => {

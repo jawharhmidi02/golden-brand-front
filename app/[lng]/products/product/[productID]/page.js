@@ -1,10 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-// import { useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import React from "react";
 
 const page = () => {
   // const { productID } = useParams();
+  const { lng } = useParams();
   const router = useRouter();
   const product = {
     img: "/images/products/image1.png",
@@ -39,6 +40,8 @@ const page = () => {
     legs: ["4", "4", "4", "4", "4", "4", "6", "6"],
     prices: ["1000", "1200", "1400", "1600", "1800", "2000", "2200", "2300"],
   };
+  const cat = {};
+  cat[product.category] = true;
   return (
     <div className="flex flex-col mx-10 mt-2 justify-center">
       <div className="flex flex-row gap-2 text-center justify-center">
@@ -49,7 +52,7 @@ const page = () => {
           Home
         </div>
         <div
-          onClick={() => router.push(`/products?selectedCategories=${product.category}`)}
+          onClick={() => router.push(`/${lng}/products?selectedCategories=${encodeURIComponent(JSON.stringify(cat))}`)}
           className="font-lato text-lg pr-2 text-neutral-400 border-r-2 border-neutral-400 hover:text-neutral-500 hover:border-neutral-500 hover:cursor-pointer transition-all duration-300"
         >
           {product.category}
