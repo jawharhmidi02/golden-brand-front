@@ -1,12 +1,16 @@
 "use client";
+
 import Card from "@/components/Card/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 import InputInterface from "@/components/InputInterface/InputInterface";
 
 
 const ProductPage = ({ searchParams }) => {
+  useEffect(() => {
+    document.title = "GoldenBrand: Products";
+  }, []);
   const searchQuery = searchParams.search || "";
   const [products, setProducts] = useState([
     {
@@ -97,13 +101,13 @@ const ProductPage = ({ searchParams }) => {
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20">
       <FilterInterface></FilterInterface>
       <div className="flex flex-col max-w-screen-lg gap-4">
-        <InputInterface/>
+        <InputInterface />
         <div className="gap-4 grid grid-cols-3">
           {products?.map((product, index) => (
             <Card key={index} product={product} />
           ))}
         </div>
-        <PaginationComp/>
+        <PaginationComp />
       </div>
     </div>
   );

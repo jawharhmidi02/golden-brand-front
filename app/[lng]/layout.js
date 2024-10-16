@@ -8,11 +8,13 @@ import "./animations.css";
 import "./globals.css";
 
 import TopHeader from "@/components/topHeader/TopHeader";
-import Menu from "@/components/menu/Menu";
+// import Menu from "@/components/menu/Menu";
 import Nav from "@/components/nav/Nav";
 
 export const metadata = {
-  title: "GoldenBrand: Home",
+  title: "GoldenBrand",
+  description:
+    "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
 };
 
 import { dir } from "i18next";

@@ -1,3 +1,5 @@
+"use client";
+
 // Styles:
 import "./page.css";
 
@@ -5,8 +7,12 @@ import "./page.css";
 
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/Categories/Categories";
+import { useEffect } from "react";
 
 export default function Home({ params: { lng } }) {
+  useEffect(() => {
+    document.title = "GoldenBrand: Home";
+  }, []);
   return (
     <main>
       <Hero lng={lng} />

@@ -35,7 +35,6 @@ const Menu = ({ lng }) => {
           <a href="/contact">Contact</a>
         </div>
       </div>
-      
 
       {/* <div className="lang">
         {lng !== "en" ? (

@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/carousel";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { useState } from "react";
 
@@ -69,6 +68,11 @@ const Categories = ({ lng }) => {
     },
   ]);
 
+  const cats = {};
+  categories.forEach((val) => {
+    cats[val.name] = false;
+  });
+
   return (
     <section className="categories">
       <h1 className="section-title text-3xl ">Categories</h1>
@@ -85,21 +89,12 @@ const Categories = ({ lng }) => {
                     <Card
                       className="categorie-card flex-1 flex flex-col"
                       onClick={() => {
-                        location.href = `/${lng}/products?category=${encodeURIComponent(
-                          item.name
+                        cats[item.name] = true;
+                        location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
+                          JSON.stringify(cats)
                         )}`;
                       }}
                     >
-                      {/* <Link
-                        href={{
-                          pathname: `/${lng}/products`,
-                          query: {
-                            category: encodeURIComponent(
-                              item.name.toLowerCase()
-                            ),
-                          },
-                        }}
-                      > */}
                       <CardContent className="flex  items-center justify-center p-1">
                         <Image
                           src={item.img}
@@ -116,7 +111,6 @@ const Categories = ({ lng }) => {
                           {item.products_number + " "}Products
                         </p>
                       </CardFooter>
-                      {/* </Link> */}
                     </Card>
                   </div>
                 </CarouselItem>

@@ -5,7 +5,7 @@ import "./Nav.css";
 
 import Image from "next/image";
 
-const Nav = () => {
+const Nav = ({ lng }) => {
   return (
     <nav>
       <div className="left">
@@ -28,7 +28,7 @@ const Nav = () => {
         <button>
           <i className="fa-solid fa-magnifying-glass"></i>
         </button> */}
-        <Menu></Menu>
+        <Menu lng={lng} />
       </div>
       <div className="right">
         <div className="login">
