@@ -25,12 +25,13 @@ const FilterInterface = () => {
   categories.forEach((val) => {
     cats[val] = false;
   });
-  let selectedCategories = searchParams.get('selectedCategories') ? JSON.parse(decodeURIComponent(searchParams.get('selectedCategories'))) : { ...cats }; 
+  let selectedCategories = searchParams.get("selectedCategories")
+    ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
+    : { ...cats };
   let sortOption = searchParams.get("sortOption") || "nameAsc";
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
   const changeSelectedCategorie = (categorie) => {
-    console.log(selectedCategories)
     selectedCategories[categorie] = !selectedCategories[categorie];
   };
   const changeSortOption = (option) => {
@@ -77,7 +78,9 @@ const FilterInterface = () => {
           <CategorieItem
             key={index}
             active={selectedCategories[categorie]}
-            changeSelectedCategorie={(categorie) => changeSelectedCategorie(categorie)}
+            changeSelectedCategorie={(categorie) =>
+              changeSelectedCategorie(categorie)
+            }
             item={categorie}
           ></CategorieItem>
         ))}
@@ -88,7 +91,9 @@ const FilterInterface = () => {
           className="w-full bg-[var(--blue)] font-semibold rounded-md text-xl py-2 border-2 border-[var(--blue)] text-white transition-all duration-400  active:scale-95"
           onClick={() => {
             router.push(
-              `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${encodeURIComponent(JSON.stringify(selectedCategories))}`,
+              `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${encodeURIComponent(
+                JSON.stringify(selectedCategories)
+              )}`,
               { scroll: false }
             );
           }}

@@ -1,11 +1,15 @@
 "use client";
+
 import Card from "@/components/Card/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 import InputInterface from "@/components/InputInterface/InputInterface";
 
 const ProductPage = ({ searchParams }) => {
+  useEffect(() => {
+    document.title = "GoldenBrand: Products";
+  }, []);
   const searchQuery = searchParams.search || "";
   const [products, setProducts] = useState([
     {
@@ -16,9 +20,9 @@ const ProductPage = ({ searchParams }) => {
         "1.0MMTHK., GR.304, #4 FINISH, STIFFENERS",
         "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON ADJUSTABLE BULLET TYPE FEET",
       ],
-      category: 'Work Tables',
+      category: "Work Tables",
       price: 1000,
-      dimension: "40 x 40mm"
+      dimension: "40 x 40mm",
     },
     {
       img: "/images/products/image2.png",
@@ -30,9 +34,9 @@ const ProductPage = ({ searchParams }) => {
         "40 x 40mm S. STEEL SQUARE TUBE LEGS AND BRACING",
         "4 RUBBER CASTER WHEEL, ALL SWIVEL, 2 WITH BRAKES",
       ],
-      category: 'Mobile Tables',
+      category: "Mobile Tables",
       price: 2000,
-      dimension: "50 x 50mm"
+      dimension: "50 x 50mm",
     },
     {
       img: "/images/products/image3.png",
@@ -43,9 +47,9 @@ const ProductPage = ({ searchParams }) => {
         "40 x 40mm S. STEEL SQUARE TUBE FOR BRACE AND LEG SUPPORT WITH ADJUSTABLE BULLET TYPE FEET",
         "500 x 500 x 300mm S. STEEL SINK",
       ],
-      category: 'Sink Tables',
+      category: "Sink Tables",
       price: 3000,
-      dimension: "60 x 60mm"
+      dimension: "60 x 60mm",
     },
     {
       img: "/images/products/image4.png",
@@ -53,7 +57,7 @@ const ProductPage = ({ searchParams }) => {
       desc: ["1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH, STIFFENERS"],
       category: "Cabinets",
       price: 4000,
-      dimension: "70 x 70mm"
+      dimension: "70 x 70mm",
     },
     {
       img: "/images/products/image2.png",
@@ -67,7 +71,7 @@ const ProductPage = ({ searchParams }) => {
       ],
       category: "Mobile Tables",
       price: 5000,
-      dimension: "80 x 80mm"
+      dimension: "80 x 80mm",
     },
     {
       img: "/images/products/image3.png",
@@ -80,7 +84,7 @@ const ProductPage = ({ searchParams }) => {
       ],
       category: "Sink Tables",
       price: 3000,
-      dimension: "90 x 90mm"
+      dimension: "90 x 90mm",
     },
   ]);
 
@@ -88,13 +92,13 @@ const ProductPage = ({ searchParams }) => {
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20">
       <FilterInterface></FilterInterface>
       <div className="flex flex-col max-w-screen-lg gap-4">
-        <InputInterface/>
+        <InputInterface />
         <div className="gap-4 grid grid-cols-3">
           {products?.map((product, index) => (
             <Card key={index} product={product} />
           ))}
         </div>
-        <PaginationComp/>
+        <PaginationComp />
       </div>
     </div>
   );
