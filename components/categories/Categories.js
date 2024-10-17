@@ -75,7 +75,7 @@ const Categories = ({ lng }) => {
 
   return (
     <section className="categories">
-      <h1 className="section-title text-3xl ">Categories</h1>
+      <h1 className="section-title text-3xl">Categories</h1>
       <div className="categories-container w-full flex justify-center items-center">
         <div className="categories-cards max-w-screen-xl w-full">
           <Carousel className="">
@@ -87,7 +87,7 @@ const Categories = ({ lng }) => {
                 >
                   <div className="p-2 flex-1 flex">
                     <Card
-                      className="categorie-card flex-1 flex flex-col"
+                      className="categorie-card border-1 border-neutral-200 shadow-md drop-shadow-md flex-1 flex flex-col"
                       onClick={() => {
                         cats[item.name] = true;
                         location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
@@ -104,10 +104,10 @@ const Categories = ({ lng }) => {
                         />
                       </CardContent>
                       <CardFooter className="flex items-center justify-center flex-col m-auto">
-                        <p className="text-lg font-bold first-family fifth-color-primary text-center ">
+                        <p className="text-lg font-bold first-family fifth-color-primary text-center">
                           {item.name.toUpperCase()}
                         </p>
-                        <p className="text-center">
+                        <p className="text-center text-neutral-600 font-semibold font-lato">
                           {item.products_number + " "}Products
                         </p>
                       </CardFooter>
