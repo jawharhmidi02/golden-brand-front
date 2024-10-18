@@ -9,13 +9,11 @@ const ProductHeader = ({ cat, product }) => {
     <div className="flex flex-row gap-2 text-center">
       <div
         onClick={() => router.push("/")}
-        className="font-lato font-semibold self-center text-base text-neutral-400  hover:text-neutral-500  hover:cursor-pointer transition-all duration-300"
+        className="font-lato font-semibold self-center text-xl text-neutral-400  hover:text-neutral-500  hover:cursor-pointer transition-all duration-300"
       >
         Home
       </div>
-      <span className="text-neutral-400">
-        <i className="fa-solid fa-chevron-right"></i>
-      </span>
+        <i className="fa-solid fa-chevron-right text-neutral-400 self-center"></i>
       <div
         onClick={() =>
           router.push(
@@ -24,14 +22,12 @@ const ProductHeader = ({ cat, product }) => {
             )}`
           )
         }
-        className="font-lato font-semibold self-center text-base text-neutral-400  hover:text-neutral-500 hover:cursor-pointer transition-all duration-300"
+        className="font-lato font-semibold self-center text-xl text-neutral-400  hover:text-neutral-500 hover:cursor-pointer transition-all duration-300"
       >
         {product.category}
       </div>
-      <span className="text-neutral-400">
-        <i className="fa-solid fa-chevron-right"></i>
-      </span>
-      <div className="font-lato font-semibold self-center text-base text-neutral-800">
+        <i className="fa-solid fa-chevron-right text-neutral-400 self-center"></i>
+      <div className="font-lato font-semibold self-center text-xl text-neutral-800">
         {product.name}
       </div>
     </div>

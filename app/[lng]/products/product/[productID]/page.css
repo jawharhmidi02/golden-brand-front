@@ -41,7 +41,7 @@ label.radio-wrapper-8 input + span:after {
 }
 label.radio-wrapper-8 input:checked + span:before {
   transform: scale(1.04);
-  background: #737373;
+  background: #3b82f6;
 }
 label.radio-wrapper-8 input:checked + span:after {
   transform: scale(0.4);
@@ -56,3 +56,22 @@ label.radio-wrapper-8:hover input + span:after {
 label.radio-wrapper-8:hover input:checked + span:after {
   transform: scale(0.4);
 }
+
+ td, th{
+  padding: 15px 5px;
+}
+
+.row-border{
+  border-bottom: 1px solid #d4d3d3;
+}
+
+.border-mask-left{
+  mask-image: linear-gradient(90deg,transparent,#000 95%);
+}
+.border-mask-right{
+  mask-image: linear-gradient(270deg,transparent,#000 95%);
+}
+.border-mask{
+  mask-image: linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+}
+
