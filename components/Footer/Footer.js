@@ -1,7 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import './Footer.css';
 
 const Footer = () => {
+  const pathname = usePathname();
   return (
     <div className="pt-20 ">
       <div className="services p-2 flex justify-center">
@@ -15,12 +21,12 @@ const Footer = () => {
             />
           </div>
           <div className="details flex flex-col gap-1">
-            <div className="title font-bold text-[var(--blue)]">
+            <div className="title font-bold text-neutral-800">
               Fast Delivery
             </div>
-            <div className="desc text-sm fourth-color-secondary">
+            <div className="desc text-sm text-neutral-500">
               Get your stainless steel products quickly with our fast and
-              reliable delivery service flex-1.
+              reliable delivery service.
             </div>
           </div>
         </div>
@@ -34,10 +40,10 @@ const Footer = () => {
             />
           </div>
           <div className="details flex flex-col gap-1">
-            <div className="title font-bold text-[var(--blue)]">
+            <div className="title font-bold text-neutral-800">
               Free Delivery Over 10K QAR
             </div>
-            <div className="desc text-sm fourth-color-secondary">
+            <div className="desc text-sm text-neutral-500">
               Enjoy free delivery on orders over 10,000 QAR—bringing quality
               right to your doorstep.
             </div>
@@ -53,10 +59,10 @@ const Footer = () => {
             />
           </div>
           <div className="details flex flex-col gap-1">
-            <div className="title font-bold text-[var(--blue)]">
+            <div className="title font-bold text-neutral-800">
               Flexible Payment Options
             </div>
-            <div className="desc text-sm fourth-color-secondary">
+            <div className="desc text-sm text-neutral-500">
               Pay your way—MasterCard, Visa, Apple Pay, or cash on delivery,
               we’ve got you covered.
             </div>
@@ -72,19 +78,20 @@ const Footer = () => {
             />
           </div>
           <div className="details flex flex-col gap-1">
-            <div className="title font-bold text-[var(--blue)]">
+            <div className="title font-bold text-neutral-800">
               High-Quality Materials & Products
             </div>
-            <div className="desc text-sm fourth-color-secondary">
+            <div className="desc text-sm text-neutral-500">
               Crafted from premium materials, our products guarantee durability
               and top-notch performance.
             </div>
           </div>
         </div>
       </div>
-      <div className="footer bg-[var(--blue)]">
+      <div className={cn("footer bg-[var(--blue)]", pathname == '/en' && 'bg-neutral-800', pathname.includes('products/product') && 'bg-blue-500')}>
         <div className="content p-4"></div>
-        <div className="text-white text-center border-white border-t-[1px] pb-3 pt-3">
+        <div className="h-[1px] w-full bg-white border-mask"></div>
+        <div className="text-white text-center  pb-3 pt-3">
           © 2024 <a href="/" className="font-bold">Golden Brand</a>. All rights reserved.
         </div>
       </div>

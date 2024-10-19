@@ -9,10 +9,10 @@ const TopHeader = () => {
   const pathname = usePathname();
   return (
     <div className="top-header">
-      <i
+      {/* <i
         onClick={() => window.open("https://wa.me/97477480070")}
-        className={cn("fa-brands fa-whatsapp text-neutral-800 text-5xl z-10 fixed left-4 bottom-4 hover:-translate-y-4 transition-all duration-500 hover:text-green-600 hover:cursor-pointer", pathname.includes('products') && "text-[var(--blue)]")}
-      ></i>
+        className={cn("fa-brands fa-whatsapp text-green-600 text-5xl z-10 fixed left-4 bottom-4 hover:-translate-y-4 transition-all duration-500 hover:cursor-pointer")}
+      ></i> */}
       <div className="left">
         <div
           className="phone"

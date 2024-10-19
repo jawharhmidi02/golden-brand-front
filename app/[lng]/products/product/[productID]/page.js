@@ -1,6 +1,6 @@
 "use client";
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
-import React from "react";
+import React, { useState } from "react";
 import "./page.css";
 
 const page = () => {
@@ -39,19 +39,81 @@ const page = () => {
   };
   const cat = {};
   cat[product.category] = true;
+  const [productNumber, setProductNumber] = useState(1);
+
+  const [selectedPrice, setSelectedPrice] = useState(product.prices[0]);
+
+  const increaseProductNumber = () => {
+    if (productNumber < 99) {
+      setProductNumber(productNumber + 1);
+    }
+  };
+
+  const decreaseProductNumber = () => {
+    if (productNumber > 1) {
+      setProductNumber(productNumber - 1);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 w-[1000px] mx-auto mt-2">
       <ProductHeader cat={cat} product={product} />
       <div className="flex flex-row gap-12">
-        <div className="w-[800px] h-[600px] sticky top-10 left-0 border-1 border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
-          <img src={product.img} className="h-96 w-96 rounded-md my-1" />
+        <div className="flex flex-col gap-4 sticky top-10 left-0 w-[800px] h-[750px] justify-between">
+          <div className="border-1 h-full w-full border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
+            <img src={product.img} className="h-96 w-96 rounded-md my-1" />
+          </div>
+
+          {/* Buy / add to cart Interface */}
+          <div className="flex flex-row gap-2 justify-evenly items-center">
+            <div className="flex flex-row gap-2 border-1 border-neutral-300 rounded-md justify-center items-center">
+              <button
+                type="button"
+                onClick={() => {
+                  decreaseProductNumber();
+                }}
+                className="px-2 py-2 border-r-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-l-md transition-all duration-200"
+              >
+                -
+              </button>
+              <span className="px-1">{productNumber}</span>
+              <button
+                type="button"
+                onClick={() => {
+                  increaseProductNumber();
+                }}
+                className="px-2 py-2 border-l-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-r-md transition-all duration-200"
+              >
+                +
+              </button>
+            </div>
+            <div>
+              <span className="font-semibold">{ `${productNumber * selectedPrice} QR` }</span>
+            </div>
+            <button
+              type="button"
+              className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-all duration-300"
+            >
+              ADD TO CART
+            </button>
+            <button
+              type="button"
+              className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-all duration-300"
+            >
+              BUY NOW
+            </button>
+          </div>
+
+
         </div>
+
 
         <div className="flex flex-col gap-6">
           <span className="text-3xl text-neutral-900 font-lato font-bold">
             {product.name}
           </span>
 
+          {/* Product Description table */}
           <table>
             <tbody className="text-xl header text-center font-lato font-semibold text-neutral-100 bg-blue-500">
               <tr>
@@ -70,10 +132,16 @@ const page = () => {
             ))}
           </table>
 
+
+
+
+
+
           <span className="text-xl text-neutral-900 font-lato font-semibold">
             Choose a dimension below:
           </span>
 
+          {/* Product Dimension / information table  */}
           <table>
             <tbody>
               <tr className="text-xl header text-center font-lato font-semibold text-neutral-100 bg-blue-500">
@@ -98,6 +166,9 @@ const page = () => {
                       <input
                         id={`radio-${index}`}
                         defaultChecked={index === 0}
+                        onChange={() => {
+                          setSelectedPrice(product.prices[index]);
+                        }}
                         type="radio"
                         name="radio-examples"
                       />
@@ -153,6 +224,8 @@ const page = () => {
             ))}
           </table>
 
+
+            {/* Delivery Guide Interface */}
           <span className="text-xl text-neutral-900 font-lato font-semibold">
             Delivery
           </span>
@@ -160,7 +233,7 @@ const page = () => {
             Free standard shipping on orders over{" "}
             <span className="font-semibold">10000 QR</span> before tax.
           </span>
-          
+
           <table className="-mt-2">
             <tbody className="text-neutral-400 text-start">
               <tr>
@@ -212,21 +285,8 @@ const page = () => {
               </tr>
             </tbody>
           </table>
-
           <div className="w-full h-[1px] bg-neutral-300 border-mask"></div>
 
-          <div className="flex flex-row gap-2 justify-evenly items-center">
-            <div className="flex flex-row gap-2 border-1 border-neutral-300 rounded-md justify-center items-center">
-              <button type="button" className="px-2 py-2 border-r-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-l-md transition-all duration-200">-</button>
-              <span className="px-1">1</span>
-              <button type="button" className="px-2 py-2 border-l-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-r-md transition-all duration-200">+</button>
-            </div>
-            <div>
-              <span className="font-semibold">2000 QR</span>
-            </div>
-            <button type="button" className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-colors duration-300">ADD TO CART</button>
-            <button type="button" className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-colors duration-300">BUY NOW</button>
-          </div>
         </div>
       </div>
     </div>
