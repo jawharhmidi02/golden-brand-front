@@ -88,7 +88,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className={cn("footer bg-[var(--blue)]", pathname == '/en' && 'bg-neutral-800', pathname.includes('products/product') && 'bg-blue-500')}>
+      {/* cn("footer bg-[var(--blue)]", pathname == '/en' && 'bg-neutral-800', pathname.includes('products/product') && 'bg-blue-500') */}
+      <div className={cn("footer bg-neutral-800")}>   
         <div className="content p-4"></div>
         <div className="h-[1px] w-full bg-white border-mask"></div>
         <div className="text-white text-center  pb-3 pt-3">
