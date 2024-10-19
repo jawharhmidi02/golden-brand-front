@@ -5,37 +5,48 @@ import "./page.css";
 
 const page = () => {
   const product = {
-    img: "/images/products/image1.png",
-    name: "Stainless Steel Work Table Without Undershelf",
+    img: "/images/products/image3.png",
+    name: "S. STEEL SINGLE BOWL SINK TABLE",
     description: [
-      "1.0mmTHK., GR.304 #4 FINISH TOP PLATE, BACKSPLASH",
-      "1.0MMTHK., GR.304, #4 FINISH, STIFFENERS",
-      "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON ADJUSTABLE BULLET TYPE FEET",
+      "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
+      "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
+      "40 x 40mm S. STEEL SQUARE TUBE FOR BRACE AND LEG SUPPORT WITH ADJUSTABLE BULLET TYPE FEET",
+      "500 x 500 x 300mm S. STEEL SINK",
     ],
-    category: "Work Tables",
-    id: 123456,
-    codes: [
-      "TBL39B - 7",
-      "TBL47B - 7",
-      "TBL55B - 7",
-      "TBL63B - 7",
-      "TBL70B - 7",
-      "TBL78B - 7",
-      "TBL86B - 7",
-      "TBL94B - 7",
-    ],
+    category: "Sink Tables",
+    prices: ["1500", "1800", "2100", "2400", "2700", "3000", "3300", "3450"],
     dimensions: [
-      "1000 x 700 x 850 + 100mm",
-      "1200 x 700 x 850 + 100mm",
-      "1400 x 700 x 850 + 100mm",
-      "1600 x 700 x 850 + 100mm",
-      "1800 x 700 x 850 + 100mm",
-      "2000 x 700 x 850 + 100mm",
-      "2200 x 700 x 850 + 100mm",
-      "2300 x 700 x 850 + 100mm",
+      "1000 x 700 x 850 + 100m",
+      "1200 x 700 x 850 + 100m",
+      "1400 x 700 x 850 + 100m",
+      "1600 x 700 x 850 + 100m",
+      "1800 x 700 x 850 + 100m",
+      "2000 x 700 x 850 + 100m",
+      "2200 x 700 x 850 +100m",
+      "2300 x 700 x 850 + 100m",
     ],
     legs: ["4", "4", "4", "4", "4", "4", "6", "6"],
-    prices: ["1000", "1200", "1400", "1600", "1800", "2000", "2200", "2300"],
+    drainer: [
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+      "LH , RH",
+    ],
+    id: 456789,
+    codes: [
+      "SBS39B - 7 1",
+      "SBS47B - 7 1",
+      "SBS55B - 7 1",
+      "SBS63B - 7 1",
+      "SBS70B - 7 1",
+      "SBS78B - 7 1",
+      "SBS86B - 7 1",
+      "SBS94B - 7 1",
+    ],
   };
   const cat = {};
   cat[product.category] = true;
@@ -59,7 +70,7 @@ const page = () => {
     <div className="flex flex-col gap-4 w-[1000px] mx-auto mt-2">
       <ProductHeader cat={cat} product={product} />
       <div className="flex flex-row gap-12">
-        <div className="flex flex-col gap-4 sticky top-10 left-0 w-[800px] h-[750px] justify-between">
+        <div className="flex flex-col gap-4 sticky top-10 left-0 w-[800px] h-[85vh] justify-between">
           <div className="border-1 h-full w-full border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
             <img src={product.img} className="h-96 w-96 rounded-md my-1" />
           </div>
@@ -88,7 +99,9 @@ const page = () => {
               </button>
             </div>
             <div>
-              <span className="font-semibold">{ `${productNumber * selectedPrice} QR` }</span>
+              <span className="font-semibold">{`${
+                productNumber * selectedPrice
+              } QR`}</span>
             </div>
             <button
               type="button"
@@ -103,10 +116,7 @@ const page = () => {
               BUY NOW
             </button>
           </div>
-
-
         </div>
-
 
         <div className="flex flex-col gap-6">
           <span className="text-3xl text-neutral-900 font-lato font-bold">
@@ -132,11 +142,6 @@ const page = () => {
             ))}
           </table>
 
-
-
-
-
-
           <span className="text-xl text-neutral-900 font-lato font-semibold">
             Choose a dimension below:
           </span>
@@ -149,9 +154,7 @@ const page = () => {
                 <td>Dimensions</td>
                 {product.legs && <td>Legs</td>}
                 {product.doors && <td>Doors</td>}
-                {product.doors && <td>Doors</td>}
                 {product.drainer && <td>Drainer</td>}
-                {product.doors && <td>Doors</td>}
                 <td>Price</td>
               </tr>
             </tbody>
@@ -224,8 +227,7 @@ const page = () => {
             ))}
           </table>
 
-
-            {/* Delivery Guide Interface */}
+          {/* Delivery Guide Interface */}
           <span className="text-xl text-neutral-900 font-lato font-semibold">
             Delivery
           </span>
@@ -286,7 +288,6 @@ const page = () => {
             </tbody>
           </table>
           <div className="w-full h-[1px] bg-neutral-300 border-mask"></div>
-
         </div>
       </div>
     </div>
