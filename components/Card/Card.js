@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 const Card = ({ product }) => {
   const router = useRouter();
   return (
-    <div onClick={() => {router.push(`/products/product/${product.id}`)}} className="flex text-wrap drop-shadow-sm hover:scale-105  shadow-sm flex-wrap rounded-md hover:cursor-pointer hover:bg-neutral-100 transition-all duration-200  border-neutral-200 flex-row justify-start gap-2 p-[35px] border-2">
+    <div onClick={() => {router.push(`/products/${product.id}`)}} className="flex text-wrap drop-shadow-sm hover:scale-105  shadow-sm flex-wrap rounded-md hover:cursor-pointer hover:bg-neutral-100 transition-all duration-200  border-neutral-200 flex-row justify-start gap-2 p-[35px] border-2">
       <Image
         src={product.img}
         height={0}

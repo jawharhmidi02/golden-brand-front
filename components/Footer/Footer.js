@@ -93,7 +93,7 @@ const Footer = () => {
         <div className="content p-4"></div>
         <div className="h-[1px] w-full bg-white border-mask"></div>
         <div className="text-white text-center  pb-3 pt-3">
-          © 2024 <a href="/" className="font-bold">Golden Brand</a>. All rights reserved.
+          Copyright © 2024 <a href="/" className="font-bold">Golden Brand</a>. All rights reserved.
         </div>
       </div>
     </div>

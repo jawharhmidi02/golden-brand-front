@@ -1,9 +1,12 @@
 "use client";
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./page.css";
 
 const page = () => {
+  useEffect(() => {
+    document.title = "GoldenBrand: Product";
+  }, []);
   const product = {
     img: "/images/products/image3.png",
     name: "S. STEEL SINGLE BOWL SINK TABLE",
