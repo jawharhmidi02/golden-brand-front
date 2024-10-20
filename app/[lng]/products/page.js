@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/Card/Card";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 import InputInterface from "@/components/InputInterface/InputInterface";
@@ -138,39 +138,11 @@ const ProductPage = ({ searchParams }) => {
     },
   ]);
 
-  const Go_Top = useRef(null);
-  const handleScroll = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
-  const check = () => {
-    if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
-    ) {
-      Go_Top.current.classList.add("showGoTop");
-    } else {
-      Go_Top.current.classList.remove("showGoTop");
-    }
-  };
-
   useEffect(() => {
     document.title = "GoldenBrand: Products";
-    window.onscroll = function () {
-      check();
-    };
   }, []);
   return (
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20">
-      <div
-        className="gotop"
-        ref={Go_Top}
-        onClick={() => {
-          handleScroll();
-        }}
-      >
-        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
-      </div>
       <FilterInterface></FilterInterface>
       <div className="flex flex-col max-w-screen-lg gap-4">
         <InputInterface />

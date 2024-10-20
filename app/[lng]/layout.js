@@ -20,6 +20,7 @@ export const metadata = {
 import { dir } from "i18next";
 import { languages } from "@/app/i18n/settings";
 import Footer from "@/components/Footer/Footer";
+import FastLinks from "@/components/FastLinks/FastLinks";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -42,6 +43,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-neutral-50">
+        <FastLinks />
         <TopHeader lng={lng} />
         <Nav lng={lng} />
         {/* <Menu lng={lng} /> */}

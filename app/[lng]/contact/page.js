@@ -1,44 +1,16 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 const page = () => {
   const [day, setDay] = useState(false);
   const [time, setTime] = useState(false);
-  const Go_Top = useRef(null);
-
-  const handleScroll = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
-  const check = () => {
-    if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
-    ) {
-      Go_Top.current.classList.add("showGoTop");
-    } else {
-      Go_Top.current.classList.remove("showGoTop");
-    }
-  };
 
   useEffect(() => {
-    document.title = "GoldenBrand: Product";
-    window.onscroll = function () {
-      check();
-    };
+    document.title = "GoldenBrand: Contact";
   }, []);
   return (
     <div className="flex flex-col mx-auto w-[1200px] gap-20 mt-2">
-      <div
-        className="gotop"
-        ref={Go_Top}
-        onClick={() => {
-          handleScroll();
-        }}
-      >
-        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
-      </div>
       <div className="flex flex-col gap-8">
         <div className="flex flex-row gap-5 justify-center">
           <div className="flex flex-col gap-3 flex-grow-[3] py-6 justify-evenly items-center bg-white border-1 border-neutral-100 rounded-sm shadow-sm drop-shadow-sm">
