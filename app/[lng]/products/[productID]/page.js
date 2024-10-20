@@ -1,12 +1,9 @@
 "use client";
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./page.css";
 
 const page = () => {
-  useEffect(() => {
-    document.title = "GoldenBrand: Product";
-  }, []);
   const product = {
     img: "/images/products/image3.png",
     name: "S. STEEL SINGLE BOWL SINK TABLE",
@@ -69,8 +66,40 @@ const page = () => {
     }
   };
 
+  const Go_Top = useRef(null);
+
+  const handleScroll = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const check = () => {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      Go_Top.current.classList.add("showGoTop");
+    } else {
+      Go_Top.current.classList.remove("showGoTop");
+    }
+  };
+
+  useEffect(() => {
+    document.title = "GoldenBrand: Product";
+    window.onscroll = function () {
+      check();
+    };
+  }, []);
   return (
     <div className="flex flex-col gap-4 w-[1000px] mx-auto mt-2">
+      <div
+        className="gotop"
+        ref={Go_Top}
+        onClick={() => {
+          handleScroll();
+        }}
+      >
+        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
+      </div>
       <ProductHeader cat={cat} product={product} />
       <div className="flex flex-row gap-12">
         <div className="flex flex-col gap-4 sticky top-10 left-0 w-[800px] h-[85vh] justify-between">
