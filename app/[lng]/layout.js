@@ -2,10 +2,10 @@ import "/public/assets/fontawesome/css/fontawesome.css";
 import "/public/assets/fontawesome/css/brands.css";
 import "/public/assets/fontawesome/css/solid.css";
 import "/public/assets/fontawesome/css/all.css";
-import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
+// import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import TopHeader from "@/components/topHeader/TopHeader";
 // import Menu from "@/components/menu/Menu";
@@ -42,11 +42,10 @@ export default function RootLayout({ children, params: { lng } }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="bg-neutral-50">
+      <body className="bg-[var(--primary)]">
         <FastLinks />
         <TopHeader lng={lng} />
         <Nav lng={lng} />
-        {/* <Menu lng={lng} /> */}
         <main>{children}</main>
         <Footer lng={lng} />
       </body>

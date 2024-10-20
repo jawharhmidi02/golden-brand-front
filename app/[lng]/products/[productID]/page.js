@@ -74,29 +74,29 @@ const page = () => {
       <ProductHeader cat={cat} product={product} />
       <div className="flex flex-row gap-12">
         <div className="flex flex-col gap-4 sticky top-10 left-0 w-[800px] h-[85vh] justify-between">
-          <div className="border-1 h-full w-full border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
+          <div className="border-[1px] h-full w-full border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
             <img src={product.img} className="h-96 w-96 rounded-md my-1" />
           </div>
 
           {/* Buy / add to cart Interface */}
-          <div className="flex flex-row gap-2 justify-evenly items-center">
-            <div className="flex flex-row gap-2 border-1 border-neutral-300 rounded-md justify-center items-center">
+          <div className="flex flex-row gap-2 justify-between items-center">
+            <div className="flex flex-row gap-2 border-[1px] border-neutral-300 rounded-md justify-center items-center">
               <button
                 type="button"
                 onClick={() => {
                   decreaseProductNumber();
                 }}
-                className="px-2 py-2 border-r-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-l-md transition-all duration-200"
+                className="px-2.5 py-2 font-semibold border-r-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-l-md transition-all duration-200"
               >
                 -
               </button>
-              <span className="px-1">{productNumber}</span>
+              <span className="px-1 font-semibold font-lato">{productNumber}</span>
               <button
                 type="button"
                 onClick={() => {
                   increaseProductNumber();
                 }}
-                className="px-2 py-2 border-l-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-r-md transition-all duration-200"
+                className="px-2 py-2 font-semibold  border-l-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-r-md transition-all duration-200"
               >
                 +
               </button>
@@ -119,6 +119,10 @@ const page = () => {
               BUY NOW
             </button>
           </div>
+          {/* 
+          { productNumber * selectedPrice >= 10000 && (
+            <span className="text-center font-bold text-green-500 font-lato">Free delivery acquired !</span>
+          )} */}
         </div>
 
         <div className="flex flex-col gap-6">
