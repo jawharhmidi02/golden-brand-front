@@ -41,7 +41,7 @@ export default function RootLayout({ children, params: { lng } }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body>
+      <body className="bg-neutral-50">
         <TopHeader lng={lng} />
         <Nav lng={lng} />
         {/* <Menu lng={lng} /> */}
