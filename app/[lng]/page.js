@@ -16,15 +16,6 @@ export default function Home({ params: { lng } }) {
 
   return (
     <main>
-      <div
-        className="gotop"
-        ref={Go_Top}
-        onClick={() => {
-          handleScroll();
-        }}
-      >
-        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
-      </div>
       <Hero lng={lng} />
       <Categories lng={lng} />
     </main>
