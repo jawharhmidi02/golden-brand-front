@@ -81,6 +81,10 @@ body {
   position: relative;
 }
 
+input[type='text']{
+  background-color: transparent;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -412,7 +416,7 @@ abbr[title] {
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background: var(--fourth-color-secondary);
+  background: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;
