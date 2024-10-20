@@ -29,7 +29,7 @@
 :root {
   /* Primary */
   /* Alternative Blue #429bfa bg-blue-100 for active */
-  /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */ 
+  /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */
   --blue: #001f3f;
   --second-blue: #003366;
   --first-color-primary: #ffd700;
@@ -404,4 +404,40 @@ abbr[title] {
 }
 .sixth-family {
   font-family: var(--sixth-family);
+}
+.gotop {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: var(--fourth-color-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  scale: 0;
+  transition: all 0.4s;
+  opacity: 0;
+  transform: translateY(200px);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.gotop.showGoTop:hover {
+  scale: 1.1 !important;
+  /* background-color: var(---fourth-color); */
+}
+
+.gotop i {
+  /* color: var(--second-color-secondary); */
+  /* color: white; */
+  font-size: 1.5rem;
+}
+
+.gotop.showGoTop {
+  transform: translateY(0);
+  scale: 1;
+  opacity: 1;
 }

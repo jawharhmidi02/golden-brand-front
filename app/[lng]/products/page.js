@@ -1,16 +1,12 @@
 "use client";
 
 import Card from "@/components/Card/Card";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 import InputInterface from "@/components/InputInterface/InputInterface";
 
 const ProductPage = ({ searchParams }) => {
-  useEffect(() => {
-    document.title = "GoldenBrand: Products";
-  }, []);
-  const searchQuery = searchParams.search || "";
   const [products, setProducts] = useState([
     {
       img: "/images/products/image1.png",
@@ -126,7 +122,9 @@ const ProductPage = ({ searchParams }) => {
     {
       img: "/images/products/image4.png",
       name: "S. STEEL BASE CABINET WITH 3 LAYER DRAWER",
-      description: ["1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH, STIFFENERS"],
+      description: [
+        "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH, STIFFENERS",
+      ],
       category: "Cabinets",
       prices: ["1650", "1800", "2000"],
       dimensions: [
@@ -140,8 +138,39 @@ const ProductPage = ({ searchParams }) => {
     },
   ]);
 
+  const Go_Top = useRef(null);
+  const handleScroll = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const check = () => {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      Go_Top.current.classList.add("showGoTop");
+    } else {
+      Go_Top.current.classList.remove("showGoTop");
+    }
+  };
+
+  useEffect(() => {
+    document.title = "GoldenBrand: Products";
+    window.onscroll = function () {
+      check();
+    };
+  }, []);
   return (
     <div className=" px-10 pt-4 justify-center flex flex-row  gap-20">
+      <div
+        className="gotop"
+        ref={Go_Top}
+        onClick={() => {
+          handleScroll();
+        }}
+      >
+        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
+      </div>
       <FilterInterface></FilterInterface>
       <div className="flex flex-col max-w-screen-lg gap-4">
         <InputInterface />
