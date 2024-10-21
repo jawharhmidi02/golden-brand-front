@@ -95,7 +95,7 @@ const Footer = () => {
             <div>
               <div className="text-teal-300">
                 <Image
-                  src="/images/icon.png"
+                  src="/images/dark-icon.png"
                   width={200}
                   height={200}
                   alt="icon"
@@ -186,134 +186,182 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
-              <div>
-                <p className="font-bold text-lg text-white">Menu</p>
-                <ul className="mt-4 space-y-4 text-sm">
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Home
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Services
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Products
-                    </a>
-                  </li>
-                  {/* <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      About
-                    </a>
-                  </li> */}
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-bold text-lg text-white">Company</p>
-                <ul className="mt-4 space-y-4 text-sm">
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Google Maps
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-bold text-lg text-white">Important Links</p>
-                <ul className="mt-4 space-y-4 text-sm">
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Terms & Conditions
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      FAQs
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Payments Info
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Shipping & Delivery
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Contact
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <p className="font-bold text-lg text-white">Contact Us</p>
-                <ul className="mt-4 space-y-4 text-sm">
-                  <li>
-                    <a
-                      className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="mailto:info@goldendesign.online"
-                    >
+            <div className="w-full flex flex-col">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 w-full flex-1">
+                <div>
+                  <p className="font-bold text-lg text-white">Menu</p>
+                  <ul className="mt-4 space-y-4 text-sm">
+                    <li className="link">
+                      <a
+                        href="/"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Home
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="/services"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Services
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="/products"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Products
+                      </a>
+                    </li>
+                    {/* <li className="link">
+                      <a
+                        href="#"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        About
+                      </a>
+                    </li> */}
+                    <li className="link">
+                      <a
+                        href="/contact"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Contact
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-bold text-lg text-white">Company</p>
+                  <ul className="mt-4 space-y-4 text-sm">
+                    <li className="link">
+                      <a
+                        href="/about"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        About
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="/blog"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Blog
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="#"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Google Maps
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-bold text-lg text-white">
+                    Important Links
+                  </p>
+                  <ul className="mt-4 space-y-4 text-sm">
+                    <li className="link">
+                      <a
+                        href="/termsconditions"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Terms & Conditions
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="/blog#faqs"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        FAQs
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="#"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Payments Info
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="#"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Shipping & Delivery
+                      </a>
+                    </li>
+                    <li className="link">
+                      <a
+                        href="/contact"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        Contact
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-bold text-lg text-white">Contact Us</p>
+                  <ul className="mt-4 space-y-4 text-sm">
+                    <li>
+                      <a
+                        className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                        href="mailto:info@goldendesign.online"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="size-5 shrink-0 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span className="flex-1 text-gray-300">
+                          {" "}
+                          info@goldendesign.online{" "}
+                        </span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
+                        href="tel:+974 7748 0070"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="size-5 shrink-0 text-white"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          />
+                        </svg>
+                        <span className="flex-1 text-gray-300">
+                          +974 7748 0070
+                        </span>
+                      </a>
+                    </li>
+                    <li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="size-5 shrink-0 text-white"
@@ -325,70 +373,22 @@ const Footer = () => {
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                         />
-                      </svg>
-
-                      <span className="flex-1 text-gray-300">
-                        {" "}
-                        info@goldendesign.online{" "}
-                      </span>
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="tel:+974 7748 0070"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="size-5 shrink-0 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                         />
                       </svg>
-
-                      <span className="flex-1 text-gray-300">
-                        +974 7748 0070
-                      </span>
-                    </a>
-                  </li>
-
-                  <li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="size-5 shrink-0 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                      />
-                    </svg>
-
-                    <address className="-mt-0.5 flex-1 not-italic text-gray-300">
-                      Doha, Qatar
-                    </address>
-                  </li>
-                </ul>
+                      <address className="-mt-0.5 flex-1 not-italic text-gray-300">
+                        Doha, Qatar
+                      </address>
+                    </li>
+                  </ul>
+                </div>
               </div>
+              <div className="text-white">asdasd</div>
             </div>
           </div>
         </div>
