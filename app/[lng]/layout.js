@@ -46,7 +46,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <FastLinks />
         <TopHeader lng={lng} />
         <Nav lng={lng} />
-        <main>{children}</main>
+        <>{children}</>
         <Footer lng={lng} />
       </body>
     </html>

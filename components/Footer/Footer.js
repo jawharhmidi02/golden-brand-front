@@ -90,12 +90,12 @@ const Footer = () => {
        bg-gray-900 mt-3
        "
       >
-        <div className="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
+        <div className="mx-auto max-w-screen-xl space-y-8 px-4 pt-16 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
               <div className="text-teal-300">
                 <Image
-                  src="/images/icon.png"
+                  src="/images/dark-icon.png"
                   width={200}
                   height={200}
                   alt="icon"
@@ -192,7 +192,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="#"
+                      href="/"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Home
@@ -200,7 +200,7 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="#"
+                      href="/services"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Services
@@ -208,23 +208,23 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="#"
+                      href="/products"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Products
                     </a>
                   </li>
                   {/* <li className="link">
-                    <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      About
-                    </a>
-                  </li> */}
+                      <a
+                        href="#"
+                        className=" transition hover:text-white text-gray-300 "
+                      >
+                        About
+                      </a>
+                    </li> */}
                   <li className="link">
                     <a
-                      href="#"
+                      href="/contact"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Contact
@@ -237,7 +237,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="#"
+                      href="/about"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       About
@@ -245,7 +245,7 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="#"
+                      href="/blog"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Blog
@@ -266,7 +266,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="#"
+                      href="/termsconditions"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Terms & Conditions
@@ -274,7 +274,7 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="#"
+                      href="/blog#faqs"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       FAQs
@@ -288,17 +288,10 @@ const Footer = () => {
                       Payments Info
                     </a>
                   </li>
+
                   <li className="link">
                     <a
-                      href="#"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Shipping & Delivery
-                    </a>
-                  </li>
-                  <li className="link">
-                    <a
-                      href="#"
+                      href="/contact"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Contact
@@ -328,14 +321,12 @@ const Footer = () => {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-
                       <span className="flex-1 text-gray-300">
                         {" "}
                         info@goldendesign.online{" "}
                       </span>
                     </a>
                   </li>
-
                   <li>
                     <a
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
@@ -355,13 +346,11 @@ const Footer = () => {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-
                       <span className="flex-1 text-gray-300">
                         +974 7748 0070
                       </span>
                     </a>
                   </li>
-
                   <li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -382,13 +371,70 @@ const Footer = () => {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-
                     <address className="-mt-0.5 flex-1 not-italic text-gray-300">
                       Doha, Qatar
                     </address>
                   </li>
                 </ul>
               </div>
+            </div>
+          </div>
+          <div
+            style={{ marginTop: "10px", marginBottom: "20px" }}
+            className="text-white flex flex-row w-full justify-center items-center gap-10 mt-0"
+          >
+            <Image
+              src={"/images/icons/payments/mastercard.png"}
+              width={80}
+              height={80}
+              alt="Master Card"
+            />
+            <Image
+              src={"/images/icons/payments/visa.png"}
+              width={80}
+              height={80}
+              alt=" Visa"
+            />
+            <Image
+              src={"/images/icons/payments/googlepay.png"}
+              width={80}
+              height={80}
+              alt="Google Pay"
+            />
+            <Image
+              src={"/images/icons/payments/applepay.png"}
+              width={80}
+              height={80}
+              alt="Apple Pay"
+            />
+          </div>
+          <div
+            style={{ marginTop: "10px", marginBottom: "5px" }}
+            className="links flex w-full justify-center items-center text-neutral-300 gap-10 font-medium "
+          >
+            <div className="link ">
+              <a
+                className="hover:text-white hover:scale-105 duration-500"
+                href="#"
+              >
+                Refund & Returns
+              </a>
+            </div>
+            <div className="link ">
+              <a
+                className="hover:text-white hover:scale-105 duration-500"
+                href="#"
+              >
+                Privacy Policy
+              </a>
+            </div>
+            <div className="link ">
+              <a
+                className="hover:text-white hover:scale-105 duration-500"
+                href="#"
+              >
+                Shipping & Delivery
+              </a>
             </div>
           </div>
         </div>

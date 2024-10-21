@@ -6,7 +6,7 @@ import "./page.css";
 // Components:
 
 import Hero from "../../components/Hero/Hero";
-import Categories from "../../components/Categories/Categories";
+import Categories from "../../components/categories/Categories";
 import { useEffect } from "react";
 
 export default function Home({ params: { lng } }) {
