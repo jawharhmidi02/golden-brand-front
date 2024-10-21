@@ -87,7 +87,7 @@ const Categories = ({ lng }) => {
                 >
                   <div className="p-2 flex-1 flex">
                     <Card
-                      className="categorie-card border-1 border-neutral-200 shadow-md drop-shadow-md flex-1 flex flex-col"
+                      className="categorie-card border-[1px] border-neutral-200 shadow-md drop-shadow-md flex-1 flex flex-col"
                       onClick={() => {
                         cats[item.name] = true;
                         location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
