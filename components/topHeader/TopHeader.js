@@ -1,11 +1,21 @@
 "use client";
 
 import "./TopHeader.css";
-import { usePathname } from "next/navigation";
+
 import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
+import ShowLocation from "../showLocation/ShowLocation";
 
 const TopHeader = () => {
-  const pathname = usePathname();
   return (
     <div className="top-header">
       <div className="left">
@@ -27,13 +37,15 @@ const TopHeader = () => {
           <i className="fa-regular fa-envelope"></i>
           <abbr title="E-mail">info@goldendesign.online</abbr>
         </div>
-        <div className="location">
+        <ShowLocation />
+
+        {/* <div className="location">
           <i className="fa-solid fa-location-dot"></i>
           <label htmlFor="openLocation">
             Show Location
             <i className="fa-solid fa-angle-down" id="openLocation"></i>
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="middle">
         {/* <div className="open">
