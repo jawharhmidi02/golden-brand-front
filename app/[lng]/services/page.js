@@ -84,7 +84,7 @@ const page = () => {
 
       {/* Services cards grid */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 mx-10 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 mx-2 xxsm:mx-6 xsm:mx-12 md:mx-20 lg:mx-12 xl:mx-4 gap-4">
 
         { serviceCardData.map((item, index) => (
           <ServiceCard
@@ -99,7 +99,7 @@ const page = () => {
 
       {/* Services descriptions cards  */}
 
-      <div className="grid bg-white shadow-sm drop-shadow-sm w-full border-neutral-100 border-[1px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-20 px-8 sm:px-20  gap-12">
+      <div className="grid bg-white shadow-sm drop-shadow-sm w-full border-neutral-100 border-[1px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-20 px-5 xxsm:px-8 xsm:px-12 sm:px-16 md:px-10 lg:px-6 xl:px-10 gap-12  md:gap-6">
 
         { serviceDescData.map((item, index) => (
           <ServiceDescCard

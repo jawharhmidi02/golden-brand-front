@@ -117,7 +117,7 @@ const page = () => {
                 )}
               >
                 <i
-                  class={cn(
+                  className={cn(
                     "fa-solid fa-calendar-days text-3xl text-[var(--blue)] transition-all duration-200",
                     day && "text-white"
                   )}
