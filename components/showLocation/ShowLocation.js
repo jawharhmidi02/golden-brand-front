@@ -57,7 +57,7 @@ const ShowLocation = () => {
     <NavigationMenu className="p-0">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-1">
+          <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-0">
             <i className="fa-solid fa-location-dot"></i>&nbsp;Show Location
           </NavigationMenuTrigger>
           <NavigationMenuContent className="z-10">

@@ -23,9 +23,6 @@ const Menu = ({ lng }) => {
         >
           <a href="/products">Products</a>
         </div>
-        <div className={`link ${pathname === `/${lng}/blog` ? "active" : ""}`}>
-          <a href="/blog">Blog</a>
-        </div>
         <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>
           <a href="/about">About</a>
         </div>

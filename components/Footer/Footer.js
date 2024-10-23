@@ -243,14 +243,7 @@ const Footer = () => {
                       About
                     </a>
                   </li>
-                  <li className="link">
-                    <a
-                      href="/blog"
-                      className=" transition hover:text-white text-gray-300 "
-                    >
-                      Blog
-                    </a>
-                  </li>
+                  
                   <li className="link">
                     <a
                       href="#"
@@ -274,7 +267,7 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="/blog#faqs"
+                      href="/about#faqs"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       FAQs
