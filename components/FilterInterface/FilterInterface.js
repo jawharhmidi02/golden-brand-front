@@ -44,7 +44,7 @@ const FilterInterface = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3">
-        <span className="font-bold text-2xl mb-2 text-neutral-400">
+        <span className="font-bold text-3xl mb-2 text-neutral-600">
           Filters:
         </span>
         <span className="font-semibold text-xl text-neutral-800">Sort</span>

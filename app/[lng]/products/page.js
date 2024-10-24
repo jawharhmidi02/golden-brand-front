@@ -26,7 +26,7 @@ const ProductPage = ({ searchParams }) => {
             variant="outline"
             className="flex lg:hidden justify-center bg-[var(--theme)] px-2 rounded-lg items-center"
           >
-            <i className="fa-solid fa-filter text-xl text-neutral-300"></i>
+            <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
           </Button>
         </SheetTrigger>
         <SheetContent className="w-[280px]">
@@ -182,7 +182,7 @@ const ProductPage = ({ searchParams }) => {
           {/* input interface */}
           <div className="flex gap-1 pl-3 xsm:pl-0 py-1 pr-3 flex-row min-w-full border-2 border-neutral-200 rounded-xl">
             <div className="xsm:flex hidden min-w-10 justify-center items-center">
-              <i className="fa-solid fa-magnifying-glass text-neutral-300"></i>
+              <i className="fa-solid fa-magnifying-glass text-neutral-100"></i>
             </div>
             <input
               placeholder="Work table, Bowl sink..."
@@ -191,7 +191,7 @@ const ProductPage = ({ searchParams }) => {
             ></input>
             <button className="text-neutral-100 bg-[var(--theme)] font-raleway text-lg rounded-lg py-1 px-2.5 transition-all duration-300 hover:scale-95">
               <span className="hidden xsm:block">Search</span>
-              <i className="fa-solid fa-magnifying-glass xsm:hidden text-neutral-300"></i>
+              <i className="fa-solid fa-magnifying-glass xsm:hidden text-neutral-100"></i>
             </button>
             <OpenFilter />
           </div>
