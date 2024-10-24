@@ -10,8 +10,21 @@ const page = () => {
     document.title = "GoldenBrand: Contact";
   }, []);
   return (
-    <div className="mx-auto w-full mt-20 flex justify-center items-center">
+    <div className="mx-auto w-full mt-6 flex justify-center items-center">
       <div className="flex flex-col max-w-[1300px] w-full gap-20 mx-5 sm:mx-10 xl:mx-28">
+        <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
+          <div className="flex flex-row gap-3 w-full justify-center items-center">
+            <div className="bg-[var(--blue)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+            <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl md:text-7xl">
+              Contact
+            </span>
+            <div className="bg-[var(--blue)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          </div>
+          <span className="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl text-center text-slate-700">
+            Reach Out
+          </span>
+        </div>
+
         <div className="flex flex-col gap-8">
           <div className="grid grid-cols-1 lg:grid-cols-2  gap-5">
             <div className="flex flex-col gap-3 flex-grow-[3] py-6 justify-evenly items-center bg-white border-[1px] border-neutral-100 rounded-sm shadow-sm drop-shadow-sm">
