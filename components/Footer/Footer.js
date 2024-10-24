@@ -7,8 +7,8 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="mt-[100px]">
-      <div className="services p-2 flex justify-center">
-        <div className="service flex-1 p-1 flex flex-row gap-2">
+      <div className="services p-2 flex justify-center flex-wrap gap-4">
+        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0 ">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/fast-delivery.png"}
@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2">
+        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/free-delivery.png"}
@@ -46,7 +46,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2">
+        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/payment-options.png"}
@@ -65,7 +65,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2">
+        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/high-quality.png"}
@@ -92,8 +92,8 @@ const Footer = () => {
       >
         <div className="mx-auto max-w-screen-xl space-y-8 px-4 pt-16 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <div>
-              <div className="text-teal-300">
+            <div className="flex flex-col justify-center items-center">
+              <div>
                 <Image
                   src="/images/dark-icon.png"
                   width={200}
@@ -105,7 +105,7 @@ const Footer = () => {
                   }}
                 />
               </div>
-              <p className="mt-4 max-w-xs text-gray-400">
+              <p className="mt-4 max-w-xs text-gray-400 text-center">
                 Golden Brand Stainless Steel offers premium-quality stainless
                 steel kitchens, handrails, and aluminum products. With a
                 commitment to durability, precision, and modern design, we
@@ -186,7 +186,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:col-span-2 lg:grid-cols-4">
               <div>
                 <p className="font-bold text-lg text-white">Menu</p>
                 <ul className="mt-4 space-y-4 text-sm">
@@ -243,7 +243,7 @@ const Footer = () => {
                       About
                     </a>
                   </li>
-                  
+
                   <li className="link">
                     <a
                       href="#"
@@ -314,9 +314,8 @@ const Footer = () => {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-                      <span className="flex-1 text-gray-300">
-                        {" "}
-                        info@goldendesign.online{" "}
+                      <span className="flex-1 text-gray-300 break-all">
+                        info@goldendesign.online
                       </span>
                     </a>
                   </li>
@@ -374,7 +373,7 @@ const Footer = () => {
           </div>
           <div
             style={{ marginTop: "10px", marginBottom: "20px" }}
-            className="text-white flex flex-row w-full justify-center items-center gap-10 mt-0"
+            className="text-white flex flex-row w-full flex-wrap justify-center items-center gap-10 mt-0"
           >
             <Image
               src={"/images/icons/payments/mastercard.png"}

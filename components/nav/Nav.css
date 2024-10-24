@@ -52,7 +52,6 @@ nav .middle .select-category {
   cursor: pointer;
 }
 
-
 nav .middle button {
   background-color: transparent;
   border: 1px var(--fifth-color-secondary) solid;
@@ -151,4 +150,34 @@ nav .right .cart .total-number {
 
 .hamburger::before {
   top: -10px;
+}
+
+@media screen and (max-width: 950px) {
+  nav .menu-container .menu {
+    display: none;
+  }
+  nav .right {
+    gap: 5px;
+  }
+  nav .left img {
+    width: 180px;
+  }
+  .hamburger-menu {
+    display: flex !important;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  nav .left img {
+    width: 120px;
+  }
+  nav .right .login span{
+    display: none;
+  }
+  nav .right .login i{
+    font-size: 1.3rem;
+  }
+  nav .right .login{
+    border-radius: 50%;
+  }
 }

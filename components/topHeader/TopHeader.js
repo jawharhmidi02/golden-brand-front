@@ -3,16 +3,6 @@
 import "./TopHeader.css";
 
 import Image from "next/image";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
 import ShowLocation from "../showLocation/ShowLocation";
 
 const TopHeader = () => {
@@ -47,12 +37,7 @@ const TopHeader = () => {
           </label>
         </div> */}
       </div>
-      <div className="middle">
-        {/* <div className="open">
-          <i className="fa-regular fa-face-grin-beam"></i>
-          Open 24/7
-        </div> */}
-      </div>
+      
       <div className="right">
         <div className="socials">
           <abbr title="Facebook">

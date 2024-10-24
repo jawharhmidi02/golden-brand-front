@@ -43,6 +43,7 @@ const FastLinks = () => {
           height={50}
           width={50}
           className="hover:scale-110 transition-all duration-500"
+          alt="whatsapp"
         />
       </div>
       <div

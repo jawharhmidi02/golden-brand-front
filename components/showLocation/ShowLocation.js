@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import {
@@ -14,50 +13,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const components = [
-  {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
-  },
-  {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
-    description:
-      "For sighted users to preview content available behind a link.",
-  },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
-];
-
 const ShowLocation = () => {
   return (
     <NavigationMenu className="p-0">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-0">
+          <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-0 h-0">
             <i className="fa-solid fa-location-dot"></i>&nbsp;Show Location
           </NavigationMenuTrigger>
           <NavigationMenuContent className="z-10">
@@ -70,19 +31,96 @@ const ShowLocation = () => {
                     // height="450"
 
                     className="border-0 h-full w-full"
-                    allowfullscreen=""
+                    allowFullScreen=""
                     loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
+                    referrerPolicy="no-referrer-when-downgrade"
                   ></iframe>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem>Styles for headings, paragraphs, lists...etc</ListItem>
+              <li className="flex flex-col gap-4 my-3 row-span-3">
+                <div className="flex flex-col gap-0 cursor-default">
+                  <div>Saturday-Thursday</div>
+                  <div>
+                    <span className="text-neutral-500">8:00AM - 6:00PM</span>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-0 cursor-default">
+                  {/* <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-5 shrink-0 text-neutral-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      />
+                    </svg>
+                    <span className="flex-1 text-neutral-500">
+                      {" "}
+                      info@goldendesign.online{" "}
+                    </span>
+                  </div> */}
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-5 shrink-0 text-neutral-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                    <span className="flex-1 text-neutral-500">
+                      +974 7748 0070
+                    </span>
+                  </div>
+                  <div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="size-5 shrink-0 text-neutral-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                    <address className="-mt-0.5 flex-1 not-italic text-neutral-500">
+                      Doha, Qatar
+                    </address>
+                  </div>
+                </div>
+                <div>
+                  <button
+                    className="rounded-sm px-4 py-1 w-fit  self-center border-2 border-[#ffffff] text-[#ffffff] bg-[var(--blue)] active:scale-95 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)] transition-all duration-200"
+                    type="button"
+                    onClick={() => {
+                      window.location.href = "./contact";
+                    }}
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </li>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
