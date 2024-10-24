@@ -186,7 +186,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:col-span-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
               <div>
                 <p className="font-bold text-lg text-white">Menu</p>
                 <ul className="mt-4 space-y-4 text-sm">
