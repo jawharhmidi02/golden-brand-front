@@ -17,7 +17,9 @@ const page = () => {
     },
     {
       text: "Technical Support",
-      logo: <i className="fa-solid fa-comments text-[var(--theme)] text-7xl"></i>,
+      logo: (
+        <i className="fa-solid fa-comments text-[var(--theme)] text-7xl"></i>
+      ),
     },
     {
       text: "Warranty",
@@ -68,18 +70,17 @@ const page = () => {
             About our online store
           </span>
           <span className="font-raleway text-neutral-800">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic,
-            debitis aspernatur! Temporibus, nulla amet voluptates cupiditate
-            dolores quod doloribus architecto vel quis iste tempore cum eos
-            ipsum sed illum, nesciunt assumenda. Perferendis excepturi earum
-            cumque voluptatem aperiam quibusdam officiis? Reprehenderit quisquam
-            eveniet unde aperiam quam enim voluptas nostrum quas dignissimos
-            consequuntur laudantium fugiat, id illo incidunt veniam facilis vel
-            recusandae veritatis. Ullam iure earum ea tempore. Sint consequuntur
-            modi ratione maiores labore doloribus repellat porro, corrupti odio
-            similique! Reprehenderit architecto nemo adipisci nulla porro minus
-            quas asperiores fugit ab in nam, a eos autem animi natus! Eius eum
-            quo incidunt!
+            At Golden Brand Stainless Steel, we are committed to delivering
+            premium-quality stainless steel kitchens, handrails, and aluminum
+            products tailored to meet the needs of our clients. With years of
+            expertise in the industry, we pride ourselves on our craftsmanship,
+            attention to detail, and innovative designs. Our products are built
+            to last, ensuring both functionality and style for residential,
+            commercial, and industrial projects. Whether you need customized
+            stainless steel solutions or ready-made products, we offer a wide
+            range of options to suit your specifications. At Golden Brand, our
+            mission is to provide durable, high-quality materials backed by
+            exceptional service and fast, reliable delivery.
           </span>
         </div>
       </div>
