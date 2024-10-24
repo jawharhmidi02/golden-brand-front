@@ -18,7 +18,7 @@ const ServiceCard = ({ title, description, logo}) => {
       <div
         className={cn(
           "bg-[var(--secondary)] transition-colors duration-200 text-center rounded-full w-12 h-12",
-          hover && "bg-[var(--contact-colour)]"
+          hover && "bg-[var(--theme)]"
         )}
       >
         <i className={`${logo} text-[44px] relative top-1 -left-4 text-neutral-700`}></i>
@@ -26,7 +26,7 @@ const ServiceCard = ({ title, description, logo}) => {
       <div
         className={cn(
           "text-slate-800 w-fit text-start text-xl font-semibold font-lato py-2 border-b-[4px] border-b-[var(--tertiary)] transition-colors duration-200",
-          hover && "border-b-[var(--contact-colour)]"
+          hover && "border-b-[var(--theme)]"
         )}
       >
         { title }

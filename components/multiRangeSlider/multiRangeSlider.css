@@ -29,7 +29,7 @@
   }
   
   .slider__range {
-    background-color: var(--blue);
+    background-color: var(--theme);
     z-index: 2;
   }
   

@@ -20,9 +20,9 @@ const CategorieItem = ({ item, changeSelectedCategorie }) => {
   return (
     <label
       className={cn(
-        "border-2 border-neutral-300 bg-[#ffffff] duration-300 transition-all shadow-sm drop-shadow-sm active:scale-95 hover:scale-105 hover:bg-neutral-100 text-center font-semibold text-neutral-300 hover:cursor-pointer rounded-md text-xl py-1",
+        "border-2 border-neutral-300 bg-[#ffffff] duration-300 transition-all shadow-sm drop-shadow-sm active:scale-95 lg:hover:scale-105 hover:bg-neutral-100 text-center font-semibold text-neutral-300 hover:cursor-pointer rounded-md text-xl py-1",
         active
-          ? "border-[var(--blue)] text-[var(--blue)] bg-indigo-100 hover:bg-indigo-100"
+          ? "border-emerald-600 text-emerald-600 bg-emerald-100 hover:bg-emerald-100"
           : ""
       )}
       onClick={(e) => {

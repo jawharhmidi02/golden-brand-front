@@ -47,6 +47,7 @@ const page = () => {
       "SBS86B - 7 1",
       "SBS94B - 7 1",
     ],
+    titles: ["legs", "drainer"],
   };
   const cat = {};
   cat[product.category] = true;
@@ -76,7 +77,10 @@ const page = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div className="flex flex-col gap-4 lg:sticky lg:top-10 lg:left-0 w-full h-[85vh] justify-between">
             <div className="border-[1px] h-full w-full border-neutral-200 rounded-sm shadow-md drop-shadow-md flex justify-center items-center">
-              <img src={product.img} className="h-60 w-60 xxsm:h-80 xxsm:w-80 xsm:h-96 xsm:w-96 rounded-md my-1" />
+              <img
+                src={product.img}
+                className="h-60 w-60 xxsm:h-80 xxsm:w-80 xsm:h-96 xsm:w-96 rounded-md my-1"
+              />
             </div>
 
             {/* Buy / add to cart Interface */}
@@ -88,7 +92,7 @@ const page = () => {
                     onClick={() => {
                       decreaseProductNumber();
                     }}
-                    className="px-2.5 py-2 font-semibold border-r-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-l-md transition-all duration-200"
+                    className="px-2.5 py-2 font-semibold border-r-[1px] border-neutral-300 hover:bg-[var(--theme)] hover:text-white rounded-l-md transition-all duration-200"
                   >
                     -
                   </button>
@@ -100,26 +104,26 @@ const page = () => {
                     onClick={() => {
                       increaseProductNumber();
                     }}
-                    className="px-2 py-2 font-semibold  border-l-[1px] border-neutral-300 hover:bg-blue-500 hover:text-white rounded-r-md transition-all duration-200"
+                    className="px-2 py-2 font-semibold  border-l-[1px] border-neutral-300 hover:bg-[var(--theme)] hover:text-white rounded-r-md transition-all duration-200"
                   >
                     +
                   </button>
                 </div>
-                  <span className="font-semibold text-xl xsm:text-base self-center">{`${
-                    productNumber * selectedPrice
-                  } QR`}</span>
+                <span className="font-semibold text-xl xsm:text-base self-center">{`${
+                  productNumber * selectedPrice
+                } QR`}</span>
               </div>
 
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
-                  className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-all duration-300"
+                  className="font-bold text-neutral-50 bg-[var(--theme)] px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-[var(--theme)] hover:border-[var(--theme)] hover:bg-white transition-all duration-300"
                 >
                   ADD TO CART
                 </button>
                 <button
                   type="button"
-                  className="font-bold text-neutral-50 bg-blue-500 px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-blue-500 hover:border-blue-500 hover:bg-white transition-all duration-300"
+                  className="font-bold text-neutral-50 bg-[var(--theme)] px-3.5 py-2 font-lato border-2 border-neutral-50 active:scale-90 hover:text-[var(--theme)] hover:border-[var(--theme)] hover:bg-white transition-all duration-300"
                 >
                   BUY NOW
                 </button>
@@ -138,7 +142,7 @@ const page = () => {
 
             {/* Product Description table */}
             <table>
-              <tbody className="text-xl sm:text-2xl header text-center font-lato font-semibold text-neutral-100 bg-blue-500">
+              <tbody className="text-xl sm:text-2xl header text-center font-lato font-semibold text-neutral-100 bg-[var(--theme)]">
                 <tr>
                   <th>Materials Description</th>
                 </tr>
@@ -162,12 +166,13 @@ const page = () => {
             {/* Product Dimension / information table  */}
             <table>
               <tbody>
-                <tr className="xsm:text-xl header text-center font-lato font-semibold text-neutral-100 bg-blue-500">
+                <tr className="xsm:text-xl header text-center font-lato font-semibold text-neutral-100 bg-[var(--theme)]">
                   <td></td>
                   <td>Dimensions</td>
-                  {product.legs && <td>Legs</td>}
-                  {product.doors && <td>Doors</td>}
-                  {product.drainer && <td>Drainer</td>}
+                  {product.titles.map((item, index) => (
+                    <td key={index}>{item}</td>
+                  ))}
+
                   <td>Price</td>
                 </tr>
               </tbody>
@@ -199,36 +204,16 @@ const page = () => {
                         {dimension}
                       </label>
                     </td>
-                    {product.legs && (
+                    {product.titles.map((item) => (
                       <td>
                         <label
                           className="hover:cursor-pointer"
                           htmlFor={`radio-${index}`}
                         >
-                          {product.legs[index]}
+                          {product[item][index]}
                         </label>
                       </td>
-                    )}
-                    {product.doors && (
-                      <td>
-                        <label
-                          className="hover:cursor-pointer"
-                          htmlFor={`radio-${index}`}
-                        >
-                          {product.doors[index]}
-                        </label>
-                      </td>
-                    )}
-                    {product.drainer && (
-                      <td>
-                        <label
-                          className="hover:cursor-pointer"
-                          htmlFor={`radio-${index}`}
-                        >
-                          {product.drainer[index]}
-                        </label>
-                      </td>
-                    )}
+                    ))}
                     <td>
                       <label
                         className="hover:cursor-pointer"

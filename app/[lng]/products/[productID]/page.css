@@ -41,7 +41,7 @@ label.radio-wrapper-8 input + span:after {
 }
 label.radio-wrapper-8 input:checked + span:before {
   transform: scale(1.04);
-  background: #3b82f6;
+  background: var(--theme);
 }
 label.radio-wrapper-8 input:checked + span:after {
   transform: scale(0.4);

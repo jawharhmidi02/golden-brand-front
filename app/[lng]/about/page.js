@@ -6,18 +6,18 @@ const page = () => {
     {
       text: "Spare Parts",
       logo: (
-        <i className="fa-solid fa-arrows-rotate text-emerald-800 text-7xl"></i>
+        <i className="fa-solid fa-arrows-rotate text-[var(--theme)] text-7xl"></i>
       ),
     },
     {
       text: "Maintenance",
       logo: (
-        <i className="fa-solid fa-screwdriver-wrench text-emerald-800 text-7xl"></i>
+        <i className="fa-solid fa-screwdriver-wrench text-[var(--theme)] text-7xl"></i>
       ),
     },
     {
       text: "Technical Support",
-      logo: <i className="fa-solid fa-comments text-emerald-800 text-7xl"></i>,
+      logo: <i className="fa-solid fa-comments text-[var(--theme)] text-7xl"></i>,
     },
     {
       text: "Warranty",
@@ -26,7 +26,7 @@ const page = () => {
           xmlns="http://www.w3.org/2000/svg"
           width="72"
           height="72"
-          fill="#065f46"
+          fill="var(--theme)"
           class="bi bi-shield-check"
           viewBox="0 0 16 16"
         >
@@ -40,11 +40,11 @@ const page = () => {
     <div className="flex flex-col mx-auto w-full justify-center items-center gap-10 m-6">
       <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
         <div className="flex flex-row gap-3 w-full justify-center items-center">
-          <div className="bg-emerald-700 w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
           <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl md:text-7xl">
             About Us
           </span>
-          <div className="bg-emerald-700 w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
         </div>
         <span className="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl text-center text-slate-700">
           Who We Are
@@ -53,7 +53,7 @@ const page = () => {
 
       <div className="grid group grid-cols-1 lg:grid-cols-2 gap-10 mx-10">
         <div className="flex flex-col justify-evenly items-center">
-          <div className="hidden relative lg:block text-4xl font-semibold font-lato after:content-[''] after:border-l-2 after:border-t-2 after:h-10 after:w-10 after:bg-transparent after:border-emerald-700 after:-top-2 after:-left-10 after:absolute  after:transition-all  before:content-[''] before:absolute before:border-r-2 before:border-b-2 before:border-emerald-700 before:top-3 before:left-full before:w-10 before:h-10">
+          <div className="hidden relative lg:block text-4xl font-semibold font-lato after:content-[''] after:border-l-2 after:border-t-2 after:h-10 after:w-10 after:bg-transparent after:border-[var(--theme)] after:-top-2 after:-left-10 after:absolute  after:transition-all  before:content-[''] before:absolute before:border-r-2 before:border-b-2 before:border-[var(--theme)] before:top-3 before:left-full before:w-10 before:h-10">
             <span>Our Company</span>
           </div>
 
@@ -64,7 +64,7 @@ const page = () => {
         </div>
 
         <div className="flex flex-col gap-4 bg-white shadow-md drop-shadow-md px-6 py-8 xsm:px-12 rounded-md border-[1px] border-neutral-200 max-w-[600px]">
-          <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-emerald-800">
+          <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-emerald-600">
             About our online store
           </span>
           <span className="font-raleway text-neutral-800">
@@ -84,7 +84,7 @@ const page = () => {
         </div>
       </div>
 
-      <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-emerald-700">
+      <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
         After Sale Services
       </span>
 
