@@ -67,19 +67,19 @@ const page = () => {
   ]
   
   return (
-    <div className="flex flex-col mx-auto w-full justify-center items-center gap-20 mt-10">
+    <div className="flex flex-col mx-auto w-full justify-center items-center gap-20 mt-6">
 
       {/* Services Title */}
 
       <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
         <div className="flex flex-row gap-3 w-full justify-center items-center">
-          <div className="bg-[var(--contact-colour)] w-14 h-[2px]"></div>
-          <span className="font-bold font-lato text-neutral-800 text-center text-4xl">
+          <div className="bg-[var(--contact-colour)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl md:text-7xl">
             Services
           </span>
-          <div className="bg-[var(--contact-colour)] w-14 h-[2px]"></div>
+          <div className="bg-[var(--contact-colour)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
         </div>
-        <span className="font-lato text-center text-slate-700">What We Do</span>
+        <span className="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl text-center text-slate-700">What We Do</span>
       </div>
 
       {/* Services cards grid */}
