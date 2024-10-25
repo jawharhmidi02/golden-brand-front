@@ -1,7 +1,7 @@
 "use client";
 
 import Card from "@/components/Card/Card";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 
@@ -31,7 +31,7 @@ const ProductPage = ({ searchParams }) => {
         </SheetTrigger>
         <SheetContent className="w-[280px] overflow-scroll">
           <SheetTitle></SheetTitle>
-          <FilterInterface/>
+          <FilterInterface />
           <SheetDescription></SheetDescription>
         </SheetContent>
       </Sheet>
@@ -176,7 +176,9 @@ const ProductPage = ({ searchParams }) => {
     <div className="flex flex-row mx-auto w-full justify-center items-center gap-20 mt-6">
       <div className="mx-5 xsm:mx-8 sm:mx-10 flex flex-row gap-10">
         <div className="hidden lg:flex">
-          <FilterInterface></FilterInterface>
+          <Suspense>
+            <FilterInterface></FilterInterface>
+          </Suspense>
         </div>
         <div className="flex flex-col max-w-screen-lg gap-4">
           {/* input interface */}
