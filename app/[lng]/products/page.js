@@ -29,7 +29,7 @@ const ProductPage = ({ searchParams }) => {
             <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
           </Button>
         </SheetTrigger>
-        <SheetContent className="w-[280px]">
+        <SheetContent className="w-[280px] overflow-scroll">
           <SheetTitle></SheetTitle>
           <FilterInterface/>
           <SheetDescription></SheetDescription>
