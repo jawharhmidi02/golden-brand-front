@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AboutCard from "@/components/AboutCard/AboutCard";
 import React from "react";
 
@@ -38,6 +39,10 @@ const page = () => {
       ),
     },
   ];
+
+  useEffect(() => {
+    document.title = "GoldenBrand: About";
+  }, []);
   return (
     <div className="flex flex-col mx-auto w-full justify-center items-center gap-10 m-6">
       <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
