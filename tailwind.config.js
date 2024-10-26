@@ -76,7 +76,7 @@ module.exports = {
         }
       },
       animation: {
-        fadein: 'fade-in 0.6s forwards 0.1s 1'
+        fadein: 'fade-in 1s forwards 0.1s 1'
       }
     },
   },
