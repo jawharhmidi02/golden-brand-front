@@ -65,6 +65,19 @@ module.exports = {
           5: "hsl(var(--chart-5))",
         },
       },
+      keyframes: {
+        "fade-in": {
+          "0%": {
+            opacity: 0
+          },
+          "100%": {
+            opacity: 1
+          }
+        }
+      },
+      animation: {
+        fadein: 'fade-in 0.6s forwards 0.1s 1'
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

@@ -4,6 +4,7 @@ import Card from "@/components/Card/Card";
 import React, { Suspense, useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
+import './page.css';
 
 import { Button } from "@/components/ui/button";
 import {

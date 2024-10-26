@@ -30,6 +30,7 @@
   /* Primary */
   /* Alternative Blue #429bfa bg-blue-100 for active */
   /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */
+  /* --theme: #10b981b7; */
   --theme: #10b981;
   --contact-colour: #74c0fc;
   --primary: #f5f6f7;
@@ -85,11 +86,6 @@
 body {
   position: relative;
 }
-
-input[type='text']{
-  background-color: transparent;
-}
-
 html {
   scroll-behavior: smooth;
 }

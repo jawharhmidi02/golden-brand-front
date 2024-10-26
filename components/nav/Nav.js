@@ -16,9 +16,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 const Nav = ({ lng }) => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -51,7 +53,10 @@ const Nav = ({ lng }) => {
         <Menu lng={lng} />
       </div>
       <div className="right">
-        <div className="login">
+        <div className="login" onClick={() => {
+          // window.location.href = "./my-account";
+          router.push('./my-account');
+        }}>
           <i className="fa-regular fa-user"></i>
           <span>Sign Up/Sign In</span>
         </div>
