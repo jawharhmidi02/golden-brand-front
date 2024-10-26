@@ -10,7 +10,7 @@ const LookingForCustom = () => {
           width={100}
           height={100}
           alt="line"
-          className="w-full rounded-lg shadow-lg"
+          className="w-full rounded-lg shadow-lg drop-shadow-lg"
         />
       </div>
       <div className="flex flex-col">
@@ -43,7 +43,7 @@ const LookingForCustom = () => {
           src="/images/goldenbrand_stainlesssteel_1725566471006.jpeg"
           width={100}
           height={100}
-          className="w-full rounded-lg shadow-lg"
+          className="w-full rounded-lg shadow-lg drop-shadow-lg"
           alt="line"
         />
       </div>

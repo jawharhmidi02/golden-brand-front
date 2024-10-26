@@ -20,8 +20,8 @@ export default function Home({ params: { lng } }) {
     <main>
       <Hero lng={lng} />
       <Categories lng={lng} />
-      <FeaturedProducts lng={lng} />
       <LookingForCustom lng={lng} />
+      <FeaturedProducts lng={lng} />
     </main>
   );
 }

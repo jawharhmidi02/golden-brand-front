@@ -341,7 +341,7 @@ const FeaturedProducts = ({ lng }) => {
                   location.href = `/${lng}/products/${item.id}`;
                 }}
               ></button>
-              <p className="text-sm text-neutral-400">ID: {item.id}</p>
+              {/* <p className="text-sm text-neutral-400">ID: {item.id}</p> */}
             </div>
           </div>
         ))}

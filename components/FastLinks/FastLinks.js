@@ -42,7 +42,7 @@ const FastLinks = () => {
           src={"/images/icons/socials/whatsapp.png"}
           height={50}
           width={50}
-          className="hover:scale-110 transition-all duration-500"
+          className="hover:scale-110 hover:opacity-100 transition-all duration-500 opacity-80"
           alt="whatsapp"
         />
       </div>

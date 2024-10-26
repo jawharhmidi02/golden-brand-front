@@ -20,6 +20,7 @@
 
 .gotop.showGoTop:hover {
   scale: 1.1 !important;
+  opacity: 1;
   /* background-color: var(---fourth-color); */
 }
 
@@ -32,5 +33,5 @@
 .gotop.showGoTop {
   transform: translateY(0);
   scale: 1;
-  opacity: 1;
+  opacity: 0.70;
 }
