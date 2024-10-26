@@ -1,4 +1,5 @@
 "use client";
+
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
 import React, { useState, useEffect } from "react";
 import "./page.css";

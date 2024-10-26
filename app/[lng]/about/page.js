@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import AboutCard from "@/components/AboutCard/AboutCard";
 import React from "react";
