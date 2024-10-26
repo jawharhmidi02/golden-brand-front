@@ -14,9 +14,13 @@ const page = () => {
     <div className="mx-auto w-full mt-10 flex justify-center items-center">
       <div className="grid grid-cols-1 min-[800px]:grid-cols-2 w-full min-[800px]:max-w-[1200px] mx-4 xsm:mx-10 max-w-[580px]">
         <div className="flex flex-col px-8 py-10 lg:py-14 xl:py-20 bg-white rounded-t-3xl min-[800px]:rounded-l-3xl min-[800px]:rounded-tr-none shadow-md drop-shadow-md">
-
           {/* Sign In */}
-          <div className={cn("flex flex-col gap-5 justify-center items-center opacity-0", !signIn ? "hidden" : "animate-fadein")}>
+          <div
+            className={cn(
+              "flex flex-col gap-5 justify-center items-center opacity-0",
+              !signIn ? "hidden" : "animate-fadein"
+            )}
+          >
             <span className="text-xl font-semibold font-lato text-neutral-900">
               Sign In
             </span>
@@ -71,17 +75,20 @@ const page = () => {
                 </label>
               </div>
 
-              <span className="font-lato font-semibold text-neutral-500 mt-[2px]">
+              <span className="font-lato font-semibold text-neutral-500 mt-[2px] hover:cursor-pointer hover:text-neutral-700 transition-colors duration-200">
                 Forgot Password?
               </span>
             </div>
           </div>
 
+          {/* SIGN UP */}
 
-
-              {/* SIGN UP */}
-
-          <div className={cn("flex flex-col gap-5 justify-center items-center opacity-0", signIn ? "hidden" : "animate-fadein")}>
+          <div
+            className={cn(
+              "flex flex-col gap-5 justify-center items-center opacity-0",
+              signIn ? "hidden" : "animate-fadein"
+            )}
+          >
             <span className="text-xl font-semibold font-lato text-neutral-900">
               Sign Up
             </span>
@@ -173,11 +180,9 @@ const page = () => {
               </span>
             </div>
           </div>
-
-
         </div>
 
-        <div className="flex flex-col gap-5 justify-center items-center bg-[var(--theme)] px-12 py-24 rounded-b-3xl min-[800px]:rounded-r-3xl min-[800px]:rounded-bl-none drop-shadow-md shadow-md">
+        <div className="flex flex-col gap-5 justify-center items-center bg-[var(--theme)] px-8 py-24 min-[400px]:px-14 rounded-b-3xl min-[800px]:rounded-r-3xl min-[800px]:rounded-bl-none drop-shadow-md shadow-md">
           <span className="text-white font-lato text-3xl font-bold">
             {welcomeText}
           </span>
