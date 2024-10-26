@@ -47,7 +47,7 @@ const FastLinks = () => {
         />
       </div>
       <div
-        className="gotop"
+        className="gotop right-5 bottom-5 z-10"
         ref={Go_Top}
         onClick={() => {
           handleScroll();

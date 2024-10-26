@@ -43,11 +43,11 @@ export default function RootLayout({ children, params: { lng } }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-[var(--primary)]">
-        <FastLinks />
         <TopHeader lng={lng} />
         <Nav lng={lng} />
         <>{children}</>
         <Footer lng={lng} />
+        <FastLinks />
       </body>
     </html>
   );
