@@ -37,7 +37,7 @@ const TopHeader = () => {
           </label>
         </div> */}
       </div>
-      
+
       <div className="right">
         <div className="socials">
           <abbr title="Facebook">
@@ -69,7 +69,14 @@ const TopHeader = () => {
             ></i>
           </abbr>
         </div>
-        <div className="contact-us">Contact Us</div>
+        <div
+          className="contact-us"
+          onClick={() => {
+            window.location.href = "./contact";
+          }}
+        >
+          Contact Us
+        </div>
         <div className="language">
           <abbr title="Change to Arabic">العربية</abbr>
           <Image

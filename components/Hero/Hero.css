@@ -4,19 +4,52 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  position: relative;
 }
 
 .hero img {
   flex: 1;
   height: 100%;
-  background-image: url("/images/hero2.jpeg");
   inset: 0;
-  background-size: cover;
-  background-position: 50%;
-  background-repeat: no-repeat;
-  /* background-color: rgba(0, 0, 0, 0.1); */
   filter: brightness(30%);
+}
+
+.hero .embla {
+  margin: 0;
+  --slide-height: 19rem;
+  --slide-spacing: 0rem;
+  --slide-size: 100%;
+}
+.hero .embla__viewport {
+  overflow: hidden;
+}
+.hero .embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+}
+.embla__slide {
+  flex: 0 0 100%; /* Default to 1 image per slide */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.embla__slide img {
+  width: 100%;
+  height: auto;
+}
+
+/* Medium screens: 2 images per slide */
+@media (min-width: 768px) {
+  .embla__slide {
+    flex: 0 0 50%;
+  }
+}
+
+/* Large screens: 3 images per slide */
+@media (min-width: 1024px) {
+  .embla__slide {
+    flex: 0 0 33.33%;
+  }
 }
 
 .hero .text {
@@ -39,7 +72,7 @@
 
 .hero p {
   text-align: center;
-  line-height: 25px;
+  line-height: 20px;
 }
 
 .hero a {
@@ -47,34 +80,62 @@
   border: var(--second-color-primary) 2px solid;
   border-radius: 14px;
   transition: all 0.5s;
-}
-.hero a:hover {
-  background: var(--second-color-primary);
-  transform: translateY(-10px);
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+  width: 130px;
 }
 
-.embla {
-  margin: 0;
-  --slide-height: 19rem;
-  --slide-spacing: 0rem;
-  --slide-size: 100%;
+.hero a:hover {
+  background: var(--second-color-primary);
 }
-.embla__viewport {
-  overflow: hidden;
+
+.hero a:hover::after,
+.hero a:hover::before {
+  transform: translateY(-100%);
 }
-.embla__container {
+
+.hero a::after,
+.hero a::before {
+  content: "Show Now";
+  position: absolute;
+  left: 0;
   display: flex;
-  touch-action: pan-y pinch-zoom;
-  /* margin-left: calc(var(--slide-spacing) * -1); */
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  height: 47px;
+  width: 127px;
 }
-.embla__slide {
-  transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
-  min-width: 0;
-  width: 100%;
-  display: flex;
+
+.hero a::after {
+  top: 0;
 }
-.embla__slide img{
-  flex: 1;
-  height: 100%;
+
+.hero a::before {
+  top: 100%;
+}
+
+@media screen and (max-width: 550px) {
+  .hero p {
+    font-size: 0.8rem;
+  }
+  .hero .text {
+    gap: 10px;
+  }
+  /* .hero .text .title{
+    font-size: 1.2rem !important;
+  } */
+  .hero .text {
+    width: 90%;
+  }
+  .hero a {
+    height: 40px;
+    width: 120px;
+  }
+  .hero a::after,
+  .hero a::before {
+    height: 37px;
+    width: 117px;
+  }
 }

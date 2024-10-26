@@ -77,7 +77,7 @@ const Categories = ({ lng }) => {
     <section className="categories">
       <h1 className="section-title text-3xl">Categories</h1>
       <div className="categories-container w-full flex justify-center items-center">
-        <div className="categories-cards max-w-screen-xl w-full">
+        <div className="categories-cards max-w-screen-xl w-full px-10">
           <Carousel className="">
             <CarouselContent className="-ml-1">
               {categories.map((item, index) => (
@@ -116,8 +116,8 @@ const Categories = ({ lng }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="border-0 text-xl" />
-            <CarouselNext className="border-0 text-xl" />
+            <CarouselPrevious className="border-0 text-xl -left-8" />
+            <CarouselNext className="border-0 text-xl -right-8" />
           </Carousel>
         </div>
       </div>

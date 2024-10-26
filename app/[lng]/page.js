@@ -8,6 +8,7 @@ import "./page.css";
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/categories/Categories";
 import { useEffect } from "react";
+import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 
 export default function Home({ params: { lng } }) {
   useEffect(() => {
@@ -18,6 +19,7 @@ export default function Home({ params: { lng } }) {
     <main>
       <Hero lng={lng} />
       <Categories lng={lng} />
+      <FeaturedProducts />
     </main>
   );
 }

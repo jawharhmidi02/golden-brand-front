@@ -3,80 +3,51 @@ import "./Hero.css";
 
 // Components
 import Image from "next/image";
-import React from "react";
+import { useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 
 const OPTIONS = { loop: true };
 
-const EmblaCarousel = (props) => {
-  const { options } = props;
+const EmblaCarousel = ({ options }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()]);
+
+  useEffect(() => {
+    const updateOptions = () => {
+      if (window.innerWidth >= 1024) {
+        emblaApi && emblaApi.reInit({ slidesToScroll: 3 });
+      } else if (window.innerWidth >= 768) {
+        emblaApi && emblaApi.reInit({ slidesToScroll: 2 });
+      } else {
+        emblaApi && emblaApi.reInit({ slidesToScroll: 1 });
+      }
+    };
+
+    window.addEventListener("resize", updateOptions);
+    updateOptions();
+
+    return () => window.removeEventListener("resize", updateOptions);
+  }, [emblaApi]);
 
   return (
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          <div className="embla__slide">
-            <Image
-              alt="Hero Photo"
-              src="/images/hero2.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero1.jpeg"
-              width={500}
-              height={500}
-            />
-            <Image
-              alt="Hero Photo"
-              src="/images/hero0.jpeg"
-              width={500}
-              height={500}
-            />
-          </div>
-          <div className="embla__slide">
-            <Image
-              src="/images/hero5.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero4.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero3.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-          </div>
-          <div className="embla__slide">
-            <Image
-              src="/images/hero8.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero7.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-            <Image
-              src="/images/hero6.jpeg"
-              width={500}
-              height={500}
-              alt="hero"
-            />
-          </div>
+          {[
+            "/images/hero2.jpeg",
+            "/images/hero1.jpeg",
+            "/images/hero0.jpeg",
+            "/images/hero5.jpeg",
+            "/images/hero4.jpeg",
+            "/images/hero3.jpeg",
+            "/images/hero8.jpeg",
+            "/images/hero7.jpeg",
+            "/images/hero6.jpeg",
+          ].map((src, index) => (
+            <div className="embla__slide" key={index}>
+              <Image src={src} width={500} height={500} alt="Hero" />
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -87,17 +58,17 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="text">
-        <h1 className="text-3xl">
+        <h1 className="text-3xl text-center title">
           Golden Brand: <span>Stainless Steel</span>
         </h1>
-        <p>
+        <p className="text-center">
           Elevate your space with premium stainless steel craftsmanship. From
           sleek kitchens to durable handrails, Golden Brand Stainless Steel
           offers high-quality, custom solutions for homes and businesses.
           Discover our range of products designed to enhance functionality and
           style. Built to last, built to impress.
         </p>
-        <a href="/products">Shop Now</a>
+        <a href="/products"></a>
       </div>
       <EmblaCarousel options={OPTIONS} />
     </div>

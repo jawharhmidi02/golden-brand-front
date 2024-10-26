@@ -1,0 +1,23 @@
+.featured-product-link {
+  overflow-y: hidden;
+  position: relative;
+}
+
+.featured-product-link::before {
+  content: "";
+  position: absolute;
+  height: 3px;
+  transition: all 0.3s;
+  width: 100%;
+  bottom: -1px;
+  left: -100%;
+  background: rgb(212 212 212 / var(--tw-text-opacity));
+}
+
+.featured-product-link.active::before {
+  left: 0;
+}
+
+.featured-product-link:hover::before {
+  left: 0;
+}
