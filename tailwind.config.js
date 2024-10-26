@@ -73,10 +73,19 @@ module.exports = {
           "100%": {
             opacity: 1
           }
+        },
+        "fade-out": {
+          "0%": {
+            opacity: 1
+          },
+          "100%": {
+            opacity: 0
+          }
         }
       },
       animation: {
-        fadein: 'fade-in 1s forwards 0.1s 1'
+        fadein: 'fade-in 1s forwards 0.15s 1',
+        fadeout: 'fade-out 0.4s forwards 0s 1'
       }
     },
   },
