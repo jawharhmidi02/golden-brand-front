@@ -9,6 +9,7 @@ import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/categories/Categories";
 import { useEffect } from "react";
 import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
+import LookingForCustom from "@/components/LookingForCustom/LookingForCustom";
 
 export default function Home({ params: { lng } }) {
   useEffect(() => {
@@ -19,7 +20,8 @@ export default function Home({ params: { lng } }) {
     <main>
       <Hero lng={lng} />
       <Categories lng={lng} />
-      <FeaturedProducts />
+      <FeaturedProducts lng={lng} />
+      <LookingForCustom lng={lng} />
     </main>
   );
 }

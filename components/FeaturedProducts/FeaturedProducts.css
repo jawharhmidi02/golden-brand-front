@@ -21,3 +21,50 @@
 .featured-product-link:hover::before {
   left: 0;
 }
+
+.featured-product button {
+  transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
+  height: 45px;
+}
+
+.featured-product button:hover {
+  background: var(--theme);
+}
+
+.featured-product button:hover::after,
+.featured-product button:hover::before {
+  transform: translateY(-100%);
+}
+
+.featured-product button::after,
+.featured-product button::before {
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  height: 45px;
+  width: calc(100% - 3px);
+}
+
+.featured-product button::after {
+  content: "Open Product";
+}
+
+.featured-product button::before {
+  content: "\f35d";
+  font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+  font-size: 1.5rem;
+}
+
+.featured-product button::after {
+  top: 0;
+}
+
+.featured-product button::before {
+  top: 100%;
+}
