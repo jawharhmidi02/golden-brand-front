@@ -23,7 +23,7 @@ section.categories {
   content: "";
   height: 3px;
   width: 60px;
-  background: var(--second-color-primary);
+  background: var(--theme);
   position: absolute;
   top: 50%;
 }

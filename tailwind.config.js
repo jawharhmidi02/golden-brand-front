@@ -9,19 +9,19 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        xsm: '544px',
-        xxsm: '380px'
+        xsm: "544px",
+        xxsm: "380px",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      fontFamily:{
-        'montserrat': ['Montserrat'],
-        'raleway': ['Raleway'],
-        'lato': ['Lato'],
-        'lora': ['Lora']
+      fontFamily: {
+        montserrat: ["Montserrat"],
+        raleway: ["Raleway"],
+        lato: ["Lato"],
+        lora: ["Lora"],
       },
       colors: {
         background: "hsl(var(--background))",
@@ -68,25 +68,36 @@ module.exports = {
       keyframes: {
         "fade-in": {
           "0%": {
-            opacity: 0
+            opacity: 0,
           },
           "100%": {
-            opacity: 1
-          }
+            opacity: 1,
+          },
         },
         "fade-out": {
           "0%": {
-            opacity: 1
+            opacity: 1,
           },
           "100%": {
-            opacity: 0
-          }
-        }
+            opacity: 0,
+          },
+        },
+        "fade-in-up": {
+          "0%": {
+            opacity: 0,
+            transform: "translate3d(0, 100%, 0)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
       },
       animation: {
-        fadein: 'fade-in 1s forwards 0.15s 1',
-        fadeout: 'fade-out 0.4s forwards 0s 1'
-      }
+        fadein: "fade-in 1s forwards 0.15s 1",
+        fadeout: "fade-out 0.4s forwards 0s 1",
+        fadeinup: "fade-in-up 0.7s forwards 0.15s 1",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

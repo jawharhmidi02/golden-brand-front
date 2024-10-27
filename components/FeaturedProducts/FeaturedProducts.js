@@ -267,7 +267,7 @@ const FeaturedProducts = ({ lng }) => {
 
   return (
     <div className="flex flex-col items-center featured-product">
-      <div className="flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between w-full  max-w-screen-xl">
+      <div className="flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between w-full px-5 max-w-screen-xl">
         <div className="font-semibold text-2xl lg:text-3xl">
           Featured Products
         </div>
