@@ -407,7 +407,7 @@ const Footer = () => {
             <div className="link ">
               <a
                 className="hover:text-white hover:scale-105 duration-500"
-                href="#"
+                href="/terms-and-conditions#refund"
               >
                 Refund & Returns
               </a>
@@ -415,7 +415,7 @@ const Footer = () => {
             <div className="link ">
               <a
                 className="hover:text-white hover:scale-105 duration-500"
-                href="#"
+                href="/terms-and-conditions#privacy"
               >
                 Privacy Policy
               </a>
@@ -423,7 +423,7 @@ const Footer = () => {
             <div className="link ">
               <a
                 className="hover:text-white hover:scale-105 duration-500"
-                href="#"
+                href="/terms-and-conditions#delivery"
               >
                 Shipping & Delivery
               </a>

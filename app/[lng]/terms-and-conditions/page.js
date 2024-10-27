@@ -32,7 +32,7 @@ const page = () => {
             identification number: XXXXXXXXXXXXXXX
           </span>
           <ul className="list-decimal list-inside marker:text-lg">
-            <li className="font-semibold text-lg">Our Contract:</li>
+            <li className="font-semibold text-lg" id="privacy">Our Contract:</li>
             <div className="mt-5">
               <span>
                 These terms and conditions (Store Terms) apply to your uses of
@@ -320,7 +320,7 @@ const page = () => {
               </span>
             </div>
             <li className="font-semibold text-lg mt-5">Global Agreement:</li>
-            <div className="mt-5">
+            <div className="mt-5" id="delivery">
               <span>
                 The terms of this store (including our privacy policies, cookies
                 policy and terms and conditions of sale) indicate and clarify
@@ -367,6 +367,12 @@ const page = () => {
             </ul>
             <li className="font-semibold text-lg mt-5">
               Designing Custom Products:
+            </li>
+            <div className="mt-5" id="refund">
+              <span>Coming Soon...</span>
+            </div>
+            <li className="font-semibold text-lg mt-5">
+              Refund & Return Policy:
             </li>
             <div className="mt-5">
               <span>Coming Soon...</span>
