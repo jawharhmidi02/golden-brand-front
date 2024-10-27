@@ -92,11 +92,33 @@ module.exports = {
             transform: "translate3d(0, 0, 0)",
           },
         },
+        "fade-in-left": {
+          "0%": {
+            opacity: 0,
+            transform: "translate3d(-100%, 0, 0)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
+        "fade-in-right": {
+          "0%": {
+            opacity: 0,
+            transform: "translate3d(100%, 0, 0)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
       },
       animation: {
         fadein: "fade-in 1s forwards 0.15s 1",
         fadeout: "fade-out 0.4s forwards 0s 1",
         fadeinup: "fade-in-up 0.7s forwards 0.15s 1",
+        fadeinleft: "fade-in-left 0.7s forwards 0.15s 1",
+        fadeinright: "fade-in-right 0.7s forwards 0.15s 1",
       },
     },
   },
