@@ -36,17 +36,20 @@ const page = () => {
             <div className="mt-5">
               <span>
                 These terms and conditions (Store Terms) apply to your uses of
-                the domain <span className="text-[var(--theme)] font-semibold">www.goldenbrand.com</span> on the Internet (the “Store”) and
-                this term must include all the contents in the Store, and you
-                must read these terms carefully, and we recommend that you keep
-                a copy for future reference, Your entry, browsing, use or
-                registration in the store confirms that you have read,
-                understood and agreed to the entire terms of the store, and if
-                you do not agree to the terms of this store in their entirety,
-                you must not use the store. We are committed to providing very
-                accurate prices on our store, however, errors can occur that may
-                lead to an incorrect price for a product. In such cases, we
-                reserve the right to refuse or cancel any order.
+                the domain{" "}
+                <span className="text-[var(--theme)] font-semibold">
+                  www.goldenbrand.com
+                </span>{" "}
+                on the Internet (the “Store”) and this term must include all the
+                contents in the Store, and you must read these terms carefully,
+                and we recommend that you keep a copy for future reference, Your
+                entry, browsing, use or registration in the store confirms that
+                you have read, understood and agreed to the entire terms of the
+                store, and if you do not agree to the terms of this store in
+                their entirety, you must not use the store. We are committed to
+                providing very accurate prices on our store, however, errors can
+                occur that may lead to an incorrect price for a product. In such
+                cases, we reserve the right to refuse or cancel any order.
               </span>
             </div>
             <li className="font-semibold text-lg mt-5">
@@ -330,7 +333,7 @@ const page = () => {
             <li className="font-semibold text-lg mt-5">
               Changes to the Terms And the provisions of this Store:
             </li>
-            <div className="mt-5">
+            <div className="mt-5" id="payment">
               <span>
                 We reserve the right to change and update the terms and
                 conditions This store from time to time. We recommend that you
@@ -340,22 +343,34 @@ const page = () => {
                 updates to the terms and conditions of our store.
               </span>
             </div>
+            <li className="font-semibold text-lg mt-5">Delivery:</li>
+            <div className="mt-5">
+              <span>Coming Soon...</span>
+            </div>
             <li className="font-semibold text-lg mt-5">
-              Delivery:
-            </li>
-            <div className="mt-5"><span>Coming Soon...</span></div>
-            <li className="font-semibold text-lg mt-5">
-            Payment and Security Policy:
+              Payment and Security Policy:
             </li>
             <ul className="list-disc">
-              <li className="ml-10 mt-4">By bank transfer (you will be notified of the details of completing the process).</li>
-              <li className="ml-10 mt-4">We assure you, our valued customers, that all your bank account details are not stored, sold, shared, or leased to any other parties.</li>
-              <li className="ml-10 mt-4">At Golden Brand Store, we guarantee a safe shopping experience on our website.</li>
+              <li className="ml-10 mt-4">
+                By bank transfer (you will be notified of the details of
+                completing the process).
+              </li>
+              <li className="ml-10 mt-4">
+                We assure you, our valued customers, that all your bank account
+                details are not stored, sold, shared, or leased to any other
+                parties.
+              </li>
+              <li className="ml-10 mt-4">
+                At Golden Brand Store, we guarantee a safe shopping experience
+                on our website.
+              </li>
             </ul>
             <li className="font-semibold text-lg mt-5">
-            Designing Custom Products:
+              Designing Custom Products:
             </li>
-            <div className="mt-5"><span>Coming Soon...</span></div>
+            <div className="mt-5">
+              <span>Coming Soon...</span>
+            </div>
           </ul>
         </div>
       </div>

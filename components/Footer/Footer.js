@@ -275,7 +275,7 @@ const Footer = () => {
                   </li>
                   <li className="link">
                     <a
-                      href="#"
+                      href="/terms-and-conditions#payment"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Payments Info
