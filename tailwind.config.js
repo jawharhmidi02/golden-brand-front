@@ -114,6 +114,8 @@ module.exports = {
         },
       },
       animation: {
+        textfadein: "fade-in 0.5s forwards 0.1s 1",
+        textfadeout: "fade-out 0.2s forwards 0s 1",
         fadein: "fade-in 1s forwards 0.15s 1",
         fadeout: "fade-out 0.4s forwards 0s 1",
         fadeinup: "fade-in-up 0.7s forwards 0.15s 1",
