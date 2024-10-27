@@ -36,7 +36,7 @@ const page = () => {
             <div className="mt-5">
               <span>
                 These terms and conditions (Store Terms) apply to your uses of
-                the domain www.goldenbrand.com on the Internet (the “Store”) and
+                the domain <span className="text-[var(--theme)] font-semibold">www.goldenbrand.com</span> on the Internet (the “Store”) and
                 this term must include all the contents in the Store, and you
                 must read these terms carefully, and we recommend that you keep
                 a copy for future reference, Your entry, browsing, use or
