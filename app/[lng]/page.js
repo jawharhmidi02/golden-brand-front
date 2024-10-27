@@ -10,7 +10,7 @@ import Categories from "../../components/categories/Categories";
 import { useEffect } from "react";
 import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
 import LookingForCustom from "@/components/LookingForCustom/LookingForCustom";
-import Features from "@/components/features/Features";
+import FeatureServices from "@/components/featureServices/FeatureServices";
 
 export default function Home({ params: { lng } }) {
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Home({ params: { lng } }) {
       <Categories lng={lng} />
       <LookingForCustom lng={lng} />
       <FeaturedProducts lng={lng} />
-      <Features lng={lng} />
+      <FeatureServices lng={lng} />
     </main>
   );
 }

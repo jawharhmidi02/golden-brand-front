@@ -3,9 +3,9 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const Features = () => {
+const FeaturedServices = () => {
   const [selectedService, setselectedService] = useState(0);
   return (
     <div className="my-[70px] py-[50px] bg-white">
@@ -235,4 +235,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeaturedServices;
