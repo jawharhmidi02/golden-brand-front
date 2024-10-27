@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./page.css";
 import { cn } from "@/lib/utils";
 
@@ -40,6 +40,10 @@ const page = () => {
     }
     setHeightState(!heightState);
   };
+
+  useEffect(() => {
+    document.title = "GoldenBrand: My Account";
+  }, []);
   return (
     <div className="mx-auto w-full h-full mt-10 flex justify-center items-center">
       <div
