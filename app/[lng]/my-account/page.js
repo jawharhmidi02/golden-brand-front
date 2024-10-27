@@ -9,7 +9,7 @@ const page = () => {
   const [signIn, setSignIn] = useState(true);
   const [signText, setSignText] = useState("Sign Up");
   const [accountText, setAccountText] = useState("Don't have an account ?");
-  const [welcomeText, setWelcomeText] = useState("Welcome Aboard!");
+  const [welcomeText, setWelcomeText] = useState("Welcome Back!");
   const [animationState, setAnimationState] = useState(false);
   const [forgetAnimation, setForgetAnimation] = useState(false);
   const [heightState, setHeightState] = useState(false);
@@ -30,12 +30,13 @@ const page = () => {
       }, 400);
       setSignText("Sign In");
       setAccountText("Already have an account ?");
-      setWelcomeText("Welcome Back  !");
+      setWelcomeText("Welcome Aboard!");
+      
     } else {
       setSignIn(!signIn);
       setSignText("Sign Up");
       setAccountText("Don't have an account ?");
-      setWelcomeText("Welcome Aboard!");
+      setWelcomeText("Welcome Back!");
     }
     setHeightState(!heightState);
   };

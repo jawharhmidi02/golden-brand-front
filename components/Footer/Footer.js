@@ -259,7 +259,7 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="/termsconditions"
+                      href="/terms-and-conditions"
                       className=" transition hover:text-white text-gray-300 "
                     >
                       Terms & Conditions
