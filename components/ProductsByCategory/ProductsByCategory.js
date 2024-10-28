@@ -10,13 +10,14 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import React, { useState } from "react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const ProductsByCategory = () => {
   const router = useRouter();
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [loadingProducts, setloadingProducts] = useState(false);
 
   const [categories, setcategories] = useState([
     {
@@ -68,7 +69,6 @@ const ProductsByCategory = () => {
       name: "Waste Management",
     },
   ]);
-  const [selectedCategory, setSelectedCategory] = useState(0);
 
   const [product, setproduct] = useState([
     {
@@ -329,10 +329,18 @@ const ProductsByCategory = () => {
     },
   ]);
 
+  useEffect(() => {
+    setloadingProducts(true);
+
+    setTimeout(() => {
+      setloadingProducts(false);
+    }, 2000);
+  }, [selectedCategory]);
+
   return (
-    <div className="gap-6 overflow-hidden ProductsByCategory flex flex-col lg:flex-row mt-[70px] max-w-screen-xl m-auto lg:gap-0">
-      <div className="lg:min-w-[30%] lg:pl-6">
-        <div className="font-semibold text-2xl text-center lg:text-left">
+    <div className="gap-6 ProductsByCategory flex flex-col lg:flex-row mt-[70px] max-w-screen-xl m-auto lg:gap-0 overflow-hidden">
+      <div className="lg:w-[30%] lg:pl-6 flex-shrink-0">
+        <div className="font-semibold text-2xl text-center lg:text-left lg:text-3xl font-lato">
           Products By Category
         </div>
         <div className="flex flex-row lg:flex-col overflow-x-auto no-scrollbar gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 justify-center">
@@ -354,13 +362,19 @@ const ProductsByCategory = () => {
           ))}
         </div>
       </div>
-      <div className="mt-4 w-full flex-1">
+
+      <div
+        className={cn(
+          "mt-4 w-full lg:flex-grow delay-0",
+          loadingProducts ? "animate-fadeoutdown" : "animate-fadeinup"
+        )}
+      >
         <Carousel className=" w-full flex-1">
           <CarouselContent className="mx-2 w-full flex-1">
             {product.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="md:basis-1/4 lg:basis-1/3 pl-0 flex basis-1/2 p-0"
+                className="md:basis-1/4 lg:basis-1/3 pl-0 flex basis-1/2 p-0 xl:basis-1/4"
               >
                 <div
                   key={index}
@@ -382,9 +396,6 @@ const ProductsByCategory = () => {
                       onClick={() => {
                         var cats = {};
                         cats[item.category] = true;
-                        // location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
-                        //   JSON.stringify(cats)
-                        // )}`;
                         router.push(
                           `/${lng}/products?selectedCategories=${encodeURIComponent(
                             JSON.stringify(cats)
