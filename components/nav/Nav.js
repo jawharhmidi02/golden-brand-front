@@ -38,8 +38,10 @@ const Nav = ({ lng }) => {
           alt="icon"
           loading="lazy"
           onClick={() => {
-            window.location.href = "./";
+            // window.location.href = "./";
+            router.push("./");
           }}
+          className="hover:cursor-pointer"
         />
       </div>
       <div>
@@ -54,7 +56,7 @@ const Nav = ({ lng }) => {
       </div>
       <div className="right">
         <div
-          className="login"
+          className="login hover:cursor-pointer"
           onClick={() => {
             // window.location.href = "./my-account";
             router.push("./my-account");
@@ -97,35 +99,75 @@ const Nav = ({ lng }) => {
           <SheetContent className="bg-[var(--tertiary)] w-[230px]">
             <div className="menu flex flex-col">
               <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
-                <a href="/">Home</a>
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    router.push("/");
+                  }}
+                  // href="/"
+                >
+                  Home
+                </a>
               </div>
               <div
                 className={`link ${
                   pathname === `/${lng}/services` ? "active" : ""
                 }`}
               >
-                <a href="/services">Our Services</a>
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    router.push("/services");
+                  }}
+                  // href="/services"
+                >
+                  Our Services
+                </a>
               </div>
               <div
                 className={`link ${
                   pathname === `/${lng}/products` ? "active" : ""
                 }`}
               >
-                <a href="/products">Products</a>
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    router.push("/products");
+                  }}
+                  // href="/products"
+                >
+                  Products
+                </a>
               </div>
               <div
                 className={`link ${
                   pathname === `/${lng}/about` ? "active" : ""
                 }`}
               >
-                <a href="/about">About</a>
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    router.push("/about");
+                  }}
+                  // href="/about"
+                >
+                  About
+                </a>
               </div>
               <div
                 className={`link ${
                   pathname === `/${lng}/contact` ? "active" : ""
                 }`}
               >
-                <a href="/contact">Contact</a>
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    router.push("/contact");
+                  }}
+                  // href="/contact"
+                >
+                  Contact
+                </a>
               </div>
             </div>
           </SheetContent>

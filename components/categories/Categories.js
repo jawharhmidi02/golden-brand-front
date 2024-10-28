@@ -13,10 +13,12 @@ import {
 } from "@/components/ui/carousel";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
 const Categories = ({ lng }) => {
+  const router = useRouter();
   const [categories, setcategories] = useState([
     {
       id: 1,
@@ -90,9 +92,14 @@ const Categories = ({ lng }) => {
                       className="categorie-card border-[1px] border-neutral-200 shadow-md drop-shadow-md flex-1 flex flex-col"
                       onClick={() => {
                         cats[item.name] = true;
-                        location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
-                          JSON.stringify(cats)
-                        )}`;
+                        // location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
+                        //   JSON.stringify(cats)
+                        // )}`;
+                        router.push(
+                          `/${lng}/products?selectedCategories=${encodeURIComponent(
+                            JSON.stringify(cats)
+                          )}`
+                        );
                       }}
                     >
                       <CardContent className="flex  items-center justify-center p-1">

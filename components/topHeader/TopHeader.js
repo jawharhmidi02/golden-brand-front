@@ -72,7 +72,8 @@ const TopHeader = () => {
         <div
           className="contact-us"
           onClick={() => {
-            window.location.href = "./contact";
+            // window.location.href = "./contact";
+            router.push("./contact");
           }}
         >
           Contact Us

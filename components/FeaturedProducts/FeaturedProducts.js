@@ -2,6 +2,7 @@ import Image from "next/image";
 import "./FeaturedProducts.css";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const FeaturedProducts = ({ lng }) => {
   const [product, setproduct] = useState([
@@ -262,8 +263,8 @@ const FeaturedProducts = ({ lng }) => {
       id: 987654,
     },
   ]);
-
   const [selectedType, setselectedType] = useState("mostpopular");
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center featured-product">
@@ -320,9 +321,14 @@ const FeaturedProducts = ({ lng }) => {
                 onClick={() => {
                   var cats = {};
                   cats[item.category] = true;
-                  location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
-                    JSON.stringify(cats)
-                  )}`;
+                  // location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
+                  //   JSON.stringify(cats)
+                  // )}`;
+                  router.push(
+                    `/${lng}/products?selectedCategories=${encodeURIComponent(
+                      JSON.stringify(cats)
+                    )}`
+                  );
                 }}
               >
                 {item.category}
@@ -338,7 +344,8 @@ const FeaturedProducts = ({ lng }) => {
               <button
                 className=" bg-[var(--blue)] text-white px-4 py-1 transition-all duration-300 w-full"
                 onClick={() => {
-                  location.href = `/${lng}/products/${item.id}`;
+                  // location.href = `/${lng}/products/${item.id}`;
+                  router.push(`/${lng}/products/${item.id}`);
                 }}
               ></button>
               {/* <p className="text-sm text-neutral-400">ID: {item.id}</p> */}

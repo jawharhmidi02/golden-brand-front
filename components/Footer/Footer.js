@@ -1,10 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import "./Footer.css";
 
 import Image from "next/image";
 
 const Footer = () => {
+  const router = useRouter();
   return (
     <div className="mt-[100px]">
       <div className="services p-2 flex justify-center flex-wrap gap-4">
@@ -101,7 +103,8 @@ const Footer = () => {
                   alt="icon"
                   loading="lazy"
                   onClick={() => {
-                    window.location.href = "./";
+                    // window.location.href = "./";
+                    router.push("./");
                   }}
                 />
               </div>
@@ -192,24 +195,33 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="/"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/");
+                      }}
+                      // href="/"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Home
                     </a>
                   </li>
                   <li className="link">
                     <a
-                      href="/services"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/services");
+                      }}
+                      // href="/services"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Services
                     </a>
                   </li>
                   <li className="link">
                     <a
-                      href="/products"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/products");
+                      }}
+                      // href="/products"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Products
                     </a>
@@ -224,8 +236,11 @@ const Footer = () => {
                     </li> */}
                   <li className="link">
                     <a
-                      href="/contact"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/contact");
+                      }}
+                      // href="/contact"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Contact
                     </a>
@@ -237,8 +252,11 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="/about"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/about");
+                      }}
+                      // href="/about"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       About
                     </a>
@@ -247,7 +265,7 @@ const Footer = () => {
                   <li className="link">
                     <a
                       href="#"
-                      className=" transition hover:text-white text-gray-300 "
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Google Maps
                     </a>
@@ -259,24 +277,33 @@ const Footer = () => {
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
-                      href="/terms-and-conditions"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/terms-and-conditions");
+                      }}
+                      // href="/terms-and-conditions"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Terms & Conditions
                     </a>
                   </li>
                   <li className="link">
                     <a
-                      href="/about#faqs"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/about#faqs");
+                      }}
+                      // href="/about#faqs"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       FAQs
                     </a>
                   </li>
                   <li className="link">
                     <a
-                      href="/terms-and-conditions#payment"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/terms-and-conditions#payment");
+                      }}
+                      // href="/terms-and-conditions#payment"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Payments Info
                     </a>
@@ -284,8 +311,11 @@ const Footer = () => {
 
                   <li className="link">
                     <a
-                      href="/contact"
-                      className=" transition hover:text-white text-gray-300 "
+                      onClick={() => {
+                        router.push("/contact");
+                      }}
+                      // href="/contact"
+                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
                     >
                       Contact
                     </a>
@@ -406,24 +436,33 @@ const Footer = () => {
           >
             <div className="link ">
               <a
-                className="hover:text-white hover:scale-105 duration-500"
-                href="/terms-and-conditions#refund"
+                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                onClick={() => {
+                  router.push("/terms-and-conditions#refund");
+                }}
+                // href="/terms-and-conditions#refund"
               >
                 Refund & Returns
               </a>
             </div>
             <div className="link ">
               <a
-                className="hover:text-white hover:scale-105 duration-500"
-                href="/terms-and-conditions#privacy"
+                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                onClick={() => {
+                  router.push("/terms-and-conditions#privacy");
+                }}
+                // href="/terms-and-conditions#privacy"
               >
                 Privacy Policy
               </a>
             </div>
             <div className="link ">
               <a
-                className="hover:text-white hover:scale-105 duration-500"
-                href="/terms-and-conditions#delivery"
+                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                onClick={() => {
+                  router.push("/terms-and-conditions#delivery");
+                }}
+                // href="/terms-and-conditions#delivery"
               >
                 Shipping & Delivery
               </a>
@@ -433,7 +472,13 @@ const Footer = () => {
         <div className="h-[1px] w-full bg-white border-mask"></div>
         <div className="text-white text-center  pb-3 pt-3">
           Copyright © 2024{" "}
-          <a href="/" className="font-bold">
+          <a
+            onClick={() => {
+              router.push("/");
+            }}
+            // href="/" className="font-bold"
+            className="font-bold hover:cursor-pointer"
+          >
             Golden Brand
           </a>
           . All rights reserved.

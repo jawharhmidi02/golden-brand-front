@@ -2,34 +2,75 @@
 
 import "./Menu.css";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Menu = ({ lng }) => {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <div className="menu-container">
       <div className="menu">
         <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
-          <a href="/">Home</a>
+          <a
+            onClick={() => {
+              router.push("/");
+            }}
+            // href="/"
+            className="hover:cursor-pointer"
+          >
+            Home
+          </a>
         </div>
         <div
           className={`link ${pathname === `/${lng}/services` ? "active" : ""}`}
         >
-          <a href="/services">Our Services</a>
+          <a
+            onClick={() => {
+              router.push("/services");
+            }}
+            // href="/services"
+            className="hover:cursor-pointer"
+          >
+            Our Services
+          </a>
         </div>
         <div
           className={`link ${pathname === `/${lng}/products` ? "active" : ""}`}
         >
-          <a href="/products">Products</a>
+          <a
+            onClick={() => {
+              router.push("/products");
+            }}
+            // href="/products"
+            className="hover:cursor-pointer"
+          >
+            Products
+          </a>
         </div>
         <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>
-          <a href="/about">About</a>
+          <a
+            onClick={() => {
+              router.push("/about");
+            }}
+            // href="/about"
+            className="hover:cursor-pointer"
+          >
+            About
+          </a>
         </div>
         <div
           className={`link ${pathname === `/${lng}/contact` ? "active" : ""}`}
         >
-          <a href="/contact">Contact</a>
+          <a
+            onClick={() => {
+              router.push("/contact");
+            }}
+            // href="/contact"
+            className="hover:cursor-pointer"
+          >
+            Contact
+          </a>
         </div>
       </div>
 

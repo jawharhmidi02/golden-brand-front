@@ -12,8 +12,10 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useRouter } from "next/navigation";
 
 const ShowLocation = () => {
+  const router = useRouter();
   return (
     <NavigationMenu className="p-0">
       <NavigationMenuList>
@@ -114,7 +116,8 @@ const ShowLocation = () => {
                     className="rounded-sm px-4 py-1 w-fit  self-center border-2 border-[#ffffff] text-[#ffffff] bg-[var(--blue)] active:scale-95 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)] transition-all duration-200"
                     type="button"
                     onClick={() => {
-                      window.location.href = "./contact";
+                      // window.location.href = "./contact";
+                      router.push("./contact");
                     }}
                   >
                     Contact Us
