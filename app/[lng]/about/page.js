@@ -1,9 +1,15 @@
-// "use client";
+"use client";
 
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import AboutCard from "@/components/AboutCard/AboutCard";
-import FAQCard from "@/components/FAQCard/FAQCard";
 import React from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 const page = () => {
   const faqCards = [
@@ -57,9 +63,9 @@ const page = () => {
     },
   ];
 
-  // useEffect(() => {
-  //   document.title = "GoldenBrand: About";
-  // }, []);
+  useEffect(() => {
+    document.title = "GoldenBrand: About";
+  }, []);
   return (
     <div className="flex flex-col mx-auto w-full justify-center items-center gap-10 m-6">
       <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
@@ -87,7 +93,10 @@ const page = () => {
           ></img>
         </div>
 
-        <div id="faqs" className="flex flex-col gap-4 bg-white shadow-md drop-shadow-md px-6 py-8 xsm:px-12 rounded-md border-[1px] border-neutral-200 max-w-[600px]">
+        <div
+          id="faqs"
+          className="flex flex-col gap-4 bg-white shadow-md drop-shadow-md px-6 py-8 xsm:px-12 rounded-md border-[1px] border-neutral-200 max-w-[600px]"
+        >
           <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-emerald-600">
             About our online store
           </span>
@@ -107,13 +116,18 @@ const page = () => {
         </div>
       </div>
 
-      <span  className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
+      <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
         FAQ
       </span>
       <div className="flex flex-col gap-3 mx-5 w-10/12 sm:max-w-[800px]">
-        {faqCards.map((item, index) => (
-          <FAQCard key={index} item={item} />
-        ))}
+        <Accordion type="single" collapsible className="w-full">
+          {faqCards.map((item, index) => (
+            <AccordionItem value={`item-${index}`} key={index}>
+              <AccordionTrigger>{item.question}</AccordionTrigger>
+              <AccordionContent>{item.answer}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
 
       <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
