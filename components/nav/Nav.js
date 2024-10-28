@@ -59,7 +59,7 @@ const Nav = ({ lng }) => {
           className="login hover:cursor-pointer"
           onClick={() => {
             // window.location.href = "./my-account";
-            router.push("./my-account");
+            router.push("./sign-in");
           }}
         >
           <i className="fa-regular fa-user"></i>
