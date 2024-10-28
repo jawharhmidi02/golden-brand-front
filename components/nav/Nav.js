@@ -33,8 +33,8 @@ const Nav = ({ lng }) => {
       <div className="left">
         <Image
           src="/images/icon.png"
-          width={100}
-          height={100}
+          width={220}
+          height={0}
           alt="icon"
           loading="lazy"
           onClick={() => {
