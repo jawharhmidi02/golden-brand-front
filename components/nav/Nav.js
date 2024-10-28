@@ -65,10 +65,16 @@ const Nav = ({ lng }) => {
           <i className="fa-regular fa-user"></i>
           <span>Sign Up/Sign In</span>
         </div>
-        <div className="cart">
-          <span className="material-symbols-outlined">shopping_bag</span>
-          <div className="total-number">0</div>
-        </div>
+        <Sheet>
+          <SheetTrigger asChild>
+            <button className="cart">
+              <span className="material-symbols-outlined">shopping_bag</span>
+              <div className="total-number">0</div>
+            </button>
+          </SheetTrigger>
+          <SheetContent className="bg-[var(--tertiary)] w-[230px]"></SheetContent>
+        </Sheet>
+
         <Sheet>
           <SheetTrigger asChild>
             <button className="hidden flex-col justify-center items-center hamburger-menu ml-2">
