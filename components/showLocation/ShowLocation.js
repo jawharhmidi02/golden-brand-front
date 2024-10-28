@@ -17,15 +17,15 @@ import { useRouter } from "next/navigation";
 const ShowLocation = () => {
   const router = useRouter();
   return (
-    <NavigationMenu className="p-0">
+    <NavigationMenu className="p-0 ">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-0 h-0">
             <i className="fa-solid fa-location-dot"></i>&nbsp;Show Location
           </NavigationMenuTrigger>
-          <NavigationMenuContent className="z-10">
-            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3">
+          <NavigationMenuContent className="z-99 md:min-w-[400px]">
+            <ul className="grid gap-3 lg:p-4 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] z-99">
+              <li className="row-span-3 z-99">
                 <NavigationMenuLink asChild>
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d58613.59643240183!2d10.523509372413544!3d33.34624482660369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stn!4v1729389385885!5m2!1sen!2stn"
@@ -39,11 +39,13 @@ const ShowLocation = () => {
                   ></iframe>
                 </NavigationMenuLink>
               </li>
-              <li className="flex flex-col gap-4 my-3 row-span-3">
+              <li className="flex flex-col gap-4 my-3 row-span-3 z-99">
                 <div className="flex flex-col gap-0 cursor-default">
-                  <div>Saturday-Thursday</div>
+                  <div className="text-center">Saturday-Thursday</div>
                   <div>
-                    <span className="text-neutral-500">8:00AM - 6:00PM</span>
+                    <span className="text-neutral-500 text-center">
+                      8:00AM - 6:00PM
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-col gap-0 cursor-default">
@@ -67,10 +69,10 @@ const ShowLocation = () => {
                       info@goldendesign.online{" "}
                     </span>
                   </div> */}
-                  <div>
+                  <div className="flex flex-row items-center justify-center text-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="size-5 shrink-0 text-neutral-500"
+                      className="size-5 ml-auto text-neutral-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -82,9 +84,7 @@ const ShowLocation = () => {
                         d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                       />
                     </svg>
-                    <span className="flex-1 text-neutral-500">
-                      +974 7748 0070
-                    </span>
+                    +97477480070
                   </div>
                   <div>
                     <svg

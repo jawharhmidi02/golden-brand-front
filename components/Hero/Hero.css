@@ -54,7 +54,7 @@
 
 .hero .text {
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   color: white;
   margin: auto;
   display: flex;

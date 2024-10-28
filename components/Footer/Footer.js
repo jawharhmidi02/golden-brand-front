@@ -189,7 +189,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 gap-5 lg:gap-0">
               <div>
                 <p className="font-bold text-lg text-white">Menu</p>
                 <ul className="mt-4 space-y-4 text-sm">
@@ -403,7 +403,7 @@ const Footer = () => {
           </div>
           <div
             style={{ marginTop: "10px", marginBottom: "20px" }}
-            className="text-white flex flex-row w-full flex-wrap justify-center items-center gap-10 mt-0"
+            className="text-white flex flex-row w-full flex-wrap justify-center items-center gap-x-10 mt-0"
           >
             <Image
               src={"/images/icons/payments/mastercard.png"}

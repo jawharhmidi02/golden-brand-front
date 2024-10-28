@@ -343,7 +343,7 @@ const ProductsByCategory = () => {
         <div className="font-semibold text-2xl text-center lg:text-left lg:text-3xl font-lato">
           Products By Category
         </div>
-        <div className="flex flex-row lg:flex-col overflow-x-auto no-scrollbar gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 justify-center">
+        <div className="flex flex-row lg:flex-col overflow-x-auto no-scrollbar gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 min-[890px]:justify-center">
           {categories.map((category, index) => (
             <div
               className={cn(
