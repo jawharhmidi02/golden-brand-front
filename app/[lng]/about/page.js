@@ -14,16 +14,66 @@ import { cn } from "@/lib/utils";
 const page = () => {
   const faqCards = [
     {
-      question: "Question 1 ?",
-      answer: "Answer 1 !",
+      question: "1. What products does Golden Brand specialize in?",
+      answer:
+        "Golden Brand specializes in high-quality stainless steel and aluminum products, including kitchens, handrails, work tables, cabinets, sink tables, shelves, trolleys, and custom hoods designed for both residential and commercial use.",
     },
     {
-      question: "Question 2 ?",
-      answer: "Answer 2 !",
+      question:
+        "2. Why choose stainless steel for kitchen and handrail products?",
+      answer:
+        "Stainless steel is durable, resistant to rust and corrosion, and easy to clean, making it an ideal choice for kitchens and handrails. Its sleek, modern appearance also enhances any space, and it withstands high temperatures, ensuring long-lasting performance.",
     },
     {
-      question: "Question 3 ?",
-      answer: "Answer 3 !",
+      question: "3. Are Golden Brand’s products customizable?",
+      answer:
+        "Yes, we offer customization for most of our products. Our team can work with your specifications to create items tailored to your specific needs and space requirements. Contact us to discuss custom options.",
+    },
+    {
+      question: "4. How do I place an order?",
+      answer:
+        "You can browse our product catalog on our website, add items to your cart, and complete the order through our checkout page. For custom orders or specific inquiries, please reach out through our contact form.",
+    },
+    {
+      question: "5. What payment methods are accepted?",
+      answer:
+        "We accept various payment methods for your convenience, including Visa, Mastercard, Apple Pay, and cash on delivery for qualifying orders.",
+    },
+    {
+      question: "6. What is the delivery time for orders?",
+      answer:
+        "Delivery times may vary depending on the item and your location. Standard orders are typically delivered within 7-10 business days. For custom or bulk orders, please allow additional time. We offer free delivery for orders over 10,000 QAR.",
+    },
+    {
+      question: "7. Does Golden Brand ship internationally?",
+      answer:
+        "Currently, we primarily serve customers in Qatar. However, for large or special orders, please contact us directly, and we can discuss international shipping options.",
+    },
+    {
+      question: "8. What is the return policy for Golden Brand products?",
+      answer:
+        "We offer a satisfaction guarantee for our products. If you are not satisfied with your purchase, please contact us within 7 days of delivery for returns or exchanges, following our return policy guidelines.",
+    },
+    {
+      question:
+        "9. How should I care for and maintain stainless steel products?",
+      answer:
+        "Stainless steel is low-maintenance but benefits from regular cleaning with mild soap and water or a stainless steel cleaner. Avoid abrasive materials to prevent scratches and keep the finish looking new.",
+    },
+    {
+      question: "10. Do you offer installation services?",
+      answer:
+        "Yes, we offer professional installation services for our products to ensure they are securely fitted and meet quality standards. Installation details and fees can be discussed at the time of purchase.",
+    },
+    {
+      question: "11. Are bulk order discounts available?",
+      answer:
+        "Yes, we offer special pricing for bulk orders. For large quantities, please contact our sales team to discuss potential discounts and lead times.",
+    },
+    {
+      question: "12. What sets Golden Brand apart from other suppliers?",
+      answer:
+        "Golden Brand is committed to using high-grade stainless steel and aluminum, guaranteeing durability, aesthetic appeal, and hygiene in every product. We prioritize quality, customizability, and exceptional customer service for all our clients.F",
     },
   ];
   const aboutCards = [
@@ -124,7 +174,7 @@ const page = () => {
           {faqCards.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={index}>
               <AccordionTrigger>{item.question}</AccordionTrigger>
-              <AccordionContent>{item.answer}</AccordionContent>
+              <AccordionContent className="text-neutral-600">{item.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
