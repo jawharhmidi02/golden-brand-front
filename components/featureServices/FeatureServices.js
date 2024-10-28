@@ -30,7 +30,7 @@ const FeaturedServices = () => {
     },
   ];
   return (
-    <div className="my-[70px] py-[50px] bg-white overflow-hidden">
+    <div className="mt-[70px] py-[50px] bg-white overflow-hidden">
       <ul className="flex flex-wrap px-6 gap-y-3 m-auto max-w-[715px] min-[915px]:max-w-screen-2xl">
         {services.map((item, index) => (
           <li className="w-full sm:w-1/4 px-2" key={index}>

@@ -1,0 +1,46 @@
+.ProductsByCategory button.open-product {
+  transition: all 0.5s;
+  position: relative;
+  overflow: hidden;
+  height: 45px;
+}
+
+.ProductsByCategory button.open-product:hover {
+  background: var(--theme);
+}
+
+.ProductsByCategory button.open-product:hover::after,
+.ProductsByCategory button.open-product:hover::before {
+  transform: translateY(-100%);
+}
+
+.ProductsByCategory button.open-product::after,
+.ProductsByCategory button.open-product::before {
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s;
+  height: 45px;
+  width: calc(100% - 3px);
+}
+
+.ProductsByCategory button.open-product::after {
+  content: "Open Product";
+}
+
+.ProductsByCategory button.open-product::before {
+  content: "\f35d";
+  font-weight: 900;
+  font-family: "Font Awesome 6 Free";
+  font-size: 1.5rem;
+}
+
+.ProductsByCategory button.open-product::after {
+  top: 0;
+}
+
+.ProductsByCategory button.open-product::before {
+  top: 100%;
+}
