@@ -29,12 +29,12 @@ const Nav = ({ lng }) => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <nav>
+    <nav className="max-h-[120px]">
       <div className="left">
         <Image
           src="/images/icon.png"
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           alt="icon"
           loading="lazy"
           onClick={() => {
@@ -53,10 +53,13 @@ const Nav = ({ lng }) => {
         <Menu lng={lng} />
       </div>
       <div className="right">
-        <div className="login" onClick={() => {
-          // window.location.href = "./my-account";
-          router.push('./my-account');
-        }}>
+        <div
+          className="login"
+          onClick={() => {
+            // window.location.href = "./my-account";
+            router.push("./my-account");
+          }}
+        >
           <i className="fa-regular fa-user"></i>
           <span>Sign Up/Sign In</span>
         </div>

@@ -205,8 +205,8 @@ const page = () => {
                         {dimension}
                       </label>
                     </td>
-                    {product.titles.map((item) => (
-                      <td>
+                    {product.titles.map((item, index) => (
+                      <td key={index}>
                         <label
                           className="hover:cursor-pointer"
                           htmlFor={`radio-${index}`}

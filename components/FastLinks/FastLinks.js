@@ -25,7 +25,6 @@ const FastLinks = () => {
   };
 
   useEffect(() => {
-    document.title = "GoldenBrand: Product";
     window.onscroll = function () {
       check();
     };

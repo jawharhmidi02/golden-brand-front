@@ -31,92 +31,32 @@ const FeaturedServices = () => {
   ];
   return (
     <div className="my-[70px] py-[50px] bg-white overflow-hidden">
-      <ul className="flex flex-wrap px-6 gap-y-3 max-w-screen-2xl m-auto">
-        <li className="w-full sm:w-1/4 px-2">
-          <button
-            onClick={() => {
-              setselectedService(0);
-            }}
-            className={cn(
-              "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
-              selectedService === 0 ? "text-[var(--theme)]" : "text-neutral-400"
-            )}
-          >
-            <h4 className="text-lg font-semibold m-auto">
-              Counseling Services
-            </h4>
-            <hr
+      <ul className="flex flex-wrap px-6 gap-y-3 m-auto max-w-[715px] min-[915px]:max-w-screen-2xl">
+        {services.map((item, index) => (
+          <li className="w-full sm:w-1/4 px-2" key={index}>
+            <button
+              onClick={() => {
+                setselectedService(index);
+              }}
               className={cn(
-                "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
-                selectedService === 0 ? "bg-[var(--theme)]" : "bg-neutral-300"
+                "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
+                selectedService === index
+                  ? "text-[var(--theme)]"
+                  : "text-neutral-400"
               )}
-            />
-          </button>
-        </li>
-
-        <li className="w-full sm:w-1/4 px-2">
-          <button
-            onClick={() => {
-              setselectedService(1);
-            }}
-            className={cn(
-              "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
-              selectedService === 1 ? "text-[var(--theme)]" : "text-neutral-400"
-            )}
-          >
-            <h4 className="text-lg font-semibold m-auto">
-              Engineering Services
-            </h4>
-            <hr
-              className={cn(
-                "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
-                selectedService === 1 ? "bg-[var(--theme)]" : "bg-neutral-300"
-              )}
-            />
-          </button>
-        </li>
-        <li className="w-full sm:w-1/4 px-2">
-          <button
-            onClick={() => {
-              setselectedService(2);
-            }}
-            className={cn(
-              "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
-              selectedService === 2 ? "text-[var(--theme)]" : "text-neutral-400"
-            )}
-          >
-            <h4 className="text-lg font-semibold m-auto">
-              Manufacture and Supply
-            </h4>
-            <hr
-              className={cn(
-                "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
-                selectedService === 2 ? "bg-[var(--theme)]" : "bg-neutral-300"
-              )}
-            />
-          </button>
-        </li>
-        <li className="w-full sm:w-1/4 px-2">
-          <button
-            onClick={() => {
-              setselectedService(3);
-            }}
-            className={cn(
-              "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
-              selectedService === 3 ? "text-[var(--theme)]" : "text-neutral-400"
-            )}
-          >
-            <h4 className="text-lg font-semibold m-auto">
-              After Sale Services
-            </h4>
-            <hr
-              className={cn(
-                "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
-                selectedService === 3 ? "bg-[var(--theme)]" : "bg-neutral-300"
-              )}
-            />
-          </button>
-        </li>
+            >
+              <h4 className="text-lg font-semibold m-auto">{item.title}</h4>
+              <hr
+                className={cn(
+                  "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
+                  selectedService === index
+                    ? "bg-[var(--theme)]"
+                    : "bg-neutral-300"
+                )}
+              />
+            </button>
+          </li>
+        ))}
       </ul>
 
       {services.map((item, index) => (

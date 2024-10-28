@@ -4,6 +4,7 @@ nav {
   justify-content: space-between;
   padding: 10px max(3vw, 10px);
   align-items: center;
+
 }
 
 nav .left {
