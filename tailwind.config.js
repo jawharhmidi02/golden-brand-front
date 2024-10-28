@@ -92,6 +92,16 @@ module.exports = {
             transform: "translate3d(0, 0, 0)",
           },
         },
+        "fade-out-down": {
+          "0%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+          "100%": {
+            opacity: 0,
+            transform: "translate3d(0, 100%, 0)",
+          },
+        },
         "fade-in-left": {
           "0%": {
             opacity: 0,
@@ -119,6 +129,7 @@ module.exports = {
         fadein: "fade-in 1s forwards 0.15s 1",
         fadeout: "fade-out 0.4s forwards 0s 1",
         fadeinup: "fade-in-up 0.7s forwards 0.15s 1",
+        fadeoutdown: "fade-out-down 0.7s forwards 0.15s 1",
         fadeinleft: "fade-in-left 1s ease-out forwards 0.15s 1",
         fadeinright: "fade-in-right 1s ease-out forwards 0.15s 1",
       },
