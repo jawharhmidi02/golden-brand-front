@@ -336,7 +336,7 @@ const ProductsByCategory = () => {
       setloadingProducts(false);
     }, 2000);
   }, [selectedCategory]);
-
+// 
   return (
     <div className="gap-6 ProductsByCategory flex flex-col lg:flex-row mt-[70px] max-w-screen-xl m-auto lg:gap-0 overflow-hidden">
       <div className="lg:w-[30%] lg:pl-6 flex-shrink-0">
