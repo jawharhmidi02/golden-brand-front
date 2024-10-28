@@ -174,7 +174,9 @@ const page = () => {
           {faqCards.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={index}>
               <AccordionTrigger>{item.question}</AccordionTrigger>
-              <AccordionContent className="text-neutral-600">{item.answer}</AccordionContent>
+              <AccordionContent className="text-neutral-600">
+                {item.answer}
+              </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
