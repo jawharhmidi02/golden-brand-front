@@ -165,7 +165,7 @@ const page = () => {
           </span>
         </div>
       </div>
-
+{/*  */}
       <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
         FAQ
       </span>
