@@ -16,7 +16,7 @@ const page = () => {
         <div className="flex flex-col px-8 py-10 lg:py-14 xl:py-20 bg-white rounded-t-3xl min-[800px]:rounded-l-3xl min-[800px]:rounded-tr-none shadow-md drop-shadow-md justify-center">
           <div
             className={cn(
-              "flex flex-col gap-5 justify-center items-center opacity-0 animate-fadein",
+              "flex flex-col gap-5 justify-center items-center",
             )}
           >
             <div className="flex w-full max-w-[400px] flex-row justify-between ">

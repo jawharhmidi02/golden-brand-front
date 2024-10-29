@@ -19,7 +19,7 @@ const page = () => {
           {/* Sign In */}
           <div
             className={cn(
-              "flex flex-col gap-5 justify-center items-center opacity-0 animate-fadein",
+              "flex flex-col gap-5 justify-center items-center",
             )}
           >
             <span className="text-xl font-semibold font-lato text-neutral-900">
