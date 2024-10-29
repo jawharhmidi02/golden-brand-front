@@ -26,7 +26,7 @@ const page = () => {
                   router.push('./sign-in')
                 }}
               >
-                <i className="fa-solid fa-arrow-left text-3xl text-neutral-900 group-hover:text-[var(--theme)] transition-colors duration-200"></i>
+                <i className="fa-solid fa-arrow-left text-3xl text-neutral-900 group-hover:text-[var(--theme2)] transition-colors duration-200"></i>
               </div>
               <span className="text-xl font-semibold font-lato self-center text-neutral-900">
                 Password Recovery
@@ -41,13 +41,13 @@ const page = () => {
                 type="email"
                 placeholder="Example@domain.com"
                 id="email"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme)]"
+                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
               />
             </div>
 
             <button
               type="button"
-              className="w-full font-lato text-[#ffffff] bg-[var(--theme)] outline-none rounded-full py-3 max-w-[400px] border-2 border-[#ffffff] hover:text-[var(--theme)] border-[var(--theme)] hover:bg-emerald-100 transition-colors duration-200"
+              className="w-full font-lato text-[#ffffff] bg-[var(--theme2)] outline-none rounded-full py-3 max-w-[400px] border-2 border-[#ffffff] hover:text-[var(--theme2)] border-[var(--theme2)] hover:bg-[var(--hover-theme2)] transition-colors duration-200"
             >
               Send
             </button>

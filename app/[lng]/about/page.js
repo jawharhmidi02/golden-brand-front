@@ -147,7 +147,7 @@ const page = () => {
           id="faqs"
           className="flex flex-col gap-4 bg-white shadow-md drop-shadow-md px-6 py-8 xsm:px-12 rounded-md border-[1px] border-neutral-200 max-w-[600px]"
         >
-          <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-emerald-600">
+          <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-[var(--theme)]">
             About our online store
           </span>
           <span className="font-raleway text-neutral-800">

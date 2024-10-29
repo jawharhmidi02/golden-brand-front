@@ -22,7 +22,7 @@ const CategorieItem = ({ item, changeSelectedCategorie }) => {
       className={cn(
         "border-2 border-neutral-300 bg-[#ffffff] duration-300 transition-all shadow-sm drop-shadow-sm active:scale-95 lg:hover:scale-105 hover:bg-neutral-100 text-center font-semibold text-neutral-300 hover:cursor-pointer rounded-md text-xl py-1",
         active
-          ? "border-emerald-600 text-emerald-600 bg-emerald-100 hover:bg-emerald-100"
+          ? "border-[var(--theme)] text-[var(--theme)] bg-[var(--hover-theme)] hover:bg-[var(--hover-theme)]"
           : ""
       )}
       onClick={(e) => {

@@ -59,7 +59,7 @@ const Nav = ({ lng }) => {
           className="login hover:cursor-pointer"
           onClick={() => {
             // window.location.href = "./my-account";
-            router.push("./sign-in");
+            router.push("/sign-in");
           }}
         >
           <i className="fa-regular fa-user"></i>
@@ -79,7 +79,7 @@ const Nav = ({ lng }) => {
           <SheetTrigger asChild>
             <button className="hidden flex-col justify-center items-center hamburger-menu ml-2">
               <span
-                className={`bg-[var(--blue)] block transition-all duration-300 ease-out 
+                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
                     h-0.5 w-6 rounded-sm ${
                       isMenuOpen
                         ? "rotate-45 translate-y-1"
@@ -87,13 +87,13 @@ const Nav = ({ lng }) => {
                     }`}
               ></span>
               <span
-                className={`bg-[var(--blue)] block transition-all duration-300 ease-out 
+                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
                     h-0.5 w-6 rounded-sm my-0.5 ${
                       isMenuOpen ? "opacity-0" : "opacity-100"
                     }`}
               ></span>
               <span
-                className={`bg-[var(--blue)] block transition-all duration-300 ease-out 
+                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
                     h-0.5 w-6 rounded-sm ${
                       isMenuOpen
                         ? "-rotate-45 -translate-y-1"

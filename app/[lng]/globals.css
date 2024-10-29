@@ -30,8 +30,13 @@
   /* Primary */
   /* Alternative Blue #429bfa bg-blue-100 for active */
   /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */
-  /* --theme: #10b981b7; */
-  --theme: #10b981;
+  /* --theme: #10b981;  #FAD02C  #333652 #eef2ff*/
+  --theme: #059669 ;
+  --theme2: #064e3b;
+  --theme3: #90ADC6;
+  --theme4: #E9EAEC;
+  --hover-theme:#d1fae5;
+  --hover-theme2:#f0f7f3;
   --contact-colour: #74c0fc;
   --primary: #f5f6f7;
   --secondary: #f0f1f2;

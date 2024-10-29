@@ -349,7 +349,7 @@ const ProductsByCategory = () => {
               className={cn(
                 "transition-all duration-200 hover:cursor-pointer font-semibold font-lato w-fit flex-shrink-0",
                 selectedCategory === index
-                  ? "text-[var(--blue)] font-bold"
+                  ? "text-[var(--theme2)] font-bold"
                   : "text-neutral-400 hover:text-neutral-500"
               )}
               onClick={() => {
@@ -414,7 +414,7 @@ const ProductsByCategory = () => {
                   </div>
                   <div className="flex flex-col items-center w-full">
                     <button
-                      className=" bg-[var(--blue)] text-white px-4 py-1 transition-all duration-300 w-full open-product"
+                      className=" bg-[var(--theme2)] text-white px-4 py-1 transition-all duration-300 w-full open-product"
                       onClick={() => {
                         router.push(`/${lng}/products/${item.id}`);
                       }}

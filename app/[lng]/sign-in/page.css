@@ -27,7 +27,7 @@
 }
 .checkbox-wrapper-21 .control:hover input:not([disabled]):checked ~ .control__indicator,
 .checkbox-wrapper-21 .control input:checked:focus ~ .control__indicator {
-  background: var(--theme);
+  background: var(--theme2);
 }
 .checkbox-wrapper-21 .control input:disabled ~ .control__indicator {
   background: #e6e6e6;

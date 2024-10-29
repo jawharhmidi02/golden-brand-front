@@ -29,7 +29,7 @@ const page = () => {
                 type="text"
                 placeholder="Full Name"
                 id="fullName"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme)]"
+                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
               />
             </div>
 
@@ -42,7 +42,7 @@ const page = () => {
                 type="tel"
                 placeholder="+974 12 345 678"
                 id="phone"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme)]"
+                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
               />
             </div>
 
@@ -55,7 +55,7 @@ const page = () => {
                 type="email"
                 placeholder="Example@domain.com"
                 id="email"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme)]"
+                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
               />
             </div>
 
@@ -68,13 +68,13 @@ const page = () => {
                 type="password"
                 placeholder="Password"
                 id="password"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme)]"
+                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
               />
             </div>
 
             <button
               type="button"
-              className="w-full font-lato text-[#ffffff] bg-[var(--theme)] outline-none rounded-full py-3 max-w-[400px] border-2 border-[#ffffff] hover:text-[var(--theme)] border-[var(--theme)] hover:bg-emerald-100 transition-colors duration-200"
+              className="w-full font-lato text-[#ffffff] bg-[var(--theme2)] outline-none rounded-full py-3 max-w-[400px] border-2 border-[#ffffff] hover:text-[var(--theme2)] border-[var(--theme2)] hover:bg-[var(--hover-theme2)] transition-colors duration-200"
             >
               Sign Up
             </button>

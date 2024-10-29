@@ -342,7 +342,7 @@ const FeaturedProducts = ({ lng }) => {
             </div>
             <div className="flex flex-col items-center w-full">
               <button
-                className=" bg-[var(--blue)] text-white px-4 py-1 transition-all duration-300 w-full"
+                className=" bg-[var(--theme2)] text-white px-4 py-1 transition-all duration-300 w-full"
                 onClick={() => {
                   // location.href = `/${lng}/products/${item.id}`;
                   router.push(`/${lng}/products/${item.id}`);

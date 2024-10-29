@@ -74,7 +74,7 @@ const FeaturedServices = () => {
               <div className="relative lg:text-4xl text-xl w-fit mx-auto font-semibold font-lato after:content-[''] after:border-l-2 after:border-t-2 after:h-10 after:w-10 after:bg-transparent after:border-[var(--theme)] after:-top-2 after:-left-10 after:absolute  after:transition-all  before:content-[''] before:absolute before:border-r-2 before:border-b-2 before:border-[var(--theme)] lg:before:top-3 before:top-0 before:left-full before:w-10 before:h-10">
                 {item.title}
               </div>
-              <h3 className="text-3xl font-semibold text-[var(--blue)]"></h3>
+              <h3 className="text-3xl font-semibold text-[var(--theme2)]"></h3>
               <p className="mt-4 text-neutral-600">{item.desc}</p>
             </div>
             <div className="md:w-1/2 text-center animate-fadeinright opacity-0">

@@ -89,7 +89,7 @@ const Footer = () => {
       </div>
       <footer
         className="
-       bg-gray-900 mt-3
+       bg-[#061f19] mt-3
        "
       >
         <div className="mx-auto max-w-screen-xl space-y-8 px-4 pt-16 sm:px-6 lg:space-y-16 lg:px-8">
