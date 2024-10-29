@@ -52,7 +52,7 @@ const FastLinks = () => {
           handleScroll();
         }}
       >
-        <i className="fa-solid fa-chevron-up text-neutral-800"></i>
+        <i className="fa-solid fa-chevron-up text-[var(--theme2)]"></i>
       </div>
     </div>
   );
