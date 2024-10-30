@@ -4,7 +4,7 @@ import "./Nav.css";
 
 import Menu from "../menu/Menu";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 
 const Nav = ({ lng }) => {
   const router = useRouter();
+  const closeButton = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -109,6 +110,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000)
                   }}
                   // href="/"
                 >
@@ -124,6 +128,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/services");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000)
                   }}
                   // href="/services"
                 >
@@ -139,6 +146,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/products");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000)
                   }}
                   // href="/products"
                 >
@@ -154,6 +164,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/about");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000)
                   }}
                   // href="/about"
                 >
@@ -169,6 +182,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/contact");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000)
                   }}
                   // href="/contact"
                 >
@@ -176,6 +192,9 @@ const Nav = ({ lng }) => {
                 </a>
               </div>
             </div>
+            <SheetClose>
+              <button type="button" className="hidden" ref={closeButton}></button>
+            </SheetClose>
           </SheetContent>
         </Sheet>
       </div>
