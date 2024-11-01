@@ -193,6 +193,7 @@ const page = () => {
                           }}
                           type="radio"
                           name="radio-examples"
+                          value={product.codes[index]}
                         />
                         <span></span>
                       </label>
