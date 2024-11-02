@@ -336,14 +336,14 @@ const ProductsByCategory = () => {
       setloadingProducts(false);
     }, 2000);
   }, [selectedCategory]);
-// 
+  //
   return (
     <div className="gap-6 ProductsByCategory flex flex-col lg:flex-row mt-[70px] max-w-screen-xl m-auto lg:gap-0 overflow-hidden">
       <div className="lg:w-[30%] lg:pl-6 flex-shrink-0">
         <div className="font-semibold text-2xl text-center lg:text-left lg:text-3xl font-lato">
           Products By Category
         </div>
-        <div className="flex flex-row lg:flex-col overflow-x-auto no-scrollbar gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 min-[890px]:justify-center">
+        <div className="flex flex-row lg:flex-col overflow-x-auto gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 min-[890px]:justify-center">
           {categories.map((category, index) => (
             <div
               className={cn(

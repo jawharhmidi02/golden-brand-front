@@ -97,7 +97,7 @@
 
 .hero a::after,
 .hero a::before {
-  content: "Show Now";
+  content: "Shop Now";
   position: absolute;
   left: 0;
   display: flex;
