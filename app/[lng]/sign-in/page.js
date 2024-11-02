@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
-import './page.css';
+import "./page.css";
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
 import { useRouter } from "next/navigation";
 
@@ -9,24 +9,22 @@ const page = () => {
   const router = useRouter();
   const [check, setCheck] = useState(false);
   return (
-    <div className="mx-auto w-full h-full mt-10 flex justify-center items-center">
+    <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
       <div
         className={cn(
-          "grid grid-cols-1 min-[800px]:grid-cols-2 w-full h-[900px] min-[800px]:h-[500px] min-[800px]:max-w-[1200px] mx-4 xsm:mx-10 max-w-[580px]",
+          "mx-4 grid h-[900px] w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:h-[500px] min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
         )}
       >
-        <div className="flex flex-col px-8 py-10 lg:py-14 xl:py-20 bg-white rounded-t-3xl min-[800px]:rounded-l-3xl min-[800px]:rounded-tr-none shadow-md drop-shadow-md justify-center">
+        <div className="flex flex-col justify-center rounded-t-3xl bg-white px-8 py-10 shadow-md drop-shadow-md min-[800px]:rounded-l-3xl min-[800px]:rounded-tr-none lg:py-14 xl:py-20">
           {/* Sign In */}
           <div
-            className={cn(
-              "flex flex-col gap-5 justify-center items-center",
-            )}
+            className={cn("flex flex-col items-center justify-center gap-5")}
           >
-            <span className="text-xl font-semibold font-lato text-neutral-900">
+            <span className="font-lato text-xl font-semibold text-neutral-900">
               Sign In
             </span>
-            <div className="flex flex-col gap-1 w-full max-w-[400px]">
-              <label htmlFor="email" className="font-bold text-sm font-lato">
+            <div className="flex w-full max-w-[400px] flex-col gap-1">
+              <label htmlFor="email" className="font-lato text-sm font-bold">
                 {" "}
                 EMAIL
               </label>
@@ -34,12 +32,12 @@ const page = () => {
                 type="email"
                 placeholder="Example@domain.com"
                 id="email"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
               />
             </div>
 
-            <div className="flex flex-col gap-1 w-full max-w-[400px]">
-              <label htmlFor="password" className="font-bold text-sm font-lato">
+            <div className="flex w-full max-w-[400px] flex-col gap-1">
+              <label htmlFor="password" className="font-lato text-sm font-bold">
                 {" "}
                 PASSWORD
               </label>
@@ -47,22 +45,22 @@ const page = () => {
                 type="password"
                 placeholder="Password"
                 id="password"
-                className="pl-4 py-3 rounded-full bg-[var(--secondary)] outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
               />
             </div>
 
             <button
               type="button"
-              className="w-full font-lato text-[#ffffff] bg-[var(--theme2)] outline-none rounded-full py-3 max-w-[400px] border-2 border-[#ffffff] hover:text-[var(--theme2)] border-[var(--theme2)]  hover:bg-[var(--hover-theme2)] transition-colors duration-200"
+              className="w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]"
             >
               Sign In
             </button>
-            <div className="flex flex-col-reverse gap-2 min-[380px]:flex-row min-[380px]:gap-0 w-full justify-between max-w-[400px]">
+            <div className="flex w-full max-w-[400px] flex-col-reverse justify-between gap-2 min-[380px]:flex-row min-[380px]:gap-0">
               <div className="checkbox-wrapper-21">
                 <label
                   className={cn(
                     "control control--checkbox",
-                    check && "text-[var(--theme2)]"
+                    check && "text-[var(--theme2)]",
                   )}
                 >
                   Remember Me
@@ -77,9 +75,9 @@ const page = () => {
               </div>
 
               <span
-                className="font-lato font-semibold text-neutral-500 mt-[2px] hover:cursor-pointer hover:text-neutral-700 transition-colors duration-200"
+                className="mt-[2px] font-lato font-semibold text-neutral-500 transition-colors duration-200 hover:cursor-pointer hover:text-neutral-700"
                 onClick={() => {
-                  router.push('./reset-password');
+                  router.push("./reset-password");
                 }}
               >
                 Forgot Password?
@@ -87,7 +85,12 @@ const page = () => {
             </div>
           </div>
         </div>
-        <AccountDecoration welcomeText="Welcome Back!" accountText="Don't have an account?" signText="Sign Up" url="./sign-up" />
+        <AccountDecoration
+          welcomeText="Welcome Back!"
+          accountText="Don't have an account?"
+          signText="Sign Up"
+          url="./sign-up"
+        />
       </div>
     </div>
   );

@@ -2,20 +2,20 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="mx-auto w-full h-full mt-6 flex justify-center items-center">
+    <div className="mx-auto mt-6 flex h-full w-full items-center justify-center">
       {/* Title */}
 
-      <div className="flex w-full flex-col gap-10 self-center justify-center items-center mx-10">
-        <div className="flex flex-row gap-3 w-full justify-center items-center">
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 h-[2px]"></div>
-          <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl">
+      <div className="mx-10 flex w-full flex-col items-center justify-center gap-10 self-center">
+        <div className="flex w-full flex-row items-center justify-center gap-3">
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20"></div>
+          <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl">
             Terms & Conditions
           </span>
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 h-[2px]"></div>
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20"></div>
         </div>
-        <div className="flex flex-col gap-6 w-full max-w-[1300px] justify-center text-neutral-600 font-lato">
+        <div className="flex w-full max-w-[1300px] flex-col justify-center gap-6 font-lato text-neutral-600">
           <span className="text-center">
-            <span className="font-semibold text-lg">
+            <span className="text-lg font-semibold">
               Please read the terms carefully before using the store or any of
               its services.
             </span>{" "}
@@ -31,13 +31,15 @@ const page = () => {
             It is registered with the General Authority of Tax with a tax
             identification number: XXXXXXXXXXXXXXX
           </span>
-          <ul className="list-decimal list-inside marker:text-lg">
-            <li className="font-semibold text-lg" id="privacy">Our Contract:</li>
+          <ul className="list-inside list-decimal marker:text-lg">
+            <li className="text-lg font-semibold" id="privacy">
+              Our Contract:
+            </li>
             <div className="mt-5">
               <span>
                 These terms and conditions (Store Terms) apply to your uses of
                 the domain{" "}
-                <span className="text-[var(--theme)] font-semibold">
+                <span className="font-semibold text-[var(--theme)]">
                   www.goldenbrand.com
                 </span>{" "}
                 on the Internet (the “Store”) and this term must include all the
@@ -52,10 +54,10 @@ const page = () => {
                 cases, we reserve the right to refuse or cancel any order.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Privacy and Cookie Policy
             </li>
-            <ul className="list-disc mt-5">
+            <ul className="mt-5 list-disc">
               <li className="ml-10">
                 These terms attached to the store (which are in addition to) the
                 terms of the privacy policy and cookie policy, as our privacy
@@ -64,7 +66,7 @@ const page = () => {
                 cookies on the store, which is as follows:
               </li>
             </ul>
-            <div className="mt-5 font-semibold text-lg">
+            <div className="mt-5 text-lg font-semibold">
               <span>Cookies:</span>
             </div>
             <div className="mt-5">
@@ -94,7 +96,7 @@ const page = () => {
               </span>
             </div>
             <div className="mt-10">
-              <span className="font-semibold text-lg">
+              <span className="text-lg font-semibold">
                 Links to Other Sites:
               </span>
             </div>
@@ -185,7 +187,7 @@ const page = () => {
                 privacy and cookies in their entirety.
               </span>
             </div>
-            <li className="text-lg font-semibold mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Your use of this store:
             </li>
             <ul className="list-disc">
@@ -201,7 +203,7 @@ const page = () => {
                 own personal or internal commercial use only, other than for
                 your own personal or internal commercial use.
               </li>
-              <li className="ml-5 mt-5 font-semibold text-lg">
+              <li className="ml-5 mt-5 text-lg font-semibold">
                 You may not do the following without our prior written consent:
               </li>
               <ul>
@@ -223,7 +225,7 @@ const page = () => {
                   whatsoever.
                 </li>
               </ul>
-              <li className="ml-5 mt-5 font-semibold text-lg">
+              <li className="ml-5 mt-5 text-lg font-semibold">
                 You may not use the store for any purpose For the following
                 purposes:
               </li>
@@ -256,7 +258,7 @@ const page = () => {
                 </li>
               </ul>
             </ul>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Using the online store from outside of Qatar:
             </li>
             <div className="mt-5">
@@ -269,15 +271,15 @@ const page = () => {
                 laws are applicable and applicable.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">Ownership Rights:</li>
+            <li className="mt-5 text-lg font-semibold">Ownership Rights:</li>
             <ul className="list-disc">
-              <li className="mt-5 ml-10">
+              <li className="ml-10 mt-5">
                 Store content is protected by copyrights, trademarks, database
                 and other intellectual property rights in this store owned or
                 licensed to Golden Brand Company for Stainless Steel Equipment.
               </li>
             </ul>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Security, password and account:
             </li>
             <div className="mt-5">
@@ -289,7 +291,7 @@ const page = () => {
                 protect your password and the security of your account.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Online store availability:
             </li>
             <div className="mt-5">
@@ -310,7 +312,7 @@ const page = () => {
                 endeavor to restore access as quickly as possible.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">Our responsibility:</li>
+            <li className="mt-5 text-lg font-semibold">Our responsibility:</li>
             <div className="mt-5">
               <span>
                 We disclaim all warranties, representations, terms and
@@ -319,7 +321,7 @@ const page = () => {
                 from or in connection with this store or your use of the Site.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">Global Agreement:</li>
+            <li className="mt-5 text-lg font-semibold">Global Agreement:</li>
             <div className="mt-5" id="delivery">
               <span>
                 The terms of this store (including our privacy policies, cookies
@@ -330,7 +332,7 @@ const page = () => {
                 permitted by law.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Changes to the Terms And the provisions of this Store:
             </li>
             <div className="mt-5" id="payment">
@@ -343,11 +345,11 @@ const page = () => {
                 updates to the terms and conditions of our store.
               </span>
             </div>
-            <li className="font-semibold text-lg mt-5">Delivery:</li>
+            <li className="mt-5 text-lg font-semibold">Delivery:</li>
             <div className="mt-5">
               <span>Coming Soon...</span>
             </div>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Payment and Security Policy:
             </li>
             <ul className="list-disc">
@@ -365,13 +367,13 @@ const page = () => {
                 on our website.
               </li>
             </ul>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Designing Custom Products:
             </li>
             <div className="mt-5" id="refund">
               <span>Coming Soon...</span>
             </div>
-            <li className="font-semibold text-lg mt-5">
+            <li className="mt-5 text-lg font-semibold">
               Refund & Return Policy:
             </li>
             <div className="mt-5">

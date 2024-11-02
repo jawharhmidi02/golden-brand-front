@@ -4,7 +4,7 @@ import Card from "@/components/Card/Card";
 import React, { Suspense, useEffect, useState } from "react";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
-import './page.css';
+import "./page.css";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +25,7 @@ const ProductPage = ({ searchParams }) => {
         <SheetTrigger asChild>
           <Button
             variant="outline"
-            className="flex lg:hidden justify-center bg-[var(--theme)] px-2 rounded-lg items-center"
+            className="flex items-center justify-center rounded-lg bg-[var(--theme)] px-2 lg:hidden"
           >
             <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
           </Button>
@@ -174,32 +174,32 @@ const ProductPage = ({ searchParams }) => {
     document.title = "GoldenBrand: Products";
   }, []);
   return (
-    <div className="flex flex-row mx-auto w-full justify-center items-center gap-20 mt-6">
-      <div className="mx-5 xsm:mx-8 sm:mx-10 flex flex-row gap-10">
+    <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
+      <div className="mx-5 flex flex-row gap-10 xsm:mx-8 sm:mx-10">
         <div className="hidden lg:flex">
           <Suspense>
             <FilterInterface></FilterInterface>
           </Suspense>
         </div>
-        <div className="flex flex-col max-w-screen-lg gap-4">
+        <div className="flex max-w-screen-lg flex-col gap-4">
           {/* input interface */}
-          <div className="flex gap-1 pl-3 xsm:pl-0 py-1 pr-3 flex-row min-w-full border-2 border-neutral-200 rounded-xl">
-            <div className="xsm:flex hidden min-w-10 justify-center items-center">
+          <div className="flex min-w-full flex-row gap-1 rounded-xl border-2 border-neutral-200 py-1 pl-3 pr-3 xsm:pl-0">
+            <div className="hidden min-w-10 items-center justify-center xsm:flex">
               <i className="fa-solid fa-magnifying-glass text-neutral-100"></i>
             </div>
             <input
               placeholder="Work table, Bowl sink..."
               type="text"
-              className="focus:outline-none  min-h-full flex-1"
+              className="min-h-full flex-1 focus:outline-none"
             ></input>
-            <button className="text-neutral-100 bg-[var(--theme)] font-raleway text-lg rounded-lg py-1 px-2.5 transition-all duration-300 hover:scale-95">
+            <button className="rounded-lg bg-[var(--theme)] px-2.5 py-1 font-raleway text-lg text-neutral-100 transition-all duration-300 hover:scale-95">
               <span className="hidden xsm:block">Search</span>
-              <i className="fa-solid fa-magnifying-glass xsm:hidden text-neutral-100"></i>
+              <i className="fa-solid fa-magnifying-glass text-neutral-100 xsm:hidden"></i>
             </button>
             <OpenFilter />
           </div>
 
-          <div className="gap-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {products?.map((product, index) => (
               <Card key={index} product={product} />
             ))}

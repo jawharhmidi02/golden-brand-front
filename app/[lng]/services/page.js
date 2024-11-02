@@ -75,24 +75,25 @@ const page = () => {
   ];
 
   return (
-    <div className="flex flex-col mx-auto w-full justify-center items-center gap-20 mt-6">
-
+    <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center gap-20">
       {/* Services Title */}
 
-      <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
-        <div className="flex flex-row gap-3 w-full justify-center items-center">
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
-          <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl md:text-7xl">
+      <div className="flex w-full flex-col items-center justify-center gap-2 self-center">
+        <div className="flex w-full flex-row items-center justify-center gap-3">
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
+          <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl md:text-7xl">
             Services
           </span>
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
         </div>
-        <span className="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl text-center text-slate-700">What We Do</span>
+        <span className="text-center font-lato text-lg text-slate-700 sm:text-xl md:text-2xl lg:text-3xl">
+          What We Do
+        </span>
       </div>
 
       {/* Services cards grid */}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 mx-2 xxsm:mx-6 xsm:mx-12 md:mx-20 lg:mx-12 xl:mx-4 gap-4">
+      <div className="mx-2 grid grid-cols-1 gap-4 xxsm:mx-6 xsm:mx-12 md:mx-20 md:grid-cols-2 lg:mx-12 lg:grid-cols-3 xl:mx-4 xl:grid-cols-4">
         {serviceCardData.map((item, index) => (
           <ServiceCard
             key={index}
@@ -105,7 +106,7 @@ const page = () => {
 
       {/* Services descriptions cards  */}
 
-      <div className="grid bg-white shadow-sm drop-shadow-sm w-full border-neutral-100 border-[1px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 py-20 px-5 xxsm:px-8 xsm:px-12 sm:px-16 md:px-10 lg:px-6 xl:px-10 gap-12  md:gap-6">
+      <div className="grid w-full grid-cols-1 gap-12 border-[1px] border-neutral-100 bg-white px-5 py-20 shadow-sm drop-shadow-sm xxsm:px-8 xsm:px-12 sm:px-16 md:grid-cols-2 md:gap-6 md:px-10 lg:grid-cols-3 lg:px-6 xl:grid-cols-4 xl:px-10">
         {serviceDescData.map((item, index) => (
           <ServiceDescCard
             key={index}
