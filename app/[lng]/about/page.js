@@ -80,19 +80,19 @@ const page = () => {
     {
       text: "Spare Parts",
       logo: (
-        <i className="fa-solid fa-arrows-rotate text-[var(--theme)] text-7xl"></i>
+        <i className="fa-solid fa-arrows-rotate text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
       text: "Maintenance",
       logo: (
-        <i className="fa-solid fa-screwdriver-wrench text-[var(--theme)] text-7xl"></i>
+        <i className="fa-solid fa-screwdriver-wrench text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
       text: "Technical Support",
       logo: (
-        <i className="fa-solid fa-comments text-[var(--theme)] text-7xl"></i>
+        <i className="fa-solid fa-comments text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
@@ -117,37 +117,37 @@ const page = () => {
     document.title = "GoldenBrand: About";
   }, []);
   return (
-    <div className="flex flex-col mx-auto w-full justify-center items-center gap-10 m-6">
-      <div className="flex w-full flex-col gap-2 self-center justify-center items-center">
-        <div className="flex flex-row gap-3 w-full justify-center items-center">
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
-          <span className="font-bold font-lato text-neutral-800 text-center text-5xl sm:text-6xl md:text-7xl">
+    <div className="m-6 mx-auto flex w-full flex-col items-center justify-center gap-10">
+      <div className="flex w-full flex-col items-center justify-center gap-2 self-center">
+        <div className="flex w-full flex-row items-center justify-center gap-3">
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
+          <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl md:text-7xl">
             About Us
           </span>
-          <div className="bg-[var(--theme)] w-10 xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24 h-[2px]"></div>
+          <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
         </div>
-        <span className="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl text-center text-slate-700">
+        <span className="text-center font-lato text-lg text-slate-700 sm:text-xl md:text-2xl lg:text-3xl">
           Who We Are
         </span>
       </div>
 
-      <div className="grid group grid-cols-1 lg:grid-cols-2 gap-10 mx-10">
-        <div className="flex flex-col justify-evenly items-center">
-          <div className="hidden relative lg:block text-4xl font-semibold font-lato after:content-[''] after:border-l-2 after:border-t-2 after:h-10 after:w-10 after:bg-transparent after:border-[var(--theme)] after:-top-2 after:-left-10 after:absolute  after:transition-all  before:content-[''] before:absolute before:border-r-2 before:border-b-2 before:border-[var(--theme)] before:top-3 before:left-full before:w-10 before:h-10">
+      <div className="group mx-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div className="flex flex-col items-center justify-evenly">
+          <div className="relative hidden font-lato text-4xl font-semibold before:absolute before:left-full before:top-3 before:h-10 before:w-10 before:border-b-2 before:border-r-2 before:border-[var(--theme)] before:content-[''] after:absolute after:-left-10 after:-top-2 after:h-10 after:w-10 after:border-l-2 after:border-t-2 after:border-[var(--theme)] after:bg-transparent after:transition-all after:content-[''] lg:block">
             <span>Our Company</span>
           </div>
 
           <img
             src="/images/icon.png"
-            className="max-w-[500px] max-h-[200px] w-72 min-[500px]:w-[340px] sm:w-[400px] md:w-[450px] lg:w-[500px]"
+            className="max-h-[200px] w-72 max-w-[500px] min-[500px]:w-[340px] sm:w-[400px] md:w-[450px] lg:w-[500px]"
           ></img>
         </div>
 
         <div
           id="faqs"
-          className="flex flex-col gap-4 bg-white shadow-md drop-shadow-md px-6 py-8 xsm:px-12 rounded-md border-[1px] border-neutral-200 max-w-[600px]"
+          className="flex max-w-[600px] flex-col gap-4 rounded-md border-[1px] border-neutral-200 bg-white px-6 py-8 shadow-md drop-shadow-md xsm:px-12"
         >
-          <span className="font-semibold font-lato text-xl xxsm:text-2xl text-center text-[var(--theme)]">
+          <span className="text-center font-lato text-xl font-semibold text-[var(--theme)] xxsm:text-2xl">
             About our online store
           </span>
           <span className="font-raleway text-neutral-800">
@@ -166,10 +166,10 @@ const page = () => {
         </div>
       </div>
 
-      <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
+      <span className="mt-5 border-b-2 border-[var(--theme)] pb-2 text-center font-lato text-4xl font-semibold">
         FAQ
       </span>
-      <div className="flex flex-col gap-3 mx-5 w-10/12 sm:max-w-[800px]">
+      <div className="mx-5 flex w-10/12 flex-col gap-3 sm:max-w-[800px]">
         <Accordion type="single" collapsible className="w-full">
           {faqCards.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={index}>
@@ -182,11 +182,11 @@ const page = () => {
         </Accordion>
       </div>
 
-      <span className="text-center font-semibold font-lato text-4xl mt-5 border-b-2 pb-2 border-[var(--theme)]">
+      <span className="mt-5 border-b-2 border-[var(--theme)] pb-2 text-center font-lato text-4xl font-semibold">
         After Sale Services
       </span>
 
-      <div className="grid grid-cols-1 w-full px-10 place-items-center min-[1550px]:px-28 min-[1700px]:px-36 min-[1900px]:px-48 md:grid-cols-2 min-[1360px]:grid-cols-4 gap-6">
+      <div className="grid w-full grid-cols-1 place-items-center gap-6 px-10 md:grid-cols-2 min-[1360px]:grid-cols-4 min-[1550px]:px-28 min-[1700px]:px-36 min-[1900px]:px-48">
         {aboutCards.map((item, index) => (
           <AboutCard key={index} text={item.text} logo={item.logo} />
         ))}
@@ -196,3 +196,4 @@ const page = () => {
 };
 
 export default page;
+

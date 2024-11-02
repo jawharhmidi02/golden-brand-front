@@ -4,7 +4,7 @@ import "./Nav.css";
 
 import Menu from "../menu/Menu";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -18,16 +18,42 @@ import {
 } from "@/components/ui/sheet";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { Separator } from "../ui/separator";
+import SideCartItem from "../SideCartItem/SideCartItem";
 
 const Nav = ({ lng }) => {
   const router = useRouter();
+  const closeButton = useRef(null);
+  const closeCartButton = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+
+  const items = [
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+  ];
 
   //Handles the opening and closing of our nav
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   return (
     <nav className="max-h-[120px]">
       <div className="left">
@@ -72,7 +98,61 @@ const Nav = ({ lng }) => {
               <div className="total-number">0</div>
             </button>
           </SheetTrigger>
-          <SheetContent className="bg-[var(--tertiary)] w-[230px]"></SheetContent>
+          <SheetContent className="bg-[var(--tertiary)] w-[300px] p-0">
+            <div className="flex flex-col justify-between  h-full">
+              <div className="py-3 border-b-[1px] text-center border-neutral-300">
+                <span className="font-lato font-semibold text-2xl text-neutral-800">
+                  Shopping Cart
+                </span>
+              </div>
+              <div className="flex flex-col relative overflow-auto flex-1 cart-items-scrollbar w-full">
+                {items.map((item, index) => (
+                  <SideCartItem
+                    key={index}
+                    name={item.name}
+                    dimension={item.dimension}
+                    price={item.price}
+                    id={item.id}
+                    closeButton={closeCartButton}
+                    index={index}
+                  />
+                ))}
+              </div>
+              <div className="flex flex-col gap-2 p-4 border-t-[1px] border-neutral-300">
+                <div className="flex flex-row justify-between">
+                  <span className="font-lato font-semibold text-xl text-neutral-700">
+                    Total:
+                  </span>
+                  <span className="font-lato text-xl font-semibold text-[var(--theme2)]">
+                    6000 QR
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  className="text-sm text-neutral-700 font-bold  py-3 bg-zinc-200 transition-colors duration-200 hover:bg-zinc-300"
+                  onClick={() => {
+                    setTimeout(() => closeCartButton.current.click() , 500)
+                    router.push('/cart');
+                  }}
+                >
+                  VIEW CART
+                </button>
+                <button
+                  type="button"
+                  className="text-sm font-bold py-3 bg-[var(--theme2)] text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)] "
+                >
+                  CHECKOUT
+                </button>
+              </div>
+            </div>
+            <SheetClose>
+              <button
+                type="button"
+                className="hidden"
+                ref={closeCartButton}
+              ></button>
+            </SheetClose>
+          </SheetContent>
         </Sheet>
 
         <Sheet>
@@ -109,6 +189,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000);
                   }}
                   // href="/"
                 >
@@ -124,6 +207,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/services");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000);
                   }}
                   // href="/services"
                 >
@@ -139,6 +225,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/products");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000);
                   }}
                   // href="/products"
                 >
@@ -154,6 +243,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/about");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000);
                   }}
                   // href="/about"
                 >
@@ -169,6 +261,9 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/contact");
+                    setTimeout(() => {
+                      closeButton.current.click();
+                    }, 1000);
                   }}
                   // href="/contact"
                 >
@@ -176,6 +271,13 @@ const Nav = ({ lng }) => {
                 </a>
               </div>
             </div>
+            <SheetClose>
+              <button
+                type="button"
+                className="hidden"
+                ref={closeButton}
+              ></button>
+            </SheetClose>
           </SheetContent>
         </Sheet>
       </div>
