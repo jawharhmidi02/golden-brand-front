@@ -5,11 +5,10 @@ import "/public/assets/fontawesome/css/all.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
-// import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import TopHeader from "@/components/topHeader/TopHeader";
-// import Menu from "@/components/menu/Menu";
 import Nav from "@/components/nav/Nav";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: "GoldenBrand",
@@ -48,6 +47,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <>{children}</>
         <Footer lng={lng} />
         <FastLinks />
+        <Analytics />
       </body>
     </html>
   );
