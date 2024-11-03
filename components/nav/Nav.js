@@ -47,6 +47,36 @@ const Nav = ({ lng }) => {
       price: "2000",
       id: "123456",
     },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
+    {
+      name: "Work Table",
+      dimension: "1000 x 700 x 850 + 100mm",
+      price: "2000",
+      id: "123456",
+    },
   ];
 
   //Handles the opening and closing of our nav
@@ -131,7 +161,7 @@ const Nav = ({ lng }) => {
                   type="button"
                   className="text-sm text-neutral-700 font-bold  py-3 bg-zinc-200 transition-colors duration-200 hover:bg-zinc-300"
                   onClick={() => {
-                    setTimeout(() => closeCartButton.current.click() , 500)
+                    setTimeout(() => closeCartButton.current.click() , 500);
                     router.push('/cart');
                   }}
                 >
@@ -140,6 +170,10 @@ const Nav = ({ lng }) => {
                 <button
                   type="button"
                   className="text-sm font-bold py-3 bg-[var(--theme2)] text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)] "
+                  onClick={() => {
+                    setTimeout(() => closeCartButton.current.click(), 500);
+                    router.push('/checkout')
+                  }}
                 >
                   CHECKOUT
                 </button>

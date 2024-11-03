@@ -27,7 +27,7 @@ const SelectInterface = ({ placeHolder, changeSortOption, values }) => {
   return (
     <div>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] focus:ring-[var(--theme)]">
           <SelectValue placeholder={placeHolder} />
         </SelectTrigger>
         <SelectContent>
