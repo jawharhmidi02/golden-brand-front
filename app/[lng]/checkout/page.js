@@ -143,6 +143,7 @@ const page = () => {
                 required
                 defaultValue={"Qatar"}
                 readOnly={true}
+                disabled={true}
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -157,6 +158,7 @@ const page = () => {
                 required
                 defaultValue={"Doha"}
                 readOnly={true}
+                disabled={true}
               />
             </div>
           </div>
