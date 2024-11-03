@@ -72,8 +72,10 @@ const page = () => {
       quantity: "3",
       id: "123456",
     },
-
   ];
+  const increaseProductNumber = () => {};
+
+  const decreaseProductNumber = () => {};
   return items.length == 0 ? (
     <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center">
       <div className="flex flex-col"></div>
@@ -128,7 +130,12 @@ const page = () => {
 
               {items.map((item, index) => (
                 <tbody key={index}>
-                  <tr className={cn("hidden border-neutral-200 md:table-row", index == items.length - 1 ? "" : "border-b")}>
+                  <tr
+                    className={cn(
+                      "hidden border-neutral-200 md:table-row",
+                      index == items.length - 1 ? "" : "border-b",
+                    )}
+                  >
                     <td className="p-[10px]">
                       <i className="fa-solid fa-x text-[11px] text-neutral-500 transition-all duration-200 hover:cursor-pointer hover:text-emerald-700" />
                     </td>
@@ -375,7 +382,7 @@ const page = () => {
               type="button"
               className="w-full bg-[var(--theme2)] py-2 font-lato font-semibold text-white transition-colors duration-200 hover:bg-[var(--theme)]"
               onClick={() => {
-                router.push('/checkout')
+                router.push("/checkout");
               }}
             >
               PROCEED TO CHECKOUT
