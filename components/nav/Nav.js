@@ -4,7 +4,7 @@ import "./Nav.css";
 
 import Menu from "../menu/Menu";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -27,6 +27,7 @@ const Nav = ({ lng }) => {
   const closeCartButton = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const navBar = useRef(null);
 
   const items = [
     {
@@ -79,13 +80,39 @@ const Nav = ({ lng }) => {
     },
   ];
 
+  // const [isVisible, setIsVisible] = useState(false);
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     if(navBar.current){
+  //       const rect = elementRef.current.getBoundingClientRect();
+  //       const isVisible = (
+  //         rect.top >= 0 &&
+  //         rect.left >= 0 &&
+  //         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+  //         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  //       );
+  //       setIsVisible(isVisible);
+  //     }
+  //   }
+
+  //   window.addEventListener('scroll', handleScroll);
+    
+  //   handleScroll();
+
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+
+  // }, []);
+
   //Handles the opening and closing of our nav
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <nav className="max-h-[120px]">
+    <nav ref={navBar} className="max-h-[120px]">
       <div className="left">
         <Image
           src="/images/icon.png"
@@ -128,14 +155,14 @@ const Nav = ({ lng }) => {
               <div className="total-number">0</div>
             </button>
           </SheetTrigger>
-          <SheetContent className="bg-[var(--tertiary)] w-[300px] p-0">
-            <div className="flex flex-col justify-between  h-full">
-              <div className="py-3 border-b-[1px] text-center border-neutral-300">
-                <span className="font-lato font-semibold text-2xl text-neutral-800">
+          <SheetContent className="w-[300px] bg-[var(--tertiary)] p-0">
+            <div className="flex h-full flex-col justify-between">
+              <div className="border-b-[1px] border-neutral-300 py-3 text-center">
+                <span className="font-lato text-2xl font-semibold text-neutral-800">
                   Shopping Cart
                 </span>
               </div>
-              <div className="flex flex-col relative overflow-auto flex-1 cart-items-scrollbar w-full">
+              <div className="cart-items-scrollbar relative flex w-full flex-1 flex-col overflow-auto">
                 {items.map((item, index) => (
                   <SideCartItem
                     key={index}
@@ -148,9 +175,9 @@ const Nav = ({ lng }) => {
                   />
                 ))}
               </div>
-              <div className="flex flex-col gap-2 p-4 border-t-[1px] border-neutral-300">
+              <div className="flex flex-col gap-2 border-t-[1px] border-neutral-300 p-4">
                 <div className="flex flex-row justify-between">
-                  <span className="font-lato font-semibold text-xl text-neutral-700">
+                  <span className="font-lato text-xl font-semibold text-neutral-700">
                     Total:
                   </span>
                   <span className="font-lato text-xl font-semibold text-[var(--theme2)]">
@@ -159,20 +186,20 @@ const Nav = ({ lng }) => {
                 </div>
                 <button
                   type="button"
-                  className="text-sm text-neutral-700 font-bold  py-3 bg-zinc-200 transition-colors duration-200 hover:bg-zinc-300"
+                  className="bg-zinc-200 py-3 text-sm font-bold text-neutral-700 transition-colors duration-200 hover:bg-zinc-300"
                   onClick={() => {
-                    setTimeout(() => closeCartButton.current.click() , 500);
-                    router.push('/cart');
+                    setTimeout(() => closeCartButton.current.click(), 500);
+                    router.push("/cart");
                   }}
                 >
                   VIEW CART
                 </button>
                 <button
                   type="button"
-                  className="text-sm font-bold py-3 bg-[var(--theme2)] text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)] "
+                  className="bg-[var(--theme2)] py-3 text-sm font-bold text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)]"
                   onClick={() => {
                     setTimeout(() => closeCartButton.current.click(), 500);
-                    router.push('/checkout')
+                    router.push("/checkout");
                   }}
                 >
                   CHECKOUT
@@ -191,32 +218,25 @@ const Nav = ({ lng }) => {
 
         <Sheet>
           <SheetTrigger asChild>
-            <button className="hidden flex-col justify-center items-center hamburger-menu ml-2">
+            <button className="hamburger-menu ml-2 hidden flex-col items-center justify-center">
               <span
-                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
-                    h-0.5 w-6 rounded-sm ${
-                      isMenuOpen
-                        ? "rotate-45 translate-y-1"
-                        : "-translate-y-0.5"
-                    }`}
+                className={`block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
+                  isMenuOpen ? "translate-y-1 rotate-45" : "-translate-y-0.5"
+                }`}
               ></span>
               <span
-                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
-                    h-0.5 w-6 rounded-sm my-0.5 ${
-                      isMenuOpen ? "opacity-0" : "opacity-100"
-                    }`}
+                className={`my-0.5 block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
               ></span>
               <span
-                className={`bg-[var(--theme2)] block transition-all duration-300 ease-out 
-                    h-0.5 w-6 rounded-sm ${
-                      isMenuOpen
-                        ? "-rotate-45 -translate-y-1"
-                        : "translate-y-0.5"
-                    }`}
+                className={`block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
+                  isMenuOpen ? "-translate-y-1 -rotate-45" : "translate-y-0.5"
+                }`}
               ></span>
             </button>
           </SheetTrigger>
-          <SheetContent className="bg-[var(--tertiary)] w-[230px]">
+          <SheetContent className="w-[230px] bg-[var(--tertiary)]">
             <div className="menu flex flex-col">
               <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
                 <a
