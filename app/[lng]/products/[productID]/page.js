@@ -50,6 +50,7 @@ const page = () => {
     ],
     titles: ["legs", "drainer"],
   };
+  // 
   const cat = {};
   cat[product.category] = true;
   const [productNumber, setProductNumber] = useState(1);

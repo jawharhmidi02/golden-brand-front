@@ -106,7 +106,7 @@ const page = () => {
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
             />
           </div>
-          <div className="grid grid-cols-2">
+          {/* <div className="grid grid-cols-2">
             <div className="flex flex-col gap-1">
               <label htmlFor="country" className="font-lato text-lg">
                 Country <font className="text-rose-500">*</font>
@@ -128,6 +128,38 @@ const page = () => {
               >
                 Doha
               </span>
+            </div>
+          </div> */}
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="flex flex-col gap-1">
+              <label htmlFor="country" className="font-lato text-lg">
+                Country <font className="text-rose-500">*</font>
+              </label>
+              <input
+                placeholder="Country"
+                type="text"
+                id="country"
+                className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
+                required
+                defaultValue={"Qatar"}
+                readOnly={true}
+                disabled={true}
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="state" className="font-lato text-lg">
+                State <font className="text-rose-500">*</font>
+              </label>
+              <input
+                placeholder="State"
+                type="text"
+                id="state"
+                className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
+                required
+                defaultValue={"Doha"}
+                readOnly={true}
+                disabled={true}
+              />
             </div>
           </div>
           <div className="flex flex-col gap-1">

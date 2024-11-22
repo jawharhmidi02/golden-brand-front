@@ -80,6 +80,8 @@ const Nav = ({ lng }) => {
     },
   ];
 
+  //
+
   // const [isVisible, setIsVisible] = useState(false);
 
   // useEffect(() => {
@@ -156,6 +158,7 @@ const Nav = ({ lng }) => {
             </button>
           </SheetTrigger>
           <SheetContent className="w-[300px] bg-[var(--tertiary)] p-0">
+            <SheetTitle></SheetTitle>
             <div className="flex h-full flex-col justify-between">
               <div className="border-b-[1px] border-neutral-300 py-3 text-center">
                 <span className="font-lato text-2xl font-semibold text-neutral-800">
@@ -237,6 +240,7 @@ const Nav = ({ lng }) => {
             </button>
           </SheetTrigger>
           <SheetContent className="w-[230px] bg-[var(--tertiary)]">
+            <SheetTitle></SheetTitle>
             <div className="menu flex flex-col">
               <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
                 <a
