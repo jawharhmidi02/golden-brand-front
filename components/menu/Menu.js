@@ -1,16 +1,20 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import "./Menu.css";
 
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const Menu = ({ lng }) => {
   const pathname = usePathname();
   const router = useRouter();
 
+  
+
   return (
-    <div className="menu-container">
-      <div className="menu">
+    <div className={cn("flex flex-row p-0 justify-center items-center")}>
+      <div className={cn("flex flex-row gap-5 text-[var(--fourth-color-primary)] font-montserrat")}>
         <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
           <a
             onClick={() => {
