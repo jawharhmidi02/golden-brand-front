@@ -7,6 +7,7 @@ import "/app/[lng]/globals.css";
 import "/app/[lng]/animations.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import DashNav from "@/components/DashNav/DashNav";
 
 export default function RootLayout({ children }) {
   return (
@@ -24,9 +25,9 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="bg-[var(--primary)]">
+      <body className="flex gap-4 bg-[var(--dash-theme)]">
+        <DashNav/>
         <>{children}</>
-        <Analytics />
       </body>
     </html>
   );
