@@ -4,7 +4,7 @@ import "./Nav.css";
 
 import Menu from "../menu/Menu";
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -79,10 +79,18 @@ const Nav = ({ lng }) => {
     },
   ];
 
-  //Handles the opening and closing of our nav
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    if (closeButton.current) {
+      closeButton.current.click();
+    }
+    if (closeCartButton.current) {
+      closeCartButton.current.click();
+    }
+  });
 
   return (
     <nav className="max-h-[120px]">
@@ -94,27 +102,18 @@ const Nav = ({ lng }) => {
           alt="icon"
           loading="lazy"
           onClick={() => {
-            // window.location.href = "./";
             router.push("./");
           }}
           className="hover:cursor-pointer"
         />
       </div>
       <div>
-        {/* <input type="text" placeholder="Search" />
-        <div className="select-category">
-          Select Category <i className="fa-solid fa-chevron-down"></i>
-        </div>
-        <button>
-          <i className="fa-solid fa-magnifying-glass"></i>
-        </button> */}
         <Menu lng={lng} />
       </div>
       <div className="right">
         <div
           className="login hover:cursor-pointer"
           onClick={() => {
-            // window.location.href = "./my-account";
             router.push("/sign-in");
           }}
         >
@@ -122,7 +121,7 @@ const Nav = ({ lng }) => {
           <span>Sign Up/Sign In</span>
         </div>
         <Sheet>
-          <SheetTrigger asChild>
+          <SheetTrigger asChild className="cart">
             <button className="cart">
               <span className="material-symbols-outlined">shopping_bag</span>
               <div className="total-number">0</div>
@@ -162,7 +161,9 @@ const Nav = ({ lng }) => {
                   type="button"
                   className="bg-zinc-200 py-3 text-sm font-bold text-neutral-700 transition-colors duration-200 hover:bg-zinc-300"
                   onClick={() => {
-                    setTimeout(() => closeCartButton.current.click(), 500);
+                    // setTimeout(() => {
+                    //   closeCartButton.current.click();
+                    // }, 500);
                     router.push("/cart");
                   }}
                 >
@@ -172,7 +173,9 @@ const Nav = ({ lng }) => {
                   type="button"
                   className="bg-[var(--theme2)] py-3 text-sm font-bold text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)]"
                   onClick={() => {
-                    setTimeout(() => closeCartButton.current.click(), 500);
+                    // setTimeout(() => {
+                    //   closeCartButton.current.click();
+                    // }, 500);
                     router.push("/checkout");
                   }}
                 >
@@ -191,7 +194,10 @@ const Nav = ({ lng }) => {
         </Sheet>
 
         <Sheet>
-          <SheetTrigger asChild>
+          <SheetTrigger
+            asChild
+            className="hamburger-menu ml-2 hidden flex-col items-center justify-center"
+          >
             <button className="hamburger-menu ml-2 hidden flex-col items-center justify-center">
               <span
                 className={`block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
@@ -218,11 +224,10 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/");
-                    setTimeout(() => {
-                      closeButton.current.click();
-                    }, 1000);
+                    // setTimeout(() => {
+                    //   closeButton.current.click();
+                    // }, 1000);
                   }}
-                  // href="/"
                 >
                   Home
                 </a>
@@ -236,11 +241,10 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/services");
-                    setTimeout(() => {
-                      closeButton.current.click();
-                    }, 1000);
+                    // setTimeout(() => {
+                    //   closeButton.current.click();
+                    // }, 1000);
                   }}
-                  // href="/services"
                 >
                   Our Services
                 </a>
@@ -254,11 +258,10 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/products");
-                    setTimeout(() => {
-                      closeButton.current.click();
-                    }, 1000);
+                    // setTimeout(() => {
+                    //   closeButton.current.click();
+                    // }, 1000);
                   }}
-                  // href="/products"
                 >
                   Products
                 </a>
@@ -272,11 +275,10 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/about");
-                    setTimeout(() => {
-                      closeButton.current.click();
-                    }, 1000);
+                    // setTimeout(() => {
+                    //   closeButton.current.click();
+                    // }, 1000);
                   }}
-                  // href="/about"
                 >
                   About
                 </a>
@@ -290,11 +292,10 @@ const Nav = ({ lng }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     router.push("/contact");
-                    setTimeout(() => {
-                      closeButton.current.click();
-                    }, 1000);
+                    // setTimeout(() => {
+                    //   closeButton.current.click();
+                    // }, 1000);
                   }}
-                  // href="/contact"
                 >
                   Contact
                 </a>
