@@ -27,7 +27,7 @@ const DashNav = () => {
           <SheetTrigger asChild>
             <i className="fa-solid fa-bars-staggered text-2xl text-white"></i>
           </SheetTrigger>
-          <SheetContent className="w-[250px] border-transparent bg-[var(--dash-theme)]">
+          <SheetContent side="left" className="w-[250px] border-transparent bg-[var(--dash-theme)]">
             <SheetTitle></SheetTitle>
             <div
               className={cn(
