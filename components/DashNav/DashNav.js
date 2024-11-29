@@ -1,19 +1,66 @@
-import React from 'react'
-import DashMenu from '../DashMenu/DashMenu'
+"use client";
+
+import React, { useRef } from "react";
+import DashMenu from "../DashMenu/DashMenu";
+import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import DashHeader from "../DashHeader/DashHeader";
 
 const DashNav = () => {
-  return (
-    <div className="flex flex-col gap-8 px-5 py-8  items-center bg-transparent border-r min-h-[100vh] w-[250px] border-[#2c2d33]">
-      <div className="flex flex-row justify-center items-center gap-3">
-        <img src="/images/dash-icon.png" alt="mini-logo" className="size-[70px]"></img>
-        <div className="flex flex-col">
-          <div className="font-bold text-lg text-amber-400 tracking-wider">Golden B.</div>
-          <div className="text-[var(--dash-theme5)] font-semibold text-sm tracking-widest">Management</div>
-        </div>
-      </div>
-      <DashMenu/>
-    </div>
-  )
-}
+  const closeButton = useRef(null);
 
-export default DashNav
+  return (
+    <div>
+      {/* MOBILE SIDE NAV BELOW  */}
+
+      <div className="mb-10 flex w-full items-center border-b border-[#2c2d33] bg-transparent p-5 md:hidden">
+        <Sheet>
+          <SheetTrigger asChild>
+            <i className="fa-solid fa-bars-staggered text-2xl text-white"></i>
+          </SheetTrigger>
+          <SheetContent className="w-[250px] border-transparent bg-[var(--dash-theme)]">
+            <SheetTitle></SheetTitle>
+            <div
+              className={cn(
+                "flex flex-col items-center gap-8 bg-transparent py-4",
+              )}
+            >
+              <DashHeader />
+              <DashMenu closeButton={closeButton} />
+            </div>
+
+            <SheetClose>
+              <button
+                type="button"
+                className="hidden"
+                ref={closeButton}
+              ></button>
+            </SheetClose>
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* DESKTOP SIDE NAV BELOW */}
+
+      <div
+        className={cn(
+          "mr-10 hidden min-h-[100vh] w-[250px] flex-col items-center gap-8 border-r border-[#2c2d33] bg-transparent px-5 py-8 md:flex",
+        )}
+      >
+        <DashHeader />
+        <DashMenu closeButton={closeButton} />
+      </div>
+    </div>
+  );
+};
+
+export default DashNav;

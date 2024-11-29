@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="flex gap-4 bg-[var(--dash-theme)]">
+      <body className="flex flex-col md:flex-row bg-[var(--dash-theme)]">
         <DashNav/>
         <>{children}</>
       </body>
