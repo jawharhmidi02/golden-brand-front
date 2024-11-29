@@ -9,6 +9,12 @@ import "/app/[lng]/animations.css";
 import { Analytics } from "@vercel/analytics/react";
 import DashNav from "@/components/DashNav/DashNav";
 
+export const metadata = {
+  title: "GoldenBrand: Admin",
+  description:
+    "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -25,9 +31,10 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="flex flex-col md:flex-row bg-[var(--dash-theme)]">
-        <DashNav/>
+      <body className="flex flex-col bg-[var(--dash-theme)] md:flex-row">
+        <DashNav />
         <>{children}</>
+        <Analytics />
       </body>
     </html>
   );

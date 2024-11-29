@@ -30,7 +30,7 @@ const EmblaCarousel = ({ options }) => {
   }, [emblaApi]);
 
   return (
-    <section className="embla">
+    <section className="embla h-[100vw] min-[768px]:h-[50vw] min-[1024px]:h-[33vw]">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {[
@@ -58,7 +58,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="text">
-        <h1 className="text-3xl text-center title">
+        <h1 className="title text-center text-3xl">
           Golden Brand: <span>Stainless Steel</span>
         </h1>
         <p className="text-center">
