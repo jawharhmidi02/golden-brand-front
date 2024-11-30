@@ -7,7 +7,6 @@ import "./animations.css";
 import "./globals.css";
 
 import TopHeader from "@/components/topHeader/TopHeader";
-import Nav from "@/components/nav/Nav";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
@@ -20,6 +19,7 @@ import { dir } from "i18next";
 import { languages } from "@/app/i18n/settings";
 import Footer from "@/components/Footer/Footer";
 import FastLinks from "@/components/FastLinks/FastLinks";
+import { Toaster } from "@/components/ui/toaster";
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
@@ -43,10 +43,12 @@ export default function RootLayout({ children, params: { lng } }) {
       </head>
       <body className="bg-[var(--primary)]">
         <TopHeader lng={lng} />
-        <Nav lng={lng} />
+
         <>{children}</>
+
         <Footer lng={lng} />
         <FastLinks />
+        <Toaster />
         <Analytics />
       </body>
     </html>

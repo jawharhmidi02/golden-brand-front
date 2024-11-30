@@ -12,10 +12,8 @@ import {
 } from "@/components/ui/carousel";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
-const ProductsByCategory = () => {
-  const router = useRouter();
+const ProductsByCategory = ({ lng, ChangeUrl }) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [loadingProducts, setloadingProducts] = useState(false);
 
@@ -338,19 +336,19 @@ const ProductsByCategory = () => {
   }, [selectedCategory]);
   //
   return (
-    <div className="gap-6 ProductsByCategory flex flex-col lg:flex-row mt-[70px] max-w-screen-xl m-auto lg:gap-0 overflow-hidden">
-      <div className="lg:w-[30%] lg:pl-6 flex-shrink-0">
-        <div className="font-semibold text-2xl text-center lg:text-left lg:text-3xl font-lato">
+    <div className="ProductsByCategory m-auto mt-[70px] flex max-w-screen-xl flex-col gap-6 overflow-hidden lg:flex-row lg:gap-0">
+      <div className="flex-shrink-0 lg:w-[30%] lg:pl-6">
+        <div className="text-center font-lato text-2xl font-semibold lg:text-left lg:text-3xl">
           Products By Category
         </div>
-        <div className="flex flex-row lg:flex-col overflow-x-auto gap-[20px] mt-5 lg:mt-4 pb-3 mx-4 lg:mx-0 lg:pl-2 lg:gap-2 min-[890px]:justify-center">
+        <div className="mx-4 mt-5 flex flex-row gap-[20px] overflow-x-auto pb-3 min-[890px]:justify-center lg:mx-0 lg:mt-4 lg:flex-col lg:gap-2 lg:pl-2">
           {categories.map((category, index) => (
             <div
               className={cn(
-                "transition-all duration-200 hover:cursor-pointer font-semibold font-lato w-fit flex-shrink-0",
+                "w-fit flex-shrink-0 font-lato font-semibold transition-all duration-200 hover:cursor-pointer",
                 selectedCategory === index
-                  ? "text-[var(--theme2)] font-bold"
-                  : "text-neutral-400 hover:text-neutral-500"
+                  ? "font-bold text-[var(--theme2)]"
+                  : "text-neutral-400 hover:text-neutral-500",
               )}
               onClick={() => {
                 setSelectedCategory(index);
@@ -365,20 +363,20 @@ const ProductsByCategory = () => {
 
       <div
         className={cn(
-          "mt-4 w-full lg:flex-grow delay-0",
-          loadingProducts ? "animate-fadeoutdown" : "animate-fadeinup"
+          "mt-4 w-full delay-0 lg:flex-grow",
+          loadingProducts ? "animate-fadeoutdown" : "animate-fadeinup",
         )}
       >
-        <Carousel className=" w-full flex-1">
+        <Carousel className="w-full flex-1">
           <CarouselContent className="mx-2 w-full flex-1">
             {product.map((item, index) => (
               <CarouselItem
                 key={index}
-                className="md:basis-1/4 lg:basis-1/3 pl-0 flex basis-1/2 p-0 xl:basis-1/4"
+                className="flex basis-1/2 p-0 pl-0 md:basis-1/4 lg:basis-1/3 xl:basis-1/4"
               >
                 <div
                   key={index}
-                  className="flex flex-col items-center gap-y-2 p-4 border-neutral-200 border-[1px] w-full transition-all duration-300"
+                  className="flex w-full flex-col items-center gap-y-2 border-[1px] border-neutral-200 p-4 transition-all duration-300"
                 >
                   <Image
                     src={item.img}
@@ -388,35 +386,35 @@ const ProductsByCategory = () => {
                     className="w-[70%]"
                   />
                   <div className="flex flex-col items-center gap-y-1">
-                    <div className="font-semibold text-sm text-center">
+                    <div className="text-center text-sm font-semibold">
                       {item.name}
                     </div>
                     <div
-                      className="text-neutral-400 text-center text-sm hover:text-neutral-700 transition-all duration-200 hover:cursor-pointer "
+                      className="text-center text-sm text-neutral-400 transition-all duration-200 hover:cursor-pointer hover:text-neutral-700"
                       onClick={() => {
                         var cats = {};
                         cats[item.category] = true;
-                        router.push(
+                        ChangeUrl(
                           `/${lng}/products?selectedCategories=${encodeURIComponent(
-                            JSON.stringify(cats)
-                          )}`
+                            JSON.stringify(cats),
+                          )}`,
                         );
                       }}
                     >
                       {item.category}
                     </div>
                   </div>
-                  <div className="mt-auto font-semibold text-[var(--theme)] w-full">
+                  <div className="mt-auto w-full font-semibold text-[var(--theme)]">
                     ~{item.prices[0]}.00 QAR{" "}
-                    <span className="text-neutral-400 font-normal text-[12px]">
+                    <span className="text-[12px] font-normal text-neutral-400">
                       VAT Inclusive
                     </span>
                   </div>
-                  <div className="flex flex-col items-center w-full">
+                  <div className="flex w-full flex-col items-center">
                     <button
-                      className=" bg-[var(--theme2)] text-white px-4 py-1 transition-all duration-300 w-full open-product"
+                      className="open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
                       onClick={() => {
-                        router.push(`/${lng}/products/${item.id}`);
+                        ChangeUrl(`/${lng}/products/${item.id}`);
                       }}
                     ></button>
                   </div>
@@ -424,8 +422,8 @@ const ProductsByCategory = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="border-0 text-xl -left-0 shadow-lg" />
-          <CarouselNext className="border-0 text-xl -right-0 shadow-lg" />
+          <CarouselPrevious className="-left-0 border-0 text-xl shadow-lg" />
+          <CarouselNext className="-right-0 border-0 text-xl shadow-lg" />
         </Carousel>
       </div>
     </div>

@@ -76,7 +76,7 @@
   line-height: 20px;
 }
 
-.hero a {
+.hero .button {
   padding: 15px 25px;
   border: var(--second-color-primary) 2px solid;
   border-radius: 14px;
@@ -87,17 +87,17 @@
   width: 130px;
 }
 
-.hero a:hover {
+.hero .button:hover {
   background: var(--second-color-primary);
 }
 
-.hero a:hover::after,
-.hero a:hover::before {
+.hero .button:hover::after,
+.hero .button:hover::before {
   transform: translateY(-100%);
 }
 
-.hero a::after,
-.hero a::before {
+.hero .button::after,
+.hero .button::before {
   content: "Shop Now";
   position: absolute;
   left: 0;
@@ -109,11 +109,11 @@
   width: 127px;
 }
 
-.hero a::after {
+.hero .button::after {
   top: 0;
 }
 
-.hero a::before {
+.hero .button::before {
   top: 100%;
 }
 
@@ -130,12 +130,12 @@
   .hero .text {
     width: 90%;
   }
-  .hero a {
+  .hero .button {
     height: 40px;
     width: 120px;
   }
-  .hero a::after,
-  .hero a::before {
+  .hero .button::after,
+  .hero .button::before {
     height: 37px;
     width: 117px;
   }

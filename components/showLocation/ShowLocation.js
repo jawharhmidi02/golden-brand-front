@@ -12,43 +12,41 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useRouter } from "next/navigation";
 
-const ShowLocation = () => {
-  const router = useRouter();
+const ShowLocation = ({ ChangeUrl }) => {
   return (
-    <NavigationMenu className="p-0 ">
+    <NavigationMenu className="p-0">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="first-background-primary hover:bg-inherit focus:bg-inherit px-0 first-family text-base font-normal py-0 h-0">
+          <NavigationMenuTrigger className="first-background-primary first-family h-0 px-0 py-0 text-base font-normal hover:bg-inherit focus:bg-inherit">
             <i className="fa-solid fa-location-dot"></i>&nbsp;Show Location
           </NavigationMenuTrigger>
           <NavigationMenuContent className="z-99 md:min-w-[400px]">
-            <ul className="grid gap-3 lg:p-4 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] z-99">
-              <li className="row-span-3 z-99">
+            <ul className="z-99 grid gap-3 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] lg:p-4">
+              <li className="z-99 row-span-3">
                 <NavigationMenuLink asChild>
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d58613.59643240183!2d10.523509372413544!3d33.34624482660369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stn!4v1729389385885!5m2!1sen!2stn"
                     // width="600"
                     // height="450"
 
-                    className="border-0 h-full w-full"
+                    className="h-full w-full border-0"
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   ></iframe>
                 </NavigationMenuLink>
               </li>
-              <li className="flex flex-col gap-4 my-3 row-span-3 z-99">
-                <div className="flex flex-col gap-0 cursor-default">
+              <li className="z-99 row-span-3 my-3 flex flex-col gap-4">
+                <div className="flex cursor-default flex-col gap-0">
                   <div className="text-center">Saturday-Thursday</div>
                   <div>
-                    <span className="text-neutral-500 text-center">
+                    <span className="text-center text-neutral-500">
                       8:00AM - 6:00PM
                     </span>
                   </div>
                 </div>
-                <div className="flex flex-col gap-0 cursor-default">
+                <div className="flex cursor-default flex-col gap-0">
                   {/* <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +70,7 @@ const ShowLocation = () => {
                   <div className="flex flex-row items-center justify-center text-center">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="size-5 ml-auto text-neutral-500"
+                      className="ml-auto size-5 text-neutral-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -113,11 +111,10 @@ const ShowLocation = () => {
                 </div>
                 <div>
                   <button
-                    className="rounded-sm px-4 py-1 w-fit  self-center border-2 border-[#ffffff] text-[#ffffff] bg-[var(--blue)] active:scale-95 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)] transition-all duration-200"
+                    className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--blue)] px-4 py-1 text-[#ffffff] transition-all duration-200 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)] active:scale-95"
                     type="button"
                     onClick={() => {
-                      // window.location.href = "./contact";
-                      router.push("./contact");
+                      ChangeUrl("./contact");
                     }}
                   >
                     Contact Us
@@ -141,7 +138,7 @@ const ListItem = React.forwardRef(
             ref={ref}
             className={cn(
               "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className
+              className,
             )}
             {...props}
           >
@@ -153,7 +150,7 @@ const ListItem = React.forwardRef(
         </NavigationMenuLink>
       </li>
     );
-  }
+  },
 );
 ListItem.displayName = "ListItem";
 export default ShowLocation;

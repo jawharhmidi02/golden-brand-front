@@ -4,7 +4,6 @@ nav {
   justify-content: space-between;
   padding: 10px max(3vw, 10px);
   align-items: center;
-
 }
 
 nav .left {
@@ -150,7 +149,7 @@ nav .right .cart .total-number {
 }
 
 @media screen and (max-width: 950px) {
-  nav .menu-container .menu {
+  nav .menu {
     display: none;
   }
   nav .right {
@@ -168,14 +167,13 @@ nav .right .cart .total-number {
   nav .left img {
     width: 120px;
   }
-  nav .right .login span{
+  nav .right .login span {
     display: none;
   }
-  nav .right .login i{
+  nav .right .login i {
     font-size: 1.3rem;
   }
-  nav .right .login{
+  nav .right .login {
     border-radius: 50%;
   }
 }
-

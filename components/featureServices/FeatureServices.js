@@ -30,28 +30,28 @@ const FeaturedServices = () => {
     },
   ];
   return (
-    <div className="mt-[70px] py-[50px] bg-white overflow-hidden">
-      <ul className="flex flex-wrap px-6 gap-y-3 m-auto max-w-[715px] min-[915px]:max-w-screen-2xl">
+    <div className="mt-[70px] overflow-hidden bg-white py-[50px]">
+      <ul className="m-auto flex max-w-[715px] flex-wrap gap-y-3 px-6 min-[915px]:max-w-screen-2xl">
         {services.map((item, index) => (
-          <li className="w-full sm:w-1/4 px-2" key={index}>
+          <li className="w-full px-2 sm:w-1/4" key={index}>
             <button
               onClick={() => {
                 setselectedService(index);
               }}
               className={cn(
-                "flex flex-col w-full text-center min-h-[45px] rounded transition-all duration-200 hover:text-[var(--theme)] group",
+                "group flex min-h-[45px] w-full flex-col rounded text-center transition-all duration-200 hover:text-[var(--theme)]",
                 selectedService === index
                   ? "text-[var(--theme)]"
-                  : "text-neutral-400"
+                  : "text-neutral-400",
               )}
             >
-              <h4 className="text-lg font-semibold m-auto">{item.title}</h4>
+              <h4 className="m-auto text-lg font-semibold">{item.title}</h4>
               <hr
                 className={cn(
-                  "mt-auto border-0 h-[2.5px] w-full group-hover:bg-[var(--theme)] transition-all duration-200",
+                  "mt-auto h-[2.5px] w-full border-0 transition-all duration-200 group-hover:bg-[var(--theme)]",
                   selectedService === index
                     ? "bg-[var(--theme)]"
-                    : "bg-neutral-300"
+                    : "bg-neutral-300",
                 )}
               />
             </button>
@@ -61,23 +61,23 @@ const FeaturedServices = () => {
 
       {services.map((item, index) => (
         <div
-          className="md:mt-10 mt-7 space-y-10 max-w-screen-xl mx-auto"
+          className="mx-auto mt-7 max-w-screen-xl space-y-10 md:mt-10"
           key={index}
         >
           <div
             className={cn(
-              "flex-col p-3 gap-y-0 md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6",
-              selectedService === index ? "flex" : "hidden"
+              "flex-col items-center gap-y-0 space-y-6 p-3 md:flex-row md:space-x-6 md:space-y-0",
+              selectedService === index ? "flex" : "hidden",
             )}
           >
-            <div className="md:w-1/2 animate-fadeinleft space-y-10 opacity-0">
-              <div className="relative lg:text-4xl text-xl w-fit mx-auto font-semibold font-lato after:content-[''] after:border-l-2 after:border-t-2 after:h-10 after:w-10 after:bg-transparent after:border-[var(--theme)] after:-top-2 after:-left-10 after:absolute  after:transition-all  before:content-[''] before:absolute before:border-r-2 before:border-b-2 before:border-[var(--theme)] lg:before:top-3 before:top-0 before:left-full before:w-10 before:h-10">
+            <div className="animate-fadeinleft space-y-10 opacity-0 md:w-1/2">
+              <div className="relative mx-auto w-fit font-lato text-xl font-semibold before:absolute before:left-full before:top-0 before:h-10 before:w-10 before:border-b-2 before:border-r-2 before:border-[var(--theme)] before:content-[''] after:absolute after:-left-10 after:-top-2 after:h-10 after:w-10 after:border-l-2 after:border-t-2 after:border-[var(--theme)] after:bg-transparent after:transition-all after:content-[''] lg:text-4xl lg:before:top-3">
                 {item.title}
               </div>
               <h3 className="text-3xl font-semibold text-[var(--theme2)]"></h3>
               <p className="mt-4 text-neutral-600">{item.desc}</p>
             </div>
-            <div className="md:w-1/2 text-center animate-fadeinright opacity-0">
+            <div className="animate-fadeinright text-center opacity-0 md:w-1/2">
               <Image
                 width={500}
                 height={500}

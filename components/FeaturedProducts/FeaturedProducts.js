@@ -2,9 +2,8 @@ import Image from "next/image";
 import "./FeaturedProducts.css";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
-const FeaturedProducts = ({ lng }) => {
+const FeaturedProducts = ({ lng, ChangeUrl }) => {
   const [product, setproduct] = useState([
     {
       img: "/images/products/image1.png",
@@ -264,20 +263,19 @@ const FeaturedProducts = ({ lng }) => {
     },
   ]);
   const [selectedType, setselectedType] = useState("mostpopular");
-  const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center featured-product">
-      <div className="flex flex-col items-center gap-y-4 lg:flex-row lg:justify-between w-full px-5 max-w-screen-xl">
-        <div className="font-semibold text-2xl lg:text-3xl">
+    <div className="featured-product flex flex-col items-center">
+      <div className="flex w-full max-w-screen-xl flex-col items-center gap-y-4 px-5 lg:flex-row lg:justify-between">
+        <div className="text-2xl font-semibold lg:text-3xl">
           Featured Products
         </div>
         <div className="flex flex-row justify-center gap-6">
           <div
             className={
               selectedType === "newest"
-                ? "font-medium text-xl text-black hover:cursor-pointer duration-500 transition-all hover:text-black scale-105 featured-product-link active"
-                : "font-medium text-xl text-neutral-400 hover:cursor-pointer duration-500 transition-all hover:text-black hover:scale-105 featured-product-link"
+                ? "featured-product-link active scale-105 text-xl font-medium text-black transition-all duration-500 hover:cursor-pointer hover:text-black"
+                : "featured-product-link text-xl font-medium text-neutral-400 transition-all duration-500 hover:scale-105 hover:cursor-pointer hover:text-black"
             }
             onClick={() => {
               setselectedType("newest");
@@ -288,8 +286,8 @@ const FeaturedProducts = ({ lng }) => {
           <div
             className={
               selectedType === "mostpopular"
-                ? "font-medium text-xl text-black hover:cursor-pointer duration-500 transition-all hover:text-black scale-105 featured-product-link active"
-                : "font-medium text-xl text-neutral-400 hover:cursor-pointer duration-500 transition-all hover:text-black hover:scale-105 featured-product-link"
+                ? "featured-product-link active scale-105 text-xl font-medium text-black transition-all duration-500 hover:cursor-pointer hover:text-black"
+                : "featured-product-link text-xl font-medium text-neutral-400 transition-all duration-500 hover:scale-105 hover:cursor-pointer hover:text-black"
             }
             onClick={() => {
               setselectedType("mostpopular");
@@ -299,11 +297,11 @@ const FeaturedProducts = ({ lng }) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 mt-3 sm:grid-cols-3 lg:grid-cols-5 max-w-[1200px] mx-3 ">
+      <div className="mx-3 mt-3 grid max-w-[1200px] grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
         {product.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center gap-y-2 p-4 border-neutral-200 border-[1px] transition-all duration-300"
+            className="flex flex-col items-center gap-y-2 border-[1px] border-neutral-200 p-4 transition-all duration-300"
           >
             <Image
               src={item.img}
@@ -313,39 +311,35 @@ const FeaturedProducts = ({ lng }) => {
               className="w-[70%]"
             />
             <div className="flex flex-col items-center gap-y-1">
-              <div className="font-semibold text-sm text-center">
+              <div className="text-center text-sm font-semibold">
                 {item.name}
               </div>
               <div
-                className="text-neutral-400 text-center text-sm hover:text-neutral-700 transition-all duration-200 hover:cursor-pointer "
+                className="text-center text-sm text-neutral-400 transition-all duration-200 hover:cursor-pointer hover:text-neutral-700"
                 onClick={() => {
                   var cats = {};
                   cats[item.category] = true;
-                  // location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
-                  //   JSON.stringify(cats)
-                  // )}`;
-                  router.push(
+                  ChangeUrl(
                     `/${lng}/products?selectedCategories=${encodeURIComponent(
-                      JSON.stringify(cats)
-                    )}`
+                      JSON.stringify(cats),
+                    )}`,
                   );
                 }}
               >
                 {item.category}
               </div>
             </div>
-            <div className="mt-auto font-semibold text-[var(--theme)] w-full">
+            <div className="mt-auto w-full font-semibold text-[var(--theme)]">
               ~{item.prices[0]}.00 QAR{" "}
-              <span className="text-neutral-400 font-normal text-[12px]">
+              <span className="text-[12px] font-normal text-neutral-400">
                 VAT Inclusive
               </span>
             </div>
-            <div className="flex flex-col items-center w-full">
+            <div className="flex w-full flex-col items-center">
               <button
-                className=" bg-[var(--theme2)] text-white px-4 py-1 transition-all duration-300 w-full"
+                className="w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
                 onClick={() => {
-                  // location.href = `/${lng}/products/${item.id}`;
-                  router.push(`/${lng}/products/${item.id}`);
+                  ChangeUrl(`/${lng}/products/${item.id}`);
                 }}
               ></button>
               {/* <p className="text-sm text-neutral-400">ID: {item.id}</p> */}

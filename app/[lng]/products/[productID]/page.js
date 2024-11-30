@@ -1,10 +1,25 @@
 "use client";
 
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
-import React, { useState, useEffect } from "react";
+import { useEffect, useTransition, useState } from "react";
+import { useRouter } from "next/navigation";
 import "./page.css";
 
 const page = () => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const ChangeUrl = (url) => {
+    startTransition(() => {
+      router.push(url);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
+
   const product = {
     img: "/images/products/image3.png",
     name: "S. STEEL SINGLE BOWL SINK TABLE",
@@ -50,7 +65,7 @@ const page = () => {
     ],
     titles: ["legs", "drainer"],
   };
-  // 
+  //
   const cat = {};
   cat[product.category] = true;
   const [productNumber, setProductNumber] = useState(1);
@@ -74,8 +89,19 @@ const page = () => {
   }, []);
   return (
     <div className="mx-auto mt-5 flex w-full items-center justify-center">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
       <div className="mx-8 flex w-full max-w-[1200px] flex-col gap-4 sm:mx-16 md:mx-32 lg:mx-20">
-        <ProductHeader cat={cat} product={product} />
+        <ProductHeader
+          cat={cat}
+          product={product}
+          ChangeUrl={(url, options = {}) => {
+            ChangeUrl(url, options);
+          }}
+        />
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <div className="flex h-[85vh] w-full flex-col justify-between gap-4 lg:sticky lg:left-0 lg:top-10">
             <div className="flex h-full w-full items-center justify-center rounded-sm border-[1px] border-neutral-200 shadow-md drop-shadow-md">

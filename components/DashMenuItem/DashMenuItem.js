@@ -1,6 +1,4 @@
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
-import React from "react";
 
 const DashMenuItem = ({
   index,
@@ -9,15 +7,19 @@ const DashMenuItem = ({
   icon,
   menuState,
   setMenuState,
-  closeButton
+  closeButton,
+  ChangeUrl,
 }) => {
-  const router = useRouter();
   const lighter = title == "Logout";
+
   const menuTransition = (index, path) => {
     setMenuState(index);
-    setTimeout(() => {closeButton?.current?.click()}, 400)
-    router.push(`/admin${path}`);
+    setTimeout(() => {
+      closeButton?.current?.click();
+    }, 400);
+    ChangeUrl(`/admin${path}`);
   };
+
   return (
     <div
       onClick={() => {

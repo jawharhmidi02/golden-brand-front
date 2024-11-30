@@ -1,15 +1,35 @@
 "use client";
-import React, { useState } from "react";
-import { cn } from "@/lib/utils";
+
 import "./page.css";
-import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
+
+import { useEffect, useTransition, useState } from "react";
+import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
+import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
+
 const page = () => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const ChangeUrl = (url) => {
+    startTransition(() => {
+      router.push(url);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
   const [check, setCheck] = useState(false);
   return (
     <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
       <div
         className={cn(
           "mx-4 grid h-[900px] w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:h-[500px] min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
@@ -77,7 +97,7 @@ const page = () => {
               <span
                 className="mt-[2px] font-lato font-semibold text-neutral-500 transition-colors duration-200 hover:cursor-pointer hover:text-neutral-700"
                 onClick={() => {
-                  router.push("./reset-password");
+                  ChangeUrl("./reset-password");
                 }}
               >
                 Forgot Password?
@@ -90,6 +110,9 @@ const page = () => {
           accountText="Don't have an account?"
           signText="Sign Up"
           url="./sign-up"
+          ChangeUrl={(url) => {
+            ChangeUrl(url);
+          }}
         />
       </div>
     </div>

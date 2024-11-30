@@ -1,9 +1,9 @@
 import Image from "next/image";
 import React from "react";
 
-const LookingForCustom = () => {
+const LookingForCustom = ({ ChangeUrl }) => {
   return (
-    <div className="flex flex-col bg-white py-[50px] px-[20px] my-[70px] items-center md:flex-row gap-5 justify-center">
+    <div className="my-[70px] flex flex-col items-center justify-center gap-5 bg-white px-[20px] py-[50px] md:flex-row">
       <div>
         <Image
           src="/images/goldenbrand_stainlesssteel_1725566437708.jpeg"
@@ -14,13 +14,13 @@ const LookingForCustom = () => {
         />
       </div>
       <div className="flex flex-col">
-        <div className="text-3xl text-[var(--theme)] text-center mt-6 font-semibold">
+        <div className="mt-6 text-center text-3xl font-semibold text-[var(--theme)]">
           Looking For Custom Products?
         </div>
-        <div className="text-2xl text-neutral-700 text-center my-1 font-medium">
+        <div className="my-1 text-center text-2xl font-medium text-neutral-700">
           We Can Help You
         </div>
-        <div className="text-neutral-500 text-center mt-2 max-w-[600px]">
+        <div className="mt-2 max-w-[600px] text-center text-neutral-500">
           At Golden Brand, we understand that every project is unique. Whether
           you're envisioning a custom kitchen setup, a bespoke handrail, or
           specialized stainless steel and aluminum products, we’re here to bring
@@ -29,10 +29,13 @@ const LookingForCustom = () => {
           ready to assist with designs, materials, and the craftsmanship you
           need to make your vision a reality.
         </div>
-        <div className="flex items-center w-full justify-center mt-3 mb-6">
+        <div className="mb-6 mt-3 flex w-full items-center justify-center">
           <button
-            className="rounded-sm px-6 py-2 w-fit text-xl self-center border-2 border-[#ffffff] text-[#ffffff] bg-[var(--theme)] active:scale-95 hover:border-[var(--theme)] hover:bg-[#ffffff] hover:text-[var(--theme)] transition-all duration-200"
+            className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--theme)] px-6 py-2 text-xl text-[#ffffff] transition-all duration-200 hover:border-[var(--theme)] hover:bg-[#ffffff] hover:text-[var(--theme)] active:scale-95"
             type="button"
+            onClick={() => {
+              ChangeUrl("/contact");
+            }}
           >
             Contact Us
           </button>

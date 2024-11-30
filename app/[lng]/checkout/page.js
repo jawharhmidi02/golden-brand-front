@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 
 import {
   Select,
@@ -11,9 +10,23 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useRouter } from "next/navigation";
+import { useEffect, useTransition, useState } from "react";
 
 const page = () => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const ChangeUrl = (url) => {
+    startTransition(() => {
+      router.push(url);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
+
   const cities = [
     { value: "1", text: "City 1" },
     { value: "2", text: "City 2" },
@@ -51,6 +64,11 @@ const page = () => {
   ];
   return (
     <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
       <div className="grid w-full max-w-[1300px] grid-cols-1 gap-8 px-3 xsm:px-6 sm:px-10 lg:grid-cols-2">
         <div className="flex flex-col gap-5 pt-6">
           <div className="font-lato text-2xl font-bold text-neutral-800">
@@ -354,7 +372,7 @@ const page = () => {
             in our{" "}
             <font
               onClick={() => {
-                router.push("/terms-and-conditions#privacy");
+                ChangeUrl("/terms-and-conditions#privacy");
               }}
               className="font-bold text-neutral-700 transition-colors duration-200 hover:cursor-pointer hover:text-[var(--theme)]"
             >

@@ -1,7 +1,8 @@
 "use client";
 
 import Card from "@/components/Card/Card";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import FilterInterface from "@/components/FilterInterface/FilterInterface";
 import PaginationComp from "@/components/PaginationComp/PaginationComp";
 import "./page.css";
@@ -19,6 +20,20 @@ import {
 } from "@/components/ui/sheet";
 
 const ProductPage = ({ searchParams }) => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const ChangeUrl = (url, options = {}) => {
+    startTransition(() => {
+      router.push(url, { ...options });
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
+
   function OpenFilter() {
     return (
       <Sheet>
@@ -175,10 +190,19 @@ const ProductPage = ({ searchParams }) => {
   }, []);
   return (
     <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
       <div className="mx-5 flex flex-row gap-10 xsm:mx-8 sm:mx-10">
         <div className="hidden lg:flex">
           <Suspense>
-            <FilterInterface></FilterInterface>
+            <FilterInterface
+              ChangeUr={(url, options = {}) => {
+                ChangeUrl(url, options);
+              }}
+            />
           </Suspense>
         </div>
         <div className="flex max-w-screen-lg flex-col gap-4">
@@ -201,7 +225,13 @@ const ProductPage = ({ searchParams }) => {
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {products?.map((product, index) => (
-              <Card key={index} product={product} />
+              <Card
+                key={index}
+                product={product}
+                ChangeUrl={(url) => {
+                  ChangeUrl(url);
+                }}
+              />
             ))}
           </div>
           {/* <PaginationComp /> */}

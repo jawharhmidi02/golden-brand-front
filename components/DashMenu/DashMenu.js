@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import DashMenuItem from "../DashMenuItem/DashMenuItem";
 
-const DashMenu = ({closeButton}) => {
+const DashMenu = ({ closeButton, ChangeUrl }) => {
   const [menuState, setMenuState] = useState(1);
   const dashMenuItems = [
     {
@@ -43,6 +43,9 @@ const DashMenu = ({closeButton}) => {
           menuState={menuState}
           setMenuState={setMenuState}
           closeButton={closeButton}
+          ChangeUrl={(url) => {
+            ChangeUrl(url);
+          }}
         />
       ))}
     </div>

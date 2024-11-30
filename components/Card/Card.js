@@ -1,24 +1,28 @@
 import React from "react";
 import Image from "next/image";
-import { Separator } from "../ui/separator";
-import { useRouter } from "next/navigation";
 
-const Card = ({ product }) => {
-  const router = useRouter();
+const Card = ({ product, ChangeUrl }) => {
   return (
-    <div onClick={() => {router.push(`/products/${product.id}`)}} className="flex text-wrap drop-shadow-sm hover:scale-[1.03]  shadow-sm  rounded-md hover:cursor-pointer hover:bg-neutral-100 transition-all duration-200  border-neutral-200 flex-col justify-start gap-2 p-[35px] border-2">
+    <div
+      onClick={() => {
+        ChangeUrl(`/products/${product.id}`);
+      }}
+      className="flex flex-col justify-start gap-2 text-wrap rounded-md border-2 border-neutral-200 p-[35px] shadow-sm drop-shadow-sm transition-all duration-200 hover:scale-[1.03] hover:cursor-pointer hover:bg-neutral-100"
+    >
       <Image
         src={product.img}
         height={0}
         width={100}
-        className="rounded-sm w-full w-max-[400px]"
+        className="w-max-[400px] w-full rounded-sm"
         alt="product"
       />
       <div className="flex flex-col text-center">
-        <span className="font-extrabold  font-lato text-xl mb-3 text-[var(--fifth-color-primary)]">
+        <span className="mb-3 font-lato text-xl font-extrabold text-[var(--fifth-color-primary)]">
           {product.name}
         </span>
-        <span className="font-semibold font-lato text-lg text-neutral-600">{product.category}</span>
+        <span className="font-lato text-lg font-semibold text-neutral-600">
+          {product.category}
+        </span>
       </div>
     </div>
   );

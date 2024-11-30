@@ -3,24 +3,23 @@
 import { cn } from "@/lib/utils";
 import "./Menu.css";
 
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const Menu = ({ lng }) => {
+const Menu = ({ lng, ChangeUrl }) => {
   const pathname = usePathname();
-  const router = useRouter();
-
-  
 
   return (
-    <div className={cn("flex flex-row p-0 justify-center items-center")}>
-      <div className={cn("flex flex-row gap-5 text-[var(--fourth-color-primary)] font-montserrat")}>
+    <div className={cn("flex flex-row items-center justify-center p-0")}>
+      <div
+        className={cn(
+          "flex flex-row gap-5 font-montserrat text-[var(--fourth-color-primary)]",
+        )}
+      >
         <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
           <a
             onClick={() => {
-              router.push("/");
+              ChangeUrl("/");
             }}
-            // href="/"
             className="hover:cursor-pointer"
           >
             Home
@@ -31,9 +30,8 @@ const Menu = ({ lng }) => {
         >
           <a
             onClick={() => {
-              router.push("/services");
+              ChangeUrl("/services");
             }}
-            // href="/services"
             className="hover:cursor-pointer"
           >
             Our Services
@@ -44,9 +42,8 @@ const Menu = ({ lng }) => {
         >
           <a
             onClick={() => {
-              router.push("/products");
+              ChangeUrl("/products");
             }}
-            // href="/products"
             className="hover:cursor-pointer"
           >
             Products
@@ -55,9 +52,8 @@ const Menu = ({ lng }) => {
         <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>
           <a
             onClick={() => {
-              router.push("/about");
+              ChangeUrl("/about");
             }}
-            // href="/about"
             className="hover:cursor-pointer"
           >
             About
@@ -68,9 +64,8 @@ const Menu = ({ lng }) => {
         >
           <a
             onClick={() => {
-              router.push("/contact");
+              ChangeUrl("/contact");
             }}
-            // href="/contact"
             className="hover:cursor-pointer"
           >
             Contact
@@ -80,11 +75,9 @@ const Menu = ({ lng }) => {
 
       {/* <div className="lang">
         {lng !== "en" ? (
-          <a href="#">
             <abbr title="Change to English">English</abbr>
           </a>
         ) : (
-          <a href="#">
             <abbr title="Change to Arabic">العربية</abbr>
           </a>
         )}

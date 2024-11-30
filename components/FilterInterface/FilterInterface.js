@@ -2,14 +2,12 @@ import React, { useEffect, useState } from "react";
 import SelectInterface from "../SelectInterface/SelectInterface";
 import CategorieItem from "../CategorieItem/CategorieItem";
 import MultiRangeSlider from "../multiRangeSlider/multiRangeSlider";
-import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-const FilterInterface = () => {
+const FilterInterface = ({ ChangeUrl }) => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const resetFilters = () => {
-    router.push("?", { scroll: false });
+    ChangeUrl("?", { scroll: false });
   };
   const [categories, setCategories] = useState([
     "Work Tables",
@@ -32,7 +30,9 @@ const FilterInterface = () => {
   let minPrice = searchParams.get("minPrice") || 0;
   let maxPrice = searchParams.get("maxPrice") || 50000;
   const changeSelectedCategorie = (categorie) => {
-    selectedCategories[categorie] = selectedCategories[categorie] ? false : true
+    selectedCategories[categorie] = selectedCategories[categorie]
+      ? false
+      : true;
   };
   const changeSortOption = (option) => {
     sortOption = option;
@@ -44,10 +44,10 @@ const FilterInterface = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3">
-        <span className="font-bold text-3xl mb-2 text-neutral-600">
+        <span className="mb-2 text-3xl font-bold text-neutral-600">
           Filters:
         </span>
-        <span className="font-semibold text-xl text-neutral-800">Sort</span>
+        <span className="text-xl font-semibold text-neutral-800">Sort</span>
         <SelectInterface
           placeHolder="Name: A-Z"
           changeSortOption={(sortOption) => {
@@ -61,7 +61,7 @@ const FilterInterface = () => {
             ["priceDesc", "Price: High to Low"],
           ]}
         />
-        <span className="font-semibold mt-2 text-xl text-neutral-800">
+        <span className="mt-2 text-xl font-semibold text-neutral-800">
           Price
         </span>
         <MultiRangeSlider
@@ -70,8 +70,8 @@ const FilterInterface = () => {
           max={maxPrice}
         />
       </div>
-      <div className="flex flex-col gap-2 mt-8">
-        <span className="font-semibold text-xl text-neutral-800">
+      <div className="mt-8 flex flex-col gap-2">
+        <span className="text-xl font-semibold text-neutral-800">
           Categories
         </span>
         {categories.map((categorie, index) => (
@@ -85,16 +85,16 @@ const FilterInterface = () => {
           ></CategorieItem>
         ))}
       </div>
-      <div className="flex flex-col gap-1 mt-2">
+      <div className="mt-2 flex flex-col gap-1">
         <button
           type="button"
-          className="w-full bg-[var(--theme)] font-semibold rounded-md text-xl py-2 border-2 border-[var(--theme)] text-white transition-all duration-400  active:scale-95"
+          className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
           onClick={() => {
-            router.push(
+            ChangeUrl(
               `?sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}&selectedCategories=${encodeURIComponent(
-                JSON.stringify(selectedCategories)
+                JSON.stringify(selectedCategories),
               )}`,
-              { scroll: false }
+              { scroll: false },
             );
           }}
         >
@@ -105,7 +105,7 @@ const FilterInterface = () => {
           onClick={() => {
             resetFilters();
           }}
-          className="w-full font-semibold rounded-md text-xl py-2 text-[var(--theme)] border-2 border-[var(--theme)] transition-all duration-400  active:scale-95"
+          className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
         >
           Reset
         </button>

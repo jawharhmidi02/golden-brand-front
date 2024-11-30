@@ -8,6 +8,7 @@ import "/app/[lng]/animations.css";
 
 import { Analytics } from "@vercel/analytics/react";
 import DashNav from "@/components/DashNav/DashNav";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "GoldenBrand: Admin",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
       <body className="flex flex-col bg-[var(--dash-theme)] md:flex-row">
         <DashNav />
         <>{children}</>
+        <Toaster />
         <Analytics />
       </body>
     </html>

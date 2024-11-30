@@ -1,18 +1,24 @@
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import "./SideCartItem.css";
 import { Separator } from "../ui/separator";
 
-const SideCartItem = ({ name, dimension, price, id, closeButton, index }) => {
-  const router = useRouter();
+const SideCartItem = ({
+  name,
+  dimension,
+  price,
+  id,
+  closeButton,
+  index,
+  ChangeUrl,
+}) => {
   return (
     <div
       onClick={() => {
         setTimeout(() => {
           closeButton.current.click();
         }, 500);
-        router.push(`/products/${id}`);
+        ChangeUrl(`/products/${id}`);
       }}
       className="flex flex-col"
     >

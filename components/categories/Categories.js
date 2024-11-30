@@ -13,12 +13,10 @@ import {
 } from "@/components/ui/carousel";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
-const Categories = ({ lng }) => {
-  const router = useRouter();
+const Categories = ({ lng, ChangeUrl }) => {
   const [categories, setcategories] = useState([
     {
       id: 1,
@@ -78,31 +76,28 @@ const Categories = ({ lng }) => {
   return (
     <section className="categories">
       <h1 className="section-title text-3xl">Categories</h1>
-      <div className="categories-container w-full flex justify-center items-center">
-        <div className="categories-cards max-w-screen-xl w-full px-10">
+      <div className="categories-container flex w-full items-center justify-center">
+        <div className="categories-cards w-full max-w-screen-xl px-10">
           <Carousel className="">
             <CarouselContent className="-ml-1">
               {categories.map((item, index) => (
                 <CarouselItem
                   key={index}
-                  className="pl-1 md:basis-1/2 lg:basis-1/5 flex"
+                  className="flex pl-1 md:basis-1/2 lg:basis-1/5"
                 >
-                  <div className="p-2 flex-1 flex">
+                  <div className="flex flex-1 p-2">
                     <Card
-                      className="categorie-card border-[1px] border-neutral-200 shadow-md drop-shadow-md flex-1 flex flex-col"
+                      className="categorie-card flex flex-1 flex-col border-[1px] border-neutral-200 shadow-md drop-shadow-md"
                       onClick={() => {
                         cats[item.name] = true;
-                        // location.href = `/${lng}/products?selectedCategories=${encodeURIComponent(
-                        //   JSON.stringify(cats)
-                        // )}`;
-                        router.push(
+                        ChangeUrl(
                           `/${lng}/products?selectedCategories=${encodeURIComponent(
-                            JSON.stringify(cats)
-                          )}`
+                            JSON.stringify(cats),
+                          )}`,
                         );
                       }}
                     >
-                      <CardContent className="flex  items-center justify-center p-1">
+                      <CardContent className="flex items-center justify-center p-1">
                         <Image
                           src={item.img}
                           width={200}
@@ -110,11 +105,11 @@ const Categories = ({ lng }) => {
                           alt="Category"
                         />
                       </CardContent>
-                      <CardFooter className="flex items-center justify-center flex-col m-auto">
-                        <p className="text-lg font-bold first-family fifth-color-primary text-center">
+                      <CardFooter className="m-auto flex flex-col items-center justify-center">
+                        <p className="first-family fifth-color-primary text-center text-lg font-bold">
                           {item.name.toUpperCase()}
                         </p>
-                        <p className="text-center text-neutral-600 font-semibold font-lato">
+                        <p className="text-center font-lato font-semibold text-neutral-600">
                           {item.products_number + " "}Products
                         </p>
                       </CardFooter>
@@ -123,8 +118,8 @@ const Categories = ({ lng }) => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="border-0 text-xl -left-8" />
-            <CarouselNext className="border-0 text-xl -right-8" />
+            <CarouselPrevious className="-left-8 border-0 text-xl" />
+            <CarouselNext className="-right-8 border-0 text-xl" />
           </Carousel>
         </div>
       </div>

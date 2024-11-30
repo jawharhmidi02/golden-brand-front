@@ -30,7 +30,7 @@ const EmblaCarousel = ({ options }) => {
   }, [emblaApi]);
 
   return (
-    <section className="embla h-[100vw] min-[768px]:h-[50vw] min-[1024px]:h-[33vw]">
+    <section className="embla h-[100vw] w-full bg-neutral-600 min-[768px]:h-[50vw] min-[1024px]:h-[33vw]">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {[
@@ -60,7 +60,7 @@ const EmblaCarousel = ({ options }) => {
   );
 };
 
-const Hero = () => {
+const Hero = ({ ChangeUrl }) => {
   return (
     <div className="hero">
       <div className="text">
@@ -74,7 +74,12 @@ const Hero = () => {
           Discover our range of products designed to enhance functionality and
           style. Built to last, built to impress.
         </p>
-        <a href="/products"></a>
+        <button
+          className="button"
+          onClick={() => {
+            ChangeUrl("/products");
+          }}
+        ></button>
       </div>
       <EmblaCarousel options={OPTIONS} />
     </div>

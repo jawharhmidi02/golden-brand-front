@@ -1,16 +1,34 @@
 "use client";
 
+import { useEffect, useTransition, useState } from "react";
 import { useRouter } from "next/navigation";
 import "./Footer.css";
 
 import Image from "next/image";
 
 const Footer = () => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const ChangeUrl = (url, options = {}) => {
+    startTransition(() => {
+      router.push(url, options);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
   return (
     <div className="mt-[100px]">
-      <div className="services p-2 flex justify-center flex-wrap gap-4">
-        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0 ">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
+      <div className="services flex flex-wrap justify-center gap-4 p-2">
+        <div className="service flex min-w-full flex-1 flex-row gap-2 p-1 sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/fast-delivery.png"}
@@ -29,7 +47,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
+        <div className="service flex min-w-full flex-1 flex-row gap-2 p-1 sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/free-delivery.png"}
@@ -48,7 +66,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
+        <div className="service flex min-w-full flex-1 flex-row gap-2 p-1 sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/payment-options.png"}
@@ -67,7 +85,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="service flex-1 p-1 flex flex-row gap-2 min-w-full sm:min-w-[320px] lg:min-w-0">
+        <div className="service flex min-w-full flex-1 flex-row gap-2 p-1 sm:min-w-[320px] lg:min-w-0">
           <div className="image">
             <Image
               src={"/images/icons/footer-services/high-quality.png"}
@@ -87,14 +105,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <footer
-        className="
-       bg-[#061f19] mt-3
-       "
-      >
+      <footer className="mt-3 bg-[#061f19]">
         <div className="mx-auto max-w-screen-xl space-y-8 px-4 pt-16 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center justify-center">
               <div>
                 <Image
                   src="/images/dark-icon.png"
@@ -103,12 +117,11 @@ const Footer = () => {
                   alt="icon"
                   loading="lazy"
                   onClick={() => {
-                    // window.location.href = "./";
-                    router.push("./");
+                    ChangeUrl("./");
                   }}
                 />
               </div>
-              <p className="mt-4 max-w-xs text-gray-400 text-center">
+              <p className="mt-4 max-w-xs text-center text-gray-400">
                 Golden Brand Stainless Steel offers premium-quality stainless
                 steel kitchens, handrails, and aluminum products. With a
                 commitment to durability, precision, and modern design, we
@@ -121,7 +134,7 @@ const Footer = () => {
                     href="https://www.facebook.com/profile.php?id=100090249531663"
                     rel="noreferrer"
                     target="_blank"
-                    className=" transition hover:text-white text-gray-300"
+                    className="text-gray-300 transition hover:text-white"
                   >
                     <span className="sr-only">Facebook</span>
                     <svg
@@ -143,7 +156,7 @@ const Footer = () => {
                     href="https://www.instagram.com/goldenbrand_stainlesssteel/"
                     rel="noreferrer"
                     target="_blank"
-                    className=" transition hover:text-white text-gray-300"
+                    className="text-gray-300 transition hover:text-white"
                   >
                     <span className="sr-only">Instagram</span>
                     <svg
@@ -165,7 +178,7 @@ const Footer = () => {
                     href="https://wa.me/97477480070"
                     rel="noreferrer"
                     target="_blank"
-                    className=" transition hover:text-white text-gray-300"
+                    className="text-gray-300 transition hover:text-white"
                   >
                     <span className="sr-only">WhatsApp</span>
                     <svg
@@ -189,17 +202,17 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 gap-5 lg:gap-0">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 lg:gap-0">
               <div>
-                <p className="font-bold text-lg text-white">Menu</p>
+                <p className="text-lg font-bold text-white">Menu</p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/");
+                        ChangeUrl("/");
                       }}
                       // href="/"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Home
                     </a>
@@ -207,10 +220,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/services");
+                        ChangeUrl("/services");
                       }}
                       // href="/services"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Services
                     </a>
@@ -218,10 +231,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/products");
+                        ChangeUrl("/products");
                       }}
                       // href="/products"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Products
                     </a>
@@ -237,10 +250,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/contact");
+                        ChangeUrl("/contact");
                       }}
                       // href="/contact"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Contact
                     </a>
@@ -248,15 +261,15 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <p className="font-bold text-lg text-white">Company</p>
+                <p className="text-lg font-bold text-white">Company</p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/about");
+                        ChangeUrl("/about");
                       }}
                       // href="/about"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       About
                     </a>
@@ -265,7 +278,7 @@ const Footer = () => {
                   <li className="link">
                     <a
                       href="#"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Google Maps
                     </a>
@@ -273,15 +286,15 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <p className="font-bold text-lg text-white">Important Links</p>
+                <p className="text-lg font-bold text-white">Important Links</p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/terms-and-conditions");
+                        ChangeUrl("/terms-and-conditions");
                       }}
                       // href="/terms-and-conditions"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Terms & Conditions
                     </a>
@@ -289,10 +302,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/about#faqs");
+                        ChangeUrl("/about#faqs");
                       }}
                       // href="/about#faqs"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       FAQs
                     </a>
@@ -300,10 +313,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/terms-and-conditions#payment");
+                        ChangeUrl("/terms-and-conditions#payment");
                       }}
                       // href="/terms-and-conditions#payment"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Payments Info
                     </a>
@@ -312,10 +325,10 @@ const Footer = () => {
                   <li className="link">
                     <a
                       onClick={() => {
-                        router.push("/contact");
+                        ChangeUrl("/contact");
                       }}
                       // href="/contact"
-                      className=" transition hover:text-white text-gray-300 hover:cursor-pointer"
+                      className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Contact
                     </a>
@@ -323,7 +336,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <p className="font-bold text-lg text-white">Contact Us</p>
+                <p className="text-lg font-bold text-white">Contact Us</p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li>
                     <a
@@ -344,7 +357,7 @@ const Footer = () => {
                           d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                         />
                       </svg>
-                      <span className="flex-1 text-gray-300 break-all">
+                      <span className="flex-1 break-all text-gray-300">
                         info@goldendesign.online
                       </span>
                     </a>
@@ -403,7 +416,7 @@ const Footer = () => {
           </div>
           <div
             style={{ marginTop: "10px", marginBottom: "20px" }}
-            className="text-white flex flex-row w-full flex-wrap justify-center items-center gap-x-10 mt-0"
+            className="mt-0 flex w-full flex-row flex-wrap items-center justify-center gap-x-10 text-white"
           >
             <Image
               src={"/images/icons/payments/mastercard.png"}
@@ -432,35 +445,35 @@ const Footer = () => {
           </div>
           <div
             style={{ marginTop: "10px", marginBottom: "5px" }}
-            className="links flex w-full justify-center items-center text-neutral-300 gap-10 font-medium "
+            className="links flex w-full items-center justify-center gap-10 font-medium text-neutral-300"
           >
-            <div className="link ">
+            <div className="link">
               <a
-                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
                 onClick={() => {
-                  router.push("/terms-and-conditions#refund");
+                  ChangeUrl("/terms-and-conditions#refund");
                 }}
                 // href="/terms-and-conditions#refund"
               >
                 Refund & Returns
               </a>
             </div>
-            <div className="link ">
+            <div className="link">
               <a
-                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
                 onClick={() => {
-                  router.push("/terms-and-conditions#privacy");
+                  ChangeUrl("/terms-and-conditions#privacy");
                 }}
                 // href="/terms-and-conditions#privacy"
               >
                 Privacy Policy
               </a>
             </div>
-            <div className="link ">
+            <div className="link">
               <a
-                className="hover:text-white hover:scale-105 duration-500 hover:cursor-pointer"
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
                 onClick={() => {
-                  router.push("/terms-and-conditions#delivery");
+                  ChangeUrl("/terms-and-conditions#delivery");
                 }}
                 // href="/terms-and-conditions#delivery"
               >
@@ -469,12 +482,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="h-[1px] w-full bg-white border-mask"></div>
-        <div className="text-white text-center  pb-3 pt-3">
+        <div className="border-mask h-[1px] w-full bg-white"></div>
+        <div className="pb-3 pt-3 text-center text-white">
           Copyright © 2024{" "}
           <a
             onClick={() => {
-              router.push("/");
+              ChangeUrl("/");
             }}
             // href="/" className="font-bold"
             className="font-bold hover:cursor-pointer"

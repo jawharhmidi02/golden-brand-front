@@ -1,13 +1,30 @@
 "use client";
-import React from "react";
 import { cn } from "@/lib/utils";
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
 import { useRouter } from "next/navigation";
+import { useEffect, useTransition, useState } from "react";
 
 const page = () => {
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+
+  const ChangeUrl = (url) => {
+    startTransition(() => {
+      router.push(url);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
   return (
     <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      )}
       <div
         className={cn(
           "mx-4 grid w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
@@ -21,7 +38,7 @@ const page = () => {
               <div
                 className="group hover:cursor-pointer"
                 onClick={() => {
-                  router.push("./sign-in");
+                  ChangeUrl("./sign-in");
                 }}
               >
                 <i className="fa-solid fa-arrow-left text-3xl text-neutral-900 transition-colors duration-200 group-hover:text-[var(--theme2)]"></i>
@@ -56,6 +73,9 @@ const page = () => {
           accountText="Don't have an account?"
           signText="Sign Up"
           url="./sign-up"
+          ChangeUrl={(url) => {
+            ChangeUrl(url);
+          }}
         />
       </div>
     </div>

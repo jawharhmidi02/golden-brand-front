@@ -14,12 +14,31 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import DashHeader from "../DashHeader/DashHeader";
+import { useEffect, useTransition, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const DashNav = () => {
   const closeButton = useRef(null);
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
+  const ChangeUrl = (url, options = {}) => {
+    startTransition(() => {
+      router.push(url, options);
+    });
+  };
+
+  useEffect(() => {
+    setLoadingPage(isPending);
+  }, [isPending]);
   return (
     <div>
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/30 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--dash-theme5)]"></div>
+        </div>
+      )}
       {/* MOBILE SIDE NAV BELOW  */}
 
       <div className="mb-10 flex w-full items-center border-b border-[#2c2d33] bg-transparent p-5 md:hidden">
@@ -27,7 +46,10 @@ const DashNav = () => {
           <SheetTrigger asChild>
             <i className="fa-solid fa-bars-staggered text-2xl text-white"></i>
           </SheetTrigger>
-          <SheetContent side="left" className="w-[250px] border-transparent bg-[var(--dash-theme)]">
+          <SheetContent
+            side="left"
+            className="w-[250px] border-transparent bg-[var(--dash-theme)]"
+          >
             <SheetTitle></SheetTitle>
             <div
               className={cn(
@@ -35,7 +57,12 @@ const DashNav = () => {
               )}
             >
               <DashHeader />
-              <DashMenu closeButton={closeButton} />
+              <DashMenu
+                closeButton={closeButton}
+                ChangeUrl={(url) => {
+                  ChangeUrl(url);
+                }}
+              />
             </div>
 
             <SheetClose>
@@ -57,7 +84,12 @@ const DashNav = () => {
         )}
       >
         <DashHeader />
-        <DashMenu closeButton={closeButton} />
+        <DashMenu
+          closeButton={closeButton}
+          ChangeUrl={(url) => {
+            ChangeUrl(url);
+          }}
+        />
       </div>
     </div>
   );
