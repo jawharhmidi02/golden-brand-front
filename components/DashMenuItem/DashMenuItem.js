@@ -23,12 +23,12 @@ const DashMenuItem = ({
     <div
       onClick={() => {
         if (!lighter) {
-          menuTransition(path);
+          menuTransition(`/dashboard${path}`);
         }
       }}
       className={cn(
         "w-full rounded-md bg-transparent px-3 py-2.5 font-semibold text-[var(--dash-theme3)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--dash-theme4)]",
-        menuState == `/admin${path}` &&
+        menuState == `/admin/dashboard${path}` &&
           "bg-[var(--dash-theme5)] text-[var(--dash-theme)] hover:bg-[var(--dash-theme6)]",
         lighter && "text-[#82828c] hover:bg-[#21222d]",
       )}
