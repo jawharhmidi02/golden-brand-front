@@ -1,19 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DashMenuItem from "../DashMenuItem/DashMenuItem";
+import { usePathname } from "next/navigation";
 
 const DashMenu = ({ closeButton, ChangeUrl }) => {
-  const [menuState, setMenuState] = useState(1);
+  const pathname = usePathname();
+  const [menuState, setMenuState] = useState("" || pathname );
+  useEffect(() => {
+    console.log(pathname)
+  }, [])
   const dashMenuItems = [
     {
       title: "Dashboard",
-      path: "/",
+      path: "",
       icon: "fa-solid fa-gear",
     },
     {
       title: "Profile",
       path: "/profile",
-      icon: "fa-regular fa-user",
+      icon: "fa-regular fa-user", 
     },
     {
       title: "Products",
@@ -22,7 +27,7 @@ const DashMenu = ({ closeButton, ChangeUrl }) => {
     },
     {
       title: "Categories",
-      path: "/",
+      path: "/categories",
       icon: "fa-solid fa-sliders",
     },
     {
@@ -39,7 +44,6 @@ const DashMenu = ({ closeButton, ChangeUrl }) => {
           title={item.title}
           path={item.path}
           icon={item.icon}
-          index={index}
           menuState={menuState}
           setMenuState={setMenuState}
           closeButton={closeButton}

@@ -16,7 +16,7 @@ const SideCartItem = ({
     <div
       onClick={() => {
         setTimeout(() => {
-          closeButton.current.click();
+          closeButton?.current?.click();
         }, 500);
         ChangeUrl(`/products/${id}`);
       }}

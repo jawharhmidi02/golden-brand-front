@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 
 const DashMenuItem = ({
-  index,
   title,
   path,
   icon,
@@ -12,8 +11,8 @@ const DashMenuItem = ({
 }) => {
   const lighter = title == "Logout";
 
-  const menuTransition = (index, path) => {
-    setMenuState(index);
+  const menuTransition = (path) => {
+    setMenuState(`/admin${path}`);
     setTimeout(() => {
       closeButton?.current?.click();
     }, 400);
@@ -24,12 +23,12 @@ const DashMenuItem = ({
     <div
       onClick={() => {
         if (!lighter) {
-          menuTransition(index, path);
+          menuTransition(path);
         }
       }}
       className={cn(
         "w-full rounded-md bg-transparent px-3 py-2.5 font-semibold text-[var(--dash-theme3)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--dash-theme4)]",
-        menuState == index &&
+        menuState == `/admin${path}` &&
           "bg-[var(--dash-theme5)] text-[var(--dash-theme)] hover:bg-[var(--dash-theme6)]",
         lighter && "text-[#82828c] hover:bg-[#21222d]",
       )}

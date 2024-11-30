@@ -41,7 +41,7 @@ const DashNav = () => {
       )}
       {/* MOBILE SIDE NAV BELOW  */}
 
-      <div className="mb-10 flex w-full items-center border-b border-[#2c2d33] bg-transparent p-5 md:hidden">
+      <div className="flex w-full items-center border-b border-[#2c2d33] bg-transparent p-5 md:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <i className="fa-solid fa-bars-staggered text-2xl text-white"></i>
@@ -80,7 +80,7 @@ const DashNav = () => {
 
       <div
         className={cn(
-          "mr-10 hidden min-h-[100vh] w-[250px] flex-col items-center gap-8 border-r border-[#2c2d33] bg-transparent px-5 py-8 md:flex",
+          "mr-10 lg:mr-20 hidden min-h-[100vh] w-[250px] flex-col items-center gap-8 border-r border-[#2c2d33] bg-transparent px-5 py-8 md:flex",
         )}
       >
         <DashHeader />
