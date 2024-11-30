@@ -45,7 +45,13 @@ const EmblaCarousel = ({ options }) => {
             "/images/hero6.jpeg",
           ].map((src, index) => (
             <div className="embla__slide" key={index}>
-              <Image src={src} width={500} height={500} alt="Hero" />
+              <Image
+                src={src}
+                width={500}
+                height={500}
+                alt="Hero"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
