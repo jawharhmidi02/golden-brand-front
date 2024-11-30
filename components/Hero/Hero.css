@@ -35,6 +35,7 @@
 
 .embla__slide img {
   width: 100%;
+  scale: 1.02;
   height: auto;
 }
 
