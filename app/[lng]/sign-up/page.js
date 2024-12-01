@@ -1,9 +1,10 @@
 "use client";
 
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
-import { useEffect, useTransition, useState } from "react";
+import { useEffect, useTransition, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { toast } from "@/hooks/use-toast";
 
 const page = () => {
   const [loadingPage, setLoadingPage] = useState(true);
@@ -19,6 +20,88 @@ const page = () => {
   useEffect(() => {
     setLoadingPage(isPending);
   }, [isPending]);
+
+  const [loading, setLoading] = useState(false);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+
+  const login = async () => {
+    if (
+      emailRef.current.value === "" ||
+      passwordRef.current.value === "" ||
+      nameRef.current.value === "" ||
+      phoneRef.current.value === ""
+    ) {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields.",
+        variant: "destructive",
+        duration: 2500,
+      });
+      return;
+    }
+    try {
+      setLoading(true);
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            full_name: nameRef.current.value,
+            phone: phoneRef.current.value,
+          }),
+        },
+      );
+      const data = await response.json();
+
+      if (data.data === null) {
+        if (data.message === "Email already exists") {
+          toast({
+            title: "Error",
+            description: "Email already exists, Please use another email!",
+            variant: "destructive",
+            duration: 2500,
+          });
+          setLoading(false);
+          return;
+        }
+        throw new Error(data.message);
+      }
+
+      toast({
+        title: "Success",
+        description: "Your account has been created successfully!",
+        variant: "success",
+        duration: 2500,
+      });
+
+      startTransition(() => {
+        router.push("/sign-in");
+      });
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+
+      toast({
+        title: "Error",
+        description: "An error occurred while logging in.",
+        variant: "destructive",
+        duration: 2500,
+      });
+
+      console.log(error);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
       {loadingPage && (
@@ -46,6 +129,7 @@ const page = () => {
               </label>
               <input
                 type="text"
+                ref={nameRef}
                 placeholder="Full Name"
                 id="fullName"
                 className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
@@ -59,6 +143,7 @@ const page = () => {
               </label>
               <input
                 type="tel"
+                ref={phoneRef}
                 placeholder="+974 12 345 678"
                 id="phone"
                 className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
@@ -72,6 +157,7 @@ const page = () => {
               </label>
               <input
                 type="email"
+                ref={emailRef}
                 placeholder="Example@domain.com"
                 id="email"
                 className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
@@ -85,6 +171,7 @@ const page = () => {
               </label>
               <input
                 type="password"
+                ref={passwordRef}
                 placeholder="Password"
                 id="password"
                 className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
@@ -93,9 +180,22 @@ const page = () => {
 
             <button
               type="button"
-              className="w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]"
+              onClick={() => {
+                login();
+              }}
+              disabled={loading}
+              className={cn(
+                "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
+                loading && "hover:cursor-not-allowed",
+              )}
             >
-              Sign Up
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+                </div>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </div>

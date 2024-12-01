@@ -12,9 +12,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SideCartItem from "../SideCartItem/SideCartItem";
+import Cookies from "js-cookie";
 
 const Nav = ({ lng, ChangeUrl }) => {
   const closeButton = useRef(null);
@@ -87,6 +94,48 @@ const Nav = ({ lng, ChangeUrl }) => {
     }
   });
 
+  const [loadingUser, setLoadingUser] = useState(true);
+  const [signed, setSigned] = useState(false);
+  const [user, setUser] = useState(null);
+
+  const checkUser = async () => {
+    try {
+      setLoadingUser(true);
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/account`,
+        {
+          method: "GET",
+          headers: {
+            access_token: Cookies.get("access_token"),
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      const data = await response.json();
+
+      if (data.data === null) {
+        throw new Error(data.message);
+      }
+
+      setLoadingUser(false);
+      setSigned(true);
+      setUser(data.data);
+    } catch (error) {
+      setLoadingUser(false);
+    }
+    setLoadingUser(false);
+  };
+
+  const logout = () => {
+    Cookies.remove("access_token");
+    location.href = "/sign-in";
+  };
+
+  useEffect(() => {
+    checkUser();
+  }, []);
+
   return (
     <nav className={cn("max-h-[120px]")}>
       <div className="left">
@@ -110,8 +159,8 @@ const Nav = ({ lng, ChangeUrl }) => {
           }}
         />
       </div>
-      <div className="right">
-        <div
+      <div className="right flex flex-row gap-3">
+        {/* <div
           className="login hover:cursor-pointer"
           onClick={() => {
             ChangeUrl("/sign-in");
@@ -119,7 +168,59 @@ const Nav = ({ lng, ChangeUrl }) => {
         >
           <i className="fa-regular fa-user"></i>
           <span>Sign Up/Sign In</span>
-        </div>
+        </div> */}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div
+                onClick={() => {
+                  if (!loadingUser) {
+                    if (signed) {
+                      ChangeUrl("/profile");
+                    } else {
+                      ChangeUrl("/sign-in");
+                    }
+                  }
+                }}
+                className={cn(
+                  "login hover:cursor-pointer",
+                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-200 hover:scale-105 hover:cursor-pointer hover:bg-zinc-100",
+                  loadingUser && "hover:cursor-not-allowed",
+                )}
+              >
+                <i className="fa-regular fa-user text-2xl min-[500px]:text-xl"></i>
+                <span className="hidden min-[800px]:block">
+                  {loadingUser ? (
+                    <div className="flex items-center justify-center">
+                      <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
+                    </div>
+                  ) : signed ? (
+                    user.full_name
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
+                      .join(" ")
+                  ) : (
+                    "Sign In / Sign Up"
+                  )}
+                </span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              {loadingUser ? (
+                <div className="flex items-center justify-center">
+                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
+                </div>
+              ) : signed ? (
+                "Profile"
+              ) : (
+                "Login / Register"
+              )}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
         <Sheet>
           <SheetTrigger asChild className="cart">
             <button className="cart">
@@ -333,6 +434,24 @@ const Nav = ({ lng, ChangeUrl }) => {
             </SheetClose>
           </SheetContent>
         </Sheet>
+
+        {signed && (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div
+                  onClick={() => {
+                    logout();
+                  }}
+                  className="flex items-center justify-center rounded-full bg-transparent transition-all duration-200 hover:cursor-pointer md:py-1 md:pl-3 md:hover:scale-110 md:hover:bg-zinc-100"
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket text-2xl text-neutral-600"></i>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>Log out</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
     </nav>
   );

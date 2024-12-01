@@ -60,7 +60,7 @@ nav .middle button {
 nav .right {
   display: flex;
   flex-direction: row;
-  gap: max(20px, 4vw);
+  /* gap: max(20px, 4vw); */
   align-items: center;
 }
 

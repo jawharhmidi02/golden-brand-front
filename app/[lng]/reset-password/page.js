@@ -2,7 +2,8 @@
 import { cn } from "@/lib/utils";
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
 import { useRouter } from "next/navigation";
-import { useEffect, useTransition, useState } from "react";
+import { useEffect, useTransition, useState, useRef } from "react";
+import { toast } from "@/hooks/use-toast";
 
 const page = () => {
   const [loadingPage, setLoadingPage] = useState(true);
@@ -18,6 +19,62 @@ const page = () => {
   useEffect(() => {
     setLoadingPage(isPending);
   }, [isPending]);
+
+  const [loading, setLoading] = useState(false);
+  const emailRef = useRef(null);
+
+  const sendRecoverEmail = async () => {
+    setLoading(true);
+    if (emailRef.current.value === "") {
+      toast({
+        title: "Error",
+        description: "Please fill in all fields.",
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/recoverpass/${emailRef.current.value.trim()}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      const responseData = await response.json();
+
+      if (responseData.statusCode !== 200) {
+        if (responseData.message === "Email not found") {
+          toast({
+            title: "Error",
+            description: "Email not found",
+            variant: "destructive",
+          });
+          setLoading(false);
+          return;
+        }
+        throw new Error(responseData.message || "Something went wrong");
+      }
+      toast({
+        title: "Success",
+        description: "Email sent successfully, Check your Inbox!",
+        variant: "success",
+      });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast({
+        title: "Error",
+        description: "Something went wrong",
+        variant: "destructive",
+      });
+    }
+    setLoading(false);
+  };
   return (
     <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
       {loadingPage && (
@@ -54,6 +111,7 @@ const page = () => {
               </label>
               <input
                 type="email"
+                ref={emailRef}
                 placeholder="Example@domain.com"
                 id="email"
                 className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
@@ -62,9 +120,22 @@ const page = () => {
 
             <button
               type="button"
-              className="w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]"
+              disabled={loading}
+              onClick={() => {
+                sendRecoverEmail();
+              }}
+              className={cn(
+                "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
+                loading && "hover:cursor-not-allowed",
+              )}
             >
-              Send
+              {loading ? (
+                <div className="flex items-center justify-center">
+                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+                </div>
+              ) : (
+                "Send"
+              )}
             </button>
           </div>
         </div>
