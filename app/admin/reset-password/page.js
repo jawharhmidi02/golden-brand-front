@@ -55,7 +55,7 @@ const page = () => {
             id="email"
             type="text"
             placeholder="Example@domain.com"
-            className="w-full rounded-3xl bg-[#ffffff] px-6 py-3 text-lg outline-purple-400"
+            className="w-full rounded-3xl bg-[#ffffff] px-6 py-3 text-lg outline-purple-400 outstl"
           />
         </label>
 

@@ -2,6 +2,12 @@
   background-image: url("/images/sunset.jpg");
 }
 
+.outstl:focus{
+  outline-style:solid;
+  outline-width: 3px;
+}
+
+
 .checkbox-wrapper-21 .control {
   display: block;
   position: relative;
