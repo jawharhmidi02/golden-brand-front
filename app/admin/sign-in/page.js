@@ -41,8 +41,8 @@ const page = () => {
   };
   const [check, setCheck] = useState(false);
   return (
-    <div className="image flex h-[100vh] w-[100vw] items-center justify-center bg-cover bg-center">
-      <div className="mx-5 flex w-full max-w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-purple-300 bg-gray-400 bg-opacity-20 bg-clip-padding px-5 pb-10 pt-6 backdrop-blur-sm backdrop-filter sm:px-10 md:px-14 md:pb-16 md:pt-12">
+    <div className="image flex min-h-[100dvh] items-center justify-center bg-cover bg-center">
+      <div className="mx-5 flex my-8 w-full max-w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-purple-300 bg-gray-400 bg-opacity-20 bg-clip-padding px-5 pb-10 pt-6 backdrop-blur-sm backdrop-filter sm:px-10 md:px-14 md:pb-16 md:pt-12">
         <DashSignHeader />
         <div className="inline-block self-start bg-gradient-to-tr from-purple-300 to-purple-400 bg-clip-text pb-2 text-4xl font-semibold text-transparent md:text-5xl">
           Sign In

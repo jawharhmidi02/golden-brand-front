@@ -29,8 +29,8 @@ const page = () => {
     // write backend logic here
   }
   return (
-    <div className="image flex h-[100vh] w-[100vw] items-center justify-center bg-cover bg-center">
-      <div className="mx-5 flex w-full max-w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-purple-300 bg-gray-400 bg-opacity-20 bg-clip-padding px-5 pb-10 pt-6 backdrop-blur-sm backdrop-filter sm:px-10 md:px-14 md:pb-16 md:pt-12">
+    <div className="image flex min-h-[100dvh] items-center justify-center bg-cover bg-center">
+      <div className="mx-5 my-8 flex w-full max-w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-purple-300 bg-gray-400 bg-opacity-20 bg-clip-padding px-5 pb-10 pt-6 backdrop-blur-sm backdrop-filter sm:px-10 md:px-14 md:pb-16 md:pt-12">
         <DashSignHeader />
         <div className="flex w-full max-w-[400px] flex-row items-center justify-between">
           <div
