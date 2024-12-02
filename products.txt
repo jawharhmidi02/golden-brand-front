@@ -1,4 +1,26 @@
-S. STEEL WORK TABLE WITHOUT UNDERSHELF
+S. STEEL WORK TABLE WITHOUT UNDERSHELF:
+    - Id: 0aa59f48-e997-489b-a9a1-4ec78d832261
+    - Category: Work Tables
+    - Description: [
+      "1.0mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
+      "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
+      "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON AJUSTABLE BULLET TYPE FEET"
+    ]
+    - Image: /images/products/with-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png
+    - Raw: {
+            "name": "S. STEEL WORK TABLE WITHOUT UNDERSHELF",
+            "img": "/images/products/with-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png",
+            "description": [
+                "1.0mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
+                "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
+                "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON AJUSTABLE BULLET TYPE FEET"
+            ],
+            "category": {
+                "id": "76671d53-964f-49b0-abfb-9c98dfdf2430"
+            }
+        }
+
+
 S. STEEL WORK TABLE WITH UNDERSHELF
 S. STEEL WORK TABLE WITH MID & UNDERSHELF
 S. STEEL MOBILE TABLE WITH BRACING

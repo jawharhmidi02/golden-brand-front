@@ -6,9 +6,11 @@ import { useSearchParams } from "next/navigation";
 
 const FilterInterface = ({ ChangeUrl }) => {
   const searchParams = useSearchParams();
+
   const resetFilters = () => {
     ChangeUrl("?", { scroll: false });
   };
+
   const [categories, setCategories] = useState([
     "Work Tables",
     "Sink Tables",
@@ -19,10 +21,12 @@ const FilterInterface = ({ ChangeUrl }) => {
     "Gratings & Traps",
     "Waste Management",
   ]);
+
   const cats = {};
   categories.forEach((val) => {
     cats[val] = false;
   });
+  
   let selectedCategories = searchParams.get("selectedCategories")
     ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
     : { ...cats };

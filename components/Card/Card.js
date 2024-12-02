@@ -21,7 +21,7 @@ const Card = ({ product, ChangeUrl }) => {
           {product.name}
         </span>
         <span className="font-lato text-lg font-semibold text-neutral-600">
-          {product.category}
+          {product.category.name}
         </span>
       </div>
     </div>

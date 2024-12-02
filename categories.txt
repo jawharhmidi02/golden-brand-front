@@ -1,4 +1,5 @@
 1. Work Tables
+    - Id: 76671d53-964f-49b0-abfb-9c98dfdf2430
     - Stainless Steel Work Tables
         . Without Undershelf
         . With Undershelf
@@ -11,6 +12,7 @@
         . Work Table with Shelf & 3 Drawer
 
 2. Sink Tables
+    - Id: 308d9522-8ae3-4254-988d-03c12e2cd1f2
     - Single Bowl Sink Tables
         . With Undershelf
         . Without Undershelf
@@ -23,6 +25,7 @@
         . Cleaner Sink
 
 3. Cabinets
+    - Id: 503b254e-0745-4966-bbd9-86530b5c499b
     - Base Cabinets
         . With 3 Layer Drawer   
         . With Sliding Doors
@@ -37,20 +40,24 @@
         . Corner Wall Cabinet with Hinged Doors
 
 4. Shelves & Racks
+    - Id: 25dafddf-e029-48b6-9981-c08a656a9959
     - Wall Shelves
         . Single Over Shelves
         . Double Over Shelves
     - Racks
-        4-Tier Shelves
+        . 4-Tier Shelves
         . Rack Shelf
 
 5. Hoods
+    - Id: d42e7bd4-0760-4b3c-8caf-8b13a3d35852
     - Condensate Hood
+        . Condensate Hood
     - Exhaust Hoods
         . Double Skin, Wall Type
         . Double Skin, Island Type
 
 6. Trolleys
+    - Id: eeefc478-ade7-493e-bc2b-877b83fb5d5d
     - Service Trolleys
         . 2 Layer
         . 3 Layer
@@ -60,12 +67,140 @@
         . BBQ on Cabinet with Hood
 
 7. Gratings & Traps
+    - Id: 0fb9a1ed-834c-4c5f-b6dd-119fda3f6fad
     - Floor Grating
         . With Tank
         . Tank with Cover
     - Grease Trap
+        . Grease Trap
 
 8. Waste Management
+    - Id: bedf900b-cc9d-45a6-8152-9fc5e4dc604f
     - Garbage Bins
         . Square Type
         . Round Type
+
+
+####################### **** ####################### 
+
+
+1. Work Tables
+    - Id: 76671d53-964f-49b0-abfb-9c98dfdf2430
+    - Stainless Steel Work Tables
+        . Without Undershelf
+            S. STEEL WORK TABLE WITHOUT UNDERSHELF
+        . With Undershelf
+            S. STEEL WORK TABLE WITH UNDERSHELF
+        . With Mid & Undershelf
+            S. STEEL WORK TABLE WITH MID & UNDERSHELF
+    -Stainless Steel Mobile Tables
+        . With Bracing
+            S. STEEL MOBILE TABLE WITH BRACING
+        . With Undershelf
+            S. STEEL MOBILE TABLE WITH UNDERSHELF
+        . With Two Shelves
+            S. STEEL MOBILE TABLE WITH TWO SHELF
+    - Specialty Work Tables
+        . Work Table with Shelf & 3 Drawer
+            S.S WORK TABLE WITH SHELF & 3 DRAWER
+
+2. Sink Tables
+    - Id: 308d9522-8ae3-4254-988d-03c12e2cd1f2
+    - Single Bowl Sink Tables
+        . With Undershelf
+            S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF
+        . Without Undershelf
+            S. STEEL SINGLE BOWL SINK TABLE
+    - Double Bowl Sink Tables
+        . With Undershelf
+            S. STEEL DOUBLE BOWL SINK TABLE WITH UNDERSHELF
+        . Without Undershelf
+            S. STEEL DOUBLE BOWL SINK TABLE
+    - Handwash and Specialty Sinks
+        . Handwash Sink
+            SS HANDWASH SINK
+        . Mop Sink
+            S. STEEL MOP SINK
+        . Cleaner Sink
+            S. STEEL CLEANER SINK
+
+3. Cabinets
+    - Id: 503b254e-0745-4966-bbd9-86530b5c499b
+    - Base Cabinets
+        . With 3 Layer Drawer
+            S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER
+        . With Sliding Doors
+            S. STEEL BASE CABINET WITH SLIDING DOORS
+            S. STEEL SINGLE BOWL SINK CABINET WITH SLIDING DOORS
+        . With Hinged Doors
+            S. STEEL BASE CABINET WITH HINGED DOORS
+            S. STEEL BASE SINK CABINET WITH HINGED DOORS
+            S. STEEL DOUBLE BOWL SINK CABINET WITH HINGED DOORS
+            S. STEEL CORNER BASE CABINET WITH HINGED DOOR
+        . Open Base Cabinet
+            S. STEEL OPEN BASE CABINET
+    - Wall Cabinets
+        . With Sliding Doors
+            S. STEEL WALL CABINET WITH SLIDING DOORS
+        . With Hinged Doors
+            S. STEEL WALL CABINET WITH HINGED DOORS
+        . Corner Wall Cabinet with Hinged Doors
+            S. STEEL CORNER WALL CABINET WITH HINGED DOORS
+
+4. Shelves & Racks
+    - Id: 25dafddf-e029-48b6-9981-c08a656a9959
+    - Wall Shelves
+        . Single Over Shelves
+            S. STEEL SINGLE OVER SHELVES
+        . Double Over Shelves
+            S. STEEL DOUBLE OVER SHELVES
+    - Racks
+        . 4-Tier Shelves
+            S. STEEL 4-TIER SHELVES
+        . Rack Shelf
+            S. STEEL RACK SHELF
+
+5. Hoods
+    - Id: d42e7bd4-0760-4b3c-8caf-8b13a3d35852
+    - Condensate Hood
+        . Condensate Hood
+            S. STEEL CONDENSATE HOOD
+    - Exhaust Hoods
+        . Double Skin, Wall Type
+            S. STEEL EXHAUST HOOD, DOUBLE SKIN, WALL TYPE
+        . Double Skin, Island Type
+            S. STEEL EXHAUST HOOD, DOUBLE SKIN, ISLAND TYPE
+
+6. Trolleys
+    - Id: eeefc478-ade7-493e-bc2b-877b83fb5d5d
+    - Service Trolleys
+        . 2 Layer
+            S. STEEL SERVICE TROLLEY, 2 LAYER
+        . 3 Layer
+            S. STEEL SERVICE TROLLEY, 3 LAYER
+        . 4 Layer
+            S. STEEL SERVICE TROLLEY, 4 LAYER
+    - Specialty Trolleys
+        . Baking Trolley
+            SS BAKING TROLLEY
+        . BBQ on Cabinet with Hood
+            S.S BBQ ON CABINET WITH HOOD
+
+7. Gratings & Traps
+    - Id: 0fb9a1ed-834c-4c5f-b6dd-119fda3f6fad
+    - Floor Grating
+        . With Tank
+            S. STEEL FLOOR GRATING WITH TANK
+        . Tank with Cover
+            S. STEEL FLOOR GRATING TANK WITH COVER
+    - Grease Trap
+        . Grease Trap
+            S. STEEL GREASE TRAP
+
+8. Waste Management
+    - Id: bedf900b-cc9d-45a6-8152-9fc5e4dc604f
+    - Garbage Bins
+        . Square Type
+            S. STEEL GARBAGE BIN (SQUARE TYPE)
+        . Round Type
+            S. STEEL GARBAGE BIN (ROUND TYPE)

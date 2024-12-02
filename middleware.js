@@ -19,7 +19,7 @@ export function middleware(req) {
   if (
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/images/") ||
-    pathname.startsWith("/admin")
+    pathname.startsWith("/admin/")
   ) {
     return NextResponse.next();
   }
