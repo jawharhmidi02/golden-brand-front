@@ -4,7 +4,13 @@ import Card from "@/components/Card/Card";
 import SkeletonProductCard from "@/components/Card/SkeletonProductCard";
 import "./page.css";
 
-import React, { useEffect, useRef, useState, useTransition } from "react";
+import React, {
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
@@ -614,4 +620,17 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+const Page = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
+        </div>
+      }
+    >
+      <ProductPage />
+    </Suspense>
+  );
+};
+export default Page;
