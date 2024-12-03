@@ -125,7 +125,7 @@ const ProductPage = () => {
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
                 onClick={() => {
                   ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}&sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}${
+                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 50000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
                         ? ""
                         : `&selectedCategories=${encodeURIComponent(
@@ -155,53 +155,7 @@ const ProductPage = () => {
     );
   }
 
-  const [products, setProducts] = useState([
-    // {
-    //   img: "/images/products/image1.png",
-    //   name: "S. STEEL WORK TABLE WITHOUT UNDERSHELF",
-    //   description: [
-    //     "1.0mmTHK., GR.304 #4 FINISH TOP PLATE, BACKSPLASH",
-    //     "1.0MMTHK., GR.304, #4 FINISH, STIFFENERS",
-    //     "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON ADJUSTABLE BULLET TYPE FEET",
-    //   ],
-    //   category: "Work Tables",
-    //   id: "123456",
-    // },
-    // {
-    //   img: "/images/products/image2.png",
-    //   name: "S. STEEL MOBILE TABLE WITH TWO SHELF",
-    //   description: [
-    //     "1.0mmTHK., GR.304, #4 FINISH TOP PLATE, STIFFENER",
-    //     "1.2mm THK., GR.304, #4 FINISH BASE PLATE",
-    //     "1.0mm THK., GR.304, #4 FINISH MID & UNDERSHELF",
-    //     "40 x 40mm S. STEEL SQUARE TUBE LEGS AND BRACING",
-    //     "4 RUBBER CASTER WHEEL, ALL SWIVEL, 2 WITH BRAKES",
-    //   ],
-    //   category: "Mobile Tables",
-    //   id: "654321",
-    // },
-    // {
-    //   img: "/images/products/image3.png",
-    //   name: "S. STEEL SINGLE BOWL SINK TABLE",
-    //   description: [
-    //     "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
-    //     "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
-    //     "40 x 40mm S. STEEL SQUARE TUBE FOR BRACE AND LEG SUPPORT WITH ADJUSTABLE BULLET TYPE FEET",
-    //     "500 x 500 x 300mm S. STEEL SINK",
-    //   ],
-    //   category: "Sink Tables",
-    //   id: "456789",
-    // },
-    // {
-    //   img: "/images/products/image4.png",
-    //   name: "S. STEEL BASE CABINET WITH 3 LAYER DRAWER",
-    //   description: [
-    //     "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH, STIFFENERS",
-    //   ],
-    //   category: "Cabinets",
-    //   id: "987654",
-    // },
-  ]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     document.title = "GoldenBrand: Products";
@@ -211,9 +165,9 @@ const ProductPage = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(12);
-  const [loadingProducts, setLoadingProducts] = useState(false);
-  const [loadingCategories, setLoadingCategories] = useState(false);
+  const [limit, setLimit] = useState(2);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingCategories, setLoadingCategories] = useState(true);
   const maxVisiblePages = 5;
   const [pages, setPages] = useState([]);
 
@@ -248,7 +202,7 @@ const ProductPage = () => {
       const categoriesString = encodeURIComponent(categories.join(","));
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${minPrice && `&min_price=${minPrice}`}${maxPrice && `&max_price=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
         {
           method: "GET",
         },
@@ -451,7 +405,7 @@ const ProductPage = () => {
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
                 onClick={() => {
                   ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}&sortOption=${sortOption}&minPrice=${minPrice}&maxPrice=${maxPrice}${
+                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 50000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
                         ? ""
                         : `&selectedCategories=${encodeURIComponent(
@@ -550,7 +504,7 @@ const ProductPage = () => {
                       "rounded-md px-3 py-2 transition-all duration-200 hover:cursor-pointer",
                       CurrentPage === 1
                         ? "hover:cursor-not-allowed"
-                        : "bg-white text-black hover:bg-[#fbbf24] hover:text-white",
+                        : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",
                     )}
                     onClick={() => handlePageChange(CurrentPage - 1)}
                     disabled={CurrentPage === 1}
@@ -561,7 +515,7 @@ const ProductPage = () => {
                   <>
                     <PaginationItem>
                       <PaginationLink
-                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[#fbbf24] hover:text-white"
+                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                         onClick={() => handlePageChange(1)}
                       >
                         1
@@ -577,8 +531,8 @@ const ProductPage = () => {
                       className={cn(
                         "duration- rounded-md px-3 py-2 transition-all hover:cursor-pointer",
                         page === CurrentPage
-                          ? "bg-[#fbbf24] text-white"
-                          : "bg-white text-black hover:bg-[#fbbf24] hover:text-white",
+                          ? "bg-[var(--theme)] text-white"
+                          : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",
                       )}
                       isActive={page === CurrentPage}
                       onClick={() => handlePageChange(page)}
@@ -595,7 +549,7 @@ const ProductPage = () => {
                     )}
                     <PaginationItem>
                       <PaginationLink
-                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[#fbbf24] hover:text-white"
+                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                         onClick={() => handlePageChange(totalPages)}
                       >
                         {totalPages}
@@ -610,7 +564,7 @@ const ProductPage = () => {
                       "rounded-md px-3 py-2 transition-all duration-200 hover:cursor-pointer",
                       CurrentPage === totalPages
                         ? "hover:cursor-not-allowed"
-                        : "bg-white text-black hover:bg-[#fbbf24] hover:text-white",
+                        : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",
                     )}
                     onClick={() => handlePageChange(CurrentPage + 1)}
                     disabled={CurrentPage === totalPages}
