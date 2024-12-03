@@ -88,7 +88,7 @@
     - Id: 76671d53-964f-49b0-abfb-9c98dfdf2430
     - Stainless Steel Work Tables
         . Without Undershelf
-            S. STEEL WORK TABLE WITHOUT UNDERSHELF
+            S. STEEL WORK TABLE WITHOUT UNDERSHELF // Done
         . With Undershelf
             S. STEEL WORK TABLE WITH UNDERSHELF
         . With Mid & Undershelf
@@ -108,7 +108,7 @@
     - Id: 308d9522-8ae3-4254-988d-03c12e2cd1f2
     - Single Bowl Sink Tables
         . With Undershelf
-            S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF
+            S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF // Done
         . Without Undershelf
             S. STEEL SINGLE BOWL SINK TABLE
     - Double Bowl Sink Tables
@@ -128,7 +128,7 @@
     - Id: 503b254e-0745-4966-bbd9-86530b5c499b
     - Base Cabinets
         . With 3 Layer Drawer
-            S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER
+            S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER // Done
         . With Sliding Doors
             S. STEEL BASE CABINET WITH SLIDING DOORS
             S. STEEL SINGLE BOWL SINK CABINET WITH SLIDING DOORS
@@ -151,7 +151,7 @@
     - Id: 25dafddf-e029-48b6-9981-c08a656a9959
     - Wall Shelves
         . Single Over Shelves
-            S. STEEL SINGLE OVER SHELVES
+            S. STEEL SINGLE OVER SHELVES // Done
         . Double Over Shelves
             S. STEEL DOUBLE OVER SHELVES
     - Racks
@@ -164,7 +164,7 @@
     - Id: d42e7bd4-0760-4b3c-8caf-8b13a3d35852
     - Condensate Hood
         . Condensate Hood
-            S. STEEL CONDENSATE HOOD
+            S. STEEL CONDENSATE HOOD // Done
     - Exhaust Hoods
         . Double Skin, Wall Type
             S. STEEL EXHAUST HOOD, DOUBLE SKIN, WALL TYPE
@@ -179,7 +179,7 @@
         . 3 Layer
             S. STEEL SERVICE TROLLEY, 3 LAYER
         . 4 Layer
-            S. STEEL SERVICE TROLLEY, 4 LAYER
+            S. STEEL SERVICE TROLLEY, 4 LAYER // Done
     - Specialty Trolleys
         . Baking Trolley
             SS BAKING TROLLEY
@@ -190,7 +190,7 @@
     - Id: 0fb9a1ed-834c-4c5f-b6dd-119fda3f6fad
     - Floor Grating
         . With Tank
-            S. STEEL FLOOR GRATING WITH TANK
+            S. STEEL FLOOR GRATING WITH TANK // Done
         . Tank with Cover
             S. STEEL FLOOR GRATING TANK WITH COVER
     - Grease Trap
@@ -201,6 +201,6 @@
     - Id: bedf900b-cc9d-45a6-8152-9fc5e4dc604f
     - Garbage Bins
         . Square Type
-            S. STEEL GARBAGE BIN (SQUARE TYPE)
+            S. STEEL GARBAGE BIN (SQUARE TYPE) // Done
         . Round Type
             S. STEEL GARBAGE BIN (ROUND TYPE)

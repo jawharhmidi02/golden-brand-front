@@ -211,7 +211,7 @@ const ProductPage = () => {
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(8);
+  const [limit, setLimit] = useState(12);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [loadingCategories, setLoadingCategories] = useState(false);
   const maxVisiblePages = 5;
@@ -242,8 +242,13 @@ const ProductPage = () => {
         // }
       }
 
+      const categories = Object.keys(selectedCategories).filter(
+        (key) => selectedCategories[key] === true,
+      );
+      const categoriesString = encodeURIComponent(categories.join(","));
+
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${minPrice && `&min_price=${minPrice}`}${maxPrice && `&max_price=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${minPrice && `&min_price=${minPrice}`}${maxPrice && `&max_price=${maxPrice}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
         {
           method: "GET",
         },
