@@ -300,7 +300,7 @@ const page = () => {
                 errors permanently, and in the event of an error occurring in
                 the service, please inform us of it at{" "}
                 <span className="font-semibold text-[var(--theme)]">
-                  info@goldendesign.online{" "}
+                  sales@goldenbrandqa.com{" "}
                 </span>
                 and we will try to correct the error as soon as possible.
               </span>

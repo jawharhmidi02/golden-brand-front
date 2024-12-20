@@ -64,7 +64,7 @@ const ShowLocation = ({ ChangeUrl }) => {
                     </svg>
                     <span className="flex-1 text-neutral-500">
                       {" "}
-                      info@goldendesign.online{" "}
+                      sales@goldenbrandqa.com{" "}
                     </span>
                   </div> */}
                   <div className="flex flex-row items-center justify-center text-center">

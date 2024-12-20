@@ -46,11 +46,11 @@ const TopHeader = ({ lng }) => {
           <div
             className="mail"
             onClick={() => {
-              window.open("mailto:info@goldendesign.online");
+              window.open("mailto:sales@goldenbrandqa.com");
             }}
           >
             <i className="fa-regular fa-envelope"></i>
-            <abbr title="E-mail">info@goldendesign.online</abbr>
+            <abbr title="E-mail">sales@goldenbrandqa.com</abbr>
           </div>
           <ShowLocation
             ChangeUrl={(url, options = {}) => {

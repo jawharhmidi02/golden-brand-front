@@ -47,7 +47,7 @@ const page = () => {
                   SEND US AN EMAIL
                 </span>
                 <span className="font-lato text-sm">
-                  info@goldendesign.online
+                  sales@goldenbrandqa.com
                 </span>
               </div>
 

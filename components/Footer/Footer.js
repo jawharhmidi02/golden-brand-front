@@ -341,7 +341,7 @@ const Footer = () => {
                   <li>
                     <a
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="mailto:info@goldendesign.online"
+                      href="mailto:sales@goldenbrandqa.com"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -358,7 +358,7 @@ const Footer = () => {
                         />
                       </svg>
                       <span className="flex-1 break-all text-gray-300">
-                        info@goldendesign.online
+                        sales@goldenbrandqa.com
                       </span>
                     </a>
                   </li>
