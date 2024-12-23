@@ -26,18 +26,6 @@ const Menu = ({ lng, ChangeUrl }) => {
           </a>
         </div>
         <div
-          className={`link ${pathname === `/${lng}/services` ? "active" : ""}`}
-        >
-          <a
-            onClick={() => {
-              ChangeUrl("/services");
-            }}
-            className="hover:cursor-pointer"
-          >
-            Our Services
-          </a>
-        </div>
-        <div
           className={`link ${pathname === `/${lng}/products` ? "active" : ""}`}
         >
           <a
@@ -47,6 +35,18 @@ const Menu = ({ lng, ChangeUrl }) => {
             className="hover:cursor-pointer"
           >
             Products
+          </a>
+        </div>
+        <div
+          className={`link ${pathname === `/${lng}/services` ? "active" : ""}`}
+        >
+          <a
+            onClick={() => {
+              ChangeUrl("/services");
+            }}
+            className="hover:cursor-pointer"
+          >
+            Our Services
           </a>
         </div>
         <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>

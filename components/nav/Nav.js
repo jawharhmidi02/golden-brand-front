@@ -80,7 +80,6 @@ const Nav = ({ lng, ChangeUrl }) => {
     },
   ];
 
-  //Handles the opening and closing of our nav
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -160,15 +159,6 @@ const Nav = ({ lng, ChangeUrl }) => {
         />
       </div>
       <div className="right flex flex-row gap-3">
-        {/* <div
-          className="login hover:cursor-pointer"
-          onClick={() => {
-            ChangeUrl("/sign-in");
-          }}
-        >
-          <i className="fa-regular fa-user"></i>
-          <span>Sign Up/Sign In</span>
-        </div> */}
         {/* <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -224,16 +214,6 @@ const Nav = ({ lng, ChangeUrl }) => {
         <Sheet>
           <SheetTrigger asChild className="cart">
             <button className="cart">
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="#404040"
-                class="bi bi-bag"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z" />
-              </svg> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
@@ -285,9 +265,6 @@ const Nav = ({ lng, ChangeUrl }) => {
                   type="button"
                   className="bg-zinc-200 py-3 text-sm font-bold text-neutral-700 transition-colors duration-200 hover:bg-zinc-300"
                   onClick={() => {
-                    // setTimeout(() => {
-                    //   closeCartButton.current.click();
-                    // }, 500);
                     ChangeUrl("/cart");
                   }}
                 >
@@ -297,9 +274,6 @@ const Nav = ({ lng, ChangeUrl }) => {
                   type="button"
                   className="bg-[var(--theme2)] py-3 text-sm font-bold text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)]"
                   onClick={() => {
-                    // setTimeout(() => {
-                    //   closeCartButton.current.click();
-                    // }, 500);
                     ChangeUrl("/checkout");
                   }}
                 >
@@ -348,29 +322,9 @@ const Nav = ({ lng, ChangeUrl }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     ChangeUrl("/");
-                    // setTimeout(() => {
-                    //   closeButton.current.click();
-                    // }, 1000);
                   }}
                 >
                   Home
-                </a>
-              </div>
-              <div
-                className={`link ${
-                  pathname === `/${lng}/services` ? "active" : ""
-                }`}
-              >
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/services");
-                    // setTimeout(() => {
-                    //   closeButton.current.click();
-                    // }, 1000);
-                  }}
-                >
-                  Our Services
                 </a>
               </div>
               <div
@@ -382,12 +336,23 @@ const Nav = ({ lng, ChangeUrl }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     ChangeUrl("/products");
-                    // setTimeout(() => {
-                    //   closeButton.current.click();
-                    // }, 1000);
                   }}
                 >
                   Products
+                </a>
+              </div>
+              <div
+                className={`link ${
+                  pathname === `/${lng}/services` ? "active" : ""
+                }`}
+              >
+                <a
+                  className="hover:cursor-pointer"
+                  onClick={() => {
+                    ChangeUrl("/services");
+                  }}
+                >
+                  Our Services
                 </a>
               </div>
               <div
@@ -399,9 +364,6 @@ const Nav = ({ lng, ChangeUrl }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     ChangeUrl("/about");
-                    // setTimeout(() => {
-                    //   closeButton.current.click();
-                    // }, 1000);
                   }}
                 >
                   About
@@ -416,9 +378,6 @@ const Nav = ({ lng, ChangeUrl }) => {
                   className="hover:cursor-pointer"
                   onClick={() => {
                     ChangeUrl("/contact");
-                    // setTimeout(() => {
-                    //   closeButton.current.click();
-                    // }, 1000);
                   }}
                 >
                   Contact
