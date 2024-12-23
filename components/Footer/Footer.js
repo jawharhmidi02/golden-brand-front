@@ -119,6 +119,7 @@ const Footer = () => {
                   onClick={() => {
                     ChangeUrl("./");
                   }}
+                  className="hover:cursor-pointer"
                 />
               </div>
               <p className="mt-4 max-w-xs text-center text-gray-400">
@@ -202,7 +203,6 @@ const Footer = () => {
                       className="size-6"
                       fill="currentColor"
                       aria-hidden="true"
-                      // viewBox="0 0 308 308"
                     >
                       <path
                         fill="currentColor"
@@ -222,7 +222,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/");
                       }}
-                      // href="/"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Home
@@ -233,7 +232,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/services");
                       }}
-                      // href="/services"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Services
@@ -244,26 +242,16 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/products");
                       }}
-                      // href="/products"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Products
                     </a>
                   </li>
-                  {/* <li className="link">
-                      <a
-                        href="#"
-                        className=" transition hover:text-white text-gray-300 "
-                      >
-                        About
-                      </a>
-                    </li> */}
                   <li className="link">
                     <a
                       onClick={() => {
                         ChangeUrl("/contact");
                       }}
-                      // href="/contact"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Contact
@@ -279,7 +267,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/about");
                       }}
-                      // href="/about"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       About
@@ -305,7 +292,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions");
                       }}
-                      // href="/terms-and-conditions"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Terms & Conditions
@@ -316,7 +302,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/about#faqs");
                       }}
-                      // href="/about#faqs"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       FAQs
@@ -327,7 +312,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions#payment");
                       }}
-                      // href="/terms-and-conditions#payment"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Payments Info
@@ -339,7 +323,6 @@ const Footer = () => {
                       onClick={() => {
                         ChangeUrl("/contact");
                       }}
-                      // href="/contact"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Contact
@@ -465,7 +448,6 @@ const Footer = () => {
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#refund");
                 }}
-                // href="/terms-and-conditions#refund"
               >
                 Refund & Returns
               </a>
@@ -476,7 +458,6 @@ const Footer = () => {
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#privacy");
                 }}
-                // href="/terms-and-conditions#privacy"
               >
                 Privacy Policy
               </a>
@@ -487,7 +468,6 @@ const Footer = () => {
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#delivery");
                 }}
-                // href="/terms-and-conditions#delivery"
               >
                 Shipping & Delivery
               </a>
@@ -501,7 +481,6 @@ const Footer = () => {
             onClick={() => {
               ChangeUrl("/");
             }}
-            // href="/" className="font-bold"
             className="font-bold hover:cursor-pointer"
           >
             Golden Brand
