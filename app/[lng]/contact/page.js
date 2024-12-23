@@ -151,7 +151,7 @@ const page = () => {
                     day && "text-[var(--theme)]",
                   )}
                 >
-                  From Monday to Saturday
+                  From Saturday to Thursday
                 </span>
                 <span className="text-neutral-600">
                   We are available all week to meet your needs.
@@ -188,7 +188,7 @@ const page = () => {
                     time && "text-[var(--theme)]",
                   )}
                 >
-                  From 7:30 to 19:00
+                  From 7:00 to 17:00
                 </span>
                 <span className="text-neutral-600">
                   Our store is open extended hours to fit your schedule.

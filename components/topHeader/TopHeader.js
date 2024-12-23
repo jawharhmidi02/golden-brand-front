@@ -71,6 +71,14 @@ const TopHeader = ({ lng }) => {
                 }}
               ></i>
             </abbr>
+            <abbr title="TikTok">
+              <i
+                className="fa-brands fa-tiktok"
+                onClick={() => {
+                  window.open("https://www.tiktok.com/@golden.brand52");
+                }}
+              ></i>
+            </abbr>
             <abbr title="Instagram">
               <i
                 className="fa-brands fa-instagram"
