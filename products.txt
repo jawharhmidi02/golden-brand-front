@@ -1,22 +1,22 @@
 S. STEEL WORK TABLE WITHOUT UNDERSHELF:
-    - Id: 0aa59f48-e997-489b-a9a1-4ec78d832261
+    - Id: a025c5c2-10a7-44cf-b508-1b09c1cd7864
     - Category: Work Tables
     - Description: [
       "1.0mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
       "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
       "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON AJUSTABLE BULLET TYPE FEET"
     ]
-    - Image: /images/products/with-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png
+    - Image: /images/products/without-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png
     - Raw: {
             "name": "S. STEEL WORK TABLE WITHOUT UNDERSHELF",
-            "img": "/images/products/with-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png",
+            "img": "/images/products/without-background/S. STEEL WORK TABLE WITHOUT UNDERSHELF.png",
             "description": [
                 "1.0mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
                 "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
                 "40 x 40mm S. STEEL SQUARE TUBE LEG SUPPORT ON AJUSTABLE BULLET TYPE FEET"
             ],
             "category": {
-                "id": "76671d53-964f-49b0-abfb-9c98dfdf2430"
+                "id": "9e2c8b9e-ec09-4395-bcad-e5fdaed80174"
             }
         }
 
@@ -28,7 +28,7 @@ S. STEEL MOBILE TABLE WITH TWO SHELF
 S. STEEL SINGLE BOWL SINK TABLE
 
 S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF:
-    - Id: 062e4070-2a89-45d8-b80b-b156405fed70
+    - Id: e0e32f5f-8b41-47ab-8cbf-76c33f97fc57
     - Category: Sing Tables
     - Description: [
         "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
@@ -36,10 +36,10 @@ S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF:
         "40 x 40mm S. STEEL SQUARE TUBE FOR BRACE AND LEG SUPPORT WITH ADJUSTABLE BULLET TYPE FEET",
         "500 x 500 x 300mm S. STEEL SINK"
     ]
-    - Image: /images/products/with-background/S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF.png
+    - Image: /images/products/without-background/S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF.png
     - Raw: {
         "name": "S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF",
-        "img": "/images/products/with-background/S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF.png",
+        "img": "/images/products/without-background/S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF.png",
         "description": [
             "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
             "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
@@ -47,7 +47,7 @@ S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF:
             "500 x 500 x 300mm S. STEEL SINK"
         ],
         "category": {
-            "id": "308d9522-8ae3-4254-988d-03c12e2cd1f2"
+            "id": "af559f22-9b27-48da-a986-68f62713dac9"
         }
     }
      
@@ -56,20 +56,20 @@ S. STEEL DOUBLE BOWL SINK TABLE WITH UNDERSHELF
 S. STEEL DOUBLE BOWL SINK TABLE
 
 S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER:
-    - Id: 15e5c24d-03f7-49df-a394-4cd59bb7897d
+    - Id: 0a6c61c2-d187-4653-8640-03e2ff162a67
     - Category: Cabinets
     - Description: [
         "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH , STIFFENERS"
     ]
-    - Image: /images/products/with-background/S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER.png
+    - Image: /images/products/without-background/S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER.png
     - Raw: {
         "name": "S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER",
-        "img": "/images/products/with-background/S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER.png",
+        "img": "/images/products/without-background/S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER.png",
         "description": [
             "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH , STIFFENERS"
         ],
         "category": {
-            "id": "503b254e-0745-4966-bbd9-86530b5c499b"
+            "id": "2a2a3ed7-ff6b-4b1b-9e04-c565764c6984"
         }
     }
 
@@ -85,22 +85,22 @@ S. STEEL WALL CABINET WITH HINGED DOORS
 S. STEEL CORNER WALL CABINET WITH HINGED DOORS
 
 S. STEEL CONDENSATE HOOD:
-    - Id: 20d4d684-2371-4f1a-826d-e8bba3be3fe2
+    - Id: 056cfdbc-a8e5-4aa0-813f-6545bc7d964d
     - Category: Hoods
     - Description: [
         "1.0mm THK., GR.304, #4 FINISH FOR HOOD BODY PANEL",
         "0.8mm THK., GR.304, #4 FINISH FOR TOP COVER"
     ]
-    - Image: /images/products/with-background/S. STEEL CONDENSATE HOOD.png
+    - Image: /images/products/without-background/S. STEEL CONDENSATE HOOD.png
     - Raw: {
         "name": "S. STEEL CONDENSATE HOOD",
-        "img": "/images/products/with-background/S. STEEL CONDENSATE HOOD.png",
+        "img": "/images/products/without-background/S. STEEL CONDENSATE HOOD.png",
         "description": [
             "1.0mm THK., GR.304, #4 FINISH FOR HOOD BODY PANEL",
             "0.8mm THK., GR.304, #4 FINISH FOR TOP COVER"
         ],
         "category": {
-            "id": "d42e7bd4-0760-4b3c-8caf-8b13a3d35852"
+            "id": "4aa022d0-5da4-4f0f-bd30-784110a23d70"
         }
     }
 
@@ -110,68 +110,68 @@ S. STEEL SERVICE TROLLEY, 2 LAYER
 S. STEEL SERVICE TROLLEY, 3 LAYER
 
 S. STEEL SERVICE TROLLEY, 4 LAYER
-    - Id: 61f3e514-8e59-4bed-b0fd-6072c4d87b51
+    - Id: e2a2f6e9-e452-4a02-86aa-2975dacdef1b
     - Category: Trolleys
     - Description: [
         "1.2mm THK., GR.304, #4 FINISH SHELVING AND BASE STIFFINER",
         "25mmØ SS TUBE LEGS AND HANDLE",
         "4'Ø RUBBER CASTER WHEEL, ALL SWIVEL 2 WITH BRAKES AND 2 WITHOUT BRAKES"
     ]
-    - Image: /images/products/with-background/S. STEEL SERVICE TROLLEY, 4 LAYER.png
+    - Image: /images/products/without-background/S. STEEL SERVICE TROLLEY, 4 LAYER.png
     - Raw: {
         "name": "S. STEEL SERVICE TROLLEY, 4 LAYER",
-        "img": "/images/products/with-background/S. STEEL SERVICE TROLLEY, 4 LAYER.png",
+        "img": "/images/products/without-background/S. STEEL SERVICE TROLLEY, 4 LAYER.png",
         "description": [
             "1.2mm THK., GR.304, #4 FINISH SHELVING AND BASE STIFFINER",
             "25mmØ SS TUBE LEGS AND HANDLE",
             "4'Ø RUBBER CASTER WHEEL, ALL SWIVEL 2 WITH BRAKES AND 2 WITHOUT BRAKES"
         ],
         "category": {
-            "id": "eeefc478-ade7-493e-bc2b-877b83fb5d5d"
+            "id": "854af9ff-f05e-4b85-8712-4c339b1c51ad"
         }
     }
 
 S. STEEL WALL SHELF
 
 S. STEEL FLOOR GRATING WITH TANK:
-    - Id: 4b950976-e1c2-4104-b0e4-6673023d09fd
+    - Id: af345130-460e-4811-8b13-7272964ab3d5
     - Category: Gratings & Traps
     - Description: [
         "2.0mmTHK., GR.304, #4 FINISH SS GRATING FRAME",
         "1.5mmTHK., GR.304, #4 FINISH SS GRATING TANK",
         "1.0mmTHK., GR.304, #4 FINISH SS BASKET STRAINER"
     ]
-    - Image: /images/products/with-background/S. STEEL FLOOR GRATING WITH TANK.png
+    - Image: /images/products/without-background/S. STEEL FLOOR GRATING WITH TANK.png
     - Raw: {
         "name": "S. STEEL FLOOR GRATING WITH TANK",
-        "img": "/images/products/with-background/S. STEEL FLOOR GRATING WITH TANK.png",
+        "img": "/images/products/without-background/S. STEEL FLOOR GRATING WITH TANK.png",
         "description": [
             "2.0mmTHK., GR.304, #4 FINISH SS GRATING FRAME",
             "1.5mmTHK., GR.304, #4 FINISH SS GRATING TANK",
             "1.0mmTHK., GR.304, #4 FINISH SS BASKET STRAINER"
         ],
         "category": {
-            "id": "0fb9a1ed-834c-4c5f-b6dd-119fda3f6fad"
+            "id": "6d113500-aab1-436a-9e17-1b1258ac10dd"
         }
     }
 
 S. STEEL SINGLE OVER SHELVES:
-    - Id: f163aa63-fe01-4e8e-b5d3-11600cc4270c
+    - Id: 122b7e39-7a47-4114-b823-06f25724a6a8
     - Category: Shelves & Racks
     - Description: [
         "1.2mm THK., GR.304, #4 FINISH FOR OVERSHELF",
         "32mmØ SS ROUND TUBE POST"
     ]
-    - Image: /images/products/with-background/S. STEEL SINGLE OVER SHELVES.png
+    - Image: /images/products/without-background/S. STEEL SINGLE OVER SHELVES.png
     - Raw: {
         "name": "S. STEEL SINGLE OVER SHELVES",
-        "img": "/images/products/with-background/S. STEEL SINGLE OVER SHELVES.png",
+        "img": "/images/products/without-background/S. STEEL SINGLE OVER SHELVES.png",
         "description": [
             "1.2mm THK., GR.304, #4 FINISH FOR OVERSHELF",
             "32mmØ SS ROUND TUBE POST"
         ],
         "category": {
-            "id": "25dafddf-e029-48b6-9981-c08a656a9959"
+            "id": "e89e7504-af7d-4786-9d92-b57a378e4364"
         }
     }
 
@@ -182,7 +182,7 @@ SS BAKING TROLLEY
 S. STEEL GREASE TRAP
 
 S. STEEL GARBAGE BIN (SQUARE TYPE)
-    - Id: ab5ac2b5-8d38-402d-870f-66e4d8a52c86
+    - Id: f265a290-f384-432e-98a1-f0a22bcee314
     - Category: Waste Management
     - Description: [
         "1.2mm THK., GR.304, #4 FINISH FOR BODY PANEL",
@@ -190,10 +190,10 @@ S. STEEL GARBAGE BIN (SQUARE TYPE)
         "1.0mm THK. GR.304, #4 FINISH FOR SS COVER",
         "3'Ø RUBBER CASTER WHEEL, ALL SWIVEL, AND 2 WITH BRAKES"
     ]
-    - Image: /images/products/with-background/S. STEEL GARBAGE BIN (SQUARE TYPE).png
+    - Image: /images/products/without-background/S. STEEL GARBAGE BIN (SQUARE TYPE).png
     - Raw: {
         "name": "S. STEEL GARBAGE BIN (SQUARE TYPE)",
-        "img": "/images/products/with-background/S. STEEL GARBAGE BIN (SQUARE TYPE).png",
+        "img": "/images/products/without-background/S. STEEL GARBAGE BIN (SQUARE TYPE).png",
         "description": [
             "1.2mm THK., GR.304, #4 FINISH FOR BODY PANEL",
             "1.2mm THK., GR.304, #4 FINISH FOR BOTTOM BASE",
@@ -201,7 +201,7 @@ S. STEEL GARBAGE BIN (SQUARE TYPE)
             "3'Ø RUBBER CASTER WHEEL, ALL SWIVEL, AND 2 WITH BRAKES"
         ],
         "category": {
-            "id": "bedf900b-cc9d-45a6-8152-9fc5e4dc604f"
+            "id": "bccc64d3-48e2-444a-8f90-43d5ea451750"
         }
     }
 
