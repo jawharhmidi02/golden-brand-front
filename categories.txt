@@ -85,7 +85,7 @@
 
 
 1. Work Tables
-    - Id: 76671d53-964f-49b0-abfb-9c98dfdf2430
+    - Id: 9e2c8b9e-ec09-4395-bcad-e5fdaed80174
     - Stainless Steel Work Tables
         . Without Undershelf
             S. STEEL WORK TABLE WITHOUT UNDERSHELF // Done
@@ -105,7 +105,7 @@
             S.S WORK TABLE WITH SHELF & 3 DRAWER
 
 2. Sink Tables
-    - Id: 308d9522-8ae3-4254-988d-03c12e2cd1f2
+    - Id: af559f22-9b27-48da-a986-68f62713dac9
     - Single Bowl Sink Tables
         . With Undershelf
             S. STEEL SINGLE BOWL SINK TABLE WITH UNDERSHELF // Done
@@ -125,7 +125,7 @@
             S. STEEL CLEANER SINK
 
 3. Cabinets
-    - Id: 503b254e-0745-4966-bbd9-86530b5c499b
+    - Id: 2a2a3ed7-ff6b-4b1b-9e04-c565764c6984
     - Base Cabinets
         . With 3 Layer Drawer
             S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER // Done
@@ -148,7 +148,7 @@
             S. STEEL CORNER WALL CABINET WITH HINGED DOORS
 
 4. Shelves & Racks
-    - Id: 25dafddf-e029-48b6-9981-c08a656a9959
+    - Id: e89e7504-af7d-4786-9d92-b57a378e4364
     - Wall Shelves
         . Single Over Shelves
             S. STEEL SINGLE OVER SHELVES // Done
@@ -161,7 +161,7 @@
             S. STEEL RACK SHELF
 
 5. Hoods
-    - Id: d42e7bd4-0760-4b3c-8caf-8b13a3d35852
+    - Id: 4aa022d0-5da4-4f0f-bd30-784110a23d70
     - Condensate Hood
         . Condensate Hood
             S. STEEL CONDENSATE HOOD // Done
@@ -172,7 +172,7 @@
             S. STEEL EXHAUST HOOD, DOUBLE SKIN, ISLAND TYPE
 
 6. Trolleys
-    - Id: eeefc478-ade7-493e-bc2b-877b83fb5d5d
+    - Id: 854af9ff-f05e-4b85-8712-4c339b1c51ad
     - Service Trolleys
         . 2 Layer
             S. STEEL SERVICE TROLLEY, 2 LAYER
@@ -187,7 +187,7 @@
             S.S BBQ ON CABINET WITH HOOD
 
 7. Gratings & Traps
-    - Id: 0fb9a1ed-834c-4c5f-b6dd-119fda3f6fad
+    - Id: 6d113500-aab1-436a-9e17-1b1258ac10dd
     - Floor Grating
         . With Tank
             S. STEEL FLOOR GRATING WITH TANK // Done
@@ -198,7 +198,7 @@
             S. STEEL GREASE TRAP
 
 8. Waste Management
-    - Id: bedf900b-cc9d-45a6-8152-9fc5e4dc604f
+    - Id: bccc64d3-48e2-444a-8f90-43d5ea451750
     - Garbage Bins
         . Square Type
             S. STEEL GARBAGE BIN (SQUARE TYPE) // Done

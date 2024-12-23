@@ -277,7 +277,8 @@ const Footer = () => {
 
                   <li className="link">
                     <a
-                      href="#"
+                      href="https://maps.app.goo.gl/rtN1scuA2BeAhhze7"
+                      target="_blank"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       Google Maps

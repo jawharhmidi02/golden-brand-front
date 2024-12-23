@@ -151,7 +151,7 @@ const Nav = ({ lng, ChangeUrl }) => {
           className="hover:cursor-pointer"
         />
       </div>
-      <div className="menu">
+      <div className="menu mx-auto">
         <Menu
           lng={lng}
           ChangeUrl={(url) => {
@@ -169,7 +169,7 @@ const Nav = ({ lng, ChangeUrl }) => {
           <i className="fa-regular fa-user"></i>
           <span>Sign Up/Sign In</span>
         </div> */}
-        <TooltipProvider>
+        {/* <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
               <div
@@ -219,7 +219,7 @@ const Nav = ({ lng, ChangeUrl }) => {
               )}
             </TooltipContent>
           </Tooltip>
-        </TooltipProvider>
+        </TooltipProvider> */}
 
         <Sheet>
           <SheetTrigger asChild className="cart">

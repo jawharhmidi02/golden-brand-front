@@ -57,14 +57,6 @@ const TopHeader = ({ lng }) => {
               ChangeUrl(url, options);
             }}
           />
-
-          {/* <div className="location">
-          <i className="fa-solid fa-location-dot"></i>
-          <label htmlFor="openLocation">
-            Show Location
-            <i className="fa-solid fa-angle-down" id="openLocation"></i>
-          </label>
-        </div> */}
         </div>
 
         <div className="right">

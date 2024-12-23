@@ -107,8 +107,15 @@ const page = () => {
         </div>
 
         <div className="mb-10 grid grid-cols-1 gap-20 lg:grid-cols-2">
-          <iframe
+          {/* <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d58613.59643240183!2d10.523509372413544!3d33.34624482660369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stn!4v1729389385885!5m2!1sen!2stn"
+            className="h-[450px] w-full border-0"
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe> */}
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.7392172843165!2d51.4903326!3d25.1106876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d300408befc3%3A0x11a6b59ca28fd1e0!2sGOLDEN%20BRAND%20STAINLESS%20STEEL!5e0!3m2!1sen!2stn!4v1734900740890!5m2!1sen!2stn"
             className="h-[450px] w-full border-0"
             allowFullScreen=""
             loading="lazy"
