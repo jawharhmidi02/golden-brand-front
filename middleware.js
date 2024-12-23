@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import acceptLanguage from "accept-language";
-import { fallbackLng, languages, cookieName } from "./app/i18n/settings";
+
+const languages = ["en", "ar"];
 
 acceptLanguage.languages(languages);
 
@@ -19,7 +20,8 @@ export function middleware(req) {
   if (
     pathname.startsWith("/_next/") ||
     pathname.startsWith("/images/") ||
-    pathname.startsWith("/admin/")
+    pathname.startsWith("/admin/") ||
+    pathname.startsWith("/admin")
   ) {
     return NextResponse.next();
   }

@@ -16,10 +16,11 @@ export const metadata = {
 };
 
 import { dir } from "i18next";
-import { languages } from "@/app/i18n/settings";
 import Footer from "@/components/Footer/Footer";
 import FastLinks from "@/components/FastLinks/FastLinks";
 import { Toaster } from "@/components/ui/toaster";
+
+const languages = ["en", "ar"];
 
 export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));

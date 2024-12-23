@@ -40,7 +40,7 @@ const page = () => {
                 These terms and conditions (Store Terms) apply to your uses of
                 the domain{" "}
                 <span className="font-semibold text-[var(--theme)]">
-                  www.goldenbrand.com
+                  www.goldenbrandqa.com
                 </span>{" "}
                 on the Internet (the “Store”) and this term must include all the
                 contents in the Store, and you must read these terms carefully,

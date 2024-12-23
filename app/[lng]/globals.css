@@ -31,22 +31,20 @@
   /* Alternative Blue #429bfa bg-blue-100 for active */
   /* 2nd alternative for Blue #001f3f bg-indigo-100 for active */
   /* --theme: #10b981;  #FAD02C  #333652 #eef2ff*/
-  --theme: #059669 ;
+  --theme: #059669;
   --theme2: #064e3b;
-  --theme3: #90ADC6;
-  --theme4: #E9EAEC;
+  --theme3: #90adc6;
+  --theme4: #e9eaec;
 
-  --dash-theme:#171821;
-  --dash-theme2:#21222d;
-  --dash-theme3:#4f5056;
-  --dash-theme4:#1c1d27;
-  --dash-theme5:#a9dfd8;
-  --dash-theme6:#73cabe;
+  --dash-theme: #171821;
+  --dash-theme2: #21222d;
+  --dash-theme3: #4f5056;
+  --dash-theme4: #1c1d27;
+  --dash-theme5: #a9dfd8;
+  --dash-theme6: #73cabe;
 
-
-
-  --hover-theme:#d1fae5;
-  --hover-theme2:#f0f7f3;
+  --hover-theme: #d1fae5;
+  --hover-theme2: #f0f7f3;
   --contact-colour: #74c0fc;
   --primary: #f5f6f7;
   --secondary: #f0f1f2;
@@ -115,8 +113,8 @@ abbr[title] {
   cursor: pointer;
 }
 
-li::marker{
-  font-size:25px;
+li::marker {
+  font-size: 25px;
   line-height: 30px;
 }
 
@@ -130,7 +128,8 @@ li::marker{
   border-radius: 4px;
   box-shadow: -1px 1px 10px rgba(0, 0, 0, 0.3);
   z-index: 1023;
-  animation: slideInRight 0.3s ease-in-out forwards,
+  animation:
+    slideInRight 0.3s ease-in-out forwards,
     fadeOut 0.5s ease-in-out forwards 4.5s;
   transform: translateX(110%);
   font-family: var(--second-family);

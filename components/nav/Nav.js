@@ -132,7 +132,7 @@ const Nav = ({ lng, ChangeUrl }) => {
   };
 
   useEffect(() => {
-    checkUser();
+    // checkUser();
   }, []);
 
   return (

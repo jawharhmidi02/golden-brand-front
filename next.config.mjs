@@ -15,8 +15,7 @@ const nextConfig = {
           process.env.NEXT_PUBLIC_FRONT_URL === "http://localhost:3000"
             ? "http"
             : "https",
-        hostname:
-          process.env.NEXT_PUBLIC_FRONT_URL || "goldenbrand.netlify.app",
+        hostname: process.env.NEXT_PUBLIC_FRONT_URL || "goldenbrandqa.com",
         pathname: "/**",
       },
       {
