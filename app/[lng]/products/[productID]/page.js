@@ -27,51 +27,7 @@ const page = () => {
     setLoadingPage(isPending);
   }, [isPending]);
 
-  const [product, setproduct] = useState({
-    // img: "/images/products/image3.png",
-    // name: "S. STEEL SINGLE BOWL SINK TABLE",
-    // description: [
-    //   "1.2mmTHK., GR.304, #4 FINISH TOP PLATE, BACKSPLASH",
-    //   "1.0mmTHK., GR.304, #4 FINISH, STIFFENERS",
-    //   "40 x 40mm S. STEEL SQUARE TUBE FOR BRACE AND LEG SUPPORT WITH ADJUSTABLE BULLET TYPE FEET",
-    //   "500 x 500 x 300mm S. STEEL SINK",
-    // ],
-    // category: "Sink Tables",
-    // prices: ["1500", "1800", "2100", "2400", "2700", "3000", "3300", "3450"],
-    // dimensions: [
-    //   "1000 x 700 x 850 + 100m",
-    //   "1200 x 700 x 850 + 100m",
-    //   "1400 x 700 x 850 + 100m",
-    //   "1600 x 700 x 850 + 100m",
-    //   "1800 x 700 x 850 + 100m",
-    //   "2000 x 700 x 850 + 100m",
-    //   "2200 x 700 x 850 +100m",
-    //   "2300 x 700 x 850 + 100m",
-    // ],
-    // legs: ["4", "4", "4", "4", "4", "4", "6", "6"],
-    // drainer: [
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    //   "LH , RH",
-    // ],
-    // id: 456789,
-    // codes: [
-    //   "SBS39B - 7 1",
-    //   "SBS47B - 7 1",
-    //   "SBS55B - 7 1",
-    //   "SBS63B - 7 1",
-    //   "SBS70B - 7 1",
-    //   "SBS78B - 7 1",
-    //   "SBS86B - 7 1",
-    //   "SBS94B - 7 1",
-    // ],
-    // titles: ["legs", "drainer"],
-  });
+  const [product, setproduct] = useState({});
 
   const cat = {};
   if (product.category) {
