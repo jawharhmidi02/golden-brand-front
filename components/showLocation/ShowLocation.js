@@ -1,8 +1,8 @@
-"use client";
-
-import * as React from "react";
+import { forwardRef, useContext } from "react";
 
 import { cn } from "@/lib/utils";
+import { UserAuthContext } from "@/contexts/AuthContext";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,10 +10,10 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const ShowLocation = ({ ChangeUrl }) => {
+const ShowLocation = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   return (
     <NavigationMenu className="p-0">
       <NavigationMenuList>
@@ -25,16 +25,6 @@ const ShowLocation = ({ ChangeUrl }) => {
             <ul className="z-99 grid gap-3 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] lg:p-4">
               <li className="z-99 row-span-3">
                 <NavigationMenuLink asChild>
-                  {/* <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d58613.59643240183!2d10.523509372413544!3d33.34624482660369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stn!4v1729389385885!5m2!1sen!2stn"
-                    // width="600"
-                    // height="450"
-
-                    className="h-full w-full border-0"
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe> */}
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3612.7392172843165!2d51.4903326!3d25.1106876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d300408befc3%3A0x11a6b59ca28fd1e0!2sGOLDEN%20BRAND%20STAINLESS%20STEEL!5e0!3m2!1sen!2stn!4v1734900740890!5m2!1sen!2stn"
                     className="h-full w-full border-0"
@@ -116,28 +106,26 @@ const ShowLocation = ({ ChangeUrl }) => {
   );
 };
 
-const ListItem = React.forwardRef(
-  ({ className, title, children, ...props }, ref) => {
-    return (
-      <li>
-        <NavigationMenuLink asChild>
-          <a
-            ref={ref}
-            className={cn(
-              "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-              className,
-            )}
-            {...props}
-          >
-            <div className="text-sm font-medium leading-none">{title}</div>
-            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-              {children}
-            </p>
-          </a>
-        </NavigationMenuLink>
-      </li>
-    );
-  },
-);
+const ListItem = forwardRef(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className,
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
 ListItem.displayName = "ListItem";
 export default ShowLocation;

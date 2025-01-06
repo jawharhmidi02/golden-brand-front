@@ -1,9 +1,12 @@
-"use client";
+import { useContext } from "react";
 import { useParams } from "next/navigation";
-import React from "react";
 
-const ProductHeader = ({ cat, product, ChangeUrl }) => {
+import { UserAuthContext } from "@/contexts/AuthContext";
+
+const ProductHeader = ({ cat, product }) => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const { lng } = useParams();
+
   return (
     <div className="flex flex-row gap-2 text-center">
       <div

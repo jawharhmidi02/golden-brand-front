@@ -6,7 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "./animations.css";
 import "./globals.css";
 
-import TopHeader from "@/components/topHeader/TopHeader";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
@@ -16,9 +15,8 @@ export const metadata = {
 };
 
 import { dir } from "i18next";
-import Footer from "@/components/Footer/Footer";
-import FastLinks from "@/components/FastLinks/FastLinks";
 import { Toaster } from "@/components/ui/toaster";
+import ClientLayout from "./ClientLayout";
 
 const languages = ["en", "ar"];
 
@@ -43,12 +41,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-[var(--primary)]">
-        <TopHeader lng={lng} />
-
-        <>{children}</>
-
-        <Footer lng={lng} />
-        <FastLinks />
+        <ClientLayout lng={lng}>{children}</ClientLayout>
         <Toaster />
         <Analytics />
       </body>

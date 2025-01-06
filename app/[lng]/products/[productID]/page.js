@@ -2,40 +2,26 @@
 
 import "./page.css";
 
-import ProductHeader from "@/components/ProductHeader/ProductHeader";
-import { useEffect, useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
-import SkeletonProductHeader from "@/components/ProductHeader/SkeletonProductHeader";
-import { Skeleton } from "@/components/ui/skeleton";
-import { toast } from "@/hooks/use-toast";
+import { useEffect, useTransition, useState, useContext } from "react";
 import { useParams } from "next/navigation";
 
+import { toast } from "@/hooks/use-toast";
+
+import { Skeleton } from "@/components/ui/skeleton";
+import ProductHeader from "@/components/ProductHeader/ProductHeader";
+import SkeletonProductHeader from "@/components/ProductHeader/SkeletonProductHeader";
+import { UserAuthContext } from "@/contexts/AuthContext";
+
 const page = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
   const searchParams = useParams();
   const id = searchParams.productID;
-
-  const ChangeUrl = (url) => {
-    startTransition(() => {
-      router.push(url);
-    });
-  };
-
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
-
+  const { ChangeUrl, updateCart } = useContext(UserAuthContext);
   const [product, setproduct] = useState({});
-
-  const cat = {};
-  if (product.category) {
-    cat[product.category?.name] = true;
-  }
+  const [loadingProduct, setLoadingProduct] = useState(true);
   const [productNumber, setProductNumber] = useState(1);
-
-  const [selectedPrice, setSelectedPrice] = useState(0);
+  const [selectedVariant, setSelectedVariant] = useState({
+    price: 0,
+  });
 
   const increaseProductNumber = () => {
     if (productNumber < 99) {
@@ -48,12 +34,6 @@ const page = () => {
       setProductNumber(productNumber - 1);
     }
   };
-
-  useEffect(() => {
-    document.title = `GoldenBrand: ${product.name ? product.name : "Loading..."}`;
-  }, [product]);
-
-  const [loadingProduct, setLoadingProduct] = useState(true);
 
   const fetchProduct = async () => {
     setLoadingProduct(true);
@@ -72,8 +52,9 @@ const page = () => {
       }
 
       setproduct(data.data);
-      setSelectedPrice(data.data.productsVariants[0]?.price);
-      cat[product.category?.name] = true;
+      if (data.data.productsVariants.length !== 0) {
+        setSelectedVariant(data.data.productsVariants[0]);
+      }
 
       setLoadingProduct(false);
     } catch (error) {
@@ -88,31 +69,57 @@ const page = () => {
     setLoadingProduct(false);
   };
 
+  const handleAddToCart = async () => {
+    if (Object.keys(selectedVariant).length < 2) {
+      toast({
+        title: "Error",
+        description: "Please select a variant!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+
+    cart[selectedVariant.id] = cart[selectedVariant.id]
+      ? productNumber + cart[selectedVariant.id]
+      : productNumber;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCart();
+
+    toast({
+      title: "Item Added",
+      description: "Item has been added to your cart!",
+      variant: "success",
+      duration: 3000,
+    });
+    setProductNumber(1);
+  };
+
+  const handleBuyDirectly = () => {
+    handleAddToCart();
+    ChangeUrl("/cart");
+  };
+
+  useEffect(() => {
+    document.title = `GoldenBrand: ${product.name ? product.name : "Loading..."}`;
+  }, [product]);
+
   useEffect(() => {
     fetchProduct();
   }, []);
 
   return (
     <div className="mx-auto mt-5 flex w-full items-center justify-center">
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div className="mx-8 flex w-full max-w-[1200px] flex-col gap-4 sm:mx-16 md:mx-32 lg:mx-20">
         {loadingProduct ? (
-          <SkeletonProductHeader
-            ChangeUrl={(url, options = {}) => {
-              ChangeUrl(url, options);
-            }}
-          />
+          <SkeletonProductHeader />
         ) : (
           <ProductHeader
-            cat={cat}
+            cat={{ [product.category?.name]: true }}
             product={product}
-            ChangeUrl={(url, options = {}) => {
-              ChangeUrl(url, options);
-            }}
           />
         )}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
@@ -162,7 +169,7 @@ const page = () => {
                   {loadingProduct ? (
                     <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
                   ) : (
-                    `${productNumber * selectedPrice}`
+                    `${selectedVariant && productNumber * selectedVariant.price}`
                   )}{" "}
                   QR
                 </span>
@@ -171,6 +178,7 @@ const page = () => {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
+                  onClick={handleAddToCart}
                   className="border-2 border-neutral-50 bg-[var(--theme)] px-3.5 py-2 font-lato font-bold text-neutral-50 transition-all duration-300 hover:border-[var(--theme)] hover:bg-white hover:text-[var(--theme)] active:scale-90"
                 >
                   {loadingProduct ? (
@@ -183,6 +191,7 @@ const page = () => {
                 </button>
                 <button
                   type="button"
+                  onClick={handleBuyDirectly}
                   className="border-2 border-neutral-50 bg-[var(--theme)] px-3.5 py-2 font-lato font-bold text-neutral-50 transition-all duration-300 hover:border-[var(--theme)] hover:bg-white hover:text-[var(--theme)] active:scale-90"
                 >
                   {loadingProduct ? (
@@ -196,7 +205,7 @@ const page = () => {
               </div>
             </div>
             {/* 
-          { productNumber * selectedPrice >= 10000 && (
+          { productNumber * selectedVariant.price >= 10000 && (
             <span className="text-center font-bold text-green-500 font-lato">Free delivery acquired !</span>
           )} */}
           </div>
@@ -281,7 +290,7 @@ const page = () => {
                             id={`radio-${index}`}
                             defaultChecked={index === 0}
                             onChange={() => {
-                              setSelectedPrice(item.price);
+                              setSelectedVariant(item);
                             }}
                             type="radio"
                             name="radio-examples"

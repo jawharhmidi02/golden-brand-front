@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
 
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 
 const page = () => {
   const [loadingPage, setLoadingPage] = useState(true);

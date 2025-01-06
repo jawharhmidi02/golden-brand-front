@@ -4,7 +4,7 @@ import "./Nav.css";
 
 import Menu from "../menu/Menu";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import {
   Sheet,
   SheetClose,
@@ -18,71 +18,74 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import SideCartItem from "../SideCartItem/SideCartItem";
+import SideCartItem from "../CartItem/SideCartItem";
 import Cookies from "js-cookie";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const Nav = ({ lng, ChangeUrl }) => {
+const Nav = () => {
+  const pathname = usePathname();
+  const searchParams = useParams();
+  const lng = searchParams.lng;
+  const {
+    isUserSigned,
+    loadingUser,
+    userData,
+    ChangeUrl,
+    setLoadingPage,
+    items,
+  } = useContext(UserAuthContext);
+
   const closeButton = useRef(null);
   const closeCartButton = useRef(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [totalPrice, setTotalPrice] = useState(0);
 
-  const items = [
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-    {
-      name: "Work Table",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      id: "123456",
-    },
-  ];
-
-  const handleMenuClick = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const calculateTotalPrice = (productVariant, quantity) => {
+    return productVariant.price * quantity;
   };
+
+  const fetchProductById = async (productId) => {
+    try {
+      console.log(productId);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/productsVariants/byid/${productId}`,
+        {
+          method: "GET",
+        },
+      );
+      const data = await res.json();
+      if (data.data === null) {
+        throw new Error(data.message);
+      }
+      return data.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  const UpdatePriceFunction = async () => {
+    const updatedPrices = {};
+    for (let id of Object.keys(items)) {
+      const productVariant = await fetchProductById(id);
+      updatedPrices[id] = calculateTotalPrice(productVariant, items[id]);
+    }
+    setTotalPrice(updatedPrices);
+  };
+
+  const logout = () => {
+    Cookies.remove("access_token");
+    setLoadingPage(true);
+    location.href = "/sign-in";
+  };
+
+  const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
+
+  useEffect(() => {
+    UpdatePriceFunction();
+  }, [items]);
 
   useEffect(() => {
     if (closeButton.current) {
@@ -91,49 +94,10 @@ const Nav = ({ lng, ChangeUrl }) => {
     if (closeCartButton.current) {
       closeCartButton.current.click();
     }
-  });
-
-  const [loadingUser, setLoadingUser] = useState(true);
-  const [signed, setSigned] = useState(false);
-  const [user, setUser] = useState(null);
-
-  const checkUser = async () => {
-    try {
-      setLoadingUser(true);
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/account`,
-        {
-          method: "GET",
-          headers: {
-            access_token: Cookies.get("access_token"),
-            "Content-Type": "application/json",
-          },
-        },
-      );
-      const data = await response.json();
-
-      if (data.data === null) {
-        throw new Error(data.message);
-      }
-
-      setLoadingUser(false);
-      setSigned(true);
-      setUser(data.data);
-    } catch (error) {
-      setLoadingUser(false);
+    if (closeCartButton.current) {
+      closeCartButton.current.click();
     }
-    setLoadingUser(false);
-  };
-
-  const logout = () => {
-    Cookies.remove("access_token");
-    location.href = "/sign-in";
-  };
-
-  useEffect(() => {
-    // checkUser();
-  }, []);
+  });
 
   return (
     <nav className={cn("max-h-[120px]")}>
@@ -159,13 +123,13 @@ const Nav = ({ lng, ChangeUrl }) => {
         />
       </div>
       <div className="right flex flex-row gap-3">
-        {/* <TooltipProvider>
+        <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
               <div
                 onClick={() => {
                   if (!loadingUser) {
-                    if (signed) {
+                    if (isUserSigned) {
                       ChangeUrl("/profile");
                     } else {
                       ChangeUrl("/sign-in");
@@ -184,8 +148,8 @@ const Nav = ({ lng, ChangeUrl }) => {
                     <div className="flex items-center justify-center">
                       <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
                     </div>
-                  ) : signed ? (
-                    user.full_name
+                  ) : isUserSigned ? (
+                    userData.full_name
                       .split(" ")
                       .map(
                         (word) => word.charAt(0).toUpperCase() + word.slice(1),
@@ -202,34 +166,32 @@ const Nav = ({ lng, ChangeUrl }) => {
                 <div className="flex items-center justify-center">
                   <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
                 </div>
-              ) : signed ? (
+              ) : isUserSigned ? (
                 "Profile"
               ) : (
                 "Login / Register"
               )}
             </TooltipContent>
           </Tooltip>
-        </TooltipProvider> */}
+        </TooltipProvider>
 
         <Sheet>
-          <SheetTrigger asChild className="cart">
-            <button className="cart">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="#404040"
-                className="bi bi-handbag"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2m3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6z" />
-              </svg>
+          <SheetTrigger className="cart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="#404040"
+              className="bi bi-handbag"
+              viewBox="0 0 16 16"
+            >
+              <path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2m3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6z" />
+            </svg>
 
-              <div className="total-number">0</div>
-            </button>
+            <div className="total-number">{Object.keys(items).length}</div>
           </SheetTrigger>
           <SheetContent className="w-[300px] bg-[var(--tertiary)] p-0">
-            <SheetTitle></SheetTitle>
+            <SheetTitle />
             <div className="flex h-full flex-col justify-between">
               <div className="border-b-[1px] border-neutral-300 py-3 text-center">
                 <span className="font-lato text-2xl font-semibold text-neutral-800">
@@ -237,18 +199,12 @@ const Nav = ({ lng, ChangeUrl }) => {
                 </span>
               </div>
               <div className="cart-items-scrollbar relative flex w-full flex-1 flex-col overflow-auto">
-                {items.map((item, index) => (
+                {Object.keys(items).map((id, index) => (
                   <SideCartItem
                     key={index}
-                    name={item.name}
-                    dimension={item.dimension}
-                    price={item.price}
-                    id={item.id}
-                    closeButton={closeCartButton}
+                    productVariantId={id}
+                    quantity={items[id]}
                     index={index}
-                    ChangeUrl={(url) => {
-                      ChangeUrl(url);
-                    }}
                   />
                 ))}
               </div>
@@ -258,7 +214,7 @@ const Nav = ({ lng, ChangeUrl }) => {
                     Total:
                   </span>
                   <span className="font-lato text-xl font-semibold text-[var(--theme2)]">
-                    6000 QR
+                    {sumValues(totalPrice)} QR
                   </span>
                 </div>
                 <button
@@ -281,43 +237,32 @@ const Nav = ({ lng, ChangeUrl }) => {
                 </button>
               </div>
             </div>
-            <SheetClose>
-              <button
-                type="button"
-                className="hidden"
-                ref={closeCartButton}
-              ></button>
-            </SheetClose>
+            <SheetClose className="hidden" ref={closeCartButton} />
           </SheetContent>
         </Sheet>
 
         <Sheet>
-          <SheetTrigger
-            asChild
-            className="hamburger-menu ml-2 hidden flex-col items-center justify-center"
-          >
-            <button className="hamburger-menu ml-2 hidden flex-col items-center justify-center">
-              <span
-                className={`block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
-                  isMenuOpen ? "translate-y-1 rotate-45" : "-translate-y-0.5"
-                }`}
-              ></span>
-              <span
-                className={`my-0.5 block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
-                  isMenuOpen ? "opacity-0" : "opacity-100"
-                }`}
-              ></span>
-              <span
-                className={`block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out ${
-                  isMenuOpen ? "-translate-y-1 -rotate-45" : "translate-y-0.5"
-                }`}
-              ></span>
-            </button>
+          <SheetTrigger className="hamburger-menu ml-2 hidden flex-col items-center justify-center">
+            <span
+              className={cn(
+                "block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
+              )}
+            ></span>
+            <span
+              className={cn(
+                "my-0.5 block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
+              )}
+            ></span>
+            <span
+              className={cn(
+                "block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
+              )}
+            ></span>
           </SheetTrigger>
           <SheetContent className="w-[230px] bg-[var(--tertiary)]">
-            <SheetTitle></SheetTitle>
+            <SheetTitle />
             <div className="menu flex flex-col">
-              <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
+              <div className={cn("link", pathname === `/${lng}` && "active")}>
                 <a
                   className="hover:cursor-pointer"
                   onClick={() => {
@@ -394,7 +339,7 @@ const Nav = ({ lng, ChangeUrl }) => {
           </SheetContent>
         </Sheet>
 
-        {signed && (
+        {isUserSigned && (
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>

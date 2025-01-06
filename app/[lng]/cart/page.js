@@ -1,102 +1,21 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useTransition, useState } from "react";
+
 import "./page.css";
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+
+import { useContext, useState } from "react";
+
+import { UserAuthContext } from "@/contexts/AuthContext";
+import CartItem from "@/components/CartItem/CartItem";
 
 const page = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
+  const { ChangeUrl, items, setItems } = useContext(UserAuthContext);
+  const [totalPrice, setTotalPrice] = useState({});
 
-  const ChangeUrl = (url) => {
-    startTransition(() => {
-      router.push(url);
-    });
-  };
+  const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
 
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
-
-  const items = [
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-    {
-      image: "/images/products/image1.png",
-      name: "Work Table With Under Shelf",
-      dimension: "1000 x 700 x 850 + 100mm",
-      price: "2000",
-      quantity: "3",
-      id: "123456",
-    },
-  ];
-  const increaseProductNumber = () => {};
-
-  const decreaseProductNumber = () => {};
   return (
     <div>
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
-      {items.length == 0 ? (
+      {Object.keys(items).length == 0 ? (
         <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center">
           <div className="flex flex-col"></div>
           <div className="mx-5 grid grid-cols-1 place-items-center gap-5">
@@ -148,167 +67,16 @@ const page = () => {
                     </tr>
                   </tbody>
 
-                  {items.map((item, index) => (
-                    <tbody key={index}>
-                      <tr
-                        className={cn(
-                          "hidden border-neutral-200 md:table-row",
-                          index == items.length - 1 ? "" : "border-b",
-                        )}
-                      >
-                        <td className="p-[10px]">
-                          <i className="fa-solid fa-x text-[11px] text-neutral-500 transition-all duration-200 hover:cursor-pointer hover:text-emerald-700" />
-                        </td>
-                        <td className="p-[10px]">
-                          <Image
-                            width={80}
-                            height={0}
-                            alt={item.name}
-                            src={item.image}
-                            className="max-w-[80px] hover:cursor-pointer"
-                            onClick={() => {
-                              ChangeUrl(`/products/${item.id}`);
-                            }}
-                          />
-                        </td>
-                        <td className="p-[10px]">
-                          <div
-                            onClick={() => {
-                              ChangeUrl(`/products/${item.id}`);
-                            }}
-                            className="font-lato text-[17px] font-bold text-neutral-800 transition-colors duration-200 hover:cursor-pointer hover:text-emerald-600"
-                          >
-                            {item.name}
-                          </div>
-                        </td>
-                        <td className="p-[10px]">
-                          <span className="text-neutral-500">
-                            {" "}
-                            {item.dimension}
-                          </span>
-                        </td>
-                        <td className="p-[10px]">
-                          <span className="text-neutral-500">
-                            {" "}
-                            {`${item.price} QR`}
-                          </span>
-                        </td>
-                        <td className="p-[10px]">
-                          <div className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                decreaseProductNumber();
-                              }}
-                              className="rounded-l-md border-r-[1px] border-neutral-300 px-2.5 py-2 font-semibold transition-all duration-200 hover:bg-[var(--theme)] hover:text-white"
-                            >
-                              -
-                            </button>
-                            <span className="px-1 font-lato font-semibold">
-                              {item.quantity}
-                            </span>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                increaseProductNumber();
-                              }}
-                              className="rounded-r-md border-l-[1px] border-neutral-300 px-2 py-2 font-semibold transition-all duration-200 hover:bg-[var(--theme)] hover:text-white"
-                            >
-                              +
-                            </button>
-                          </div>
-                        </td>
-                        <td className="p-[10px]">
-                          <span className="text-lg font-bold text-[var(--theme2)]">
-                            {" "}
-                            {`${item.price * item.quantity} QR`}
-                          </span>
-                        </td>
-                      </tr>
-
-                      <tr className="contents md:hidden">
-                        <td colSpan={7}>
-                          <div className="flex w-full flex-row border-b border-neutral-200 py-4 min-[420px]:gap-4 sm:gap-8">
-                            <div>
-                              <Image
-                                width={100}
-                                height={0}
-                                alt={item.name}
-                                src={item.image}
-                                className="h-[110px] w-[125px] hover:cursor-pointer"
-                                onClick={() => {
-                                  ChangeUrl(`/products/${item.id}`);
-                                }}
-                              />
-                            </div>
-                            <div className="flex w-full flex-col">
-                              <div className="flex w-full flex-row justify-between pb-2">
-                                <div
-                                  className="text-lg font-bold text-neutral-800"
-                                  onClick={() => {
-                                    ChangeUrl(`/products/${item.id}`);
-                                  }}
-                                >
-                                  {item.name}
-                                </div>
-                                <i className="fa-solid fa-x self-center text-[12px] text-neutral-500 transition-all duration-200 hover:cursor-pointer hover:text-emerald-700" />
-                              </div>
-                              <div className="flex w-full flex-row justify-between gap-1 py-2 min-[400px]:gap-0">
-                                <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                                  Dimension
-                                </div>
-                                <div className="text-end font-medium text-neutral-500">
-                                  {item.dimension}
-                                </div>
-                              </div>
-                              <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
-                              <div className="flex w-full flex-row justify-between py-2">
-                                <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                                  Price
-                                </div>
-                                <div className="font-medium text-[var(--theme2)]">{`${item.price} QR`}</div>
-                              </div>
-                              <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
-                              <div className="flex w-full flex-row justify-between py-2">
-                                <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                                  Quantity
-                                </div>
-                                <div className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300">
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      decreaseProductNumber();
-                                    }}
-                                    className="rounded-l-md border-r-[1px] border-neutral-300 px-2.5 py-1 font-semibold transition-all duration-200 hover:bg-[var(--theme)] hover:text-white"
-                                  >
-                                    -
-                                  </button>
-                                  <span className="px-1 font-lato font-semibold">
-                                    {item.quantity}
-                                  </span>
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      increaseProductNumber();
-                                    }}
-                                    className="rounded-r-md border-l-[1px] border-neutral-300 px-2 py-1 font-semibold transition-all duration-200 hover:bg-[var(--theme)] hover:text-white"
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                              </div>
-                              <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
-                              <div className="flex w-full flex-row justify-between py-2">
-                                <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                                  Subtotal
-                                </div>
-                                <div className="font-medium text-[var(--theme2)]">{`${item.price * item.quantity} QR`}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
+                  {Object.keys(items).map((productVariantID, index) => (
+                    <CartItem
+                      key={index}
+                      productVariantID={productVariantID}
+                      quantity={items[productVariantID]}
+                      setTotalPrice={setTotalPrice}
+                      index={index}
+                      items={items}
+                      setItems={setItems}
+                    />
                   ))}
                 </table>
               </div>
@@ -322,7 +90,9 @@ const page = () => {
                     <span className="font-lato text-lg font-semibold text-neutral-800">
                       Subtotal
                     </span>
-                    <span className="text-lg text-neutral-500">145000 QR</span>
+                    <span className="text-lg text-neutral-500">
+                      {sumValues(totalPrice)} QR
+                    </span>
                   </div>
                   <div className="border-mask h-[1px] w-full bg-neutral-300"></div>
                   <div className="flex flex-row items-center justify-between gap-5 px-2 py-4">
@@ -331,29 +101,12 @@ const page = () => {
                     </span>
                     <div className="flex flex-col gap-4 text-right text-neutral-600">
                       <div>
-                        <label
-                          htmlFor="weight"
-                          className="radio-wrapper-8 hover:cursor-pointer"
-                        >
-                          <input
-                            type="radio"
-                            id="weight"
-                            name="shipping"
-                            defaultChecked
-                            className="relative left-[2px] top-2 float-end accent-emerald-700 hover:cursor-pointer"
-                          />
-                          Shipping cost depends on weight:{" "}
-                          <font className="font-bold text-[var(--theme2)]">
-                            750 QR
-                          </font>
-                        </label>
-                      </div>
-                      <div>
                         <label htmlFor="hq" className="hover:cursor-pointer">
                           <input
                             type="radio"
                             id="hq"
                             name="shipping"
+                            defaultChecked
                             className="relative left-[2px] top-2 float-end accent-emerald-700 hover:cursor-pointer"
                           />
                           Receipt from the company's headquarters (QATAR){" "}
@@ -378,6 +131,11 @@ const page = () => {
                           ) contact customer service after ordering for shipping
                           cost.
                         </label>
+                        {sumValues(totalPrice) >= 10000 && (
+                          <div className="font-lato text-sm text-neutral-400">
+                            (YOU HAVE FREE DELIVERY!!!)
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -389,12 +147,7 @@ const page = () => {
                     </span>
                     <div className="flex flex-col justify-between">
                       <span className="font-lato text-2xl font-bold text-[var(--theme2)]">
-                        146750 QR
-                      </span>
-                      <span className="font-lato text-sm text-neutral-400">
-                        (includes{" "}
-                        <span className="text-[var(--theme2)]">1000 QR</span>{" "}
-                        Tax)
+                        {sumValues(totalPrice)} QR
                       </span>
                     </div>
                   </div>

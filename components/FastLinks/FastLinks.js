@@ -1,10 +1,9 @@
-"use client";
-
 import "./FastLinks.css";
 
 import { useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
 
 const FastLinks = () => {
   const Go_Top = useRef(null);
@@ -34,19 +33,19 @@ const FastLinks = () => {
       <div
         onClick={() => window.open("https://wa.me/97477480070")}
         className={cn(
-          " text-5xl z-10 fixed left-5 bottom-5  hover:cursor-pointer"
+          "fixed bottom-5 left-5 z-10 text-5xl hover:cursor-pointer",
         )}
       >
         <Image
           src={"/images/icons/socials/whatsapp.png"}
           height={50}
           width={50}
-          className="hover:scale-110 hover:opacity-100 transition-all duration-500 opacity-80"
+          className="opacity-80 transition-all duration-500 hover:scale-110 hover:opacity-100"
           alt="whatsapp"
         />
       </div>
       <div
-        className="gotop right-5 bottom-5 z-10"
+        className="gotop bottom-5 right-5 z-10"
         ref={Go_Top}
         onClick={() => {
           handleScroll();

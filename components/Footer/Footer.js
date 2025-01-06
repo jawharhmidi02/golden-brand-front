@@ -1,32 +1,15 @@
-"use client";
-
-import { useEffect, useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
 import "./Footer.css";
 
+import { useContext } from "react";
 import Image from "next/image";
 
+import { UserAuthContext } from "@/contexts/AuthContext";
+
 const Footer = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
+  const { ChangeUrl } = useContext(UserAuthContext);
 
-  const ChangeUrl = (url, options = {}) => {
-    startTransition(() => {
-      router.push(url, options);
-    });
-  };
-
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
   return (
     <div className="mt-[100px]">
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div className="services flex flex-wrap justify-center gap-4 p-2">
         <div className="service flex min-w-full flex-1 flex-row gap-2 p-1 sm:min-w-[320px] lg:min-w-0">
           <div className="image">

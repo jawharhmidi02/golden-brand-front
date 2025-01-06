@@ -2,36 +2,18 @@
 
 import "./TopHeader.css";
 
-import { useEffect, useTransition, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 import Image from "next/image";
 import ShowLocation from "../showLocation/ShowLocation";
 import Nav from "@/components/nav/Nav";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const TopHeader = ({ lng }) => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
+const TopHeader = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
 
-  const ChangeUrl = (url, options = {}) => {
-    console.log(url);
-
-    startTransition(() => {
-      router.push(url, options);
-    });
-  };
-
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
   return (
     <>
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div className="top-header">
         <div className="left">
           <div
@@ -52,11 +34,7 @@ const TopHeader = ({ lng }) => {
             <i className="fa-regular fa-envelope"></i>
             <abbr title="E-mail">sales@goldenbrandqa.com</abbr>
           </div>
-          <ShowLocation
-            ChangeUrl={(url, options = {}) => {
-              ChangeUrl(url, options);
-            }}
-          />
+          <ShowLocation />
         </div>
 
         <div className="right">
@@ -117,12 +95,7 @@ const TopHeader = ({ lng }) => {
           </div>
         </div>
       </div>
-      <Nav
-        lng={lng}
-        ChangeUrl={(url, options = {}) => {
-          ChangeUrl(url, options);
-        }}
-      />
+      <Nav />
     </>
   );
 };

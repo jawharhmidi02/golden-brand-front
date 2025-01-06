@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { Skeleton } from "../ui/skeleton";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const SkeletonProductHeader = ({ ChangeUrl }) => {
+const SkeletonProductHeader = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   return (
     <div className="flex flex-row gap-2 text-center">
       <div

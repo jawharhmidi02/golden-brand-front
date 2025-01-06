@@ -1,74 +1,157 @@
 "use client";
 
+import { useRef, useState, useContext } from "react";
+import Cookies from "js-cookie";
+
+import { toast } from "@/hooks/use-toast";
 import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useRouter } from "next/navigation";
-import { useEffect, useTransition, useState } from "react";
+  cn,
+  validateEmail,
+  validateNumberInput,
+  formattedDate,
+} from "@/lib/utils";
+import { UserAuthContext } from "@/contexts/AuthContext";
+import CheckoutCartItem from "@/components/CartItem/CheckoutCartItem";
 
 const page = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
+  const { items, ChangeUrl, isUserSigned, userData, updateCart } =
+    useContext(UserAuthContext);
+  const firstNameRef = useRef(null);
+  const lastNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
+  const addressRef = useRef(null);
+  const [totalPrice, setTotalPrice] = useState({});
+  const [deliveryPrice, setDeliveryPrice] = useState(0);
+  const [type, setType] = useState("not delivery");
+  const [loadingOrder, setLoadingOrder] = useState(false);
 
-  const ChangeUrl = (url) => {
-    startTransition(() => {
-      router.push(url);
+  const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
+
+  const handleCheckout = async () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+
+    if (!firstNameRef.current.value.trim()) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال الاسم الأول",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (!lastNameRef.current.value.trim()) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال الاسم الأخير",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (!phoneRef.current.value.trim()) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال رقم الهاتف",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (
+      !emailRef.current.value.trim() ||
+      !validateEmail(emailRef.current.value.trim())
+    ) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال البريد الإلكتروني",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (!addressRef.current.value.trim()) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إدخال العنوان",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (sumValues(cart) < 1) {
+      toast({
+        title: "خطأ",
+        description: "الرجاء إضافة منتجات إلى السلة",
+        variant: "destructive",
+      });
+      return;
+    }
+    // please wait toast
+    toast({
+      title: "الرجاء الانتظار",
+      description: "جارٍ إرسال الطلب",
     });
+
+    const order = {
+      first_name: firstNameRef.current.value.trim(),
+      last_name: lastNameRef.current.value.trim(),
+      email: emailRef.current.value.trim(),
+      phone: phoneRef.current.value.trim(),
+      address: addressRef.current.value.trim(),
+      deliveryPrice,
+      cart: cart,
+      type,
+      created_At: new Date(),
+    };
+
+    try {
+      setLoadingOrder(true);
+      var access_token = null;
+      if (Cookies.get("access_token")) {
+        access_token = Cookies.get("access_token");
+      }
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+        {
+          method: "POST",
+          headers: {
+            access_token,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(order),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.data === null) {
+        throw new Error(data.message);
+      }
+      setLoadingOrder(false);
+
+      localStorage.setItem("cart", "{}");
+      updateCart();
+
+      toast({
+        title: "تم إتمام الطلب",
+        description: "شكراً لاستخدامك خدماتنا",
+        variant: "success",
+        duration: 10000,
+      });
+
+      ChangeUrl(
+        `/checkout/success?productId=${data.data.id}&productDate=${formattedDate(data.data.created_At)}`,
+      );
+    } catch (error) {
+      setLoadingOrder(false);
+      console.error(error);
+      toast({
+        title: "خطأ",
+        description: "حدث خطأ أثناء إرسال الطلب",
+        variant: "destructive",
+      });
+    }
   };
 
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
-
-  const cities = [
-    { value: "1", text: "City 1" },
-    { value: "2", text: "City 2" },
-    { value: "3", text: "City 3" },
-    { value: "4", text: "City 4" },
-    { value: "5", text: "City 5" },
-    { value: "6", text: "City 6" },
-    { value: "7", text: "City 7" },
-    { value: "8", text: "City 8" },
-    { value: "9", text: "City 9" },
-    { value: "10", text: "City 10" },
-    { value: "11", text: "City 11" },
-  ];
-  const items = [
-    {
-      name: "Work Table Under Shelf",
-      quantity: "3",
-      price: 2000,
-    },
-    {
-      name: "Mobile Table With Two Shelf",
-      quantity: "5",
-      price: 1500,
-    },
-    {
-      name: "Single Bowl Sink Table",
-      quantity: "2",
-      price: 1800,
-    },
-    {
-      name: "Base Cabinet With 3 Layer Drawer",
-      quantity: "1",
-      price: 1400,
-    },
-  ];
   return (
     <div className="mx-auto mt-6 flex w-full flex-col items-center justify-center">
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div className="grid w-full max-w-[1300px] grid-cols-1 gap-8 px-3 xsm:px-6 sm:px-10 lg:grid-cols-2">
         <div className="flex flex-col gap-5 pt-6">
           <div className="font-lato text-2xl font-bold text-neutral-800">
@@ -82,6 +165,8 @@ const page = () => {
               <input
                 placeholder="First Name"
                 type="text"
+                ref={firstNameRef}
+                defaultValue={userData?.full_name?.split(" ")[0]}
                 id="first-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -94,6 +179,12 @@ const page = () => {
               <input
                 placeholder="Last Name"
                 type="text"
+                ref={lastNameRef}
+                defaultValue={
+                  userData?.full_name?.split(" ").length > 1
+                    ? userData?.full_name?.split(" ")[1]
+                    : ""
+                }
                 id="last-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -124,30 +215,7 @@ const page = () => {
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
             />
           </div>
-          {/* <div className="grid grid-cols-2">
-            <div className="flex flex-col gap-1">
-              <label htmlFor="country" className="font-lato text-lg">
-                Country <font className="text-rose-500">*</font>
-              </label>
-              <span
-                id="country"
-                className="font-lato text-xl font-semibold text-[var(--theme2)]"
-              >
-                Qatar
-              </span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="state" className="font-lato text-lg">
-                State <font className="text-rose-500">*</font>
-              </label>
-              <span
-                id="state"
-                className="font-lato text-xl font-semibold text-[var(--theme2)]"
-              >
-                Doha
-              </span>
-            </div>
-          </div> */}
+
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <div className="flex flex-col gap-1">
               <label htmlFor="country" className="font-lato text-lg">
@@ -160,8 +228,8 @@ const page = () => {
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
                 defaultValue={"Qatar"}
-                readOnly={true}
-                disabled={true}
+                readOnly
+                disabled
               />
             </div>
             <div className="flex flex-col gap-1">
@@ -175,34 +243,10 @@ const page = () => {
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
                 defaultValue={"Doha"}
-                readOnly={true}
-                disabled={true}
+                readOnly
+                disabled
               />
             </div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <label htmlFor="city" className="font-lato text-lg">
-              City <font className="text-rose-500">*</font>
-            </label>
-            <Select>
-              <SelectTrigger className="border-neutral-300 bg-transparent focus:ring-[var(--theme2)]">
-                <SelectValue placeholder="Select a city.." />
-              </SelectTrigger>
-              <SelectContent className="bg-[var(--primary)]">
-                <SelectGroup>
-                  <SelectLabel>Doha</SelectLabel>
-                  {cities.map((city, index) => (
-                    <SelectItem
-                      className="transition-colors duration-150 hover:cursor-pointer focus:bg-zinc-200"
-                      key={index}
-                      value={city.value}
-                    >
-                      {city.text}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
           </div>
 
           <div className="flex flex-col gap-1">
@@ -211,7 +255,9 @@ const page = () => {
             </label>
             <input
               type="text"
+              ref={addressRef}
               id="address"
+              defaultValue={userData?.address}
               placeholder="Street / District Address"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -224,7 +270,10 @@ const page = () => {
             </label>
             <input
               type="tel"
+              ref={phoneRef}
+              onInput={() => validateNumberInput(phoneRef)}
               id="phone"
+              defaultValue={userData?.phone}
               placeholder="+974 123 456 78"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -237,7 +286,9 @@ const page = () => {
             </label>
             <input
               type="email"
+              ref={emailRef}
               id="email"
+              defaultValue={userData?.email}
               placeholder="Example@domain.com"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -260,24 +311,20 @@ const page = () => {
                 </span>
               </div>
               <div className="h-[2px] w-full bg-neutral-200"></div>
-              {items.map((item, index) => (
-                <div key={index}>
-                  <div className="flex flex-row justify-between gap-2 px-2 py-2.5">
-                    <span className="font-lato text-neutral-500">
-                      {item.name}{" "}
-                      <font className="font-bold">{`x ${item.quantity}`}</font>
-                    </span>
-                    <span className="min-w-[90px] text-end font-medium text-neutral-500">{`${item.price * item.quantity} QR`}</span>
-                  </div>
-                  <div className="border-mask h-[1px] w-full bg-zinc-200 px-2"></div>
-                </div>
+              {Object.keys(items).map((productVariantID, index) => (
+                <CheckoutCartItem
+                  key={productVariantID}
+                  productVariantID={productVariantID}
+                  quantity={items[productVariantID]}
+                  setTotalPrice={setTotalPrice}
+                />
               ))}
               <div className="flex flex-row justify-between px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
                   Subtotal
                 </span>
                 <span className="text-lg font-medium text-[var(--theme2)]">
-                  145000 QR
+                  {sumValues(totalPrice)} QR
                 </span>
               </div>
               <div className="h-[2px] w-full bg-neutral-200"></div>
@@ -287,29 +334,18 @@ const page = () => {
                 </span>
                 <div className="flex flex-col gap-4 text-right text-neutral-600">
                   <div>
-                    <label
-                      htmlFor="weight"
-                      className="radio-wrapper-8 hover:cursor-pointer"
-                    >
-                      <input
-                        type="radio"
-                        id="weight"
-                        name="shipping"
-                        defaultChecked
-                        className="relative left-[2px] top-[6px] float-end accent-emerald-700 hover:cursor-pointer"
-                      />
-                      Shipping cost depends on weight:{" "}
-                      <font className="font-bold text-[var(--theme2)]">
-                        750 QR
-                      </font>
-                    </label>
-                  </div>
-                  <div>
                     <label htmlFor="hq" className="hover:cursor-pointer">
                       <input
                         type="radio"
                         id="hq"
                         name="shipping"
+                        defaultChecked
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setDeliveryPrice(0);
+                            setType("not delivery");
+                          }
+                        }}
                         className="relative left-[2px] top-[6px] float-end accent-emerald-700 hover:cursor-pointer"
                       />
                       Receipt from the company's headquarters (QATAR){" "}
@@ -321,6 +357,16 @@ const page = () => {
                         type="radio"
                         id="truck"
                         name="shipping"
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            if (sumValues(totalPrice) >= 10000) {
+                              setDeliveryPrice(0);
+                            } else {
+                              setDeliveryPrice(200);
+                            }
+                            setType("delivery");
+                          }
+                        }}
                         className="relative left-[2px] top-[6px] float-end accent-emerald-700 hover:cursor-pointer"
                       />
                       A shipping truck for several products (from{" "}
@@ -334,6 +380,11 @@ const page = () => {
                       ) contact customer service after ordering for shipping
                       cost.
                     </label>
+                    {sumValues(totalPrice) >= 10000 && (
+                      <div className="font-lato text-sm text-neutral-400">
+                        (YOU HAVE FREE DELIVERY!!!)
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -355,12 +406,12 @@ const page = () => {
                 </span>
                 <div className="flex flex-col justify-between">
                   <span className="font-lato text-2xl font-bold text-[var(--theme2)]">
-                    146750 QR
+                    {sumValues(totalPrice) + deliveryPrice} QR
                   </span>
-                  <span className="font-lato text-sm text-neutral-400">
+                  {/* <span className="font-lato text-sm text-neutral-400">
                     (includes{" "}
                     <span className="text-[var(--theme2)]">1000 QR</span> Tax)
-                  </span>
+                  </span> */}
                 </div>
               </div>
             </div>
@@ -380,11 +431,26 @@ const page = () => {
             </font>
             .
           </div>
+
           <button
-            className="bg-[var(--theme2)] px-2 py-3 text-lg font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-[var(--theme)]"
+            className={cn(
+              "bg-[var(--theme2)] px-2 py-3 text-lg font-semibold text-white transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)]",
+              loadingOrder && "opacity-80 hover:cursor-not-allowed",
+            )}
             type="button"
+            disabled={loadingOrder}
+            onClick={() => {
+              if (loadingOrder) return;
+              handleCheckout();
+            }}
           >
-            PLACE ORDER
+            {loadingOrder ? (
+              <div className="flex items-center justify-center">
+                <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
+              </div>
+            ) : (
+              "PLACE ORDER"
+            )}
           </button>
         </div>
       </div>
