@@ -49,6 +49,9 @@ export default function ClientLayout({ children, lng }) {
       setUserData(data.data);
       setIsUserSigned(true);
       setLoadingUser(false);
+      console.log("data");
+      console.log(data);
+
       localStorage.setItem("cart", JSON.stringify(data.data.cart || {}));
       setItems(data.data.cart || {});
     } catch (error) {
@@ -154,6 +157,7 @@ export default function ClientLayout({ children, lng }) {
         setUserData,
         ChangeUrl,
         setLoadingPage,
+        checkUser,
         items,
         setItems,
         updateCart,

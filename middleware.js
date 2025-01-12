@@ -1,53 +1,47 @@
 import { NextResponse } from "next/server";
-import acceptLanguage from "accept-language";
-
-const languages = ["en", "ar"];
-
-acceptLanguage.languages(languages);
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)",
+    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest|/images/|_next/).*)",
   ],
 };
 
 export function middleware(req) {
-  const { pathname } = req.nextUrl;
+  const { pathname, search } = req.nextUrl;
   const cookieName = "user-lang";
   const defaultLang = "en";
   const supportedLangs = ["ar", "en"];
 
-  if (
-    pathname.startsWith("/_next/") ||
-    pathname.startsWith("/images/") ||
-    pathname.startsWith("/admin/")
-  ) {
+  if (pathname.startsWith("/admin") || pathname.startsWith("/images")) {
     return NextResponse.next();
   }
 
-  let lng = "";
-
-  const langInPath = supportedLangs.find((lang) =>
-    pathname.startsWith(`/${lang}`),
+  const langInPath = supportedLangs.find(
+    (lang) => pathname.startsWith(`/${lang}/`) || pathname === `/${lang}`,
   );
 
   if (langInPath) {
-    lng = langInPath;
+    const response = NextResponse.next();
+
+    if (req.cookies.get(cookieName)?.value !== langInPath) {
+      response.cookies.set(cookieName, langInPath);
+    }
+    return response;
   }
 
-  if (!lng && req.cookies.has(cookieName)) {
-    lng = req.cookies.get(cookieName).value;
+  let lng = defaultLang;
+
+  if (req.cookies.has(cookieName)) {
+    const cookieLang = req.cookies.get(cookieName).value;
+    if (supportedLangs.includes(cookieLang)) {
+      lng = cookieLang;
+    }
   }
 
-  if (!lng) {
-    lng = defaultLang;
-  }
+  const newUrl = new URL(`/${lng}${pathname}${search}`, req.url);
 
-  if (!langInPath) {
-    return NextResponse.redirect(new URL(`/${lng}${pathname}`, req.url));
-  }
+  const response = NextResponse.redirect(newUrl);
 
-  const response = NextResponse.next();
   if (req.cookies.get(cookieName)?.value !== lng) {
     response.cookies.set(cookieName, lng);
   }

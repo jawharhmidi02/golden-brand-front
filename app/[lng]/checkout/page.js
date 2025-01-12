@@ -14,7 +14,7 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 import CheckoutCartItem from "@/components/CartItem/CheckoutCartItem";
 
 const page = () => {
-  const { items, ChangeUrl, isUserSigned, userData, updateCart } =
+  const { items, ChangeUrl, userData, updateCart, checkUser } =
     useContext(UserAuthContext);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -33,24 +33,24 @@ const page = () => {
 
     if (!firstNameRef.current.value.trim()) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إدخال الاسم الأول",
+        title: "Error",
+        description: "Please enter your first name",
         variant: "destructive",
       });
       return;
     }
     if (!lastNameRef.current.value.trim()) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إدخال الاسم الأخير",
+        title: "Error",
+        description: "Please enter your last name",
         variant: "destructive",
       });
       return;
     }
     if (!phoneRef.current.value.trim()) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إدخال رقم الهاتف",
+        title: "Error",
+        description: "Please enter your phone number",
         variant: "destructive",
       });
       return;
@@ -60,16 +60,16 @@ const page = () => {
       !validateEmail(emailRef.current.value.trim())
     ) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إدخال البريد الإلكتروني",
+        title: "Error",
+        description: "Please enter a valid email address",
         variant: "destructive",
       });
       return;
     }
     if (!addressRef.current.value.trim()) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إدخال العنوان",
+        title: "Error",
+        description: "Please enter your address",
         variant: "destructive",
       });
       return;
@@ -77,16 +77,16 @@ const page = () => {
 
     if (sumValues(cart) < 1) {
       toast({
-        title: "خطأ",
-        description: "الرجاء إضافة منتجات إلى السلة",
+        title: "Error",
+        description: "Please add products to the cart",
         variant: "destructive",
       });
       return;
     }
     // please wait toast
     toast({
-      title: "الرجاء الانتظار",
-      description: "جارٍ إرسال الطلب",
+      title: "Please wait",
+      description: "Submitting your order...",
     });
 
     const order = {
@@ -128,23 +128,24 @@ const page = () => {
 
       localStorage.setItem("cart", "{}");
       updateCart();
+      checkUser();
 
       toast({
-        title: "تم إتمام الطلب",
-        description: "شكراً لاستخدامك خدماتنا",
+        title: "Order Completed",
+        description: "Thank you for using our services!",
         variant: "success",
         duration: 10000,
       });
 
       ChangeUrl(
-        `/checkout/success?productId=${data.data.id}&productDate=${formattedDate(data.data.created_At)}`,
+        `/checkout/success?productId=${data.data.id}&productDate=${data.data.created_At}`,
       );
     } catch (error) {
       setLoadingOrder(false);
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ أثناء إرسال الطلب",
+        title: "Error",
+        description: "An error occurred while submitting the order",
         variant: "destructive",
       });
     }

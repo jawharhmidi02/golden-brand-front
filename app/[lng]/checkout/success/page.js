@@ -1,34 +1,19 @@
 "use client";
 
-import { useState, useTransition, useEffect, Suspense } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useContext } from "react";
+import { useSearchParams } from "next/navigation";
+import { UserAuthContext } from "@/contexts/AuthContext";
+import { formattedDate } from "@/lib/utils";
 
 const SuccessPage = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const searchParam = useSearchParams();
-  const router = useRouter();
-  const [loadingPage, setLoadingPage] = useState(false);
-  const [isPending, startTransition] = useTransition();
-
-  const ChangeUrl = (url) => {
-    startTransition(() => {
-      router.push(url);
-    });
-  };
-
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
 
   return (
     <div
-      dir="rtl"
+      dir="ltr"
       className="mt-24 flex min-h-[60dvh] flex-col items-center justify-center px-4"
     >
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]" />
-        </div>
-      )}
       <div className="w-full max-w-lg rounded-lg bg-white p-6 text-center shadow-lg">
         <div className="mb-4 flex items-center justify-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white">
@@ -50,21 +35,21 @@ const SuccessPage = () => {
         </div>
 
         <h1 className="mb-2 text-2xl font-bold text-green-600">
-          تمت العملية بنجاح!
+          Transaction Successful!
         </h1>
 
         <p className="mb-4 text-neutral-600">
-          شكراً لتسوقك معنا. تم استلام طلبك وسيتم التواصل معك قريباً لتأكيد
-          عملية الطلب.
+          Thank you for shopping with us. Your order has been received, and we
+          will contact you shortly to confirm it.
         </p>
 
-        <div className="mb-4 rounded-lg bg-neutral-100 p-4 text-right">
-          <p className="font-medium text-neutral-700">تفاصيل الطلب:</p>
+        <div className="mb-4 rounded-lg bg-neutral-100 p-4 text-left">
+          <p className="font-medium text-neutral-700">Order Details:</p>
           <p className="text-sm text-neutral-600">
-            رقم الطلب: {searchParam.get("productId")}
+            Order ID: {searchParam.get("productId")}
           </p>
           <p className="text-sm text-neutral-600">
-            تاريخ الطلب: {searchParam.get("productDate")}
+            Order Date: {formattedDate(searchParam.get("productDate"))}
           </p>
         </div>
 
@@ -74,7 +59,7 @@ const SuccessPage = () => {
           }}
           className="mt-4 w-full rounded-lg bg-[var(--theme)] px-4 py-2 text-lg font-semibold text-white transition-all hover:bg-[var(--theme3)]"
         >
-          العودة إلى الصفحة الرئيسية
+          Return to Homepage
         </button>
       </div>
     </div>
