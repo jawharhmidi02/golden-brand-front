@@ -84,7 +84,7 @@ const TopHeader = () => {
           >
             Contact Us
           </div>
-          <div className="language">
+          <div className="language" onClick={() => ChangeUrl("/ar")}>
             <abbr title="Change to Arabic">العربية</abbr>
             <Image
               src="/images/arabic-language.png"

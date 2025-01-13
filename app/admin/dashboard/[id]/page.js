@@ -43,8 +43,8 @@ const page = () => {
     if (isEditing) {
       if (selectedState === "") {
         toast({
-          title: "خطأ",
-          description: "يجب اختيار الحالة",
+          title: "Failed!",
+          description: "you need to pick a state!",
           variant: "destructive",
           duration: 2000,
         });
@@ -76,8 +76,8 @@ const page = () => {
         }
 
         toast({
-          title: "تم",
-          description: "تم حفظ البيانات بنجاح",
+          title: "Done",
+          description: "Data saved successfully!",
           variant: "success",
           duration: 2000,
         });
@@ -85,8 +85,8 @@ const page = () => {
       } catch (error) {
         console.error(error);
         toast({
-          title: "خطأ",
-          description: "حدث خطأ أثناء حفظ البيانات",
+          title: "Failed!",
+          description: "Something went wrong, please try again!",
           variant: "destructive",
           duration: 2000,
         });
@@ -102,8 +102,8 @@ const page = () => {
     try {
       setLoadingOrder(true);
       toast({
-        title: "جاري مسح البيانات",
-        description: "يرجى الانتظار...",
+        title: "Deleting data now",
+        description: "please wait...",
       });
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/admins/order/${id}`,
@@ -121,8 +121,8 @@ const page = () => {
         throw new Error(data.message);
       }
       toast({
-        title: "تم ",
-        description: "تم حذف الطلب بنجاح",
+        title: "Done ",
+        description: "Order deleted successfully",
         variant: "success",
         duration: 2000,
       });
@@ -131,8 +131,9 @@ const page = () => {
       console.error(error);
       setLoadingOrder(false);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ أثناء مسح البيانات",
+        title: "Failed!",
+        description:
+          "Someting went wrong when deleting order, please try again!",
         variant: "destructive",
         duration: 8000,
       });
@@ -164,8 +165,8 @@ const page = () => {
       console.error(error);
       setLoadingOrder(false);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ أثناء جلب البيانات",
+        title: "Failed!",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
     }

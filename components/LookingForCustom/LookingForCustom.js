@@ -1,7 +1,10 @@
+import { UserAuthContext } from "@/contexts/AuthContext";
 import Image from "next/image";
-import React from "react";
+import { useContext } from "react";
 
-const LookingForCustom = ({ ChangeUrl }) => {
+const LookingForCustom = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
+
   return (
     <div className="my-[70px] flex flex-col items-center justify-center gap-5 bg-white px-[20px] py-[50px] md:flex-row">
       <div>

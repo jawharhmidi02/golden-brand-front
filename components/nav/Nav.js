@@ -18,7 +18,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SideCartItem from "../CartItem/SideCartItem";
 import Cookies from "js-cookie";
@@ -26,8 +26,6 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 
 const Nav = () => {
   const pathname = usePathname();
-  const searchParams = useParams();
-  const lng = searchParams.lng;
   const {
     isUserSigned,
     loadingUser,
@@ -115,12 +113,7 @@ const Nav = () => {
         />
       </div>
       <div className="menu mx-auto">
-        <Menu
-          lng={lng}
-          ChangeUrl={(url) => {
-            ChangeUrl(url);
-          }}
-        />
+        <Menu />
       </div>
       <div className="right flex flex-row gap-3">
         <TooltipProvider>
@@ -262,7 +255,7 @@ const Nav = () => {
           <SheetContent className="w-[230px] bg-[var(--tertiary)]">
             <SheetTitle />
             <div className="menu flex flex-col">
-              <div className={cn("link", pathname === `/${lng}` && "active")}>
+              <div className={cn("link", pathname === `/en` && "active")}>
                 <a
                   className="hover:cursor-pointer"
                   onClick={() => {
@@ -274,7 +267,7 @@ const Nav = () => {
               </div>
               <div
                 className={`link ${
-                  pathname === `/${lng}/products` ? "active" : ""
+                  pathname === `/en/products` ? "active" : ""
                 }`}
               >
                 <a
@@ -288,7 +281,7 @@ const Nav = () => {
               </div>
               <div
                 className={`link ${
-                  pathname === `/${lng}/services` ? "active" : ""
+                  pathname === `/en/services` ? "active" : ""
                 }`}
               >
                 <a
@@ -301,9 +294,7 @@ const Nav = () => {
                 </a>
               </div>
               <div
-                className={`link ${
-                  pathname === `/${lng}/about` ? "active" : ""
-                }`}
+                className={`link ${pathname === `/en/about` ? "active" : ""}`}
               >
                 <a
                   className="hover:cursor-pointer"
@@ -315,9 +306,7 @@ const Nav = () => {
                 </a>
               </div>
               <div
-                className={`link ${
-                  pathname === `/${lng}/contact` ? "active" : ""
-                }`}
+                className={`link ${pathname === `/en/contact` ? "active" : ""}`}
               >
                 <a
                   className="hover:cursor-pointer"

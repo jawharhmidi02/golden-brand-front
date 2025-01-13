@@ -4,8 +4,11 @@ import { cn } from "@/lib/utils";
 import "./Menu.css";
 
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const Menu = ({ lng, ChangeUrl }) => {
+const Menu = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const pathname = usePathname();
 
   return (
@@ -15,7 +18,7 @@ const Menu = ({ lng, ChangeUrl }) => {
           "flex flex-row gap-5 font-montserrat text-[var(--fourth-color-primary)]",
         )}
       >
-        <div className={`link ${pathname === `/${lng}` ? "active" : ""}`}>
+        <div className={`link ${pathname === `/en` ? "active" : ""}`}>
           <a
             onClick={() => {
               ChangeUrl("/");
@@ -25,9 +28,7 @@ const Menu = ({ lng, ChangeUrl }) => {
             Home
           </a>
         </div>
-        <div
-          className={`link ${pathname === `/${lng}/products` ? "active" : ""}`}
-        >
+        <div className={`link ${pathname === `/en/products` ? "active" : ""}`}>
           <a
             onClick={() => {
               ChangeUrl("/products");
@@ -37,9 +38,7 @@ const Menu = ({ lng, ChangeUrl }) => {
             Products
           </a>
         </div>
-        <div
-          className={`link ${pathname === `/${lng}/services` ? "active" : ""}`}
-        >
+        <div className={`link ${pathname === `/en/services` ? "active" : ""}`}>
           <a
             onClick={() => {
               ChangeUrl("/services");
@@ -49,7 +48,7 @@ const Menu = ({ lng, ChangeUrl }) => {
             Our Services
           </a>
         </div>
-        <div className={`link ${pathname === `/${lng}/about` ? "active" : ""}`}>
+        <div className={`link ${pathname === `/en/about` ? "active" : ""}`}>
           <a
             onClick={() => {
               ChangeUrl("/about");
@@ -59,9 +58,7 @@ const Menu = ({ lng, ChangeUrl }) => {
             About
           </a>
         </div>
-        <div
-          className={`link ${pathname === `/${lng}/contact` ? "active" : ""}`}
-        >
+        <div className={`link ${pathname === `/en/contact` ? "active" : ""}`}>
           <a
             onClick={() => {
               ChangeUrl("/contact");
@@ -72,16 +69,6 @@ const Menu = ({ lng, ChangeUrl }) => {
           </a>
         </div>
       </div>
-
-      {/* <div className="lang">
-        {lng !== "en" ? (
-            <abbr title="Change to English">English</abbr>
-          </a>
-        ) : (
-            <abbr title="Change to Arabic">العربية</abbr>
-          </a>
-        )}
-      </div> */}
     </div>
   );
 };

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SelectInterface from "../SelectInterface/SelectInterface";
 import CategorieItem from "../CategorieItem/CategorieItem";
 import MultiRangeSlider from "../multiRangeSlider/multiRangeSlider";
 import { useSearchParams } from "next/navigation";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const FilterInterface = ({ ChangeUrl }) => {
+const FilterInterface = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const searchParams = useSearchParams();
 
   const resetFilters = () => {
@@ -26,7 +28,7 @@ const FilterInterface = ({ ChangeUrl }) => {
   categories.forEach((val) => {
     cats[val] = false;
   });
-  
+
   let selectedCategories = searchParams.get("selectedCategories")
     ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
     : { ...cats };
@@ -45,6 +47,7 @@ const FilterInterface = ({ ChangeUrl }) => {
     minPrice = MIN;
     maxPrice = MAX;
   };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-3">

@@ -3,9 +3,10 @@ import "./Hero.css";
 
 // Components
 import Image from "next/image";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
 const OPTIONS = { loop: true };
 
@@ -60,7 +61,8 @@ const EmblaCarousel = ({ options }) => {
   );
 };
 
-const Hero = ({ ChangeUrl }) => {
+const Hero = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   return (
     <div className="hero">
       <div className="text">

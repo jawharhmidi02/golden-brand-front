@@ -14,7 +14,7 @@ import Footer from "@/components/Footer/Footer";
 import FastLinks from "@/components/FastLinks/FastLinks";
 import TopHeader from "@/components/topHeader/TopHeader";
 
-export default function ClientLayout({ children, lng }) {
+export default function ClientLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
   const [isUserSigned, setIsUserSigned] = useState(false);
@@ -169,9 +169,9 @@ export default function ClientLayout({ children, lng }) {
             <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]" />
           </div>
         )}
-        <TopHeader lng={lng} />
+        <TopHeader />
         <>{children}</>
-        <Footer lng={lng} />
+        <Footer />
         <FastLinks />
         {/* {isUserSigned && <NewOrder />} */}
       </div>

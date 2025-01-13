@@ -35,8 +35,8 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed!",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
     }
@@ -45,6 +45,7 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
   useEffect(() => {
     fetchProductVariant();
   }, []);
+
   return (
     <div>
       <div className="flex flex-row justify-between gap-2 px-2 py-2.5">

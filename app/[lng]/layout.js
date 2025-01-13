@@ -24,9 +24,9 @@ export async function generateStaticParams() {
   return languages.map((lng) => ({ lng }));
 }
 
-export default function RootLayout({ children, params: { lng } }) {
+export default function RootLayout({ children }) {
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang={"en"} dir={dir("en")}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -41,7 +41,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-[var(--primary)]">
-        <ClientLayout lng={lng}>{children}</ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
         <Toaster />
         <Analytics />
       </body>

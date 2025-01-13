@@ -6,6 +6,7 @@ import "./page.css";
 
 import React, {
   Suspense,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -38,24 +39,10 @@ import MultiRangeSlider from "@/components/multiRangeSlider/multiRangeSlider";
 import { useSearchParams } from "next/navigation";
 import { toast } from "@/hooks/use-toast";
 import SkeletonCategorieItem from "@/components/CategorieItem/SkeletonCategorieItem";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
 const ProductPage = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
-
-  const ChangeUrl = (url, options = {}) => {
-    startTransition(() => {
-      router.push(url, { ...options });
-    });
-  };
-
-  useEffect(() => {
-    if (!isPending) {
-      fetchProducts();
-    }
-    setLoadingPage(isPending);
-  }, [isPending]);
+  const { ChangeUrl } = useContext(UserAuthContext);
 
   function OpenFilter() {
     return (
@@ -289,10 +276,6 @@ const ProductPage = () => {
   }, [CurrentPage]);
 
   useEffect(() => {
-    fetchProducts();
-  }, [router]);
-
-  useEffect(() => {
     createPageNumbers();
   }, [CurrentPage, totalPages]);
 
@@ -343,11 +326,6 @@ const ProductPage = () => {
 
   return (
     <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div className="mx-5 flex flex-1 flex-row justify-center gap-10 xsm:mx-8 sm:mx-10">
         <div className="hidden lg:flex">
           <div className="flex flex-col gap-4">
@@ -445,7 +423,7 @@ const ProductPage = () => {
             ></input>
             <button
               onClick={() => {
-                if (loadingProducts || loadingPage || loadingCategories) return;
+                if (loadingProducts || loadingCategories) return;
                 fetchProducts();
               }}
               className="rounded-lg bg-[var(--theme)] px-2.5 py-1 font-raleway text-lg text-neutral-100 transition-all duration-300 hover:scale-95"
@@ -463,13 +441,7 @@ const ProductPage = () => {
               ))
             ) : products.length !== 0 ? (
               products?.map((product, index) => (
-                <Card
-                  key={index}
-                  product={product}
-                  ChangeUrl={(url) => {
-                    ChangeUrl(url);
-                  }}
-                />
+                <Card key={index} product={product} />
               ))
             ) : (
               <div className="col-span-full mt-[40px] flex w-full flex-col items-center justify-center gap-4">

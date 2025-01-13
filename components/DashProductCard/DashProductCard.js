@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -8,15 +8,16 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { AdminAuthContext } from "@/contexts/AuthContext";
 
 const DashProductCard = ({
   product,
-  ChangeUrl,
   isDelete = false,
   deleteProduct = null,
   isAdd = false,
   addProduct = null,
 }) => {
+  const { ChangeUrl } = useContext(AdminAuthContext);
   const [loadingProduct, setLoadingProduct] = useState(false);
   const confirmDeleteRef = useRef(null);
 
@@ -96,7 +97,9 @@ const DashProductCard = ({
 
       <div className="flex flex-1 flex-col p-4">
         <h2 className="text-lg font-bold text-neutral-200">{product.name}</h2>
-        <p className="mt-2 text-sm text-neutral-400">{product.description[0]}</p>
+        <p className="mt-2 text-sm text-neutral-400">
+          {product.description[0]}
+        </p>
         <p className="mt-2 text-sm font-semibold text-white">
           {product.productsVariants.reduce(
             (acc, productVariant) => acc + productVariant.orderProducts.length,

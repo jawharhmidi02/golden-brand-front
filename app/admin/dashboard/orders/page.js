@@ -73,8 +73,8 @@ const page = () => {
       console.error(error);
       setLoadingOrders(false);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ أثناء جلب البيانات",
+        title: "Failed",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
     }

@@ -10,10 +10,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const ProductsByCategory = ({ lng, ChangeUrl }) => {
+const ProductsByCategory = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [loadingProducts, setloadingProducts] = useState(false);
 
@@ -334,7 +336,7 @@ const ProductsByCategory = ({ lng, ChangeUrl }) => {
       setloadingProducts(false);
     }, 2000);
   }, [selectedCategory]);
-  //
+
   return (
     <div className="ProductsByCategory m-auto mt-[70px] flex max-w-screen-xl flex-col gap-6 overflow-hidden lg:flex-row lg:gap-0">
       <div className="flex-shrink-0 lg:w-[30%] lg:pl-6">
@@ -395,7 +397,7 @@ const ProductsByCategory = ({ lng, ChangeUrl }) => {
                         var cats = {};
                         cats[item.category] = true;
                         ChangeUrl(
-                          `/${lng}/products?selectedCategories=${encodeURIComponent(
+                          `/en/products?selectedCategories=${encodeURIComponent(
                             JSON.stringify(cats),
                           )}`,
                         );
@@ -414,7 +416,7 @@ const ProductsByCategory = ({ lng, ChangeUrl }) => {
                     <button
                       className="open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
                       onClick={() => {
-                        ChangeUrl(`/${lng}/products/${item.id}`);
+                        ChangeUrl(`/en/products/${item.id}`);
                       }}
                     ></button>
                   </div>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const Card = ({ product, ChangeUrl }) => {
+const Card = ({ product }) => {
+  const { ChangeUrl } = useContext(UserAuthContext);
+
   return (
     <div
       onClick={() => {

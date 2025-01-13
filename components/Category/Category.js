@@ -52,8 +52,8 @@ const Category = ({
     if (!categoryRef.current.value.trim()) {
       toast({
         variant: "destructive",
-        title: "خطأ",
-        description: "الرجاء إدخال إسم الماركة ",
+        title: "Failed!",
+        description: "Choose a category please!",
         duration: 2000,
       });
       return;
@@ -62,8 +62,8 @@ const Category = ({
     if (!imageRef.current.src.trim()) {
       toast({
         variant: "destructive",
-        title: "خطأ",
-        description: "الرجاء إختيار صورة ",
+        title: "Failed!",
+        description: "Upload a photo please!",
         duration: 2000,
       });
       return;
@@ -94,8 +94,8 @@ const Category = ({
         setLoadingCategory(false);
         if (data.message === "Category already exists") {
           toast({
-            title: "خطأ",
-            description: "فئة موجودة بالفعل",
+            title: "Failed!",
+            description: "Category Already exist!",
             variant: "destructive",
             duration: 2500,
           });
@@ -108,8 +108,8 @@ const Category = ({
       }
 
       toast({
-        title: "تم",
-        description: "تم تعديل الفئة بنجاح",
+        title: "Done!",
+        description: "Category updated successfully",
         variant: "success",
       });
 
@@ -118,8 +118,8 @@ const Category = ({
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed!",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
       setLoadingCategory(false);
@@ -145,8 +145,8 @@ const Category = ({
         throw new Error(data.message);
       }
       toast({
-        title: "تم",
-        description: "تم حذف الفئة بنجاح",
+        title: "Done!",
+        description: "Category deleted successfully.",
         variant: "success",
         duration: 3000,
       });
@@ -155,8 +155,8 @@ const Category = ({
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed!",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
       set;
@@ -183,11 +183,11 @@ const Category = ({
               <DialogTitle />
               <div className="flex w-full flex-col items-center justify-center gap-4">
                 <div className="w-3/4 text-center text-3xl font-bold text-red-500">
-                  تحذير
+                  Warning
                 </div>
                 <div className="text-medium w-3/4 text-center text-xl text-white">
-                  حذف هذه الماركة سينجم عنه حذف كل المنتوجات المرتبطة بهذه
-                  الماركة
+                  Deleting this brand will result in deleting all associated
+                  products.
                 </div>
                 <button
                   onClick={() => handleDelete()}
@@ -205,7 +205,7 @@ const Category = ({
                       <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
                     </div>
                   ) : (
-                    "أنا متأكد"
+                    "I am sure"
                   )}
                 </button>
               </div>
@@ -229,7 +229,7 @@ const Category = ({
               <DialogTitle />
               <div className="flex w-full flex-col items-center justify-center gap-4">
                 <div className="text-2xl font-semibold text-white">
-                  إسم الفئة
+                  Category Name
                 </div>
                 <input
                   ref={categoryRef}
@@ -303,7 +303,7 @@ const Category = ({
                     disabled={loadingCategory}
                     className="w-full rounded-lg border-2 border-red-500 bg-red-500 py-2 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent hover:text-red-500"
                   >
-                    إحذف
+                    Delete
                   </button>
                 </div>
               </div>
@@ -316,7 +316,7 @@ const Category = ({
             {category.name}
           </div>
           <p className="flex w-full flex-col items-center justify-center gap-3 px-2 pb-4 text-center text-sm font-semibold text-neutral-400">
-            {category.products.length} منتوج
+            {category.products.length} products
             {(isAdd || isDelete) && (
               <button
                 disabled={loadingCategory}
@@ -339,9 +339,9 @@ const Category = ({
                     <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
                   </div>
                 ) : isAdd && !isDelete ? (
-                  "أضف الماركة"
+                  "Add Brand"
                 ) : (
-                  "إحذف الماركة"
+                  "Delete Brand"
                 )}
               </button>
             )}

@@ -42,8 +42,8 @@ const page = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed!",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
 
@@ -84,11 +84,7 @@ const page = () => {
               <SkeletonDashProductCard key={index} />
             ))
           : products.map((product, index) => (
-              <DashProductCard
-                key={index}
-                product={product}
-                ChangeUrl={ChangeUrl}
-              />
+              <DashProductCard key={index} product={product} />
             ))}
       </div>
     </div>

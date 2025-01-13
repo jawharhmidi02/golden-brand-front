@@ -14,10 +14,12 @@ import {
 
 import Image from "next/image";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const Categories = ({ lng, ChangeUrl }) => {
+const Categories = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const [categories, setCategories] = useState([
     // {
     //   id: 1,
@@ -164,7 +166,7 @@ const Categories = ({ lng, ChangeUrl }) => {
                         onClick={() => {
                           cats[item.name] = true;
                           ChangeUrl(
-                            `/${lng}/products?selectedCategories=${encodeURIComponent(
+                            `/products?selectedCategories=${encodeURIComponent(
                               JSON.stringify(cats),
                             )}`,
                           );

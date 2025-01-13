@@ -1,11 +1,9 @@
 import { useContext } from "react";
-import { useParams } from "next/navigation";
 
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 const ProductHeader = ({ cat, product }) => {
   const { ChangeUrl } = useContext(UserAuthContext);
-  const { lng } = useParams();
 
   return (
     <div className="flex flex-row gap-2 text-center">
@@ -19,7 +17,7 @@ const ProductHeader = ({ cat, product }) => {
       <div
         onClick={() =>
           ChangeUrl(
-            `/${lng}/products?selectedCategories=${encodeURIComponent(
+            `/en/products?selectedCategories=${encodeURIComponent(
               JSON.stringify(cat),
             )}`,
           )

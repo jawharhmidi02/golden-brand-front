@@ -52,7 +52,7 @@ const page = () => {
           setLoading(false);
           return;
         }
-        throw new Error(responseData.message || "حدث خطأ ما");
+        throw new Error(responseData.message || "Error");
       }
       toast({
         title: "Done",

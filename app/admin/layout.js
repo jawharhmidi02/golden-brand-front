@@ -17,7 +17,7 @@ export const metadata = {
 import { Toaster } from "@/components/ui/toaster";
 import AdminLayout from "./AdminLayout";
 
-export default function RootLayout({ children, params: { lng } }) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
@@ -34,7 +34,7 @@ export default function RootLayout({ children, params: { lng } }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-[var(--primary)]">
-        <AdminLayout lng={lng}>{children}</AdminLayout>
+        <AdminLayout>{children}</AdminLayout>
         <Toaster />
         <Analytics />
       </body>

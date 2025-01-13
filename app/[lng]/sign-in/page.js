@@ -2,28 +2,18 @@
 
 import "./page.css";
 
-import { useEffect, useTransition, useState, useRef } from "react";
-import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
-import { toast } from "@/hooks/use-toast";
+import { useState, useRef, useContext } from "react";
 
-import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
 import Cookies from "js-cookie";
 
+import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
+import { UserAuthContext } from "@/contexts/AuthContext";
+
+import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
+
 const page = () => {
-  const [loadingPage, setLoadingPage] = useState(true);
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
-
-  const ChangeUrl = (url) => {
-    startTransition(() => {
-      router.push(url);
-    });
-  };
-
-  useEffect(() => {
-    setLoadingPage(isPending);
-  }, [isPending]);
+  const { ChangeUrl, setLoadingPage } = useContext(UserAuthContext);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -108,13 +98,9 @@ const page = () => {
     }
     setLoading(false);
   };
+
   return (
     <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
-      {loadingPage && (
-        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
-          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]"></div>
-        </div>
-      )}
       <div
         className={cn(
           "mx-4 grid h-[900px] w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:h-[500px] min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
@@ -216,9 +202,6 @@ const page = () => {
           accountText="Don't have an account?"
           signText="Sign Up"
           url="./sign-up"
-          ChangeUrl={(url) => {
-            ChangeUrl(url);
-          }}
         />
       </div>
     </div>

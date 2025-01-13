@@ -2,13 +2,12 @@
 
 import "./page.css";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 import Cookies from "js-cookie";
 
 import { cn, formattedDate } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
-import { AdminAuthContext } from "@/contexts/AuthContext";
 
 import {
   Pagination,
@@ -31,7 +30,6 @@ import {
 import DashSearch from "@/components/DashSearch/DashSearch";
 
 const page = () => {
-  const { adminData, ChangeUrl } = useContext(AdminAuthContext);
   const [loadingUsers, setLoadingUsers] = useState(true);
   const [users, setUsers] = useState([]);
   const [totalItems, setTotalItems] = useState(0);

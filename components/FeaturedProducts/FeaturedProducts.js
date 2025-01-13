@@ -1,9 +1,11 @@
 import Image from "next/image";
 import "./FeaturedProducts.css";
 
-import React, { useState } from "react";
+import { useContext, useState } from "react";
+import { UserAuthContext } from "@/contexts/AuthContext";
 
-const FeaturedProducts = ({ lng, ChangeUrl }) => {
+const FeaturedProducts = () => {
+  const { ChangeUrl } = useContext(UserAuthContext);
   const [product, setproduct] = useState([
     {
       img: "/images/products/image1.png",
@@ -262,6 +264,7 @@ const FeaturedProducts = ({ lng, ChangeUrl }) => {
       id: 987654,
     },
   ]);
+
   const [selectedType, setselectedType] = useState("mostpopular");
 
   return (
@@ -320,7 +323,7 @@ const FeaturedProducts = ({ lng, ChangeUrl }) => {
                   var cats = {};
                   cats[item.category] = true;
                   ChangeUrl(
-                    `/${lng}/products?selectedCategories=${encodeURIComponent(
+                    `/products?selectedCategories=${encodeURIComponent(
                       JSON.stringify(cats),
                     )}`,
                   );
@@ -339,7 +342,7 @@ const FeaturedProducts = ({ lng, ChangeUrl }) => {
               <button
                 className="w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
                 onClick={() => {
-                  ChangeUrl(`/${lng}/products/${item.id}`);
+                  ChangeUrl(`/products/${item.id}`);
                 }}
               ></button>
               {/* <p className="text-sm text-neutral-400">ID: {item.id}</p> */}

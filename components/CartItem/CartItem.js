@@ -45,8 +45,8 @@ const CartItem = ({
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed",
+        description: "Something went wrong, please try again!",
         variant: "destructive",
       });
     }
