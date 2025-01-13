@@ -309,7 +309,7 @@ const ProfilePage = () => {
                     type="text"
                     placeholder="First Name"
                     className={cn(
-                      "w-full border-[1px] border-transparent bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
+                      "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                       !isEditing
                         ? "hover:cursor-default"
                         : "border-[var(--theme)] outline-[var(--theme)]",
@@ -330,7 +330,7 @@ const ProfilePage = () => {
                     type="text"
                     placeholder="Last Name"
                     className={cn(
-                      "w-full border-[1px] border-transparent bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
+                      "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                       !isEditing
                         ? "hover:cursor-default"
                         : "border-[var(--theme)] outline-[var(--theme)]",
@@ -348,7 +348,7 @@ const ProfilePage = () => {
                   type="email"
                   placeholder="E-mail"
                   className={cn(
-                    "w-full border-[1px] border-transparent bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
+                    "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
                       ? "hover:cursor-default"
                       : "border-[var(--theme)] outline-[var(--theme)]",
@@ -365,7 +365,7 @@ const ProfilePage = () => {
                   type="tel"
                   placeholder="Phone Number"
                   className={cn(
-                    "w-full border-[1px] border-transparent bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
+                    "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
                       ? "hover:cursor-default"
                       : "border-[var(--theme)] outline-[var(--theme)]",
@@ -384,7 +384,7 @@ const ProfilePage = () => {
                   type="text"
                   placeholder="Address Location"
                   className={cn(
-                    "w-full border-[1px] border-transparent bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
+                    "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
                       ? "hover:cursor-default"
                       : "border-[var(--theme)] outline-[var(--theme)]",
@@ -415,7 +415,7 @@ const ProfilePage = () => {
                     placeholder="New Password"
                     type="password"
                     ref={passwordRef}
-                    className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
+                    className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
                   />
                 </div>
                 <div className="flex w-full flex-col gap-1">
@@ -424,7 +424,7 @@ const ProfilePage = () => {
                     placeholder="Confirm New Password"
                     ref={confirmPasswordRef}
                     type="password"
-                    className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
+                    className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
                   />
                 </div>
               </div>
@@ -451,7 +451,7 @@ const ProfilePage = () => {
                 {userData.orders?.map((order) => (
                   <div
                     key={order.id}
-                    className="w-full rounded-lg bg-[var(--theme4)] p-6 shadow-lg"
+                    className="w-full rounded-lg bg-[var(--theme4)!important] p-6 shadow-lg"
                   >
                     <div className="mb-4 flex flex-col">
                       <div className="text-lg font-semibold text-neutral-700">

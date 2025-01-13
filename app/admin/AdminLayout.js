@@ -75,7 +75,7 @@ export default function AdminLayout({ children }) {
           variant: "warning",
           duration: 5000,
         });
-        ChangeUrl("/sign-in");
+        ChangeUrl("/admin/sign-in");
         return;
       }
       ChangeUrl("/admin/sign-in");
