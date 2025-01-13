@@ -35,8 +35,6 @@ const page = () => {
       }
 
       setProducts(data.data.data);
-      console.log("data");
-      console.log(data);
 
       setLoadingProducts(false);
     } catch (error) {

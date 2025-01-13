@@ -48,8 +48,6 @@ const page = () => {
       );
       if (response.ok) {
         const data = await response.json();
-        console.log("data");
-        console.log(data);
 
         if (data.data === null) {
           toast({
@@ -83,7 +81,7 @@ const page = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
 
       setLoading(false);
 
@@ -94,7 +92,7 @@ const page = () => {
         duration: 2500,
       });
 
-      console.log(error);
+      console.error(error);
     }
     setLoading(false);
   };

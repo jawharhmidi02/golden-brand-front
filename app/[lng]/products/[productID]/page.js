@@ -38,8 +38,6 @@ const page = () => {
   const fetchProduct = async () => {
     setLoadingProduct(true);
     try {
-      console.log(id);
-
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/product/byid/${id}`,
         {
@@ -58,7 +56,7 @@ const page = () => {
 
       setLoadingProduct(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast({
         title: "Error",
         description: "Something went wrong, Please Try Again!",

@@ -45,8 +45,6 @@ const Nav = () => {
 
   const fetchProductById = async (productId) => {
     try {
-      console.log(productId);
-
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/productsVariants/byid/${productId}`,
         {

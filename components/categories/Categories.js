@@ -43,7 +43,7 @@ const Categories = () => {
 
       setLoadingCategories(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       toast({
         title: "Error",
         description: "Something went wrong, Please Try Again!",
