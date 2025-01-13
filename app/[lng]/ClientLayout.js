@@ -49,8 +49,6 @@ export default function ClientLayout({ children }) {
       setUserData(data.data);
       setIsUserSigned(true);
       setLoadingUser(false);
-      console.log("data");
-      console.log(data);
 
       localStorage.setItem("cart", JSON.stringify(data.data.cart || {}));
       setItems(data.data.cart || {});
