@@ -1,28 +1,14 @@
 "use client";
 
-import Card from "@/components/Card/Card";
-import SkeletonProductCard from "@/components/Card/SkeletonProductCard";
 import "./page.css";
 
-import React, {
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  useTransition,
-} from "react";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
+import { UserAuthContext } from "@/contexts/AuthContext";
+
 import {
   Pagination,
   PaginationContent,
@@ -32,131 +18,42 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import Card from "@/components/Card/Card";
+import SkeletonProductCard from "@/components/Card/SkeletonProductCard";
 import SelectInterface from "@/components/SelectInterface/SelectInterface";
 import CategorieItem from "@/components/CategorieItem/CategorieItem";
 import MultiRangeSlider from "@/components/multiRangeSlider/multiRangeSlider";
-import { useSearchParams } from "next/navigation";
-import { toast } from "@/hooks/use-toast";
 import SkeletonCategorieItem from "@/components/CategorieItem/SkeletonCategorieItem";
-import { UserAuthContext } from "@/contexts/AuthContext";
 
 const ProductPage = () => {
-  const { ChangeUrl } = useContext(UserAuthContext);
-
-  function OpenFilter() {
-    return (
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            className="flex items-center justify-center rounded-lg bg-[var(--theme)] px-2 lg:hidden"
-          >
-            <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
-          </Button>
-        </SheetTrigger>
-        <SheetContent className="w-[280px] overflow-scroll">
-          <SheetTitle></SheetTitle>
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <span className="mb-2 text-3xl font-bold text-neutral-600">
-                Filters:
-              </span>
-              <span className="text-xl font-semibold text-neutral-800">
-                Sort
-              </span>
-              <SelectInterface
-                placeHolder="Name: A-Z"
-                changeSortOption={(sortOption) => {
-                  changeSortOption(sortOption);
-                }}
-                values={[
-                  ["date", "Date: Newest"],
-                  ["nameAsc", "Name: A-Z"],
-                  ["nameDesc", "Name: Z-A"],
-                  // ["priceAsc", "Price: Low to High"],
-                  // ["priceDesc", "Price: High to Low"],
-                ]}
-              />
-              <span className="mt-2 text-xl font-semibold text-neutral-800">
-                Price
-              </span>
-              <MultiRangeSlider
-                min={minPrice}
-                changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
-                max={maxPrice}
-              />
-            </div>
-            <div className="mt-8 flex flex-col gap-2">
-              <span className="text-xl font-semibold text-neutral-800">
-                Categories
-              </span>
-              {loadingCategories
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <SkeletonCategorieItem key={index} />
-                  ))
-                : categories.map((categorie, index) => (
-                    <CategorieItem
-                      key={index}
-                      active={selectedCategories[categorie.name]}
-                      changeSelectedCategorie={(categorie) =>
-                        changeSelectedCategorie(categorie)
-                      }
-                      item={categorie.name}
-                    ></CategorieItem>
-                  ))}
-            </div>
-            <div className="mt-2 flex flex-col gap-1">
-              <button
-                type="button"
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
-                onClick={() => {
-                  ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 50000 ? `&maxPrice=${maxPrice}` : ``}${
-                      isEmpty(selectedCategories)
-                        ? ""
-                        : `&selectedCategories=${encodeURIComponent(
-                            JSON.stringify(selectedCategories),
-                          )}`
-                    }`,
-                    { scroll: false },
-                  );
-                }}
-              >
-                Apply
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  resetFilters();
-                }}
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
-              >
-                Reset
-              </button>
-            </div>
-          </div>
-          <SheetDescription></SheetDescription>
-        </SheetContent>
-      </Sheet>
-    );
-  }
-
+  const { ChangeUrl, loadingPage } = useContext(UserAuthContext);
+  const [limit, setLimit] = useState(12);
   const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    document.title = "GoldenBrand: Products";
-    fetchCategories();
-  }, []);
-
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [categories, setCategories] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(12);
-  const [loadingProducts, setLoadingProducts] = useState(true);
-  const [loadingCategories, setLoadingCategories] = useState(true);
-  const maxVisiblePages = 5;
   const [pages, setPages] = useState([]);
+  const searchParams = useSearchParams();
+  const searchInputRef = useRef(null);
+  const maxVisiblePages = 5;
+  const cats = {};
+  let selectedCategories = searchParams.get("selectedCategories")
+    ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
+    : { ...cats };
+  let sortOption = searchParams.get("sortOption") || "nameAsc";
+  let minPrice = searchParams.get("minPrice") || 0;
+  let maxPrice = searchParams.get("maxPrice") || 15000;
 
   const fetchProducts = async () => {
     setLoadingProducts(true);
@@ -173,14 +70,13 @@ const ProductPage = () => {
         } else if (sortOption === "nameDesc") {
           sortBy = "alpha";
           sort_order = "desc";
+        } else if (sortOption === "priceAsc") {
+          sortBy = "price";
+          sort_order = "asc";
+        } else if (sortOption === "priceDesc") {
+          sortBy = "price";
+          sort_order = "desc";
         }
-        // else if (sortOption === "priceAsc") {
-        //   sortBy = "price";
-        //   sort_order = "asc";
-        // } else if (sortOption === "priceDesc") {
-        //   sortBy = "price";
-        //   sort_order = "desc";
-        // }
       }
 
       const categories = Object.keys(selectedCategories).filter(
@@ -189,7 +85,7 @@ const ProductPage = () => {
       const categoriesString = encodeURIComponent(categories.join(","));
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${minPrice && `&min_price=${minPrice}`}${maxPrice && `&max_price=${maxPrice}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
         {
           method: "GET",
         },
@@ -216,8 +112,6 @@ const ProductPage = () => {
     }
     setLoadingProducts(false);
   };
-
-  const [categories, setCategories] = useState([]);
 
   const fetchCategories = async () => {
     setLoadingCategories(true);
@@ -271,29 +165,9 @@ const ProductPage = () => {
     setPages(newPages);
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, [CurrentPage]);
-
-  useEffect(() => {
-    createPageNumbers();
-  }, [CurrentPage, totalPages]);
-
-  const searchParams = useSearchParams();
-
   const resetFilters = () => {
     ChangeUrl("?", { scroll: false });
   };
-
-  const cats = {};
-
-  let selectedCategories = searchParams.get("selectedCategories")
-    ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))
-    : { ...cats };
-
-  let sortOption = searchParams.get("sortOption") || "nameAsc";
-  let minPrice = searchParams.get("minPrice") || 0;
-  let maxPrice = searchParams.get("maxPrice") || 50000;
 
   const changeSelectedCategorie = (categorie) => {
     if (selectedCategories[categorie]) {
@@ -312,8 +186,6 @@ const ProductPage = () => {
     maxPrice = MAX;
   };
 
-  const searchInputRef = useRef(null);
-
   function isEmpty(obj) {
     for (const prop in obj) {
       if (Object.hasOwn(obj, prop)) {
@@ -324,10 +196,19 @@ const ProductPage = () => {
     return true;
   }
 
-  return (
-    <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
-      <div className="mx-5 flex flex-1 flex-row justify-center gap-10 xsm:mx-8 sm:mx-10">
-        <div className="hidden lg:flex">
+  function OpenFilter() {
+    return (
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button
+            variant="outline"
+            className="flex items-center justify-center rounded-lg bg-[var(--theme)] px-2 lg:hidden"
+          >
+            <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
+          </Button>
+        </SheetTrigger>
+        <SheetContent className="w-[280px] overflow-scroll">
+          <SheetTitle></SheetTitle>
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <span className="mb-2 text-3xl font-bold text-neutral-600">
@@ -345,8 +226,8 @@ const ProductPage = () => {
                   ["date", "Date: Newest"],
                   ["nameAsc", "Name: A-Z"],
                   ["nameDesc", "Name: Z-A"],
-                  // ["priceAsc", "Price: Low to High"],
-                  // ["priceDesc", "Price: High to Low"],
+                  ["priceAsc", "Price: Low to High"],
+                  ["priceDesc", "Price: High to Low"],
                 ]}
               />
               <span className="mt-2 text-xl font-semibold text-neutral-800">
@@ -383,7 +264,111 @@ const ProductPage = () => {
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
                 onClick={() => {
                   ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 50000 ? `&maxPrice=${maxPrice}` : ``}${
+                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+                      isEmpty(selectedCategories)
+                        ? ""
+                        : `&selectedCategories=${encodeURIComponent(
+                            JSON.stringify(selectedCategories),
+                          )}`
+                    }`,
+                    { scroll: false },
+                  );
+                }}
+              >
+                Apply
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  resetFilters();
+                }}
+                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
+              >
+                Reset
+              </button>
+            </div>
+          </div>
+          <SheetDescription></SheetDescription>
+        </SheetContent>
+      </Sheet>
+    );
+  }
+
+  useEffect(() => {
+    if (!loadingPage) {
+      fetchProducts();
+    }
+  }, [CurrentPage, loadingPage]);
+
+  useEffect(() => {
+    createPageNumbers();
+  }, [CurrentPage, totalPages]);
+
+  useEffect(() => {
+    document.title = "GoldenBrand: Products";
+    fetchCategories();
+  }, []);
+
+  return (
+    <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
+      <div className="mx-5 flex flex-1 flex-row justify-center gap-10 xsm:mx-8 sm:mx-10">
+        <div className="hidden lg:flex">
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
+              <span className="mb-2 text-3xl font-bold text-neutral-600">
+                Filters:
+              </span>
+              <span className="text-xl font-semibold text-neutral-800">
+                Sort
+              </span>
+              <SelectInterface
+                placeHolder="Name: A-Z"
+                changeSortOption={(sortOption) => {
+                  changeSortOption(sortOption);
+                }}
+                values={[
+                  ["date", "Date: Newest"],
+                  ["nameAsc", "Name: A-Z"],
+                  ["nameDesc", "Name: Z-A"],
+                  ["priceAsc", "Price: Low to High"],
+                  ["priceDesc", "Price: High to Low"],
+                ]}
+              />
+              <span className="mt-2 text-xl font-semibold text-neutral-800">
+                Price
+              </span>
+              <MultiRangeSlider
+                min={minPrice}
+                changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
+                max={maxPrice}
+              />
+            </div>
+            <div className="mt-8 flex flex-col gap-2">
+              <span className="text-xl font-semibold text-neutral-800">
+                Categories
+              </span>
+              {loadingCategories
+                ? Array.from({ length: 6 }).map((_, index) => (
+                    <SkeletonCategorieItem key={index} />
+                  ))
+                : categories.map((categorie, index) => (
+                    <CategorieItem
+                      key={index}
+                      active={selectedCategories[categorie.name]}
+                      changeSelectedCategorie={(categorie) =>
+                        changeSelectedCategorie(categorie)
+                      }
+                      item={categorie.name}
+                    ></CategorieItem>
+                  ))}
+            </div>
+            <div className="mt-2 flex flex-col gap-1">
+              <button
+                type="button"
+                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
+                onClick={() => {
+                  ChangeUrl(
+                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
                         ? ""
                         : `&selectedCategories=${encodeURIComponent(

@@ -154,6 +154,8 @@ export default function ClientLayout({ children }) {
         userData,
         setUserData,
         ChangeUrl,
+        router,
+        loadingPage,
         setLoadingPage,
         checkUser,
         items,

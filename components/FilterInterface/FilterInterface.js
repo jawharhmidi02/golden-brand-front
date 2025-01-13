@@ -34,7 +34,7 @@ const FilterInterface = () => {
     : { ...cats };
   let sortOption = searchParams.get("sortOption") || "nameAsc";
   let minPrice = searchParams.get("minPrice") || 0;
-  let maxPrice = searchParams.get("maxPrice") || 50000;
+  let maxPrice = searchParams.get("maxPrice") || 15000;
   const changeSelectedCategorie = (categorie) => {
     selectedCategories[categorie] = selectedCategories[categorie]
       ? false

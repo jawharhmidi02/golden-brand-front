@@ -7,9 +7,9 @@ import { useSearchParams } from "next/navigation";
 const MultiRangeSlider = ({ changePrice }) => {
   const useParams = useSearchParams();
   const min = useParams.get("minPrice") || 0;
-  const max = useParams.get("maxPrice") || 50000;
+  const max = useParams.get("maxPrice") || 15000;
   const minRange = 0;
-  const maxRange = 50000;
+  const maxRange = 15000;
 
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);

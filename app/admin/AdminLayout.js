@@ -132,6 +132,8 @@ export default function AdminLayout({ children }) {
         adminData,
         setAdminData,
         ChangeUrl,
+        router,
+        loadingPage,
         setLoadingPage,
         checkAdmin,
       }}
