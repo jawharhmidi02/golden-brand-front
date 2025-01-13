@@ -3,12 +3,10 @@ import "/public/assets/fontawesome/css/brands.css";
 import "/public/assets/fontawesome/css/solid.css";
 import "/public/assets/fontawesome/css/all.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "/app/[lng]/globals.css";
-import "/app/[lng]/animations.css";
+import "../animations.css";
+import "../globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
-import DashNav from "@/components/DashNav/DashNav";
-import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "GoldenBrand: Admin",
@@ -16,7 +14,10 @@ export const metadata = {
     "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
 };
 
-export default function RootLayout({ children }) {
+import { Toaster } from "@/components/ui/toaster";
+import AdminLayout from "./AdminLayout";
+
+export default function RootLayout({ children, params: { lng } }) {
   return (
     <html lang="en">
       <head>
@@ -32,9 +33,8 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="flex flex-col bg-[var(--dash-theme)] md:flex-row">
-        <DashNav />
-        <>{children}</>
+      <body className="bg-[var(--primary)]">
+        <AdminLayout lng={lng}>{children}</AdminLayout>
         <Toaster />
         <Analytics />
       </body>

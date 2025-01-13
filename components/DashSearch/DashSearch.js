@@ -1,9 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 
-const DashSearch = ({ placeholder }) => {
+const DashSearch = ({ placeholder, search, setSearchQuery = null }) => {
   const [searchState, setSearchState] = useState(false);
+  const searchRef = useRef(null);
   return (
     <div
       className={cn(
@@ -30,10 +31,15 @@ const DashSearch = ({ placeholder }) => {
           id="search"
           type="text"
           className="w-full bg-transparent text-[17px] font-semibold text-neutral-200 placeholder-neutral-400 placeholder-opacity-50 outline-none"
+          ref={searchRef}
           placeholder={placeholder}
         />
       </label>
       <button
+        onClick={() => {
+          if (search) search(searchRef.current.value);
+          if (setSearchQuery) setSearchQuery(searchRef.current.value);
+        }}
         type="button"
         className="my-2.5 mr-2.5 rounded-lg bg-[var(--dash-theme5)] px-3 py-1.5 text-center text-lg font-semibold text-white transition-all duration-200 hover:bg-[var(--dash-theme6)] active:scale-95"
       >

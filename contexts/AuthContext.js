@@ -19,6 +19,7 @@ export const AdminAuthContext = createContext({
   loadingAdmin: true,
   setIsAdminSigned: () => {},
   adminData: {},
+  ChangeUrl: () => {},
   setAdminData: () => {},
   ChangeUrl: () => {},
   setLoadingPage: () => {},

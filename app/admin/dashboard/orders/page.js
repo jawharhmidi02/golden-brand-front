@@ -287,7 +287,7 @@ const page = () => {
         <TableBody>
           {orders.map((order, index) => (
             <TableRow
-              onClick={() => window.open(`/admin/dashboard/${order.id}`)}
+              onClick={() => window.open(`/admin/dashboard/orders/${order.id}`)}
               key={index}
               className="border-[#2c2d33] text-white hover:cursor-pointer hover:bg-muted/10"
             >

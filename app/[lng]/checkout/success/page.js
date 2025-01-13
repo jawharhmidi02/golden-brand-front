@@ -10,10 +10,7 @@ const SuccessPage = () => {
   const searchParam = useSearchParams();
 
   return (
-    <div
-      dir="ltr"
-      className="mt-24 flex min-h-[60dvh] flex-col items-center justify-center px-4"
-    >
+    <div className="mt-24 flex min-h-[60dvh] flex-col items-center justify-center px-4">
       <div className="w-full max-w-lg rounded-lg bg-white p-6 text-center shadow-lg">
         <div className="mb-4 flex items-center justify-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white">

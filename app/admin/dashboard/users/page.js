@@ -2,12 +2,13 @@
 
 import "./page.css";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Cookies from "js-cookie";
 
 import { cn, formattedDate } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import { AdminAuthContext } from "@/contexts/AuthContext";
 
 import {
   Pagination,
@@ -30,24 +31,24 @@ import {
 import DashSearch from "@/components/DashSearch/DashSearch";
 
 const page = () => {
-  const [orderState, setOrderState] = useState("");
-  const [loadingOrders, setLoadingOrders] = useState(true);
-  const [orders, setOrders] = useState([]);
+  const { adminData, ChangeUrl } = useContext(AdminAuthContext);
+  const [loadingUsers, setLoadingUsers] = useState(true);
+  const [users, setUsers] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [totalPages, setTotalPages] = useState(1);
   const [CurrentPage, setCurrentPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(10);
   const [pages, setPages] = useState([]);
   const [selectedSort, setSelectedSort] = useState("created_At");
-  const [sortDirection, setSortDirection] = useState("DESC");
+  const [sortDirection, setSortDirection] = useState("ASC");
   const [searchQuery, setSearchQuery] = useState("");
   const maxVisiblePages = 5;
 
-  const fetchOrders = async () => {
-    setLoadingOrders(true);
+  const fetchUsers = async () => {
+    setLoadingUsers(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/order?${searchQuery ? `search=${searchQuery}&` : ""}state=${orderState}&sort=${selectedSort}&order=${sortDirection}&page=${CurrentPage}&limit=${limit}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/user?${searchQuery ? `search=${searchQuery}&` : ""}sort=${selectedSort}&order=${sortDirection}&page=${CurrentPage}&limit=${limit}`,
         {
           method: "GET",
           headers: {
@@ -56,25 +57,24 @@ const page = () => {
           },
         },
       );
-
       const data = await response.json();
 
       if (data.data === null) {
         throw new Error(data.message);
       }
 
-      setOrders(data.data.data);
+      setUsers(data.data.data);
       setTotalItems(data.data.totalItems);
       setTotalPages(data.data.totalPages);
       setCurrentPage(Number(data.data.currentPage));
 
-      setLoadingOrders(false);
+      setLoadingUsers(false);
     } catch (error) {
       console.error(error);
-      setLoadingOrders(false);
+      setLoadingUsers(false);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ أثناء جلب البيانات",
+        title: "Error",
+        description: "An error occurred while fetching data.",
         variant: "destructive",
       });
     }
@@ -111,86 +111,22 @@ const page = () => {
     setPages(newPages);
   };
 
-  const parseButton = (state) => {
-    if (state === "Waiting to get Accepted...")
-      return (
-        <button className="w-[100px] rounded-md bg-blue-500/25 py-1.5 font-medium text-blue-500">
-          {state}
-        </button>
-      );
-    if (state === "Accepted")
-      return (
-        <button className="w-[100px] rounded-md bg-green-500/25 py-1.5 font-medium text-green-500">
-          {state}
-        </button>
-      );
-    if (state === "Cancelled")
-      return (
-        <button className="w-[100px] rounded-md bg-red-500/25 py-1.5 font-medium text-red-500">
-          {state}
-        </button>
-      );
-  };
-
   useEffect(() => {
-    fetchOrders();
+    fetchUsers();
     createPageNumbers();
-  }, [
-    CurrentPage,
-    totalPages,
-    searchQuery,
-    selectedSort,
-    sortDirection,
-    orderState,
-  ]);
+  }, [CurrentPage, totalPages, searchQuery, selectedSort, sortDirection]);
 
   return (
-    <div className="table-scroll flex w-full flex-col gap-10 overflow-x-auto px-5 pb-10 pt-5 md:pt-8 lg:pt-10">
-      {loadingOrders && (
+    <div className="table-scroll flex w-full flex-col gap-10 overflow-x-auto pb-10 pt-5 md:pt-8">
+      {loadingUsers && (
         <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/60 backdrop-blur-sm">
           <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]" />
         </div>
       )}
-      <DashSearch placeholder="Search Order" setSearchQuery={setSearchQuery} />
-      <div className="flex w-full max-w-[800px] items-center justify-between gap-4 overflow-x-auto rounded-lg bg-[var(--dash-theme2)] px-1 py-2 sm:gap-1">
-        <div
-          onClick={() => setOrderState("")}
-          className={cn(
-            "w-full text-nowrap rounded-xl bg-transparent px-2 py-2 text-center text-lg font-medium text-white transition-all duration-200 hover:cursor-pointer",
-            orderState === "" && "bg-gray-500/50",
-          )}
-        >
-          All Orders
-        </div>
-        <div
-          onClick={() => setOrderState("Accepted")}
-          className={cn(
-            "w-full text-nowrap rounded-xl bg-transparent px-2 py-2 text-center text-lg font-medium text-white transition-all duration-200 hover:cursor-pointer",
-            orderState === "Accepted" && "bg-gray-500/50",
-          )}
-        >
-          Accepted
-        </div>
-        <div
-          onClick={() => setOrderState("Waiting to get Accepted...")}
-          className={cn(
-            "w-full text-nowrap rounded-xl bg-transparent px-2 py-2 text-center text-lg font-medium text-white transition-all duration-200 hover:cursor-pointer",
-            orderState === "Waiting to get Accepted..." && "bg-gray-500/50",
-          )}
-        >
-          Waiting to get Accepted...
-        </div>
-        <div
-          onClick={() => setOrderState("Cancelled")}
-          className={cn(
-            "w-full text-nowrap rounded-xl bg-transparent px-2 py-2 text-center text-lg font-medium text-white transition-all duration-200 hover:cursor-pointer",
-            orderState === "Cancelled" && "bg-gray-500/50",
-          )}
-        >
-          Cancelled
-        </div>
-      </div>
-
+      <DashSearch
+        placeholder="Search for a user by name, last name, or phone number"
+        setSearchQuery={setSearchQuery}
+      />
       <Table>
         <TableCaption></TableCaption>
         <TableHeader>
@@ -200,49 +136,10 @@ const page = () => {
             </TableHead>
             <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
               <div
-                onClick={() => changeSortOrder("state")}
-                className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
-              >
-                <div>State</div>
-                <i
-                  className={cn(
-                    "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
-                  )}
-                />
-              </div>
-            </TableHead>
-            <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
-              <div
-                onClick={() => changeSortOrder("order_Products")}
-                className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
-              >
-                <div>Products</div>
-                <i
-                  className={cn(
-                    "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
-                  )}
-                />
-              </div>
-            </TableHead>
-            <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
-              <div
-                onClick={() => changeSortOrder("total_Price")}
-                className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
-              >
-                <div>Price</div>
-                <i
-                  className={cn(
-                    "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
-                  )}
-                />
-              </div>
-            </TableHead>
-            <TableHead className="w-full text-start text-lg text-[var(--dash-theme5)]">
-              <div
                 onClick={() => changeSortOrder("created_At")}
-                className="flex w-full items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
+                className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
               >
-                <div>Created At</div>
+                <span>Created Date</span>
                 <i
                   className={cn(
                     "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
@@ -252,10 +149,10 @@ const page = () => {
             </TableHead>
             <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
               <div
-                onClick={() => changeSortOrder("first_name")}
+                onClick={() => changeSortOrder("full_name")}
                 className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
               >
-                <div>First Name</div>
+                <span>Full Name</span>
                 <i
                   className={cn(
                     "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
@@ -264,61 +161,48 @@ const page = () => {
               </div>
             </TableHead>
             <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
+              Phone Number
+            </TableHead>
+            <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
+              Email
+            </TableHead>
+            <TableHead className="text-end text-lg text-[var(--dash-theme5)]">
               <div
-                onClick={() => changeSortOrder("last_name")}
-                className="flex items-center justify-center gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
+                onClick={() => changeSortOrder("role")}
+                className="flex items-center justify-end gap-3 transition-all duration-200 hover:scale-105 hover:cursor-pointer"
               >
-                <div>Last Name</div>
+                <span>Role</span>
                 <i
                   className={cn(
                     "fa-solid fa-up-down mt-1 text-lg text-[var(--dash-theme5)] transition-all duration-200 hover:cursor-pointer",
                   )}
                 />
               </div>
-            </TableHead>
-            <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
-              Phone
-            </TableHead>
-            <TableHead className="text-start text-lg text-[var(--dash-theme5)]">
-              Address
             </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {orders.map((order, index) => (
+          {users.map((user, index) => (
             <TableRow
-              onClick={() => window.open(`/admin/dashboard/${order.id}`)}
+              onClick={() => window.open(`/admin/dashboard/users/${user.id}`)}
               key={index}
               className="border-[#2c2d33] text-white hover:cursor-pointer hover:bg-muted/10"
             >
-              <TableCell className="font-medium">{order.id}</TableCell>
+              <TableCell className="font-medium">{user.id}</TableCell>
               <TableCell className="font-medium">
-                {parseButton(order.state)}
+                {user.created_At && formattedDate(user.created_At)}
               </TableCell>
-              <TableCell className="text-center font-medium">
-                {order.order_Products?.length}
+              <TableCell className="font-medium">{user.full_name}</TableCell>
+              <TableCell className="font-medium">{user.phone}</TableCell>
+              <TableCell className="font-medium">{user.email}</TableCell>
+              <TableCell className="text-end font-medium">
+                {user.role === "admin" ? "Admin" : "User"}
               </TableCell>
-              <TableCell className="text-center text-lg font-bold text-neutral-200">
-                {order.order_Products?.reduce(
-                  (acc, product) => acc + product.price * product.quantity,
-                  0,
-                ) +
-                  order.deliveryPrice +
-                  "QR"}
-              </TableCell>
-              <TableCell className="font-medium">
-                {order.created_At && formattedDate(order.created_At)}
-              </TableCell>
-              <TableCell className="font-medium">{order.first_name}</TableCell>
-              <TableCell className="font-medium">{order.last_name}</TableCell>
-              <TableCell className="font-medium">{order.phone}</TableCell>
-              <TableCell className="font-medium">{order.address}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      {/* <PaginationComp /> */}
-      {!loadingOrders && orders.length > 0 && (
+      {!loadingUsers && users.length > 0 && (
         <Pagination>
           <PaginationContent className="flex items-center justify-center gap-2">
             {/* Previous Button */}
@@ -343,7 +227,7 @@ const page = () => {
                     className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                     onClick={() => handlePageChange(1)}
                   >
-                    ١
+                    1
                   </PaginationLink>
                 </PaginationItem>
                 {pages[0] > 2 && <PaginationEllipsis>...</PaginationEllipsis>}

@@ -3,8 +3,8 @@ import "/public/assets/fontawesome/css/brands.css";
 import "/public/assets/fontawesome/css/solid.css";
 import "/public/assets/fontawesome/css/all.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import "./animations.css";
-import "./globals.css";
+import "../animations.css";
+import "../globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
 
