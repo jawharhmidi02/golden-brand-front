@@ -1,15 +1,115 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+import React, { useState, useEffect, useRef } from "react";
+
+import { cn, validateEmail, validateNumberInput } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
 const page = () => {
   const [day, setDay] = useState(false);
   const [time, setTime] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const phoneRef = useRef(null);
+  const emailRef = useRef(null);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    try {
+      setLoading(true);
+      const formData = new FormData(event.target);
+
+      const name = formData.get("name")?.trim();
+      const phone = formData.get("phone")?.trim();
+      const email = formData.get("email")?.trim();
+      const address = formData.get("address")?.trim();
+      const topic = formData.get("topic")?.trim();
+      const message = formData.get("message")?.trim();
+
+      if (!name) {
+        toast({
+          title: "Error",
+          description: "Name field is required",
+          variant: "destructive",
+          duration: 2000,
+        });
+        return;
+      }
+
+      if (!phone) {
+        toast({
+          title: "Error",
+          description: "Phone field is required",
+          variant: "destructive",
+          duration: 2000,
+        });
+        return;
+      }
+
+      if (!email || !validateEmail(email)) {
+        toast({
+          title: "Error",
+          description: "Please enter a valid email address",
+          variant: "destructive",
+          duration: 2000,
+        });
+        return;
+      }
+
+      if (!message) {
+        toast({
+          title: "Error",
+          description: "Message field is required",
+          variant: "destructive",
+          duration: 2000,
+        });
+        return;
+      }
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send message");
+      }
+
+      event.target.reset();
+
+      toast({
+        title: "Success",
+        description: "Your message has been sent successfully",
+        variant: "success",
+        duration: 3000,
+      });
+    } catch (error) {
+      console.log(error);
+
+      const errorMessage =
+        error.message === "Invalid email format"
+          ? "Please enter a valid email address"
+          : error.message === "Invalid phone number format"
+            ? "Please enter a valid phone number"
+            : "Failed to send message. Please try again later.";
+
+      toast({
+        title: "Error",
+        description: errorMessage,
+        variant: "destructive",
+        duration: 3000,
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
 
   useEffect(() => {
     document.title = "GoldenBrand: Contact";
   }, []);
+
   return (
     <div className="mx-auto mt-6 flex w-full items-center justify-center">
       <div className="mx-5 flex w-full max-w-[1300px] flex-col gap-20 sm:mx-10 xl:mx-28">
@@ -65,47 +165,73 @@ const page = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4 rounded-sm border-[1px] border-neutral-100 bg-white p-4 shadow-sm drop-shadow-sm">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <form
+            onSubmit={handleSubmit}
+            method="post"
+            role="form"
+            className="php-email-form"
+          >
+            <div className="flex flex-col gap-4 rounded-sm border-[1px] border-neutral-100 bg-white p-4 shadow-sm drop-shadow-sm">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+                />
+                <input
+                  name="email"
+                  type="email"
+                  ref={emailRef}
+                  placeholder="Email"
+                  className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+                />
+              </div>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <input
+                  name="phone"
+                  type="tel"
+                  ref={phoneRef}
+                  onInput={() => validateNumberInput(phoneRef)}
+                  placeholder="Phone"
+                  className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+                />
+                <input
+                  name="address"
+                  type="text"
+                  placeholder="Address"
+                  className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+                />
+              </div>
               <input
+                name="topic"
                 type="text"
-                placeholder="Name"
-                className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-              ></input>
-              <input
-                type="email"
-                placeholder="Email"
-                className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-              ></input>
+                placeholder="Topic"
+                className="w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+              />
+              <textarea
+                name="message"
+                placeholder="Message"
+                className="min-h-36 w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
+              ></textarea>
+              <button
+                className={cn(
+                  "w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--theme)] px-10 py-2.5 text-xl text-[#ffffff] transition-all duration-200 hover:border-[var(--theme)] hover:bg-[#ffffff] hover:text-[var(--theme)] active:scale-95",
+                  loading && "opacity-50 hover:cursor-not-allowed",
+                )}
+                type="submit"
+                disabled={loading}
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="size-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                  </div>
+                ) : (
+                  "Send"
+                )}
+              </button>
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <input
-                type="tel"
-                placeholder="Telephone"
-                className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-              ></input>
-              <input
-                type="text"
-                placeholder="Address"
-                className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-              ></input>
-            </div>
-            <input
-              type="text"
-              placeholder="Topic"
-              className="w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-            ></input>
-            <textarea
-              placeholder="Message"
-              className="min-h-36 w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
-            ></textarea>
-            <button
-              className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--theme)] px-10 py-2.5 text-xl text-[#ffffff] transition-all duration-200 hover:border-[var(--theme)] hover:bg-[#ffffff] hover:text-[var(--theme)] active:scale-95"
-              type="button"
-            >
-              Send Message
-            </button>
-          </div>
+          </form>
         </div>
 
         <div className="mb-10 grid grid-cols-1 gap-20 lg:grid-cols-2">
