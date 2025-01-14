@@ -85,7 +85,7 @@ const ProductPage = () => {
       const categoriesString = encodeURIComponent(categories.join(","));
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${categoriesString && `&categories=${categoriesString}`}${sortBy && `&sortBy=${sortBy}`}${sort_order && `&sortOrder=${sort_order}`}${minPrice && `&min_price=${minPrice}`}${maxPrice && `&max_price=${maxPrice}`}${CurrentPage && `&page=${CurrentPage}`}${limit && `&limit=${limit}`}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search${searchInputRef.current.value.trim() ? `?name=${searchInputRef.current.value.trim()}` : "?"}${categoriesString ? `&categories=${categoriesString}` : ""}${sortBy ? `&sortBy=${sortBy}` : ""}${sort_order ? `&sortOrder=${sort_order}` : ""}${minPrice ? `&min_price=${minPrice}` : ""}${maxPrice ? `&max_price=${maxPrice}` : ""}${CurrentPage ? `&page=${CurrentPage}` : ""}${limit ? `&limit=${limit}` : ""}`,
         {
           method: "GET",
         },

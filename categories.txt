@@ -150,6 +150,8 @@
 4. Shelves & Racks
     - Id: e89e7504-af7d-4786-9d92-b57a378e4364
     - Wall Shelves
+        . Shelf
+            S. STEEL WALL SHELF
         . Single Over Shelves
             S. STEEL SINGLE OVER SHELVES // Done 
         . Double Over Shelves

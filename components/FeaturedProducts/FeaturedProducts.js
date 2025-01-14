@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
       }
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${sortBy && `sortBy=${sortBy}&`}${sort_order && `sortOrder=${sort_order}&`}page=1&limit=${limitProducts}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search?${sortBy ? `sortBy=${sortBy}&` : ""}${sort_order ? `sortOrder=${sort_order}&` : ""}page=1&limit=${limitProducts}`,
         {
           method: "GET",
         },
