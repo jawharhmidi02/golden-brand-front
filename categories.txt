@@ -102,7 +102,7 @@
             S. STEEL MOBILE TABLE WITH TWO SHELF // Done
     - Specialty Work Tables
         . Work Table with Shelf & 3 Drawer
-            S.S WORK TABLE WITH SHELF & 3 DRAWER
+            S.S WORK TABLE WITH SHELF & 3 DRAWER // Done
 
 2. Sink Tables
     - Id: af559f22-9b27-48da-a986-68f62713dac9
@@ -118,11 +118,11 @@
             S. STEEL DOUBLE BOWL SINK TABLE // Done
     - Handwash and Specialty Sinks
         . Handwash Sink
-            SS HANDWASH SINK
+            SS HANDWASH SINK // Done
         . Mop Sink
-            S. STEEL MOP SINK
+            S. STEEL MOP SINK // Done
         . Cleaner Sink
-            S. STEEL CLEANER SINK
+            S. STEEL CLEANER SINK // Done
 
 3. Cabinets
     - Id: 2a2a3ed7-ff6b-4b1b-9e04-c565764c6984
@@ -158,7 +158,7 @@
         . 4-Tier Shelves
             S. STEEL 4-TIER SHELVES // Done
         . Rack Shelf
-            S. STEEL RACK SHELF
+            S. STEEL RACK SHELF // Done
 
 5. Hoods
     - Id: 4aa022d0-5da4-4f0f-bd30-784110a23d70
@@ -167,9 +167,9 @@
             S. STEEL CONDENSATE HOOD // Done 
     - Exhaust Hoods
         . Double Skin, Wall Type
-            S. STEEL EXHAUST HOOD, DOUBLE SKIN, WALL TYPE
+            S. STEEL EXHAUST HOOD, DOUBLE SKIN, WALL TYPE // Done
         . Double Skin, Island Type
-            S. STEEL EXHAUST HOOD, DOUBLE SKIN, ISLAND TYPE
+            S. STEEL EXHAUST HOOD, DOUBLE SKIN, ISLAND TYPE // Done
 
 6. Trolleys
     - Id: 854af9ff-f05e-4b85-8712-4c339b1c51ad
@@ -182,9 +182,9 @@
             S. STEEL SERVICE TROLLEY, 4 LAYER // Done
     - Specialty Trolleys
         . Baking Trolley
-            SS BAKING TROLLEY
+            SS BAKING TROLLEY // Done
         . BBQ on Cabinet with Hood
-            S.S BBQ ON CABINET WITH HOOD
+            S.S BBQ ON CABINET WITH HOOD // Done
 
 7. Gratings & Traps
     - Id: 6d113500-aab1-436a-9e17-1b1258ac10dd
@@ -192,7 +192,7 @@
         . With Tank
             S. STEEL FLOOR GRATING WITH TANK // Done 
         . Tank with Cover
-            S. STEEL FLOOR GRATING TANK WITH COVER
+            S. STEEL FLOOR GRATING TANK WITH COVER // Done
     - Grease Trap
         . Grease Trap
             S. STEEL GREASE TRAP // Done

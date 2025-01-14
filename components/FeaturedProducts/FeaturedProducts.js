@@ -24,7 +24,7 @@ const FeaturedProducts = () => {
         sort_order = "desc";
       } else if (selectedType === "newest") {
         sortBy = "date";
-        sort_order = "asc";
+        sort_order = "desc";
       }
 
       const res = await fetch(
