@@ -267,9 +267,9 @@ const page = () => {
     try {
       const validationErrors = [];
 
-      if (!addProductVariantData.code.trim()) {
-        validationErrors.push("Code is required");
-      }
+      // if (!addProductVariantData.code.trim()) {
+      //   validationErrors.push("Code is required");
+      // }
 
       if (!addProductVariantData.dimension.trim()) {
         validationErrors.push("Dimension is required");
@@ -279,12 +279,12 @@ const page = () => {
         validationErrors.push("Price is required");
       }
 
-      const isCodeDuplicate = productsVariants.some(
-        (variant) => variant.code === addProductVariantData.code,
-      );
-      if (isCodeDuplicate) {
-        validationErrors.push("Product code must be unique");
-      }
+      // const isCodeDuplicate = productsVariants.some(
+      //   (variant) => variant.code === addProductVariantData.code,
+      // );
+      // if (isCodeDuplicate) {
+      //   validationErrors.push("Product code must be unique");
+      // }
 
       const hasEmptyAdditionalFeatures = Object.values(
         addProductVariantData.additionalFeatures,
