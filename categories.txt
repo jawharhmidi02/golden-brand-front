@@ -90,16 +90,16 @@
         . Without Undershelf
             S. STEEL WORK TABLE WITHOUT UNDERSHELF // Done
         . With Undershelf
-            S. STEEL WORK TABLE WITH UNDERSHELF
+            S. STEEL WORK TABLE WITH UNDERSHELF // Done
         . With Mid & Undershelf
-            S. STEEL WORK TABLE WITH MID & UNDERSHELF
+            S. STEEL WORK TABLE WITH MID & UNDERSHELF // Done
     -Stainless Steel Mobile Tables
         . With Bracing
-            S. STEEL MOBILE TABLE WITH BRACING
+            S. STEEL MOBILE TABLE WITH BRACING // Done
         . With Undershelf
-            S. STEEL MOBILE TABLE WITH UNDERSHELF
+            S. STEEL MOBILE TABLE WITH UNDERSHELF // Done
         . With Two Shelves
-            S. STEEL MOBILE TABLE WITH TWO SHELF
+            S. STEEL MOBILE TABLE WITH TWO SHELF // Done
     - Specialty Work Tables
         . Work Table with Shelf & 3 Drawer
             S.S WORK TABLE WITH SHELF & 3 DRAWER
@@ -128,7 +128,7 @@
     - Id: 2a2a3ed7-ff6b-4b1b-9e04-c565764c6984
     - Base Cabinets
         . With 3 Layer Drawer
-            S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER // Done
+            S. STEEL BASE CAIBNET WITH 3 LAYER DRAWER 
         . With Sliding Doors
             S. STEEL BASE CABINET WITH SLIDING DOORS
             S. STEEL SINGLE BOWL SINK CABINET WITH SLIDING DOORS
@@ -151,7 +151,7 @@
     - Id: e89e7504-af7d-4786-9d92-b57a378e4364
     - Wall Shelves
         . Single Over Shelves
-            S. STEEL SINGLE OVER SHELVES // Done
+            S. STEEL SINGLE OVER SHELVES 
         . Double Over Shelves
             S. STEEL DOUBLE OVER SHELVES
     - Racks
@@ -164,7 +164,7 @@
     - Id: 4aa022d0-5da4-4f0f-bd30-784110a23d70
     - Condensate Hood
         . Condensate Hood
-            S. STEEL CONDENSATE HOOD // Done
+            S. STEEL CONDENSATE HOOD 
     - Exhaust Hoods
         . Double Skin, Wall Type
             S. STEEL EXHAUST HOOD, DOUBLE SKIN, WALL TYPE
@@ -179,7 +179,7 @@
         . 3 Layer
             S. STEEL SERVICE TROLLEY, 3 LAYER
         . 4 Layer
-            S. STEEL SERVICE TROLLEY, 4 LAYER // Done
+            S. STEEL SERVICE TROLLEY, 4 LAYER 
     - Specialty Trolleys
         . Baking Trolley
             SS BAKING TROLLEY
@@ -190,7 +190,7 @@
     - Id: 6d113500-aab1-436a-9e17-1b1258ac10dd
     - Floor Grating
         . With Tank
-            S. STEEL FLOOR GRATING WITH TANK // Done
+            S. STEEL FLOOR GRATING WITH TANK 
         . Tank with Cover
             S. STEEL FLOOR GRATING TANK WITH COVER
     - Grease Trap
@@ -201,6 +201,6 @@
     - Id: bccc64d3-48e2-444a-8f90-43d5ea451750
     - Garbage Bins
         . Square Type
-            S. STEEL GARBAGE BIN (SQUARE TYPE) // Done
+            S. STEEL GARBAGE BIN (SQUARE TYPE) 
         . Round Type
             S. STEEL GARBAGE BIN (ROUND TYPE)
