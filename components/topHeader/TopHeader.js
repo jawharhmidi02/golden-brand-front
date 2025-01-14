@@ -93,6 +93,15 @@ const TopHeader = () => {
               alt="arabic"
             />
           </div>
+          {/* <div className="language" onClick={() => ChangeUrl("/en")}>
+            <Image
+              src="/images/english-language.png"
+              width={20}
+              height={20}
+              alt="arabic"
+            />
+            <abbr title="Change to English">En</abbr>
+          </div> */}
         </div>
       </div>
       <Nav />
