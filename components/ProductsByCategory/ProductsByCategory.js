@@ -61,7 +61,7 @@ const ProductsByCategory = () => {
     setLoadingProducts(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search?categories=${categories[selectedCategory].name}&page=1&limit=${limitProducts}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search?categories=${encodeURIComponent(categories[selectedCategory].name)}&page=1&limit=${limitProducts}`,
         {
           method: "GET",
         },

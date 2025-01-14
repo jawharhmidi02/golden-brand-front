@@ -76,6 +76,9 @@ const ProductPage = () => {
         } else if (sortOption === "priceDesc") {
           sortBy = "price";
           sort_order = "desc";
+        } else if (sortOption === "mostpopular") {
+          sortBy = "orderProducts";
+          sort_order = "desc";
         }
       }
 
@@ -223,6 +226,7 @@ const ProductPage = () => {
                   changeSortOption(sortOption);
                 }}
                 values={[
+                  ["mostpopular", "Most Popular"],
                   ["date", "Date: Newest"],
                   ["nameAsc", "Name: A-Z"],
                   ["nameDesc", "Name: Z-A"],
@@ -327,6 +331,7 @@ const ProductPage = () => {
                   changeSortOption(sortOption);
                 }}
                 values={[
+                  ["mostpopular", "Most Popular"],
                   ["date", "Date: Newest"],
                   ["nameAsc", "Name: A-Z"],
                   ["nameDesc", "Name: Z-A"],
