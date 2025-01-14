@@ -24,14 +24,6 @@ export async function POST(request) {
 
   try {
     const formData = await request.formData();
-    console.log("receiver");
-    console.log(receiver);
-    console.log("username");
-    console.log(username);
-    console.log("password");
-    console.log(password);
-    console.log("formData");
-    console.log(formData);
     const name = validateRequired(formData.get("name"), "Name");
     const email = validateRequired(formData.get("email"), "Email");
     const phone = validateRequired(formData.get("phone"), "Phone");

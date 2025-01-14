@@ -86,7 +86,7 @@ const page = () => {
         duration: 3000,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
 
       const errorMessage =
         error.message === "Invalid email format"
