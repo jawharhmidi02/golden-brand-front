@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="icon" href="/images/icon.png" />
       </head>
-      <body className="bg-[var(--primary)]">
+      <body className="flex min-h-[100dvh] flex-col overflow-auto bg-[var(--dash-theme)] md:flex-row">
         <AdminLayout>{children}</AdminLayout>
         <Toaster />
         <Analytics />

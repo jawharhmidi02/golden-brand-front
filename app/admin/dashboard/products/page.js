@@ -3,9 +3,19 @@
 import { useContext, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
+import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import DashProductCard from "@/components/DashProductCard/DashProductCard";
 import DashSearch from "@/components/DashSearch/DashSearch";
 import SkeletonDashProductCard from "@/components/DashProductCard/SkeletonDashProductCard";
@@ -14,12 +24,18 @@ const page = () => {
   const { ChangeUrl } = useContext(AdminAuthContext);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [products, setProducts] = useState([]);
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalPages, setTotalPages] = useState(1);
+  const [CurrentPage, setCurrentPage] = useState(1);
+  const [limit, setLimit] = useState(7);
+  const [pages, setPages] = useState([]);
+  const maxVisiblePages = 5;
 
   const fetchProducts = async (search = null) => {
     try {
       setLoadingProducts(true);
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/product?${search ? `name=${search.trim()}&` : ``}page=1&limit=999`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/product?${search ? `name=${search.trim()}&` : ``}page=${CurrentPage}&limit=${limit}`,
         {
           method: "GET",
           headers: {
@@ -35,6 +51,9 @@ const page = () => {
       }
 
       setProducts(data.data.data);
+      setTotalItems(data.data.totalItems);
+      setTotalPages(data.data.totalPages);
+      setCurrentPage(Number(data.data.currentPage));
 
       setLoadingProducts(false);
     } catch (error) {
@@ -49,9 +68,37 @@ const page = () => {
     }
   };
 
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
+
+  const createPageNumbers = () => {
+    let startPage = Math.max(1, CurrentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+
+    const newPages = [];
+    for (let i = startPage; i <= endPage; i++) {
+      newPages.push(i);
+    }
+
+    setPages(newPages);
+  };
+
+  useEffect(() => {
+    createPageNumbers();
+  }, [totalPages]);
+
   useEffect(() => {
     fetchProducts();
-  }, []);
+    createPageNumbers();
+  }, [CurrentPage]);
+
   return (
     <div className="flex w-full flex-col gap-10 px-5 pb-10 pt-5 md:pt-8 lg:pt-10">
       <DashSearch
@@ -78,13 +125,96 @@ const page = () => {
 
         {/* PRODUCTS */}
         {loadingProducts
-          ? Array.from({ length: 8 }).map((_, index) => (
+          ? Array.from({ length: limit }).map((_, index) => (
               <SkeletonDashProductCard key={index} />
             ))
           : products.map((product, index) => (
               <DashProductCard key={index} product={product} />
             ))}
       </div>
+      {!loadingProducts && products.length > 0 && (
+        <Pagination>
+          <PaginationContent className="flex items-center justify-center gap-2">
+            {/* Previous Button */}
+            <PaginationItem>
+              <PaginationPrevious
+                className={cn(
+                  "rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
+                  CurrentPage === 1
+                    ? "hover:cursor-not-allowed hover:bg-[var(--dash-theme2)] hover:text-[var(--dash-theme6)]"
+                    : "hover:bg-[var(--dash-theme6)] hover:text-white",
+                )}
+                onClick={() => handlePageChange(CurrentPage - 1)}
+                disabled={CurrentPage === 1}
+              />
+            </PaginationItem>
+
+            {/* First Page and Ellipsis */}
+            {pages[0] > 1 && (
+              <>
+                <PaginationItem>
+                  <PaginationLink
+                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                    onClick={() => handlePageChange(1)}
+                  >
+                    ١
+                  </PaginationLink>
+                </PaginationItem>
+                {pages[0] > 2 && <PaginationEllipsis>...</PaginationEllipsis>}
+              </>
+            )}
+
+            {/* Page Numbers */}
+            {pages.map((page) => (
+              <PaginationItem key={page}>
+                <PaginationLink
+                  className={cn(
+                    "rounded-md border-0 px-3 py-2 transition-all duration-200 hover:cursor-pointer",
+                    page === CurrentPage
+                      ? "bg-[var(--dash-theme6)] text-white hover:cursor-not-allowed hover:bg-[var(--dash-theme6)] hover:text-white"
+                      : "bg-[var(--dash-theme2)] text-[var(--dash-theme6)] hover:bg-[var(--dash-theme6)] hover:text-white",
+                  )}
+                  isActive={page === CurrentPage}
+                  onClick={() => handlePageChange(page)}
+                >
+                  {page}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+
+            {/* Last Page and Ellipsis */}
+            {pages[pages.length - 1] < totalPages && (
+              <>
+                {pages[pages.length - 1] < totalPages - 1 && (
+                  <PaginationEllipsis>...</PaginationEllipsis>
+                )}
+                <PaginationItem>
+                  <PaginationLink
+                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                    onClick={() => handlePageChange(totalPages)}
+                  >
+                    {totalPages}
+                  </PaginationLink>
+                </PaginationItem>
+              </>
+            )}
+
+            {/* Next Button */}
+            <PaginationItem>
+              <PaginationNext
+                className={cn(
+                  "rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
+                  CurrentPage === totalPages
+                    ? "hover:cursor-not-allowed hover:bg-[var(--dash-theme2)] hover:text-[var(--dash-theme6)]"
+                    : "hover:bg-[var(--dash-theme6)] hover:text-white",
+                )}
+                onClick={() => handlePageChange(CurrentPage + 1)}
+                disabled={CurrentPage === totalPages}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 };

@@ -138,16 +138,14 @@ export default function AdminLayout({ children }) {
         checkAdmin,
       }}
     >
-      <div className="flex min-h-[100dvh] flex-col overflow-auto bg-[var(--dash-theme)] md:flex-row">
-        {loadingPage && (
-          <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/30 backdrop-blur-sm">
-            <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]" />
-          </div>
-        )}
-        {pathname.includes("/dashboard") && <DashNav />}
-        <>{children}</>
-        {/* {isAdminSigned && <NewOrder />} */}
-      </div>
+      {loadingPage && (
+        <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center bg-white/30 backdrop-blur-sm">
+          <div className="h-14 w-14 animate-spin rounded-full border-b-4 border-[var(--theme)]" />
+        </div>
+      )}
+      {pathname.includes("/dashboard") && <DashNav />}
+      <>{children}</>
+      {/* {isAdminSigned && <NewOrder />} */}
     </AdminAuthContext.Provider>
   );
 }
