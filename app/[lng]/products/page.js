@@ -46,7 +46,7 @@ const ProductPage = () => {
   const [pages, setPages] = useState([]);
   const searchParams = useSearchParams();
   const searchInputRef = useRef(null);
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 3;
   const cats = {};
   let selectedCategories = searchParams.get("selectedCategories")
     ? JSON.parse(decodeURIComponent(searchParams.get("selectedCategories")))

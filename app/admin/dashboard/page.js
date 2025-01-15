@@ -41,7 +41,7 @@ const page = () => {
   const [selectedSort, setSelectedSort] = useState("created_At");
   const [sortDirection, setSortDirection] = useState("DESC");
   const [searchQuery, setSearchQuery] = useState("");
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 3;
 
   const fetchOrders = async () => {
     setLoadingOrders(true);
@@ -343,7 +343,7 @@ const page = () => {
                     className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                     onClick={() => handlePageChange(1)}
                   >
-                    ١
+                    1
                   </PaginationLink>
                 </PaginationItem>
                 {pages[0] > 2 && <PaginationEllipsis>...</PaginationEllipsis>}

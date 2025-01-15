@@ -40,7 +40,7 @@ const page = () => {
   const [selectedSort, setSelectedSort] = useState("created_At");
   const [sortDirection, setSortDirection] = useState("ASC");
   const [searchQuery, setSearchQuery] = useState("");
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 3;
 
   const fetchUsers = async () => {
     setLoadingUsers(true);

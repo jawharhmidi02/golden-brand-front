@@ -29,7 +29,7 @@ const page = () => {
   const [CurrentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(7);
   const [pages, setPages] = useState([]);
-  const maxVisiblePages = 5;
+  const maxVisiblePages = 3;
 
   const fetchProducts = async (search = null) => {
     try {
@@ -133,13 +133,13 @@ const page = () => {
             ))}
       </div>
       {!loadingProducts && products.length > 0 && (
-        <Pagination>
+        <Pagination className={"overflow-auto"}>
           <PaginationContent className="flex items-center justify-center gap-2">
             {/* Previous Button */}
             <PaginationItem>
               <PaginationPrevious
                 className={cn(
-                  "rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
+                  "rounded-md border-0 bg-[var(--dash-theme2)] px-1 py-1 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
                   CurrentPage === 1
                     ? "hover:cursor-not-allowed hover:bg-[var(--dash-theme2)] hover:text-[var(--dash-theme6)]"
                     : "hover:bg-[var(--dash-theme6)] hover:text-white",
@@ -154,13 +154,17 @@ const page = () => {
               <>
                 <PaginationItem>
                   <PaginationLink
-                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-1 py-1 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                     onClick={() => handlePageChange(1)}
                   >
-                    ١
+                    1
                   </PaginationLink>
                 </PaginationItem>
-                {pages[0] > 2 && <PaginationEllipsis>...</PaginationEllipsis>}
+                {pages[0] > 2 && (
+                  <PaginationEllipsis className={"text-white"}>
+                    ...
+                  </PaginationEllipsis>
+                )}
               </>
             )}
 
@@ -169,7 +173,7 @@ const page = () => {
               <PaginationItem key={page}>
                 <PaginationLink
                   className={cn(
-                    "rounded-md border-0 px-3 py-2 transition-all duration-200 hover:cursor-pointer",
+                    "rounded-md border-0 px-1 py-1 transition-all duration-200 hover:cursor-pointer",
                     page === CurrentPage
                       ? "bg-[var(--dash-theme6)] text-white hover:cursor-not-allowed hover:bg-[var(--dash-theme6)] hover:text-white"
                       : "bg-[var(--dash-theme2)] text-[var(--dash-theme6)] hover:bg-[var(--dash-theme6)] hover:text-white",
@@ -186,11 +190,13 @@ const page = () => {
             {pages[pages.length - 1] < totalPages && (
               <>
                 {pages[pages.length - 1] < totalPages - 1 && (
-                  <PaginationEllipsis>...</PaginationEllipsis>
+                  <PaginationEllipsis className={"text-white"}>
+                    ...
+                  </PaginationEllipsis>
                 )}
                 <PaginationItem>
                   <PaginationLink
-                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                    className="rounded-md border-0 bg-[var(--dash-theme2)] px-1 py-1 text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                     onClick={() => handlePageChange(totalPages)}
                   >
                     {totalPages}
@@ -203,7 +209,7 @@ const page = () => {
             <PaginationItem>
               <PaginationNext
                 className={cn(
-                  "rounded-md border-0 bg-[var(--dash-theme2)] px-3 py-2 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
+                  "rounded-md border-0 bg-[var(--dash-theme2)] px-1 py-1 font-semibold text-[var(--dash-theme6)] transition-all duration-200 hover:cursor-pointer",
                   CurrentPage === totalPages
                     ? "hover:cursor-not-allowed hover:bg-[var(--dash-theme2)] hover:text-[var(--dash-theme6)]"
                     : "hover:bg-[var(--dash-theme6)] hover:text-white",
