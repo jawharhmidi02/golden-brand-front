@@ -458,12 +458,12 @@ const ProductPage = () => {
           </div>
           {/* <PaginationComp /> */}
           {!loadingProducts && products.length > 0 && (
-            <Pagination>
-              <PaginationContent className="flex items-center justify-center gap-2">
+            <Pagination className={"overflow-auto"}>
+              <PaginationContent className="flex items-center justify-center gap-1.5">
                 <PaginationItem>
                   <PaginationPrevious
                     className={cn(
-                      "rounded-md px-3 py-2 transition-all duration-200 hover:cursor-pointer",
+                      "rounded-md px-0.5 py-0.5 transition-all duration-200 hover:cursor-pointer",
                       CurrentPage === 1
                         ? "hover:cursor-not-allowed"
                         : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",
@@ -477,7 +477,7 @@ const ProductPage = () => {
                   <>
                     <PaginationItem>
                       <PaginationLink
-                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                        className="rounded-md bg-white px-0.5 py-0.5 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                         onClick={() => handlePageChange(1)}
                       >
                         1
@@ -491,7 +491,7 @@ const ProductPage = () => {
                   <PaginationItem key={page}>
                     <PaginationLink
                       className={cn(
-                        "duration- rounded-md px-3 py-2 transition-all hover:cursor-pointer",
+                        "duration- rounded-md px-0.5 py-0.5 transition-all hover:cursor-pointer",
                         page === CurrentPage
                           ? "bg-[var(--theme)] text-white"
                           : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",
@@ -511,7 +511,7 @@ const ProductPage = () => {
                     )}
                     <PaginationItem>
                       <PaginationLink
-                        className="rounded-md bg-white px-3 py-2 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
+                        className="rounded-md bg-white px-0.5 py-0.5 text-black transition-all duration-200 hover:cursor-pointer hover:bg-[var(--theme)] hover:text-white"
                         onClick={() => handlePageChange(totalPages)}
                       >
                         {totalPages}
@@ -523,7 +523,7 @@ const ProductPage = () => {
                 <PaginationItem>
                   <PaginationNext
                     className={cn(
-                      "rounded-md px-3 py-2 transition-all duration-200 hover:cursor-pointer",
+                      "rounded-md px-0.5 py-0.5 transition-all duration-200 hover:cursor-pointer",
                       CurrentPage === totalPages
                         ? "hover:cursor-not-allowed"
                         : "bg-white text-black hover:bg-[var(--theme)] hover:text-white",

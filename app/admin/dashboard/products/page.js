@@ -134,7 +134,7 @@ const page = () => {
       </div>
       {!loadingProducts && products.length > 0 && (
         <Pagination className={"overflow-auto"}>
-          <PaginationContent className="flex items-center justify-center gap-2">
+          <PaginationContent className="flex items-center justify-center gap-1">
             {/* Previous Button */}
             <PaginationItem>
               <PaginationPrevious
