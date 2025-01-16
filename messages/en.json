@@ -1,0 +1,29 @@
+{
+  "header": {
+    "contact": {
+      "phone": "+974 7748 0070",
+      "phoneTitle": "Phone Number",
+      "email": "sales@goldenbrandqa.com",
+      "emailTitle": "E-mail",
+      "contactUs": "Contact Us"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "tiktok": "TikTok",
+      "instagram": "Instagram",
+      "whatsapp": "Whatsapp"
+    },
+    "language": {
+      "language": "English",
+      "lng": "en",
+      "otherLanguage": "العربية",
+      "otherLng": "ar",
+      "ar": "العربية",
+      "en": "English",
+      "switchToLanguage": "التغيير إلى العربية",
+      "switchToArabic": "Change to Arabic",
+      "switchToEnglish": "Change to English",
+      "imageSrc": "/images/arabic-language.png"
+    }
+  }
+}

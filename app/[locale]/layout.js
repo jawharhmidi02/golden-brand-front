@@ -7,6 +7,12 @@ import "../animations.css";
 import "../globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
+import { dir } from "i18next";
+
+import { Toaster } from "@/components/ui/toaster";
+import ClientLayout from "./ClientLayout";
 
 export const metadata = {
   title: "GoldenBrand",
@@ -14,19 +20,35 @@ export const metadata = {
     "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
 };
 
-import { dir } from "i18next";
-import { Toaster } from "@/components/ui/toaster";
-import ClientLayout from "./ClientLayout";
-
-const languages = ["en", "ar"];
-
-export async function generateStaticParams() {
-  return languages.map((lng) => ({ lng }));
+export function generateStaticParams() {
+  return [{ locale: "en" }, { locale: "ar" }];
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children, params: { locale } }) {
+  const locales = ["en", "ar"];
+
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    console.error(`Failed to load messages for locale ${locale}:`, error);
+    if (locale !== "en") {
+      try {
+        messages = (await import(`../../messages/en.json`)).default;
+      } catch (fallbackError) {
+        notFound();
+      }
+    } else {
+      notFound();
+    }
+  }
+
   return (
-    <html lang={"en"} dir={dir("en")}>
+    <html lang={locale} dir={dir(locale)}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -41,7 +63,9 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/images/icon.png" />
       </head>
       <body className="bg-[var(--primary)]">
-        <ClientLayout>{children}</ClientLayout>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ClientLayout>{children}</ClientLayout>
+        </NextIntlClientProvider>
         <Toaster />
         <Analytics />
       </body>

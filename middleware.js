@@ -1,9 +1,24 @@
 import { NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
 
+export default createMiddleware({
+  locales: ["en", "ar"],
+  defaultLocale: "en",
+  localePrefix: "always",
+});
+
+/*
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest|/images/|_next/).*)",
+    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest|/images/|_next).*)",
+    "/",
+    "/(ar|en)/:path*",
   ],
+ }; 
+*/
+
+export const config = {
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)", "/(ar|en)/:path*"],
 };
 
 export function middleware(req) {
@@ -17,7 +32,7 @@ export function middleware(req) {
   }
 
   const langInPath = supportedLangs.find(
-    (lang) => pathname.startsWith(`/${lang}/`) || pathname === `/${lang}`,
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`,
   );
 
   if (langInPath) {
@@ -29,21 +44,21 @@ export function middleware(req) {
     return response;
   }
 
-  let lng = defaultLang;
+  let locale = defaultLang;
 
   if (req.cookies.has(cookieName)) {
     const cookieLang = req.cookies.get(cookieName).value;
     if (supportedLangs.includes(cookieLang)) {
-      lng = cookieLang;
+      locale = cookieLang;
     }
   }
 
-  const newUrl = new URL(`/${lng}${pathname}${search}`, req.url);
+  const newUrl = new URL(`/${locale}${pathname}${search}`, req.url);
 
   const response = NextResponse.redirect(newUrl);
 
-  if (req.cookies.get(cookieName)?.value !== lng) {
-    response.cookies.set(cookieName, lng);
+  if (req.cookies.get(cookieName)?.value !== locale) {
+    response.cookies.set(cookieName, locale);
   }
 
   return response;

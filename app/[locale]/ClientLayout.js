@@ -8,8 +8,6 @@ import Cookies from "js-cookie";
 import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
-//import NewOrder from "@/notifications/NewOrder/NewOrder";
-
 import Footer from "@/components/Footer/Footer";
 import FastLinks from "@/components/FastLinks/FastLinks";
 import TopHeader from "@/components/topHeader/TopHeader";
@@ -170,10 +168,9 @@ export default function ClientLayout({ children }) {
           </div>
         )}
         <TopHeader />
-        <>{children}</>
+        {children}
         <Footer />
         <FastLinks />
-        {/* {isUserSigned && <NewOrder />} */}
       </div>
     </UserAuthContext.Provider>
   );

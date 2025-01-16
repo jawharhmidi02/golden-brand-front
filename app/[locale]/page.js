@@ -3,8 +3,10 @@
 // Styles:
 import "./page.css";
 
-// Components:
+// Packages:
 import { useEffect } from "react";
+
+// Components:
 import Hero from "../../components/Hero/Hero";
 import Categories from "../../components/categories/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";

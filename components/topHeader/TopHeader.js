@@ -2,14 +2,17 @@
 
 import "./TopHeader.css";
 
+import { useTranslations } from "next-intl";
 import { useContext } from "react";
-
 import Image from "next/image";
-import ShowLocation from "../showLocation/ShowLocation";
-import Nav from "@/components/nav/Nav";
+
 import { UserAuthContext } from "@/contexts/AuthContext";
 
+import Nav from "@/components/nav/Nav";
+import ShowLocation from "../showLocation/ShowLocation";
+
 const TopHeader = () => {
+  const t = useTranslations("header");
   const { ChangeUrl } = useContext(UserAuthContext);
 
   return (
@@ -19,27 +22,26 @@ const TopHeader = () => {
           <div
             className="phone"
             onClick={() => {
-              window.open("tel:+974 7748 0070");
+              window.open(`tel:${t("contact.phone")}`);
             }}
           >
             <i className="fa-solid fa-phone"></i>
-            <abbr title="Phone Number">+974 7748 0070</abbr>
+            <abbr title={t("contact.phoneTitle")}>{t("contact.phone")}</abbr>
           </div>
           <div
             className="mail"
             onClick={() => {
-              window.open("mailto:sales@goldenbrandqa.com");
+              window.open(`mailto:${t("contact.email")}`);
             }}
           >
             <i className="fa-regular fa-envelope"></i>
-            <abbr title="E-mail">sales@goldenbrandqa.com</abbr>
+            <abbr title={t("contact.emailTitle")}>{t("contact.email")}</abbr>
           </div>
           <ShowLocation />
         </div>
-
         <div className="right">
           <div className="socials">
-            <abbr title="Facebook">
+            <abbr title={t("social.facebook")}>
               <i
                 className="fa-brands fa-facebook"
                 onClick={() => {
@@ -49,7 +51,7 @@ const TopHeader = () => {
                 }}
               ></i>
             </abbr>
-            <abbr title="TikTok">
+            <abbr title={t("social.tiktok")}>
               <i
                 className="fa-brands fa-tiktok"
                 onClick={() => {
@@ -57,7 +59,7 @@ const TopHeader = () => {
                 }}
               ></i>
             </abbr>
-            <abbr title="Instagram">
+            <abbr title={t("social.instagram")}>
               <i
                 className="fa-brands fa-instagram"
                 onClick={() => {
@@ -67,7 +69,7 @@ const TopHeader = () => {
                 }}
               ></i>
             </abbr>
-            <abbr title="Whatsapp">
+            <abbr title={t("social.whatsapp")}>
               <i
                 className="fa-brands fa-whatsapp"
                 onClick={() => {
@@ -79,29 +81,25 @@ const TopHeader = () => {
           <div
             className="contact-us"
             onClick={() => {
-              ChangeUrl("./contact");
+              ChangeUrl("/contact");
             }}
           >
-            Contact Us
+            {t("contact.contactUs")}
           </div>
-          <div className="language" onClick={() => ChangeUrl("/ar")}>
-            <abbr title="Change to Arabic">العربية</abbr>
+          <div
+            className="language"
+            onClick={() => ChangeUrl(t("language.otherLng"))}
+          >
+            <abbr title={t("language.switchToLanguage")}>
+              {t("language.otherLanguage")}
+            </abbr>
             <Image
-              src="/images/arabic-language.png"
+              src={t("language.imageSrc")}
               width={20}
               height={20}
-              alt="arabic"
+              alt={t("language.otherLanguage")}
             />
           </div>
-          {/* <div className="language" onClick={() => ChangeUrl("/en")}>
-            <Image
-              src="/images/english-language.png"
-              width={20}
-              height={20}
-              alt="arabic"
-            />
-            <abbr title="Change to English">En</abbr>
-          </div> */}
         </div>
       </div>
       <Nav />
