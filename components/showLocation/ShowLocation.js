@@ -19,7 +19,8 @@ const ShowLocation = () => {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="first-background-primary first-family h-0 px-0 py-0 text-base font-normal hover:bg-inherit focus:bg-inherit">
-            <i className="fa-solid fa-location-dot"></i>&nbsp;Show Location
+            <i className="fa-solid fa-location-dot" />
+            <span>&nbsp;Show Location</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="z-99 md:min-w-[400px]">
             <ul className="z-99 grid gap-3 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] lg:p-4">
@@ -31,7 +32,7 @@ const ShowLocation = () => {
                     allowFullScreen=""
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                  ></iframe>
+                  />
                 </NavigationMenuLink>
               </li>
               <li className="z-99 row-span-3 my-3 flex flex-col gap-4">

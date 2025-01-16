@@ -31,7 +31,10 @@ const EmblaCarousel = ({ options }) => {
   }, [emblaApi]);
 
   return (
-    <section className="embla h-[100vw] w-full bg-neutral-600 min-[768px]:h-[50vw] min-[1024px]:h-[33vw]">
+    <section
+      dir="ltr"
+      className="embla h-[100vw] w-full bg-neutral-600 min-[768px]:h-[50vw] min-[1024px]:h-[33vw]"
+    >
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {[

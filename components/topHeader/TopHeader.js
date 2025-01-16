@@ -26,7 +26,9 @@ const TopHeader = () => {
             }}
           >
             <i className="fa-solid fa-phone"></i>
-            <abbr title={t("contact.phoneTitle")}>{t("contact.phone")}</abbr>
+            <abbr title={t("contact.phoneTitle")} dir="ltr">
+              {t("contact.phone")}
+            </abbr>
           </div>
           <div
             className="mail"
@@ -35,7 +37,9 @@ const TopHeader = () => {
             }}
           >
             <i className="fa-regular fa-envelope"></i>
-            <abbr title={t("contact.emailTitle")}>{t("contact.email")}</abbr>
+            <abbr title={t("contact.emailTitle")} dir="ltr">
+              {t("contact.email")}
+            </abbr>
           </div>
           <ShowLocation />
         </div>
