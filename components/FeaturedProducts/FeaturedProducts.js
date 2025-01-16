@@ -6,8 +6,11 @@ import Image from "next/image";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const FeaturedProducts = () => {
+  const tCommon = useTranslations("common");
+  const tFeaturedProducts = useTranslations("featuredProducts");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [products, setProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -44,8 +47,8 @@ const FeaturedProducts = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed!",
-        description: "Something went wrong, please try again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")},${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
 
@@ -62,9 +65,9 @@ const FeaturedProducts = () => {
     <div className="featured-product flex flex-col items-center">
       <div className="flex w-full max-w-screen-xl flex-col items-center gap-y-4 px-5 lg:flex-row lg:justify-between">
         <div className="text-2xl font-semibold lg:text-3xl">
-          Featured Products
+          {tFeaturedProducts("title")}
         </div>
-        <div className="flex flex-row justify-center gap-6">
+        <div className="flex flex-row justify-between gap-6">
           <div
             className={
               selectedType === "newest"
@@ -75,7 +78,7 @@ const FeaturedProducts = () => {
               setselectedType("newest");
             }}
           >
-            Newest
+            {tFeaturedProducts("newest")}
           </div>
           <div
             className={
@@ -87,7 +90,7 @@ const FeaturedProducts = () => {
               setselectedType("mostpopular");
             }}
           >
-            Most Popular
+            {tFeaturedProducts("mostPopular")}
           </div>
         </div>
       </div>
@@ -129,11 +132,14 @@ const FeaturedProducts = () => {
               </div>
             </div>
             <div className="mt-auto w-full font-semibold text-[var(--theme)]">
-              ~{product.productsVariants[0].price}.00 QAR{" "}
+              ~ {product.productsVariants[0].price} {tCommon("currency")}
             </div>
             <div className="flex w-full flex-col items-center">
               <button
-                className="w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
+                className={cn(
+                  "w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300",
+                  tCommon("language.lng"),
+                )}
                 onClick={() => {
                   ChangeUrl(`/products/${product.id}`);
                 }}

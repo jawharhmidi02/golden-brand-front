@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter, usePathname } from "@/lib/utils";
 
 import Cookies from "js-cookie";
 
@@ -153,6 +153,7 @@ export default function ClientLayout({ children }) {
         setUserData,
         ChangeUrl,
         router,
+        pathname,
         loadingPage,
         setLoadingPage,
         checkUser,

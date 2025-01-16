@@ -12,8 +12,8 @@ import Nav from "@/components/nav/Nav";
 import ShowLocation from "../showLocation/ShowLocation";
 
 const TopHeader = () => {
-  const t = useTranslations("header");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const t = useTranslations("common");
+  const { ChangeUrl, pathname } = useContext(UserAuthContext);
 
   return (
     <>
@@ -92,7 +92,9 @@ const TopHeader = () => {
           </div>
           <div
             className="language"
-            onClick={() => ChangeUrl(t("language.otherLng"))}
+            onClick={() =>
+              ChangeUrl(pathname, { locale: t("language.otherLng") })
+            }
           >
             <abbr title={t("language.switchToLanguage")}>
               {t("language.otherLanguage")}

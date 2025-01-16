@@ -1,71 +1,103 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import "./Menu.css";
 
-import { usePathname } from "next/navigation";
 import { useContext } from "react";
+import { useTranslations } from "next-intl";
+
+import { cn } from "@/lib/utils";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
-const Menu = () => {
-  const { ChangeUrl } = useContext(UserAuthContext);
-  const pathname = usePathname();
+const Menu = ({ orientation }) => {
+  const tCommon = useTranslations("common");
+  const { ChangeUrl, pathname } = useContext(UserAuthContext);
 
   return (
-    <div className={cn("flex flex-row items-center justify-center p-0")}>
-      <div
-        className={cn(
-          "flex flex-row gap-5 font-montserrat text-[var(--fourth-color-primary)]",
-        )}
-      >
-        <div className={`link ${pathname === `/en` ? "active" : ""}`}>
+    <div
+      className={cn(
+        "menu mt-4 hidden flex-row items-center gap-8 min-[1260px]:flex",
+        orientation == "col" && "flex flex-col items-start gap-7 text-lg",
+      )}
+    >
+      <div>
+        <div
+          className={cn("link text-neutral-700", pathname === "/" && "active")}
+        >
           <a
             onClick={() => {
               ChangeUrl("/");
             }}
             className="hover:cursor-pointer"
           >
-            Home
+            {tCommon("navigation.home")}
           </a>
         </div>
-        <div className={`link ${pathname === `/en/products` ? "active" : ""}`}>
+      </div>
+      <div>
+        <div
+          className={cn(
+            "link text-neutral-700",
+            pathname.includes("products") && "active",
+          )}
+        >
           <a
             onClick={() => {
               ChangeUrl("/products");
             }}
             className="hover:cursor-pointer"
           >
-            Products
+            {tCommon("navigation.products")}
           </a>
         </div>
-        <div className={`link ${pathname === `/en/services` ? "active" : ""}`}>
+      </div>
+      <div>
+        <div
+          className={cn(
+            "link text-neutral-700",
+            pathname.includes("services") && "active",
+          )}
+        >
           <a
             onClick={() => {
               ChangeUrl("/services");
             }}
             className="hover:cursor-pointer"
           >
-            Our Services
+            {tCommon("navigation.services")}
           </a>
         </div>
-        <div className={`link ${pathname === `/en/about` ? "active" : ""}`}>
+      </div>
+      <div>
+        <div
+          className={cn(
+            "link text-neutral-700",
+            pathname.includes("about") && "active",
+          )}
+        >
           <a
             onClick={() => {
               ChangeUrl("/about");
             }}
             className="hover:cursor-pointer"
           >
-            About
+            {tCommon("navigation.about")}
           </a>
         </div>
-        <div className={`link ${pathname === `/en/contact` ? "active" : ""}`}>
+      </div>
+      <div>
+        <div
+          className={cn(
+            "link text-neutral-700",
+            pathname.includes("contact") && "active",
+          )}
+        >
           <a
             onClick={() => {
               ChangeUrl("/contact");
             }}
             className="hover:cursor-pointer"
           >
-            Contact
+            {tCommon("navigation.contact")}
           </a>
         </div>
       </div>

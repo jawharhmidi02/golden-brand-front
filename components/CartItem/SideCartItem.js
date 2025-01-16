@@ -7,8 +7,10 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 
 import { Separator } from "../ui/separator";
 import { Skeleton } from "../ui/skeleton";
+import { useTranslations } from "next-intl";
 
 const SideCartItem = ({ productVariantId, quantity, index }) => {
+  const tCommon = useTranslations("common");
   const { ChangeUrl, updateCart } = useContext(UserAuthContext);
   const [productVariant, setProductVariant] = useState({});
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
@@ -83,7 +85,7 @@ const SideCartItem = ({ productVariantId, quantity, index }) => {
           />
         )}
         <div className="flex flex-col justify-between">
-          <span className="font-lato font-semibold text-neutral-700">
+          <span className="font-lato font-semibold text-neutral-700" dir="ltr">
             {loadingProductVariant ? (
               <Skeleton className={"my-1 h-5 w-[150px] bg-neutral-300"} />
             ) : (
@@ -99,13 +101,13 @@ const SideCartItem = ({ productVariantId, quantity, index }) => {
           </span> */}
           <div>
             <span className="font-lato font-semibold text-neutral-700">
-              Dimension:{" "}
+              {tCommon("dimension")}:{" "}
             </span>
-            <span className="font-lato text-sm text-neutral-500">
+            <span className="font-lato text-sm text-neutral-500" dir="ltr">
               {productVariant.dimension}
             </span>
           </div>
-          <div>
+          <div dir="ltr">
             <span className="font-lato font-semibold text-neutral-400">
               {quantity} x
             </span>
@@ -113,7 +115,7 @@ const SideCartItem = ({ productVariantId, quantity, index }) => {
               {loadingProductVariant ? (
                 <Skeleton className={"my-1 h-5 w-[60px] bg-neutral-300"} />
               ) : (
-                ` ${productVariant.price} QR`
+                ` ${productVariant.price} ${tCommon("currency")}`
               )}
             </span>
           </div>

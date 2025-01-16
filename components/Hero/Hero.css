@@ -96,9 +96,18 @@
   transform: translateY(-100%);
 }
 
+.hero .button.en::after,
+.hero .button.en::before {
+  content: "Shop Now";
+}
+
+.hero .button.ar::after,
+.hero .button.ar::before {
+  content: "تسوق الآن";
+}
+
 .hero .button::after,
 .hero .button::before {
-  content: "Shop Now";
   position: absolute;
   left: 0;
   display: flex;

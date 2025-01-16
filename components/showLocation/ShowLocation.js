@@ -1,4 +1,5 @@
 import { forwardRef, useContext } from "react";
+import { useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
 import { UserAuthContext } from "@/contexts/AuthContext";
@@ -13,14 +14,16 @@ import {
 } from "@/components/ui/navigation-menu";
 
 const ShowLocation = () => {
+  const tCommon = useTranslations("common");
   const { ChangeUrl } = useContext(UserAuthContext);
+
   return (
     <NavigationMenu className="p-0">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger className="first-background-primary first-family h-0 px-0 py-0 text-base font-normal hover:bg-inherit focus:bg-inherit">
             <i className="fa-solid fa-location-dot" />
-            <span>&nbsp;Show Location</span>
+            <span>&nbsp;{tCommon("contact.address")}</span>
           </NavigationMenuTrigger>
           <NavigationMenuContent className="z-99 md:min-w-[400px]">
             <ul className="z-99 grid gap-3 md:min-w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr] lg:p-4">
@@ -37,10 +40,12 @@ const ShowLocation = () => {
               </li>
               <li className="z-99 row-span-3 my-3 flex flex-col gap-4">
                 <div className="flex cursor-default flex-col gap-0">
-                  <div className="text-center">Saturday - Thursday</div>
+                  <div className="text-center">
+                    {tCommon("contact.workDays")}
+                  </div>
                   <div>
                     <span className="text-center text-neutral-500">
-                      7:00AM - 5:00PM
+                      7:00 - 17:00
                     </span>
                   </div>
                 </div>
@@ -83,7 +88,7 @@ const ShowLocation = () => {
                       />
                     </svg>
                     <address className="-mt-0.5 flex-1 not-italic text-neutral-500">
-                      Doha, Qatar
+                      {tCommon("contact.address")}
                     </address>
                   </div>
                 </div>
@@ -95,7 +100,7 @@ const ShowLocation = () => {
                       ChangeUrl("./contact");
                     }}
                   >
-                    Contact Us
+                    {tCommon("contact.contactUs")}
                   </button>
                 </div>
               </li>

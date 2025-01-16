@@ -4,8 +4,11 @@ import { useContext } from "react";
 import Image from "next/image";
 
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+  const tCommon = useTranslations("common");
+  const tFooter = useTranslations("footer");
   const { ChangeUrl } = useContext(UserAuthContext);
 
   return (
@@ -22,11 +25,10 @@ const Footer = () => {
           </div>
           <div className="details flex flex-col gap-1">
             <div className="title font-bold text-neutral-800">
-              Fast Delivery
+              {tFooter("services.fastDelivery.title")}
             </div>
             <div className="desc text-sm text-neutral-500">
-              Get your stainless steel products quickly with our fast and
-              reliable delivery service.
+              {tFooter("services.fastDelivery.description")}
             </div>
           </div>
         </div>
@@ -41,11 +43,10 @@ const Footer = () => {
           </div>
           <div className="details flex flex-col gap-1">
             <div className="title font-bold text-neutral-800">
-              Free Delivery Over 10K QAR
+              {tFooter("services.freeDeliveryOver10KQAR.title")}
             </div>
             <div className="desc text-sm text-neutral-500">
-              Enjoy free delivery on orders over 10,000 QAR—bringing quality
-              right to your doorstep.
+              {tFooter("services.freeDeliveryOver10KQAR.description")}
             </div>
           </div>
         </div>
@@ -60,11 +61,10 @@ const Footer = () => {
           </div>
           <div className="details flex flex-col gap-1">
             <div className="title font-bold text-neutral-800">
-              Flexible Payment Options
+              {tFooter("services.flexiblePaymentOptions.title")}
             </div>
             <div className="desc text-sm text-neutral-500">
-              Pay your way—MasterCard, Visa, Apple Pay, or cash on delivery,
-              we’ve got you covered.
+              {tFooter("services.flexiblePaymentOptions.description")}
             </div>
           </div>
         </div>
@@ -79,11 +79,10 @@ const Footer = () => {
           </div>
           <div className="details flex flex-col gap-1">
             <div className="title font-bold text-neutral-800">
-              High-Quality Materials & Products
+              {tFooter("services.high-QualityMaterialsAndProducts.title")}
             </div>
             <div className="desc text-sm text-neutral-500">
-              Crafted from premium materials, our products guarantee durability
-              and top-notch performance.
+              {tFooter("services.high-QualityMaterialsAndProducts.description")}
             </div>
           </div>
         </div>
@@ -106,11 +105,7 @@ const Footer = () => {
                 />
               </div>
               <p className="mt-4 max-w-xs text-center text-gray-400">
-                Golden Brand Stainless Steel offers premium-quality stainless
-                steel kitchens, handrails, and aluminum products. With a
-                commitment to durability, precision, and modern design, we
-                provide customized solutions for both residential and commercial
-                spaces.
+                {tFooter("description")}
               </p>
               <ul className="mt-8 flex items-center gap-6">
                 <li>
@@ -120,7 +115,9 @@ const Footer = () => {
                     target="_blank"
                     className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="sr-only">Facebook</span>
+                    <span className="sr-only">
+                      {tCommon("social.facebook")}
+                    </span>
                     <svg
                       className="size-6"
                       fill="currentColor"
@@ -142,7 +139,7 @@ const Footer = () => {
                     target="_blank"
                     className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="sr-only">TikTok</span>
+                    <span className="sr-only">{tCommon("social.tiktok")}</span>
                     <i className="fa-brands fa-tiktok text-xl"></i>
                   </a>
                 </li>
@@ -153,7 +150,9 @@ const Footer = () => {
                     target="_blank"
                     className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="sr-only">Instagram</span>
+                    <span className="sr-only">
+                      {tCommon("social.instagram")}
+                    </span>
                     <svg
                       className="size-6"
                       fill="currentColor"
@@ -175,7 +174,9 @@ const Footer = () => {
                     target="_blank"
                     className="text-gray-300 transition hover:text-white"
                   >
-                    <span className="sr-only">WhatsApp</span>
+                    <span className="sr-only">
+                      {tCommon("social.whatsapp")}
+                    </span>
                     <svg
                       shapeRendering="geometricPrecision"
                       textRendering="geometricPrecision"
@@ -198,7 +199,9 @@ const Footer = () => {
             </div>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4 lg:gap-0">
               <div>
-                <p className="text-lg font-bold text-white">Menu</p>
+                <p className="text-lg font-bold text-white">
+                  {tCommon("navigation.menu")}
+                </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
@@ -207,7 +210,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Home
+                      {tCommon("navigation.home")}
                     </a>
                   </li>
                   <li className="link">
@@ -217,7 +220,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Services
+                      {tCommon("navigation.services")}
                     </a>
                   </li>
                   <li className="link">
@@ -227,7 +230,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Products
+                      {tCommon("navigation.products")}
                     </a>
                   </li>
                   <li className="link">
@@ -237,13 +240,15 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Contact
+                      {tCommon("navigation.contact")}
                     </a>
                   </li>
                 </ul>
               </div>
               <div>
-                <p className="text-lg font-bold text-white">Company</p>
+                <p className="text-lg font-bold text-white">
+                  {tFooter("company.title")}
+                </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
@@ -252,7 +257,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      About
+                      {tCommon("navigation.about")}
                     </a>
                   </li>
 
@@ -262,13 +267,15 @@ const Footer = () => {
                       target="_blank"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Google Maps
+                      {tFooter("company.googleMaps")}
                     </a>
                   </li>
                 </ul>
               </div>
               <div>
-                <p className="text-lg font-bold text-white">Important Links</p>
+                <p className="text-lg font-bold text-white">
+                  {tFooter("importantLinks.title")}
+                </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
                     <a
@@ -277,7 +284,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Terms & Conditions
+                      {tFooter("importantLinks.termsAndConditions")}
                     </a>
                   </li>
                   <li className="link">
@@ -287,7 +294,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      FAQs
+                      {tFooter("importantLinks.faqs")}
                     </a>
                   </li>
                   <li className="link">
@@ -297,7 +304,7 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Payments Info
+                      {tFooter("importantLinks.paymentsInfo")}
                     </a>
                   </li>
 
@@ -308,13 +315,15 @@ const Footer = () => {
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
-                      Contact
+                      {tCommon("navigation.contact")}
                     </a>
                   </li>
                 </ul>
               </div>
               <div>
-                <p className="text-lg font-bold text-white">Contact Us</p>
+                <p className="text-lg font-bold text-white">
+                  {tCommon("contact.contactUs")}
+                </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li>
                     <a
@@ -359,7 +368,7 @@ const Footer = () => {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      <span className="flex-1 text-gray-300">
+                      <span className="flex-1 text-gray-300" dir="ltr">
                         +974 7748 0070
                       </span>
                     </a>
@@ -385,7 +394,7 @@ const Footer = () => {
                       />
                     </svg>
                     <address className="-mt-0.5 flex-1 not-italic text-gray-300">
-                      Doha, Qatar
+                      {tCommon("contact.address")}
                     </address>
                   </li>
                 </ul>
@@ -432,7 +441,7 @@ const Footer = () => {
                   ChangeUrl("/terms-and-conditions#refund");
                 }}
               >
-                Refund & Returns
+                {tFooter("importantTerms.refundAndReturns")}
               </a>
             </div>
             <div className="link">
@@ -442,7 +451,7 @@ const Footer = () => {
                   ChangeUrl("/terms-and-conditions#privacy");
                 }}
               >
-                Privacy Policy
+                {tFooter("importantTerms.privacyPolicy")}
               </a>
             </div>
             <div className="link">
@@ -452,23 +461,23 @@ const Footer = () => {
                   ChangeUrl("/terms-and-conditions#delivery");
                 }}
               >
-                Shipping & Delivery
+                {tFooter("importantTerms.shippingAndDelivery")}
               </a>
             </div>
           </div>
         </div>
         <div className="border-mask h-[1px] w-full bg-white"></div>
         <div className="pb-3 pt-3 text-center text-white">
-          Copyright © 2024{" "}
+          {tFooter("copyright.copyright")} © {new Date().getFullYear()}{" "}
           <a
             onClick={() => {
               ChangeUrl("/");
             }}
             className="font-bold hover:cursor-pointer"
           >
-            Golden Brand
+            {tCommon("goldenBrand.GoldenBrand")}
           </a>
-          . All rights reserved.
+          . {tFooter("copyright.allRightsReserved")}
         </div>
       </footer>
     </div>

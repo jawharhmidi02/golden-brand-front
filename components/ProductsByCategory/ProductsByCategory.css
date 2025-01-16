@@ -26,8 +26,12 @@
   width: calc(100% - 3px);
 }
 
-.ProductsByCategory button.open-product::after {
+.ProductsByCategory button.open-product.en::after {
   content: "Open Product";
+}
+
+.ProductsByCategory button.open-product.ar::after {
+  content: "إفتح المنتج";
 }
 
 .ProductsByCategory button.open-product::before {

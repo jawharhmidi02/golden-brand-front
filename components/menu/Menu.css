@@ -1,40 +1,32 @@
-.link {
+.menu .link {
   padding-bottom: 5px;
   overflow-x: hidden;
 }
-.link.active {
-  color: var(--first-color-secondary);
+
+.menu .link.active {
+  @apply text-neutral-900;
 }
 
-.link a {
+.menu .link a {
   position: relative;
-  /* overflow-x: hidden; */
   transition: all 0.5s;
 }
 
-.link a::before {
+.menu .link a::after {
   content: "";
   position: absolute;
   height: 2px;
   transition: all 0.5s;
   width: 100%;
   bottom: -5px;
-  left: -100%;
+  left: 100%;
   background: var(--first-color-primary);
 }
 
-.link.active a::before {
-  left: 0;
+.menu .link.active a::after {
+  left: 0%;
 }
 
-.link a:hover::before {
-  left: 0;
-}
-
-.lang {
-  font-family: var(--first-family);
-  color: var(--third-color-secondary);
-  background: var(--second-color-primary);
-  border-radius: 20px;
-  padding: 10px 20px;
+.menu .link a:hover::after {
+  left: 0%;
 }

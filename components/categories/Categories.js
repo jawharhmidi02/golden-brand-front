@@ -2,7 +2,10 @@
 
 import "./Categories.css";
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { useContext, useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+
+import { UserAuthContext } from "@/contexts/AuthContext";
 
 import {
   Carousel,
@@ -11,14 +14,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-import Image from "next/image";
-
-import { useContext, useEffect, useState } from "react";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "../ui/skeleton";
-import { UserAuthContext } from "@/contexts/AuthContext";
 
 const Categories = () => {
+  const tCommon = useTranslations("common");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
@@ -45,8 +45,8 @@ const Categories = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, Please Try Again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")},${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
       setLoadingCategories(false);
@@ -60,7 +60,9 @@ const Categories = () => {
 
   return (
     <section className="categories">
-      <h1 className="section-title text-3xl">Categories</h1>
+      <h1 className="section-title text-3xl">
+        {tCommon("titles.theCategories")}
+      </h1>
       <div className="categories-container flex w-full items-center justify-center">
         <div className="categories-cards w-full max-w-screen-xl px-10">
           {loadingCategories ? (
@@ -89,7 +91,7 @@ const Categories = () => {
                             <Skeleton
                               className={"h-[20px] w-[20px] bg-neutral-300"}
                             />
-                            Products
+                            {tCommon("navigation.products")}
                           </div>
                         </CardFooter>
                       </Card>
@@ -122,7 +124,7 @@ const Categories = () => {
                         }}
                       >
                         <CardContent className="flex items-center justify-center p-1">
-                          <Image
+                          <img
                             src={item.img}
                             width={200}
                             height={200}
@@ -134,7 +136,8 @@ const Categories = () => {
                             {item.name.toUpperCase()}
                           </p>
                           <p className="text-center font-lato font-semibold text-neutral-600">
-                            {item.products.length + " "}Products
+                            {item.products.length + " "}{" "}
+                            {tCommon("navigation.products")}
                           </p>
                         </CardFooter>
                       </Card>

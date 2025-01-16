@@ -1,8 +1,11 @@
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useContext } from "react";
 
 const LookingForCustom = () => {
+  const tCommon = useTranslations("common");
+  const tLookingForCustom = useTranslations("lookingForCustom");
   const { ChangeUrl } = useContext(UserAuthContext);
 
   return (
@@ -14,23 +17,18 @@ const LookingForCustom = () => {
           height={100}
           alt="line"
           className="w-full rounded-lg shadow-lg drop-shadow-lg"
+          priority
         />
       </div>
       <div className="flex flex-col">
         <div className="mt-6 text-center text-3xl font-semibold text-[var(--theme)]">
-          Looking For Custom Products?
+          {tLookingForCustom("title")}
         </div>
         <div className="my-1 text-center text-2xl font-medium text-neutral-700">
-          We Can Help You
+          {tLookingForCustom("smallDescription")}
         </div>
         <div className="mt-2 max-w-[600px] text-center text-neutral-500">
-          At Golden Brand, we understand that every project is unique. Whether
-          you're envisioning a custom kitchen setup, a bespoke handrail, or
-          specialized stainless steel and aluminum products, we’re here to bring
-          your ideas to life. Contact us to discuss your specifications, and
-          let’s create a solution tailored just for you. Our team of experts is
-          ready to assist with designs, materials, and the craftsmanship you
-          need to make your vision a reality.
+          {tLookingForCustom("description")}
         </div>
         <div className="mb-6 mt-3 flex w-full items-center justify-center">
           <button
@@ -40,7 +38,7 @@ const LookingForCustom = () => {
               ChangeUrl("/contact");
             }}
           >
-            Contact Us
+            {tCommon("contact.contactUs")}
           </button>
         </div>
       </div>
@@ -51,6 +49,7 @@ const LookingForCustom = () => {
           height={100}
           className="w-full rounded-lg shadow-lg drop-shadow-lg"
           alt="line"
+          priority
         />
       </div>
     </div>

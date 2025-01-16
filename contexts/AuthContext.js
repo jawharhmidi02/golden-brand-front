@@ -8,6 +8,7 @@ export const UserAuthContext = createContext({
   setUserData: () => {},
   ChangeUrl: () => {},
   router: null,
+  pathname: null,
   loadingPage: true,
   setLoadingPage: () => {},
   checkUser: () => {},

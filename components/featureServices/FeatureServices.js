@@ -1,31 +1,33 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import { useState } from "react";
 
 const FeaturedServices = () => {
+  const tFeaturedServices = useTranslations("featuredServices");
   const [selectedService, setselectedService] = useState(0);
   const services = [
     {
-      title: "Counseling Services",
-      desc: "At Golden Brand Stainless Steel, we understand that every project is unique, and selecting the right products and designs can be a complex process. Our expert counseling services are here to guide you through every step of your project, offering professional advice on selecting the best stainless steel and aluminum products for your specific needs. Whether you're working on a commercial kitchen, handrails, or custom solutions, our team helps you make informed decisions that align with your project goals, budget, and long-term vision.",
+      title: tFeaturedServices("counselingServices.title"),
+      desc: tFeaturedServices("counselingServices.description"),
       img: "/images/goldenbrand_stainlesssteel_1725566521572(1).jpeg",
     },
     {
-      title: "Engineering Services",
-      desc: "Our engineering services at Golden Brand Stainless Steel are designed to bring your vision to life with precision and innovation. Our experienced engineers work closely with clients to develop detailed plans and technical drawings that meet exact specifications. Whether you're creating custom stainless steel structures, kitchens, or industrial installations, our engineering team provides solutions that enhance functionality, durability, and aesthetics. We use the latest technology to ensure that every design is both practical and efficient, meeting industry standards and exceeding client expectations.",
+      title: tFeaturedServices("engineeringServices.title"),
+      desc: tFeaturedServices("engineeringServices.description"),
       img: "/images/goldenbrand_stainlesssteel_1725566555084.jpeg",
     },
     {
-      title: "Manufacture and Supply",
-      desc: "Golden Brand Stainless Steel takes pride in manufacturing and supplying top-quality equipment for a wide range of industries. Our products are made from the finest stainless steel and aluminum materials, ensuring durability, hygiene, and resistance to corrosion. From commercial kitchen equipment to custom-made industrial solutions, we offer a broad range of products tailored to meet the specific needs of our clients. Our advanced manufacturing processes and stringent quality control standards guarantee that every piece of equipment we supply meets the highest performance expectations.",
+      title: tFeaturedServices("manufactureAndSupply.title"),
+      desc: tFeaturedServices("manufactureAndSupply.description"),
       img: "/images/hero2.jpeg",
     },
     {
-      title: "After Sale Services",
-      desc: "At Golden Brand Stainless Steel, our commitment to customers doesn’t end with the sale. We offer comprehensive after-sale services to ensure the continued performance and maintenance of our products. Whether you need regular maintenance, repairs, or technical support, our dedicated team is always ready to assist you. We aim to build long-lasting relationships with our clients by providing reliable service that keeps your equipment in optimal condition for years to come.",
+      title: tFeaturedServices("afterSaleServices.title"),
+      desc: tFeaturedServices("afterSaleServices.description"),
       img: "/images/goldenbrand_stainlesssteel_1725566531903.jpeg",
     },
   ];

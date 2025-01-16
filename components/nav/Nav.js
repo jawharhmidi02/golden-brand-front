@@ -2,9 +2,13 @@
 
 import "./Nav.css";
 
-import Menu from "../menu/Menu";
-import Image from "next/image";
 import { useEffect, useState, useRef, useContext } from "react";
+import { useTranslations } from "next-intl";
+import Cookies from "js-cookie";
+
+import { UserAuthContext } from "@/contexts/AuthContext";
+import { cn } from "@/lib/utils";
+
 import {
   Sheet,
   SheetClose,
@@ -18,14 +22,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 import SideCartItem from "../CartItem/SideCartItem";
-import Cookies from "js-cookie";
-import { UserAuthContext } from "@/contexts/AuthContext";
+import Menu from "../menu/Menu";
 
 const Nav = () => {
-  const pathname = usePathname();
+  const tCommon = useTranslations("common");
+  const tCart = useTranslations("cart");
   const {
     isUserSigned,
     loadingUser,
@@ -34,7 +36,6 @@ const Nav = () => {
     setLoadingPage,
     items,
   } = useContext(UserAuthContext);
-
   const closeButton = useRef(null);
   const closeCartButton = useRef(null);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -98,73 +99,21 @@ const Nav = () => {
   return (
     <nav className={cn("max-h-[120px]")}>
       <div className="left">
-        <Image
+        <img
           src="/images/icon.png"
-          width={220}
-          height={0}
           alt="icon"
           loading="lazy"
           onClick={() => {
-            ChangeUrl("./");
+            ChangeUrl("/");
           }}
-          className="hover:cursor-pointer"
+          className="w-[200px] hover:cursor-pointer"
         />
       </div>
-      <div className="menu mx-auto">
-        <Menu />
+      <div className="menu mx-auto text-lg">
+        <Menu orientation={"row"} />
       </div>
       <div className="right flex flex-row gap-3">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div
-                onClick={() => {
-                  if (!loadingUser) {
-                    if (isUserSigned) {
-                      ChangeUrl("/profile");
-                    } else {
-                      ChangeUrl("/sign-in");
-                    }
-                  }
-                }}
-                className={cn(
-                  "login hover:cursor-pointer",
-                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-200 hover:scale-105 hover:cursor-pointer hover:bg-zinc-100",
-                  loadingUser && "hover:cursor-not-allowed",
-                )}
-              >
-                <i className="fa-regular fa-user text-2xl min-[500px]:text-xl"></i>
-                <span className="hidden min-[800px]:block">
-                  {loadingUser ? (
-                    <div className="flex items-center justify-center">
-                      <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
-                    </div>
-                  ) : isUserSigned ? (
-                    userData.full_name
-                      .split(" ")
-                      .map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
-                      )
-                      .join(" ")
-                  ) : (
-                    "Sign In / Sign Up"
-                  )}
-                </span>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              {loadingUser ? (
-                <div className="flex items-center justify-center">
-                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
-                </div>
-              ) : isUserSigned ? (
-                "Profile"
-              ) : (
-                "Login / Register"
-              )}
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        {/* CART  */}
 
         <Sheet>
           <SheetTrigger className="cart">
@@ -186,7 +135,7 @@ const Nav = () => {
             <div className="flex h-full flex-col justify-between">
               <div className="border-b-[1px] border-neutral-300 py-3 text-center">
                 <span className="font-lato text-2xl font-semibold text-neutral-800">
-                  Shopping Cart
+                  {tCart("title")}
                 </span>
               </div>
               <div className="cart-items-scrollbar relative flex w-full flex-1 flex-col overflow-auto">
@@ -202,10 +151,10 @@ const Nav = () => {
               <div className="flex flex-col gap-2 border-t-[1px] border-neutral-300 p-4">
                 <div className="flex flex-row justify-between">
                   <span className="font-lato text-xl font-semibold text-neutral-700">
-                    Total:
+                    {tCart("total")}:
                   </span>
                   <span className="font-lato text-xl font-semibold text-[var(--theme2)]">
-                    {sumValues(totalPrice)} QR
+                    {sumValues(totalPrice)} {tCommon("currency")}
                   </span>
                 </div>
                 <button
@@ -215,7 +164,7 @@ const Nav = () => {
                     ChangeUrl("/cart");
                   }}
                 >
-                  VIEW CART
+                  {tCart("viewCart")}
                 </button>
                 <button
                   type="button"
@@ -224,7 +173,7 @@ const Nav = () => {
                     ChangeUrl("/checkout");
                   }}
                 >
-                  CHECKOUT
+                  {tCart("checkout")}
                 </button>
               </div>
             </div>
@@ -232,99 +181,76 @@ const Nav = () => {
           </SheetContent>
         </Sheet>
 
+        {/* PROFILE  */}
+
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div
+                onClick={() => {
+                  if (!loadingUser) {
+                    if (isUserSigned) {
+                      ChangeUrl("/profile");
+                    } else {
+                      ChangeUrl("/sign-in");
+                    }
+                  }
+                }}
+                className={cn(
+                  "hover:cursor-pointer",
+                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-200 hover:scale-105 hover:cursor-pointer hover:bg-zinc-100",
+                  loadingUser && "hover:cursor-not-allowed",
+                )}
+              >
+                <i className="fa-regular fa-user text-2xl" />
+                <span className="hidden min-[800px]:block">
+                  {loadingUser ? (
+                    <div className="flex items-center justify-center">
+                      <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
+                    </div>
+                  ) : isUserSigned ? (
+                    userData.full_name
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1),
+                      )
+                      .join(" ")
+                  ) : (
+                    tCommon("authentification.signIn/signUp")
+                  )}
+                </span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              {loadingUser ? (
+                <div className="flex items-center justify-center">
+                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-black"></div>
+                </div>
+              ) : isUserSigned ? (
+                tCommon("authentification.toolTip.signed")
+              ) : (
+                tCommon("authentification.toolTip.notSigned")
+              )}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
+        {/* MOBILE MENU  */}
+
         <Sheet>
-          <SheetTrigger className="hamburger-menu ml-2 hidden flex-col items-center justify-center">
-            <span
-              className={cn(
-                "block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
-              )}
-            ></span>
-            <span
-              className={cn(
-                "my-0.5 block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
-              )}
-            ></span>
-            <span
-              className={cn(
-                "block h-0.5 w-6 rounded-sm bg-[var(--theme2)] transition-all duration-300 ease-out",
-              )}
-            ></span>
-          </SheetTrigger>
-          <SheetContent className="w-[230px] bg-[var(--tertiary)]">
-            <SheetTitle />
-            <div className="menu flex flex-col">
-              <div className={cn("link", pathname === `/en` && "active")}>
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/");
-                  }}
-                >
-                  Home
-                </a>
-              </div>
-              <div
-                className={`link ${
-                  pathname === `/en/products` ? "active" : ""
-                }`}
-              >
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/products");
-                  }}
-                >
-                  Products
-                </a>
-              </div>
-              <div
-                className={`link ${
-                  pathname === `/en/services` ? "active" : ""
-                }`}
-              >
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/services");
-                  }}
-                >
-                  Our Services
-                </a>
-              </div>
-              <div
-                className={`link ${pathname === `/en/about` ? "active" : ""}`}
-              >
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/about");
-                  }}
-                >
-                  About
-                </a>
-              </div>
-              <div
-                className={`link ${pathname === `/en/contact` ? "active" : ""}`}
-              >
-                <a
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    ChangeUrl("/contact");
-                  }}
-                >
-                  Contact
-                </a>
-              </div>
+          <SheetTrigger asChild>
+            <div className="flex self-center p-2 min-[1180px]:hidden">
+              <i className="fa-solid fa-bars self-center text-2xl" />
             </div>
-            <SheetClose>
-              <button
-                type="button"
-                className="hidden"
-                ref={closeButton}
-              ></button>
-            </SheetClose>
+          </SheetTrigger>
+          <SheetContent side={tCommon("side")} className="w-[220px] bg-white">
+            <SheetTitle />
+            <Menu orientation="col" />
+            <SheetClose className="hidden" ref={closeButton} />
           </SheetContent>
         </Sheet>
+
+        {/* LOGOUT  */}
 
         {isUserSigned && (
           <TooltipProvider>
@@ -339,7 +265,9 @@ const Nav = () => {
                   <i className="fa-solid fa-arrow-right-from-bracket text-2xl text-neutral-600"></i>
                 </div>
               </TooltipTrigger>
-              <TooltipContent>Log out</TooltipContent>
+              <TooltipContent>
+                {tCommon("authentification.toolTip.logout")}
+              </TooltipContent>
             </Tooltip>
           </TooltipProvider>
         )}

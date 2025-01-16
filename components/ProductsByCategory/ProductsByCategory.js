@@ -15,8 +15,11 @@ import Image from "next/image";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { Skeleton } from "../ui/skeleton";
 import { toast } from "@/hooks/use-toast";
+import { useTranslations } from "next-intl";
 
 const ProductsByCategory = () => {
+  const tCommon = useTranslations("common");
+  const tProductsByCategory = useTranslations("productsByCategory");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [products, setProducts] = useState([]);
@@ -48,8 +51,8 @@ const ProductsByCategory = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, Please Try Again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")}, ${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
       setLoadingCategories(false);
@@ -78,11 +81,10 @@ const ProductsByCategory = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed!",
-        description: "Something went wrong, please try again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")}, ${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
-
       setLoadingProducts(false);
     }
     setLoadingProducts(false);
@@ -101,8 +103,13 @@ const ProductsByCategory = () => {
   return (
     <div className="ProductsByCategory m-auto mt-[70px] flex max-w-screen-xl flex-col gap-6 overflow-hidden lg:flex-row lg:gap-0">
       <div className="flex-shrink-0 lg:w-[30%] lg:pl-6">
-        <div className="text-center font-lato text-2xl font-semibold lg:text-left lg:text-3xl">
-          Products By Category
+        <div
+          className={cn(
+            "text-center font-lato text-2xl font-semibold lg:text-3xl",
+            tCommon("language.lng") === "en" ? "lg:text-left" : "lg:text-right",
+          )}
+        >
+          {tProductsByCategory("title")}
         </div>
         <div className="mx-4 mt-5 flex flex-row gap-[20px] overflow-x-auto pb-3 min-[890px]:justify-center lg:mx-0 lg:mt-4 lg:flex-col lg:gap-2 lg:pl-2">
           {loadingCategories
@@ -142,7 +149,7 @@ const ProductsByCategory = () => {
         )}
       >
         <Carousel className="w-full flex-1">
-          <CarouselContent className="mx-2 w-full flex-1">
+          <CarouselContent dir="ltr" className="mx-2 w-full flex-1">
             {products.map((product, index) => (
               <CarouselItem
                 key={index}
@@ -176,11 +183,14 @@ const ProductsByCategory = () => {
                     </div>
                   </div>
                   <div className="mt-auto w-full font-semibold text-[var(--theme)]">
-                    ~{product.productsVariants[0].price} QAR{" "}
+                    ~ {product.productsVariants[0].price} {tCommon("currency")}
                   </div>
                   <div className="flex w-full flex-col items-center">
                     <button
-                      className="open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300"
+                      className={cn(
+                        "open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300",
+                        tCommon("language.lng"),
+                      )}
                       onClick={() => {
                         ChangeUrl(`/en/products/${product.id}`);
                       }}
@@ -190,8 +200,8 @@ const ProductsByCategory = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-0 border-0 text-xl shadow-lg" />
-          <CarouselNext className="-right-0 border-0 text-xl shadow-lg" />
+          <CarouselPrevious className="-left-2 border-0 text-xl shadow-lg" />
+          <CarouselNext className="-right-2 border-0 text-xl shadow-lg" />
         </Carousel>
       </div>
     </div>

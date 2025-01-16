@@ -7,6 +7,8 @@ import { useContext, useEffect } from "react";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { useTranslations } from "next-intl";
+import { cn } from "@/lib/utils";
 
 const OPTIONS = { loop: true };
 
@@ -65,26 +67,31 @@ const EmblaCarousel = ({ options }) => {
 };
 
 const Hero = () => {
+  const tCommon = useTranslations("common");
+  const tHero = useTranslations("hero");
   const { ChangeUrl } = useContext(UserAuthContext);
   return (
     <div className="hero">
       <div className="text">
-        <h1 className="title text-center text-3xl">
-          Golden Brand: <span>Stainless Steel</span>
+        <h1
+          className={cn(
+            "title text-center text-3xl",
+            tCommon("language.lng") === "ar"
+              ? "text-4xl font-semibold lg:text-5xl"
+              : "text-3xl",
+          )}
+        >
+          {tCommon("goldenBrand.GoldenBrand")}:{" "}
+          <span>{tCommon("goldenBrand.stainlessSteel")}</span>
+          {/* Golden Brand: <span>Stainless Steel</span> */}
         </h1>
-        <p className="text-center">
-          Elevate your space with premium stainless steel craftsmanship. From
-          sleek kitchens to durable handrails, Golden Brand Stainless Steel
-          offers high-quality, custom solutions for homes and businesses.
-          Discover our range of products designed to enhance functionality and
-          style. Built to last, built to impress.
-        </p>
+        <p className="text-center">{tHero("description")}</p>
         <button
-          className="button"
+          className={cn("button", tCommon("language.lng"))}
           onClick={() => {
             ChangeUrl("/products");
           }}
-        ></button>
+        />
       </div>
       <EmblaCarousel options={OPTIONS} />
     </div>

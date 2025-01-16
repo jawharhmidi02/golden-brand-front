@@ -1,5 +1,5 @@
 .featured-product-link {
-  overflow-y: hidden;
+  overflow: hidden;
   position: relative;
 }
 
@@ -50,8 +50,12 @@
   width: calc(100% - 3px);
 }
 
-.featured-product button::after {
+.featured-product button.en::after {
   content: "Open Product";
+}
+
+.featured-product button.ar::after {
+  content: "إفتح المنتج";
 }
 
 .featured-product button::before {
