@@ -421,5 +421,97 @@
     "orderID": "Order ID",
     "orderDate": "Order Date",
     "returnToHomepage": "Return to Homepage"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "email": "EMAIL",
+    "emailPlaceholder": "Example@domain.com",
+    "password": "PASSWORD",
+    "passwordPlaceholder": "Password",
+    "rememberMe": "Remember Me",
+    "forgotPassword": "Forgot Password?",
+    "welcomeBack": "Welcome Back!",
+    "noAccount": "Don't have an account?",
+    "signUpText": "Sign Up",
+    "toasts": {
+      "emptyFields": {
+        "title": "Error",
+        "description": "Please fill in all fields."
+      },
+      "invalidCredentials": {
+        "title": "Not Found",
+        "description": "Invalid credentials, Check your Details!"
+      },
+      "loginSuccess": {
+        "title": "Success",
+        "description": "You have successfully logged in."
+      },
+      "loginError": {
+        "title": "Error",
+        "description": "An error occurred while logging in."
+      }
+    }
+  },
+  "signUp": {
+    "title": "Sign Up",
+    "fullName": "FULL NAME",
+    "fullNamePlaceholder": "Full Name",
+    "phone": "PHONE",
+    "phonePlaceholder": "+974 12 345 678",
+    "address": "ADDRESS",
+    "addressPlaceholder": "Doha, Qatar",
+    "email": "EMAIL",
+    "emailPlaceholder": "Example@domain.com",
+    "password": "PASSWORD",
+    "passwordPlaceholder": "Password",
+    "welcomeAboard": "Welcome Aboard!",
+    "haveAccount": "Already have an account?",
+    "signInText": "Sign In",
+    "toasts": {
+      "emptyFields": {
+        "title": "Error",
+        "description": "Please fill in all fields."
+      },
+      "emailExists": {
+        "title": "Error",
+        "description": "Email already exists, Please use another email!"
+      },
+      "registerSuccess": {
+        "title": "Success",
+        "description": "Your account has been created successfully!"
+      },
+      "registerError": {
+        "title": "Error",
+        "description": "An error occurred while registering."
+      }
+    }
+  },
+  "forgotPassword": {
+    "title": "Password Recovery",
+    "email": "EMAIL",
+    "emailPlaceholder": "Example@domain.com",
+    "sendButton": "Send",
+    "welcomeBack": "Welcome Back!",
+    "noAccount": "Don't have an account?",
+    "signUpText": "Sign Up",
+    "backToLogin": "Back to Login",
+    "toasts": {
+      "emptyFields": {
+        "title": "Error",
+        "description": "Please fill in all fields."
+      },
+      "emailNotFound": {
+        "title": "Error",
+        "description": "Email not found"
+      },
+      "success": {
+        "title": "Success",
+        "description": "Email sent successfully, Check your Inbox!"
+      },
+      "error": {
+        "title": "Error",
+        "description": "Something went wrong"
+      }
+    }
   }
 }

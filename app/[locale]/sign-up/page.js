@@ -2,13 +2,17 @@
 
 import { useState, useRef, useContext } from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, escapeOutput, validateNumberInput } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
+import { useTranslations } from "next-intl";
+import { dir } from "i18next";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tSignUp = useTranslations("signUp");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
@@ -17,7 +21,7 @@ const page = () => {
   const phoneRef = useRef(null);
   const addressRef = useRef(null);
 
-  const login = async () => {
+  const register = async () => {
     if (
       !emailRef.current.value.trim() ||
       !passwordRef.current.value ||
@@ -26,8 +30,8 @@ const page = () => {
       !addressRef.current.value.trim()
     ) {
       toast({
-        title: "Error",
-        description: "Please fill in all fields.",
+        title: tSignUp("toasts.emptyFields.title"),
+        description: tSignUp("toasts.emptyFields.description"),
         variant: "destructive",
         duration: 2500,
       });
@@ -35,7 +39,6 @@ const page = () => {
     }
     try {
       setLoading(true);
-
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/signup`,
         {
@@ -44,21 +47,20 @@ const page = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: emailRef.current.value.trim(),
-            password: passwordRef.current.value,
-            full_name: nameRef.current.value.trim(),
-            phone: phoneRef.current.value.trim(),
-            address: addressRef.current.value.trim(),
+            email: escapeOutput(emailRef.current.value.trim()),
+            password: escapeOutput(passwordRef.current.value),
+            full_name: escapeOutput(nameRef.current.value.trim()),
+            phone: escapeOutput(phoneRef.current.value.trim()),
+            address: escapeOutput(addressRef.current.value.trim()),
           }),
         },
       );
       const data = await response.json();
-
       if (data.data === null) {
         if (data.message === "Email already exists") {
           toast({
-            title: "Error",
-            description: "Email already exists, Please use another email!",
+            title: tSignUp("toasts.emailExists.title"),
+            description: tSignUp("toasts.emailExists.description"),
             variant: "destructive",
             duration: 2500,
           });
@@ -67,33 +69,32 @@ const page = () => {
         }
         throw new Error(data.message);
       }
-
       toast({
-        title: "Success",
-        description: "Your account has been created successfully!",
+        title: tSignUp("toasts.registerSuccess.title"),
+        description: tSignUp("toasts.registerSuccess.description"),
         variant: "success",
         duration: 2500,
       });
-
       ChangeUrl("/sign-in");
       setLoading(false);
     } catch (error) {
       setLoading(false);
-
       toast({
-        title: "Error",
-        description: "An error occurred while logging in.",
+        title: tSignUp("toasts.registerError.title"),
+        description: tSignUp("toasts.registerError.description"),
         variant: "destructive",
         duration: 2500,
       });
-
       console.error(error);
     }
     setLoading(false);
   };
 
   return (
-    <div className="mx-auto mt-10 flex h-full w-full items-center justify-center">
+    <div
+      className="mx-auto mt-10 flex h-full w-full items-center justify-center"
+      dir="ltr"
+    >
       <div
         className={cn(
           "mx-4 grid w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
@@ -104,84 +105,103 @@ const page = () => {
             className={cn("flex flex-col items-center justify-center gap-5")}
           >
             <span className="font-lato text-xl font-semibold text-neutral-900">
-              Sign Up
+              {tSignUp("title")}
             </span>
 
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="fullName" className="font-lato text-sm font-bold">
-                {" "}
-                FULL NAME
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="fullName"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("fullName")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="text"
                 ref={nameRef}
-                placeholder="Full Name"
+                placeholder={tSignUp("fullNamePlaceholder")}
                 id="fullName"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="phone" className="font-lato text-sm font-bold">
-                {" "}
-                PHONE
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="phone"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("phone")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="tel"
                 ref={phoneRef}
-                placeholder="+974 12 345 678"
+                onChange={() => validateNumberInput(phoneRef)}
+                placeholder={tSignUp("phonePlaceholder")}
                 id="phone"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="address" className="font-lato text-sm font-bold">
-                {" "}
-                ADDRESS
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="address"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("address")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="text"
                 ref={addressRef}
-                placeholder="Doha, Street 123..."
+                placeholder={tSignUp("addressPlaceholder")}
                 id="address"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="email" className="font-lato text-sm font-bold">
-                {" "}
-                EMAIL
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="email"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("email")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="email"
                 ref={emailRef}
-                placeholder="Example@domain.com"
+                placeholder={tSignUp("emailPlaceholder")}
                 id="email"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="password" className="font-lato text-sm font-bold">
-                {" "}
-                PASSWORD
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="password"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("password")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="password"
                 ref={passwordRef}
-                placeholder="Password"
+                placeholder={tSignUp("passwordPlaceholder")}
                 id="password"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <button
               type="button"
-              onClick={() => {
-                login();
-              }}
+              onClick={register}
               disabled={loading}
               className={cn(
                 "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
@@ -193,15 +213,15 @@ const page = () => {
                   <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                 </div>
               ) : (
-                "Sign Up"
+                tSignUp("title")
               )}
             </button>
           </div>
         </div>
         <AccountDecoration
-          welcomeText="Welcome Aboard!"
-          accountText="Already have an account?"
-          signText="Sign In"
+          welcomeText={tSignUp("welcomeAboard")}
+          accountText={tSignUp("haveAccount")}
+          signText={tSignUp("signInText")}
           url="./sign-in"
         />
       </div>

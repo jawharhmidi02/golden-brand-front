@@ -1,21 +1,25 @@
 "use client";
 import { useState, useRef, useContext } from "react";
-import { cn } from "@/lib/utils";
+import { cn, escapeOutput } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
+import { useTranslations } from "next-intl";
+import { dir } from "i18next";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tForgotPassword = useTranslations("forgotPassword");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
 
   const sendRecoverEmail = async () => {
     setLoading(true);
-    if (emailRef.current.value === "") {
+    if (!emailRef.current.value.trim()) {
       toast({
-        title: "Error",
-        description: "Please fill in all fields.",
+        title: tForgotPassword("toasts.emptyFields.title"),
+        description: tForgotPassword("toasts.emptyFields.description"),
         variant: "destructive",
       });
       setLoading(false);
@@ -23,7 +27,7 @@ const page = () => {
     }
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/recoverpass/${emailRef.current.value.trim()}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/recoverpass/${escapeOutput(emailRef.current.value.trim())}`,
         {
           method: "POST",
           headers: {
@@ -36,8 +40,8 @@ const page = () => {
       if (responseData.statusCode !== 200) {
         if (responseData.message === "Email not found") {
           toast({
-            title: "Error",
-            description: "Email not found",
+            title: tForgotPassword("toasts.emailNotFound.title"),
+            description: tForgotPassword("toasts.emailNotFound.description"),
             variant: "destructive",
           });
           setLoading(false);
@@ -46,8 +50,8 @@ const page = () => {
         throw new Error(responseData.message || "Something went wrong");
       }
       toast({
-        title: "Success",
-        description: "Email sent successfully, Check your Inbox!",
+        title: tForgotPassword("toasts.success.title"),
+        description: tForgotPassword("toasts.success.description"),
         variant: "success",
       });
       setLoading(false);
@@ -55,8 +59,8 @@ const page = () => {
       console.error(error);
       setLoading(false);
       toast({
-        title: "Error",
-        description: "Something went wrong",
+        title: tForgotPassword("toasts.error.title"),
+        description: tForgotPassword("toasts.error.description"),
         variant: "destructive",
       });
     }
@@ -69,6 +73,7 @@ const page = () => {
         className={cn(
           "mx-4 grid w-full max-w-[580px] grid-cols-1 xsm:mx-10 min-[800px]:max-w-[1200px] min-[800px]:grid-cols-2",
         )}
+        dir="ltr"
       >
         <div className="flex flex-col justify-center rounded-t-3xl bg-white px-8 py-10 shadow-md drop-shadow-md min-[800px]:rounded-l-3xl min-[800px]:rounded-tr-none lg:py-14 xl:py-20">
           <div
@@ -78,35 +83,40 @@ const page = () => {
               <div
                 className="group hover:cursor-pointer"
                 onClick={() => {
-                  ChangeUrl("./sign-in");
+                  ChangeUrl("/sign-in");
                 }}
               >
                 <i className="fa-solid fa-arrow-left text-3xl text-neutral-900 transition-colors duration-200 group-hover:text-[var(--theme2)]"></i>
               </div>
-              <span className="self-center font-lato text-xl font-semibold text-neutral-900">
-                Password Recovery
+              <span
+                dir={dir(tCommon("language.lng"))}
+                className="self-center font-lato text-xl font-semibold text-neutral-900"
+              >
+                {tForgotPassword("title")}
               </span>
             </div>
             <div className="flex w-full max-w-[400px] flex-col gap-1">
-              <label htmlFor="email" className="font-lato text-sm font-bold">
-                {" "}
-                EMAIL
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="email"
+                className="font-lato text-sm font-bold"
+              >
+                {tForgotPassword("email")}
               </label>
               <input
+                dir={dir(tCommon("language.lng"))}
                 type="email"
                 ref={emailRef}
-                placeholder="Example@domain.com"
+                placeholder={tForgotPassword("emailPlaceholder")}
                 id="email"
-                className="rounded-full bg-[var(--secondary)] py-3 pl-4 outline-[var(--theme2)]"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
             <button
               type="button"
               disabled={loading}
-              onClick={() => {
-                sendRecoverEmail();
-              }}
+              onClick={sendRecoverEmail}
               className={cn(
                 "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
                 loading && "hover:cursor-not-allowed",
@@ -117,16 +127,16 @@ const page = () => {
                   <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                 </div>
               ) : (
-                "Send"
+                tForgotPassword("sendButton")
               )}
             </button>
           </div>
         </div>
         <AccountDecoration
-          welcomeText="Welcome Back!"
-          accountText="Don't have an account?"
-          signText="Sign Up"
-          url="./sign-up"
+          welcomeText={tForgotPassword("welcomeBack")}
+          accountText={tForgotPassword("noAccount")}
+          signText={tForgotPassword("signUpText")}
+          url="/sign-up"
         />
       </div>
     </div>

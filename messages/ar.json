@@ -421,5 +421,97 @@
     "orderID": "رقم الطلب",
     "orderDate": "تاريخ الطلب",
     "returnToHomepage": "العودة إلى الصفحة الرئيسية"
+  },
+  "signIn": {
+    "title": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "كلمة المرور",
+    "rememberMe": "تذكرني",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "welcomeBack": "مرحباً بعودتك!",
+    "noAccount": "ليس لديك حساب؟",
+    "signUpText": "إنشاء حساب",
+    "toasts": {
+      "emptyFields": {
+        "title": "خطأ",
+        "description": "يرجى ملء جميع الحقول."
+      },
+      "invalidCredentials": {
+        "title": "غير موجود",
+        "description": "بيانات غير صحيحة، تحقق من التفاصيل!"
+      },
+      "loginSuccess": {
+        "title": "نجاح",
+        "description": "تم تسجيل الدخول بنجاح."
+      },
+      "loginError": {
+        "title": "خطأ",
+        "description": "حدث خطأ أثناء تسجيل الدخول."
+      }
+    }
+  },
+  "signUp": {
+    "title": "إنشاء حساب",
+    "fullName": "الاسم الكامل",
+    "fullNamePlaceholder": "الاسم الكامل",
+    "phone": "رقم الهاتف",
+    "phonePlaceholder": "+974 12 345 678",
+    "address": "العنوان",
+    "addressPlaceholder": "الدوحة، قطر",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "password": "كلمة المرور",
+    "passwordPlaceholder": "كلمة المرور",
+    "welcomeAboard": "مرحباً بك!",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "signInText": "تسجيل الدخول",
+    "toasts": {
+      "emptyFields": {
+        "title": "خطأ",
+        "description": "يرجى ملء جميع الحقول."
+      },
+      "emailExists": {
+        "title": "خطأ",
+        "description": "البريد الإلكتروني موجود بالفعل، يرجى استخدام بريد إلكتروني آخر!"
+      },
+      "registerSuccess": {
+        "title": "نجاح",
+        "description": "تم إنشاء حسابك بنجاح!"
+      },
+      "registerError": {
+        "title": "خطأ",
+        "description": "حدث خطأ أثناء التسجيل."
+      }
+    }
+  },
+  "forgotPassword": {
+    "title": "استعادة كلمة المرور",
+    "email": "البريد الإلكتروني",
+    "emailPlaceholder": "example@domain.com",
+    "sendButton": "إرسال",
+    "welcomeBack": "مرحباً بعودتك!",
+    "noAccount": "ليس لديك حساب؟",
+    "signUpText": "إنشاء حساب",
+    "backToLogin": "العودة لتسجيل الدخول",
+    "toasts": {
+      "emptyFields": {
+        "title": "خطأ",
+        "description": "يرجى ملء جميع الحقول."
+      },
+      "emailNotFound": {
+        "title": "خطأ",
+        "description": "البريد الإلكتروني غير موجود"
+      },
+      "success": {
+        "title": "نجاح",
+        "description": "تم إرسال البريد الإلكتروني بنجاح، تحقق من صندوق الوارد!"
+      },
+      "error": {
+        "title": "خطأ",
+        "description": "حدث خطأ ما"
+      }
+    }
   }
 }
