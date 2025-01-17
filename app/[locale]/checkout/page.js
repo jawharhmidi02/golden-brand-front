@@ -331,7 +331,7 @@ const page = () => {
                         defaultChecked
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setDeliveryPrice(0);
+                            // setDeliveryPrice(0);
                             setType("not delivery");
                           }
                         }}
@@ -348,11 +348,11 @@ const page = () => {
                         name="shipping"
                         onChange={(e) => {
                           if (e.target.checked) {
-                            if (sumValues(totalPrice) >= 10000) {
-                              setDeliveryPrice(0);
-                            } else {
-                              setDeliveryPrice(200);
-                            }
+                            // if (sumValues(totalPrice) >= 10000) {
+                            //   setDeliveryPrice(0);
+                            // } else {
+                            //   setDeliveryPrice(200);
+                            // }
                             setType("delivery");
                           }
                         }}

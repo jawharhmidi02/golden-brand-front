@@ -123,11 +123,11 @@ const page = () => {
                           />
                           {tCart("delivery.part1")}{" "}
                           <font className="font-bold text-[var(--theme2)]">
-                            500
+                            100
                           </font>{" "}
                           {tCart("delivery.part2")}{" "}
                           <font className="font-bold text-[var(--theme2)]">
-                            2000 {tCommon("currency")}
+                            500 {tCommon("currency")}
                           </font>
                           {tCart("delivery.part3")}{" "}
                         </label>
