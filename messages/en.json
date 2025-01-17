@@ -398,11 +398,11 @@
     "billingAndShipping": "BILLING & SHIPPING",
     "FirstName": "First Name",
     "LastName": "Last Name",
+    "Email": "Email",
+    "Phone": "Phone",
     "Country": "Country",
     "State": "State",
     "StreetDistrictAddress": "Street / District Address",
-    "Phone": "Phone",
-    "Email": "Email",
     "YOURORDER": "YOUR ORDER",
     "PRODUCT": "PRODUCT",
     "SUBTOTAL": "SUBTOTAL",
@@ -537,6 +537,35 @@
       "waiting": "Waiting to get Accepted...",
       "Accepted": "Accepted",
       "Cancelled": "Cancelled"
+    },
+    "menu": {
+      "profile": "Profile",
+      "orders": "Orders"
+    },
+    "yourPersonalInfo": "Your Personal Info",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Email": "Email",
+    "Phone": "Phone Number",
+    "address": "Address Location",
+    "save": "Save",
+    "editData": "Edit Data",
+    "password": {
+      "title": "Change Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm New Password",
+      "savePassword": "Save Password"
+    },
+    "orders": {
+      "FullName": "Full Name",
+      "YourOrders": "Your Orders",
+      "OrderID": "Order ID",
+      "State": "State",
+      "CreatedAt": "Created At",
+      "ClientData": "Client Data",
+      "OrderType": "Order Type",
+      "Products": "Products",
+      "empty": "You Don't have Orders Yet!"
     }
   }
 }

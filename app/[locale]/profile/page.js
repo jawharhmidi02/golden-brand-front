@@ -22,8 +22,10 @@ import { useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { useTranslations } from "next-intl";
+import { dir } from "i18next";
 
 const ProfilePage = () => {
+  const tCommon = useTranslations("common");
   const tProfile = useTranslations("profile");
   const { setLoadingPage, userData, ChangeUrl, setUserData } =
     useContext(UserAuthContext);
@@ -284,7 +286,7 @@ const ProfilePage = () => {
             )}
           >
             <span className="text-xl font-semibold text-neutral-700">
-              Profile
+              {tProfile("menu.profile")}
             </span>
           </div>
           <div
@@ -295,7 +297,7 @@ const ProfilePage = () => {
             )}
           >
             <span className="text-xl font-semibold text-neutral-700">
-              Orders
+              {tProfile("menu.orders")}
             </span>
           </div>
         </div>
@@ -306,11 +308,13 @@ const ProfilePage = () => {
           <div className="flex w-full flex-col items-center gap-4 px-4 py-6 min-[600px]:px-8">
             <div className="flex w-full flex-col gap-2">
               <div className="mb-4 text-2xl font-semibold text-neutral-700">
-                Your Personal Info
+                {tProfile("yourPersonalInfo")}
               </div>
               <div className="flex w-full flex-col gap-2 min-[550px]:flex-row">
                 <div className="flex w-full flex-col gap-1">
-                  <div className="text-neutral-400">First Name</div>
+                  <div className="text-neutral-400">
+                    {tProfile("FirstName")}
+                  </div>
                   <input
                     defaultValue={unescapeOutput(
                       userData.full_name?.split(" ")[0],
@@ -318,7 +322,7 @@ const ProfilePage = () => {
                     ref={firstNameRef}
                     readOnly={!isEditing}
                     type="text"
-                    placeholder="First Name"
+                    placeholder={tProfile("FirstName")}
                     className={cn(
                       "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                       !isEditing
@@ -329,7 +333,7 @@ const ProfilePage = () => {
                   />
                 </div>
                 <div className="flex w-full flex-col gap-1">
-                  <div className="text-neutral-400">Last Name </div>
+                  <div className="text-neutral-400">{tProfile("LastName")}</div>
                   <input
                     defaultValue={unescapeOutput(
                       userData.full_name?.split(" ").length > 1
@@ -339,7 +343,7 @@ const ProfilePage = () => {
                     ref={lastNameRef}
                     readOnly={!isEditing}
                     type="text"
-                    placeholder="Last Name"
+                    placeholder={tProfile("LastName")}
                     className={cn(
                       "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                       !isEditing
@@ -351,13 +355,13 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-1">
-                <div className="text-neutral-400">E-mail</div>
+                <div className="text-neutral-400">{tProfile("Email")}</div>
                 <input
                   defaultValue={unescapeOutput(userData.email)}
                   ref={emailRef}
                   readOnly={!isEditing}
                   type="email"
-                  placeholder="E-mail"
+                  placeholder={tProfile("Email")}
                   className={cn(
                     "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
@@ -368,13 +372,13 @@ const ProfilePage = () => {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <div className="text-neutral-400">Phone Number</div>
+                <div className="text-neutral-400">{tProfile("Phone")}</div>
                 <input
                   ref={phoneRef}
                   defaultValue={unescapeOutput(userData.phone)}
                   readOnly={!isEditing}
                   type="tel"
-                  placeholder="Phone Number"
+                  placeholder={tProfile("Phone")}
                   className={cn(
                     "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
@@ -387,13 +391,13 @@ const ProfilePage = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <div className="text-neutral-400">Address Location</div>
+                <div className="text-neutral-400">{tProfile("address")}</div>
                 <input
                   ref={addressRef}
                   defaultValue={unescapeOutput(userData.address)}
                   readOnly={!isEditing}
                   type="text"
-                  placeholder="Address Location"
+                  placeholder={tProfile("address")}
                   className={cn(
                     "w-full border-[1px] border-transparent bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-transparent",
                     !isEditing
@@ -414,14 +418,16 @@ const ProfilePage = () => {
                     : "border-blue-500 bg-blue-500 hover:text-blue-500",
                 )}
               >
-                {isEditing ? "Save" : "Edit Data"}
+                {isEditing ? tProfile("save") : tProfile("editData")}
               </button>
               <div className="mb-4 mt-4 self-start text-2xl font-semibold text-neutral-700">
-                Change Password
+                {tProfile("password.title")}
               </div>
               <div className="flex w-full flex-col gap-2 min-[550px]:flex-row">
                 <div className="flex w-full flex-col gap-1">
-                  <div className="text-neutral-400">New Password</div>
+                  <div className="text-neutral-400">
+                    {tProfile("password.newPassword")}
+                  </div>
                   <input
                     placeholder="New Password"
                     type="password"
@@ -430,7 +436,9 @@ const ProfilePage = () => {
                   />
                 </div>
                 <div className="flex w-full flex-col gap-1">
-                  <div className="text-neutral-400">Confirm New Password</div>
+                  <div className="text-neutral-400">
+                    {tProfile("password.confirmPassword")}
+                  </div>
                   <input
                     placeholder="Confirm New Password"
                     ref={confirmPasswordRef}
@@ -444,7 +452,7 @@ const ProfilePage = () => {
                 type="button"
                 className="mt-4 w-full max-w-[227px] self-start border-[1px] border-[var(--theme)] bg-[var(--theme)] py-2 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent hover:text-[var(--theme)]"
               >
-                Save Password
+                {tProfile("password.savePassword")}
               </button>
             </div>
           </div>
@@ -455,7 +463,7 @@ const ProfilePage = () => {
         {menu === 2 && (
           <div className="flex w-full flex-col items-center gap-6 px-4 py-6 min-[600px]:px-8">
             <div className="w-full text-2xl font-semibold text-neutral-700">
-              Your Orders
+              {tProfile("orders.YourOrders")}
             </div>
             {userData.orders?.length > 0 ? (
               <div className="flex w-full flex-col gap-6">
@@ -466,39 +474,40 @@ const ProfilePage = () => {
                   >
                     <div className="mb-4 flex flex-col">
                       <div className="text-lg font-semibold text-neutral-700">
-                        Order ID: {order.id}
+                        {tProfile("orders.OrderID")}: {order.id}
                       </div>
                       <div className="text-sm text-neutral-500">
-                        State: {parseButton(order.state)}
+                        {tProfile("orders.State")}: {parseButton(order.state)}
                       </div>
                       <div className="text-sm text-neutral-500">
-                        Created At:
-                        {order.created_At && formattedDate(order.created_At)}
+                        {tProfile("orders.CreatedAt")}:
+                        {order.created_At && formattedDate(order.created_At, tCommon("language.lng"))}
                       </div>
                     </div>
                     <div className="mb-4">
                       <div className="mb-2 text-lg font-semibold text-neutral-700">
-                        Client Data
+                        {tProfile("orders.ClientData")}
                       </div>
                       <div className="text-sm text-neutral-600">
-                        Full Name: {order.first_name} {order.last_name}
+                        {tProfile("orders.FullName")}: {order.first_name}{" "}
+                        {order.last_name}
                       </div>
                       <div className="text-sm text-neutral-600">
-                        Phone: {order.phone}
+                        {tProfile("Phone")}: {order.phone}
                       </div>
                       <div className="text-sm text-neutral-600">
-                        Email: {order.email}
+                        {tProfile("Email")}: {order.email}
                       </div>
                       <div className="text-sm text-neutral-600">
-                        Location: {order.address}
+                        {tProfile("address")}: {order.address}
                       </div>
                       <div className="text-sm text-neutral-600">
-                        Order Type: {order.type}
+                        {tProfile("orders.OrderType")}: {order.type}
                       </div>
                     </div>
                     <div className="">
                       <div className="mb-2 text-lg font-semibold text-neutral-700">
-                        Products
+                        {tProfile("orders.Products")}
                       </div>
                       <ul className="flex flex-col gap-4">
                         {order.order_Products.map((orderProduct) => (
@@ -516,10 +525,11 @@ const ProfilePage = () => {
                                 {orderProduct.ProductsVariant.product.name}
                               </div>
                               <div className="text-sm text-neutral-500">
-                                Quantity: {orderProduct.quantity}
+                                {tCommon("quantity")}: {orderProduct.quantity}
                               </div>
                               <div className="text-sm text-neutral-500">
-                                Price: {orderProduct.price} QR
+                                {tCommon("price")}: {orderProduct.price}{" "}
+                                {tCommon("currency")}
                               </div>
                             </div>
                             <div className="h-16 w-16">
@@ -538,7 +548,7 @@ const ProfilePage = () => {
               </div>
             ) : (
               <div className="w-full text-center text-lg text-neutral-500">
-                You Don't have Orders Yet!
+                {tProfile("orders.empty")}
               </div>
             )}
           </div>

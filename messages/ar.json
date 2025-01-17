@@ -537,6 +537,35 @@
       "waiting": "في انتظار الحصول على القبول...",
       "Accepted": "تم القبول",
       "Cancelled": "تم الإلغاء"
+    },
+    "menu": {
+      "profile": "الملف الشخصي",
+      "orders": "الطلبات"
+    },
+    "yourPersonalInfo": "معلوماتك الشخصية",
+    "FirstName": "الاسم",
+    "LastName": "اللقب",
+    "Email": "البريد الإلكتروني",
+    "Phone": "رقم الهاتف",
+    "address": "العنوان الموقع",
+    "save": "حفظ",
+    "editData": "تعديل البيانات",
+    "password": {
+      "title": "تغيير كلمة المرور",
+      "newPassword": "كلمة مرور جديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة",
+      "savePassword": "حفظ كلمة المرور"
+    },
+    "orders": {
+      "FullName": "الاسم الكامل",
+      "YourOrders": "طلباتك",
+      "OrderID": "معرف الطلب",
+      "State": "الحالة",
+      "CreatedAt": "تاريخ الإنشاء",
+      "ClientData": "بيانات العميل",
+      "OrderType": "نوع الطلب",
+      "Products": "المنتجات",
+      "empty": "ليس لديك طلبات حتى الآن!"
     }
   }
 }

@@ -182,7 +182,7 @@ const ProductsByCategory = () => {
                       {product.category.name}
                     </div>
                   </div>
-                  <div className="mt-auto w-full font-semibold text-[var(--theme)]" dir="rtl">
+                  <div className="mt-auto w-full font-semibold text-[var(--theme)]">
                     ~ {product.productsVariants[0].price} {tCommon("currency")}
                   </div>
                   <div className="flex w-full flex-col items-center">

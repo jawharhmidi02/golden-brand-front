@@ -197,7 +197,6 @@ const page = () => {
                   name="phone"
                   type="tel"
                   ref={phoneRef}
-                  dir="rtl"
                   onChange={() => validateNumberInput(phoneRef)}
                   placeholder={tCommon("form.phone")}
                   className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
