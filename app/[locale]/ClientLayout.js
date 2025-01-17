@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useTransition } from "react";
 import { useRouter, usePathname } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 import Cookies from "js-cookie";
 
@@ -13,6 +14,7 @@ import FastLinks from "@/components/FastLinks/FastLinks";
 import TopHeader from "@/components/topHeader/TopHeader";
 
 export default function ClientLayout({ children }) {
+  const tClientLayout = useTranslations("clientLayout");
   const router = useRouter();
   const pathname = usePathname();
   const [isUserSigned, setIsUserSigned] = useState(false);
@@ -60,8 +62,8 @@ export default function ClientLayout({ children }) {
     if (isUserSigned) {
       if (pathname.includes("sign") || pathname.includes("reset")) {
         toast({
-          title: "Already Signed In!",
-          description: "Redirecting to Profile page...",
+          title: tClientLayout("alerts.alreadySignedIn"),
+          description: tClientLayout("alerts.redirectingToProfile"),
           variant: "warning",
           duration: 5000,
         });
@@ -71,8 +73,8 @@ export default function ClientLayout({ children }) {
     } else {
       if (pathname.includes("profile")) {
         toast({
-          title: "You are not Signed!",
-          description: "Please Sign In first...",
+          title: tClientLayout("alerts.notSignedIn"),
+          description: tClientLayout("alerts.pleaseSignIn"),
           variant: "warning",
           duration: 5000,
         });

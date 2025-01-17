@@ -2,7 +2,6 @@
 import ServiceCard from "@/components/ServiceCard/ServiceCard";
 import ServiceDescCard from "@/components/ServiceDescCard/ServiceDescCard";
 import { useTranslations } from "next-intl";
-import React from "react";
 
 const page = () => {
   const tCommon = useTranslations("common");

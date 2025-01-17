@@ -1,9 +1,10 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import React from "react";
 
 const page = () => {
   const tTermsAndConditions = useTranslations("termsAndConditions");
-  console.log(tTermsAndConditions("title"));
 
   return (
     <div className="mx-auto mt-6 flex h-full w-full items-center justify-center">
@@ -20,196 +21,196 @@ const page = () => {
         <div className="flex w-full max-w-[1300px] flex-col justify-center gap-6 font-lato text-neutral-600">
           <span className="text-center">
             <span className="text-lg font-semibold">
-              {tTermsAndConditions("text-1")}
+              {tTermsAndConditions("text1")}
             </span>{" "}
-            {tTermsAndConditions("text-2")}
+            {tTermsAndConditions("text2")}
           </span>
-          <span>{tTermsAndConditions("text-3")}</span>
-          <span>{tTermsAndConditions("text-4")}</span>
+          <span>{tTermsAndConditions("text3")}</span>
+          <span>{tTermsAndConditions("text4")}</span>
           <ul className="list-inside list-decimal marker:text-lg">
             <li className="text-lg font-semibold" id="privacy">
-              {tTermsAndConditions("text-5")}
+              {tTermsAndConditions("text5")}
             </li>
             <div className="mt-5">
               <span>
-                {tTermsAndConditions("text-6")}
+                {tTermsAndConditions("text6")}
                 <span className="font-semibold text-[var(--theme)]">
                   www.goldenbrandqa.com
                 </span>{" "}
-                {tTermsAndConditions("text-7")}
+                {tTermsAndConditions("text7")}
               </span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-8")}
+              {tTermsAndConditions("text8")}
             </li>
             <ul className="mt-5 list-disc">
-              <li className="ml-10">{tTermsAndConditions("text-9")}</li>
+              <li className="ml-10">{tTermsAndConditions("text9")}</li>
             </ul>
             <div className="mt-5 text-lg font-semibold">
-              <span>{tTermsAndConditions("text-10")}</span>
+              <span>{tTermsAndConditions("text10")}</span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-11")}</span>
+              <span>{tTermsAndConditions("text11")}</span>
             </div>
             <div className="mt-10">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-12")}
+                {tTermsAndConditions("text12")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-13")}</span>
+              <span>{tTermsAndConditions("text13")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-14")}
+                {tTermsAndConditions("text14")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-15")}</span>
+              <span>{tTermsAndConditions("text15")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-16")}
+                {tTermsAndConditions("text16")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-17")}</span>
+              <span>{tTermsAndConditions("text17")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-18")}
+                {tTermsAndConditions("text18")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-19")}</span>
+              <span>{tTermsAndConditions("text19")}</span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-20")}</span>
+              <span>{tTermsAndConditions("text20")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-21")}
+                {tTermsAndConditions("text21")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-22")}</span>
+              <span>{tTermsAndConditions("text22")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold">
-                {tTermsAndConditions("text-23")}
+                {tTermsAndConditions("text23")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-24")}</span>
+              <span>{tTermsAndConditions("text24")}</span>
             </div>
             <div className="mt-5">
               <span className="text-lg font-semibold text-neutral-700">
-                {tTermsAndConditions("text-25")}
+                {tTermsAndConditions("text25")}
               </span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-26")}
+              {tTermsAndConditions("text26")}
             </li>
             <ul className="list-disc">
-              <li className="ml-10 mt-5">{tTermsAndConditions("text-27")}</li>
-              <li className="ml-10 mt-5">{tTermsAndConditions("text-28")}</li>
+              <li className="ml-10 mt-5">{tTermsAndConditions("text27")}</li>
+              <li className="ml-10 mt-5">{tTermsAndConditions("text28")}</li>
               <li className="ml-5 mt-5 text-lg font-semibold">
-                {tTermsAndConditions("text-29")}
+                {tTermsAndConditions("text29")}
               </li>
               <ul>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-30")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-31")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-32")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-33")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text30")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text31")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text32")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text33")}</li>
               </ul>
               <li className="ml-5 mt-5 text-lg font-semibold">
-                {tTermsAndConditions("text-34")}
+                {tTermsAndConditions("text34")}
               </li>
               <ul>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-35")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-36")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-37")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-38")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-39")}</li>
-                <li className="ml-10 mt-4">{tTermsAndConditions("text-40")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text35")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text36")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text37")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text38")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text39")}</li>
+                <li className="ml-10 mt-4">{tTermsAndConditions("text40")}</li>
               </ul>
             </ul>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-41")}
+              {tTermsAndConditions("text41")}
             </li>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-42")}</span>
+              <span>{tTermsAndConditions("text42")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-43")}
+              {tTermsAndConditions("text43")}
             </li>
             <ul className="list-disc">
-              <li className="ml-10 mt-5">{tTermsAndConditions("text-44")}</li>
+              <li className="ml-10 mt-5">{tTermsAndConditions("text44")}</li>
             </ul>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-45")}
+              {tTermsAndConditions("text45")}
             </li>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-46")}</span>
+              <span>{tTermsAndConditions("text46")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-47")}
+              {tTermsAndConditions("text47")}
             </li>
             <div className="mt-5">
               <span>
-                {tTermsAndConditions("text-48")}
+                {tTermsAndConditions("text48")}
                 <span className="font-semibold text-[var(--theme)]">
                   sales@goldenbrandqa.com{" "}
                 </span>
-                {tTermsAndConditions("text-49")}
+                {tTermsAndConditions("text49")}
               </span>
             </div>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-50")}</span>
+              <span>{tTermsAndConditions("text50")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-51")}
+              {tTermsAndConditions("text51")}
             </li>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-52")}</span>
+              <span>{tTermsAndConditions("text52")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-53")}
+              {tTermsAndConditions("text53")}
             </li>
             <div className="mt-5" id="delivery">
-              <span>{tTermsAndConditions("text-54")}</span>
+              <span>{tTermsAndConditions("text54")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-55")}
+              {tTermsAndConditions("text55")}
             </li>
             <div className="mt-5" id="payment">
-              <span>{tTermsAndConditions("text-56")}</span>
+              <span>{tTermsAndConditions("text56")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-57")}
+              {tTermsAndConditions("text57")}
             </li>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-58")}</span>
+              <span>{tTermsAndConditions("text58")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-59")}
+              {tTermsAndConditions("text59")}
             </li>
             <ul className="list-disc">
-              <li className="ml-10 mt-4">{tTermsAndConditions("text-60")}</li>
-              <li className="ml-10 mt-4">{tTermsAndConditions("text-61")}</li>
-              <li className="ml-10 mt-4">{tTermsAndConditions("text-62")}</li>
+              <li className="ml-10 mt-4">{tTermsAndConditions("text60")}</li>
+              <li className="ml-10 mt-4">{tTermsAndConditions("text61")}</li>
+              <li className="ml-10 mt-4">{tTermsAndConditions("text62")}</li>
             </ul>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-63")}
+              {tTermsAndConditions("text63")}
             </li>
             <div className="mt-5" id="refund">
-              <span>{tTermsAndConditions("text-64")}</span>
+              <span>{tTermsAndConditions("text64")}</span>
             </div>
             <li className="mt-5 text-lg font-semibold">
-              {tTermsAndConditions("text-65")}
+              {tTermsAndConditions("text65")}
             </li>
             <div className="mt-5">
-              <span>{tTermsAndConditions("text-66")}</span>
+              <span>{tTermsAndConditions("text66")}</span>
             </div>
           </ul>
         </div>
