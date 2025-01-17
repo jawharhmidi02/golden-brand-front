@@ -185,7 +185,7 @@ const ProfilePage = () => {
     }
 
     const body = {
-      password: escapeOutput(passwordRef.current.value),
+      password: passwordRef.current.value,
     };
 
     try {
@@ -215,7 +215,7 @@ const ProfilePage = () => {
             },
             body: JSON.stringify({
               email: escapeOutput(emailRef.current.value.trim()),
-              password: escapeOutput(passwordRef.current.value),
+              password: passwordRef.current.value,
             }),
           },
         );
@@ -481,7 +481,11 @@ const ProfilePage = () => {
                       </div>
                       <div className="text-sm text-neutral-500">
                         {tProfile("orders.CreatedAt")}:
-                        {order.created_At && formattedDate(order.created_At, tCommon("language.lng"))}
+                        {order.created_At &&
+                          formattedDate(
+                            order.created_At,
+                            tCommon("language.lng"),
+                          )}
                       </div>
                     </div>
                     <div className="mb-4">

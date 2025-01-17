@@ -48,7 +48,7 @@ const page = () => {
           },
           body: JSON.stringify({
             email: escapeOutput(emailRef.current.value.trim()),
-            password: escapeOutput(passwordRef.current.value),
+            password: passwordRef.current.value,
             full_name: escapeOutput(nameRef.current.value.trim()),
             phone: escapeOutput(phoneRef.current.value.trim()),
             address: escapeOutput(addressRef.current.value.trim()),
