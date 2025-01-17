@@ -106,7 +106,7 @@ const Nav = () => {
           onClick={() => {
             ChangeUrl("/");
           }}
-          className="w-[200px] hover:cursor-pointer"
+          className="w-[240px] hover:cursor-pointer"
         />
       </div>
       <div className="menu mx-auto text-lg">
