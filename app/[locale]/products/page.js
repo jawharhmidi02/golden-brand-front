@@ -4,8 +4,9 @@ import "./page.css";
 
 import { Suspense, useContext, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
-import { cn } from "@/lib/utils";
+import { cn, escapeOutput } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
@@ -34,6 +35,8 @@ import MultiRangeSlider from "@/components/multiRangeSlider/multiRangeSlider";
 import SkeletonCategorieItem from "@/components/CategorieItem/SkeletonCategorieItem";
 
 const ProductPage = () => {
+  const tCommon = useTranslations("common");
+  const tProducts = useTranslations("products");
   const { ChangeUrl, loadingPage } = useContext(UserAuthContext);
   const [limit, setLimit] = useState(12);
   const [products, setProducts] = useState([]);
@@ -85,30 +88,29 @@ const ProductPage = () => {
       const categories = Object.keys(selectedCategories).filter(
         (key) => selectedCategories[key] === true,
       );
-      const categoriesString = encodeURIComponent(categories.join(","));
 
+      const categoriesString = encodeURIComponent(categories.join(","));
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search${searchInputRef.current.value.trim() ? `?name=${searchInputRef.current.value.trim()}` : "?"}${categoriesString ? `&categories=${categoriesString}` : ""}${sortBy ? `&sortBy=${sortBy}` : ""}${sort_order ? `&sortOrder=${sort_order}` : ""}${minPrice ? `&min_price=${minPrice}` : ""}${maxPrice ? `&max_price=${maxPrice}` : ""}${CurrentPage ? `&page=${CurrentPage}` : ""}${limit ? `&limit=${limit}` : ""}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search${searchInputRef.current.value.trim() ? `?name=${escapeOutput(searchInputRef.current.value.trim())}` : "?"}${categoriesString ? `&categories=${escapeOutput(categoriesString)}` : ""}${sortBy ? `&sortBy=${sortBy}` : ""}${sort_order ? `&sortOrder=${sort_order}` : ""}${minPrice ? `&min_price=${minPrice}` : ""}${maxPrice ? `&max_price=${maxPrice}` : ""}${CurrentPage ? `&page=${CurrentPage}` : ""}${limit ? `&limit=${limit}` : ""}`,
         {
           method: "GET",
         },
       );
+
       const data = await res.json();
       if (data.data === null) {
         throw new Error(data.message);
       }
-
       setProducts(data.data.data);
       setTotalItems(data.data.totalItems);
       setTotalPages(data.data.totalPages);
       setCurrentPage(Number(data.data.currentPage));
-
       setLoadingProducts(false);
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, Please Try Again!",
+        title: tProducts("toast.error.title"),
+        description: tProducts("toast.error.fetchProducts"),
         variant: "destructive",
       });
       setLoadingProducts(false);
@@ -125,20 +127,17 @@ const ProductPage = () => {
           method: "GET",
         },
       );
-
       const data = await res.json();
       if (data.data === null) {
         throw new Error(data.message);
       }
-
       setCategories(data.data.data);
-
       setLoadingCategories(false);
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, Please Try Again!",
+        title: tProducts("toast.error.title"),
+        description: tProducts("toast.error.fetchCategories"),
         variant: "destructive",
       });
       setLoadingCategories(false);
@@ -169,7 +168,7 @@ const ProductPage = () => {
   };
 
   const resetFilters = () => {
-    ChangeUrl("?", { scroll: false });
+    ChangeUrl("?");
   };
 
   const changeSelectedCategorie = (categorie) => {
@@ -210,15 +209,18 @@ const ProductPage = () => {
             <i className="fa-solid fa-filter text-xl text-neutral-100"></i>
           </Button>
         </SheetTrigger>
-        <SheetContent className="w-[280px] overflow-scroll">
+        <SheetContent
+          side={tCommon("side")}
+          className="w-[280px] overflow-scroll"
+        >
           <SheetTitle></SheetTitle>
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <span className="mb-2 text-3xl font-bold text-neutral-600">
-                Filters:
+                {tProducts("filters.title")}:
               </span>
               <span className="text-xl font-semibold text-neutral-800">
-                Sort
+                {tProducts("filters.sort")}
               </span>
               <SelectInterface
                 placeHolder="Name: A-Z"
@@ -226,26 +228,27 @@ const ProductPage = () => {
                   changeSortOption(sortOption);
                 }}
                 values={[
-                  ["mostpopular", "Most Popular"],
-                  ["date", "Date: Newest"],
-                  ["nameAsc", "Name: A-Z"],
-                  ["nameDesc", "Name: Z-A"],
-                  ["priceAsc", "Price: Low to High"],
-                  ["priceDesc", "Price: High to Low"],
+                  ["date", tProducts("sort.date")],
+                  ["nameAsc", tProducts("sort.nameAsc")],
+                  ["nameDesc", tProducts("sort.nameDesc")],
+                  ["priceAsc", tProducts("sort.priceAsc")],
+                  ["priceDesc", tProducts("sort.priceDesc")],
+                  ["mostpopular", tProducts("sort.mostpopular")],
                 ]}
               />
               <span className="mt-2 text-xl font-semibold text-neutral-800">
-                Price
+                {tProducts("filters.price")}
               </span>
               <MultiRangeSlider
                 min={minPrice}
                 changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
                 max={maxPrice}
+                locale={tCommon("language.lng")}
               />
             </div>
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-2">
               <span className="text-xl font-semibold text-neutral-800">
-                Categories
+                {tProducts("filters.categories")}
               </span>
               {loadingCategories
                 ? Array.from({ length: 6 }).map((_, index) => (
@@ -259,7 +262,7 @@ const ProductPage = () => {
                         changeSelectedCategorie(categorie)
                       }
                       item={categorie.name}
-                    ></CategorieItem>
+                    />
                   ))}
             </div>
             <div className="mt-2 flex flex-col gap-1">
@@ -268,18 +271,17 @@ const ProductPage = () => {
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
                 onClick={() => {
                   ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+                    `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
                         ? ""
                         : `&selectedCategories=${encodeURIComponent(
                             JSON.stringify(selectedCategories),
                           )}`
                     }`,
-                    { scroll: false },
                   );
                 }}
               >
-                Apply
+                {tProducts("button.apply")}
               </button>
               <button
                 type="button"
@@ -288,7 +290,7 @@ const ProductPage = () => {
                 }}
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
               >
-                Reset
+                {tProducts("button.reset")}
               </button>
             </div>
           </div>
@@ -320,10 +322,10 @@ const ProductPage = () => {
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-3">
               <span className="mb-2 text-3xl font-bold text-neutral-600">
-                Filters:
+                {tProducts("filters.title")}:
               </span>
               <span className="text-xl font-semibold text-neutral-800">
-                Sort
+                {tProducts("filters.sort")}
               </span>
               <SelectInterface
                 placeHolder="Name: A-Z"
@@ -331,26 +333,27 @@ const ProductPage = () => {
                   changeSortOption(sortOption);
                 }}
                 values={[
-                  ["mostpopular", "Most Popular"],
-                  ["date", "Date: Newest"],
-                  ["nameAsc", "Name: A-Z"],
-                  ["nameDesc", "Name: Z-A"],
-                  ["priceAsc", "Price: Low to High"],
-                  ["priceDesc", "Price: High to Low"],
+                  ["date", tProducts("sort.date")],
+                  ["nameAsc", tProducts("sort.nameAsc")],
+                  ["nameDesc", tProducts("sort.nameDesc")],
+                  ["priceAsc", tProducts("sort.priceAsc")],
+                  ["priceDesc", tProducts("sort.priceDesc")],
+                  ["mostpopular", tProducts("sort.mostpopular")],
                 ]}
               />
               <span className="mt-2 text-xl font-semibold text-neutral-800">
-                Price
+                {tProducts("filters.price")}
               </span>
               <MultiRangeSlider
                 min={minPrice}
                 changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
                 max={maxPrice}
+                locale={tCommon("language.lng")}
               />
             </div>
-            <div className="mt-8 flex flex-col gap-2">
+            <div className="mt-2 flex flex-col gap-2">
               <span className="text-xl font-semibold text-neutral-800">
-                Categories
+                {tProducts("filters.categories")}
               </span>
               {loadingCategories
                 ? Array.from({ length: 6 }).map((_, index) => (
@@ -364,7 +367,7 @@ const ProductPage = () => {
                         changeSelectedCategorie(categorie)
                       }
                       item={categorie.name}
-                    ></CategorieItem>
+                    />
                   ))}
             </div>
             <div className="mt-2 flex flex-col gap-1">
@@ -373,18 +376,17 @@ const ProductPage = () => {
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
                 onClick={() => {
                   ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${searchInputRef.current.value.trim()}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+                    `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
                         ? ""
                         : `&selectedCategories=${encodeURIComponent(
                             JSON.stringify(selectedCategories),
                           )}`
                     }`,
-                    { scroll: false },
                   );
                 }}
               >
-                Apply
+                {tProducts("button.apply")}
               </button>
               <button
                 type="button"
@@ -393,22 +395,22 @@ const ProductPage = () => {
                 }}
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
               >
-                Reset
+                {tProducts("button.reset")}
               </button>
             </div>
           </div>
         </div>
         <div className="flex max-w-screen-lg flex-1 flex-col gap-4">
           {/* input interface */}
-          <div className="flex min-w-full flex-row gap-1 rounded-xl border-2 border-neutral-200 py-1 pl-3 pr-3 xsm:pl-0">
-            <div className="ml-2 hidden min-w-6 items-center justify-center xsm:flex">
+          <div className="flex min-w-full flex-row gap-1 rounded-xl border-2 border-neutral-200 px-2 py-1">
+            <div className="mx-2 hidden min-w-6 items-center justify-center xsm:flex">
               <i className="fa-solid fa-magnifying-glass text-neutral-400"></i>
             </div>
             <input
               type="text"
               ref={searchInputRef}
-              defaultValue={searchParams.get("name") || ""}
-              placeholder="Work table, Bowl sink..."
+              defaultValue={escapeOutput(searchParams.get("name") || "")}
+              placeholder="Work table, Bowl sink"
               className="min-h-full flex-1 focus:outline-none"
             ></input>
             <button
@@ -418,7 +420,9 @@ const ProductPage = () => {
               }}
               className="rounded-lg bg-[var(--theme)] px-2.5 py-1 font-raleway text-lg text-neutral-100 transition-all duration-300 hover:scale-95"
             >
-              <span className="hidden xsm:block">Search</span>
+              <span className="hidden xsm:block">
+                {tProducts("button.search")}
+              </span>
               <i className="fa-solid fa-magnifying-glass text-neutral-100 xsm:hidden"></i>
             </button>
             <OpenFilter />
@@ -450,7 +454,7 @@ const ProductPage = () => {
                     </svg>
                   </div>
                   <div className="text-2xl font-semibold text-neutral-800">
-                    Sorry! No Products Found
+                    {tProducts("empty")}
                   </div>
                 </div>
               </div>
@@ -470,6 +474,8 @@ const ProductPage = () => {
                     )}
                     onClick={() => handlePageChange(CurrentPage - 1)}
                     disabled={CurrentPage === 1}
+                    text={tProducts("button.previous")}
+                    locale={tCommon("language.lng")}
                   />
                 </PaginationItem>
 
@@ -530,6 +536,8 @@ const ProductPage = () => {
                     )}
                     onClick={() => handlePageChange(CurrentPage + 1)}
                     disabled={CurrentPage === totalPages}
+                    text={tProducts("button.next")}
+                    locale={tCommon("language.lng")}
                   />
                 </PaginationItem>
               </PaginationContent>

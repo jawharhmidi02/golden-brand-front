@@ -567,5 +567,85 @@
       "Products": "المنتجات",
       "empty": "ليس لديك طلبات حتى الآن!"
     }
+  },
+  "products": {
+    "toast": {
+      "error": {
+        "title": "خطأ",
+        "generic": "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        "fetchProducts": "فشل في جلب المنتجات",
+        "fetchCategories": "فشل في جلب الفئات"
+      }
+    },
+    "sort": {
+      "date": "التاريخ",
+      "nameAsc": "الاسم (أ-ي)",
+      "nameDesc": "الاسم (ي-أ)",
+      "priceAsc": "السعر (من الأقل إلى الأعلى)",
+      "priceDesc": "السعر (من الأعلى إلى الأقل)",
+      "mostpopular": "الأكثر شعبية"
+    },
+    "filters": {
+      "title": "تعديلات",
+      "sort": "ترتيب",
+      "price": "السعر",
+      "categories": "نوع المنتج"
+    },
+    "button": {
+      "apply": "تطبيق",
+      "reset": "إعادة تعيين",
+      "search": "بحث",
+      "next": "التالي",
+      "previous": "السابق"
+    },
+    "empty": "عذراً! لم يتم العثور على أي منتجات."
+  },
+  "product": {
+    "toast": {
+      "error": {
+        "title": "خطأ",
+        "generic": "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        "fetchProducts": "فشل في جلب المنتجات",
+        "fetchCategories": "فشل في جلب الفئات",
+        "selectVariant": "الرجاء تحديد متغير أولاً!"
+      },
+      "item": {
+        "success": {
+          "title": "نجاح",
+          "description": "تمت إضافة العنصر إلى سلة التسوق الخاصة بك!"
+        }
+      }
+    },
+    "button": {
+      "addToCart": "أضف إلى سلة التسوق",
+      "buyNow": "اشتر الآن"
+    },
+    "table": {
+      "th": {
+        "materialsDescription": "وصف المواد",
+        "chooseDimensionBelow": "اختر بُعدًا"
+      },
+      "td": {
+        "dimensions": "الأبعاد",
+        "price": "السعر"
+      }
+    },
+    "delivery": {
+      "title": "التسليم",
+      "free": "شحن قياسي مجاني على الطلبات التي تزيد عن",
+      "businessDay": "يوم عمل",
+      "businessDays": "أيام عمل",
+      "table": {
+        "type": {
+          "title": "النوع",
+          "standardDelivery": "تسليم قياسي",
+          "expressDelivery": "تسليم سريع",
+          "pickStore": "استلام من المتجر",
+          "free": "مجانًا",
+          "howLong": "كم من الوقت",
+          "howMuch": "كم"
+        }
+      }
+    }
   }
 }

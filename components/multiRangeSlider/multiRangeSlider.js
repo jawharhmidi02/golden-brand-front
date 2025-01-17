@@ -1,48 +1,32 @@
 "use client";
 
-import React, { useCallback, useEffect, useState, useRef } from "react";
 import "./multiRangeSlider.css";
-import { useSearchParams } from "next/navigation";
 
-const MultiRangeSlider = ({ changePrice }) => {
-  const useParams = useSearchParams();
-  const min = useParams.get("minPrice") || 0;
-  const max = useParams.get("maxPrice") || 15000;
+import React, { useCallback, useEffect, useState, useRef } from "react";
+import { useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { dir } from "i18next";
+import { cn } from "@/lib/utils";
+
+const MultiRangeSlider = ({ changePrice, locale }) => {
+  const tCommon = useTranslations("common");
+  const searchParams = useSearchParams();
+  const min = Number(searchParams.get("minPrice")) || 0;
+  const max = Number(searchParams.get("maxPrice")) || 15000;
   const minRange = 0;
   const maxRange = 15000;
-
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
+  const isRTL = locale === "ar";
   const range = useRef(null);
 
-  // Convert value to percentage
   const getPercent = useCallback(
     (value) => Math.round(((value - minRange) / (maxRange - minRange)) * 100),
-    [minRange, maxRange]
+    [minRange, maxRange],
   );
 
-  // Update slider with values from search params
-  useEffect(() => {
-    setMinVal(min);
-    setMaxVal(max);
-    minValRef.current = min;
-    maxValRef.current = max;
-  }, [min, max]);
-
-  // Update the range style
-  useEffect(() => {
-    const minPercent = getPercent(minVal);
-    const maxPercent = getPercent(maxVal);
-
-    if (range.current) {
-      range.current.style.left = `${minPercent}%`;
-      range.current.style.width = `${maxPercent - minPercent}%`;
-    }
-  }, [minVal, maxVal, getPercent]);
-
-  // Handle min input change
   const handleMinChange = (event) => {
     const value = Math.min(Number(event.target.value), maxVal - 1);
     setMinVal(value);
@@ -50,7 +34,6 @@ const MultiRangeSlider = ({ changePrice }) => {
     changePrice(value, maxVal);
   };
 
-  // Handle max input change
   const handleMaxChange = (event) => {
     const value = Math.max(Number(event.target.value), minVal + 1);
     setMaxVal(value);
@@ -58,34 +41,145 @@ const MultiRangeSlider = ({ changePrice }) => {
     changePrice(minVal, value);
   };
 
-  return (
-    <div className="container">
-      <input
-        type="range"
-        min={minRange}
-        max={maxRange}
-        value={minVal}
-        onChange={handleMinChange}
-        className="thumb thumb--left"
-        style={{ zIndex: minVal > max - 100 && "5" }}
-      />
-      <input
-        type="range"
-        min={minRange}
-        max={maxRange}
-        value={maxVal}
-        onChange={handleMaxChange}
-        className="thumb thumb--right"
-      />
+  useEffect(() => {
+    setMinVal(min);
+    setMaxVal(max);
+    minValRef.current = min;
+    maxValRef.current = max;
+  }, [min, max]);
 
-      <div className="slider">
-        <div className="slider__track" />
-        <div ref={range} className="slider__range" />
-        <div className="font-medium text-lg text-[var(--blue)] slider__left-value">{`${minVal} QR`}</div>
-        <div className="font-medium text-lg text-[var(--blue)] slider__right-value">{`${maxVal} QR`}</div>
+  useEffect(() => {
+    const minPercent = getPercent(minVal);
+    const maxPercent = getPercent(maxVal);
+
+    if (range.current) {
+      if (isRTL) {
+        range.current.style.right = `${minPercent}%`;
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      } else {
+        range.current.style.left = `${minPercent}%`;
+        range.current.style.width = `${maxPercent - minPercent}%`;
+      }
+    }
+  }, [minVal, maxVal, getPercent, isRTL]);
+
+  return (
+    <div
+      className={`relative mx-auto w-full max-w-md px-4 ${isRTL ? "rtl" : "ltr"}`}
+    >
+      <div className="container">
+        <div className="slider">
+          <div className="slider__track" />
+          <input
+            type="range"
+            min={minRange}
+            max={maxRange}
+            value={minVal}
+            onChange={handleMinChange}
+            className="thumb thumb--left"
+            style={{ zIndex: minVal > max - 100 ? 5 : undefined }}
+          />
+          <input
+            type="range"
+            min={minRange}
+            max={maxRange}
+            value={maxVal}
+            onChange={handleMaxChange}
+            className="thumb thumb--right"
+          />
+          <div ref={range} className="slider__range" />
+          <div
+            className={cn(
+              "slider__value-container mt-6 flex justify-between text-lg font-medium text-[var(--blue)]",
+            )}
+          >
+            <div>{`${minVal} ${tCommon("currency")}`}</div>
+            <div>{`${maxVal} ${tCommon("currency")}`}</div>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default MultiRangeSlider;
+
+// const MultiRangeSliders = ({ changePrice, locale }) => {
+//   const tCommon = useTranslations("common");
+//   const useParams = useSearchParams();
+//   const min = useParams.get("minPrice") || 0;
+//   const max = useParams.get("maxPrice") || 15000;
+//   const minRange = 0;
+//   const maxRange = 15000;
+
+//   const [minVal, setMinVal] = useState(min);
+//   const [maxVal, setMaxVal] = useState(max);
+//   const minValRef = useRef(min);
+//   const maxValRef = useRef(max);
+//   const range = useRef(null);
+
+//   const getPercent = useCallback(
+//     (value) => Math.round(((value - minRange) / (maxRange - minRange)) * 100),
+//     [minRange, maxRange],
+//   );
+
+//   const handleMinChange = (event) => {
+//     const value = Math.min(Number(event.target.value), maxVal - 1);
+//     setMinVal(value);
+//     minValRef.current = value;
+//     changePrice(value, maxVal);
+//   };
+
+//   const handleMaxChange = (event) => {
+//     const value = Math.max(Number(event.target.value), minVal + 1);
+//     setMaxVal(value);
+//     maxValRef.current = value;
+//     changePrice(minVal, value);
+//   };
+
+//   useEffect(() => {
+//     setMinVal(min);
+//     setMaxVal(max);
+//     minValRef.current = min;
+//     maxValRef.current = max;
+//   }, [min, max]);
+
+//   useEffect(() => {
+//     const minPercent = getPercent(minVal);
+//     const maxPercent = getPercent(maxVal);
+
+//     if (range.current) {
+//       range.current.style.left = `${minPercent}%`;
+//       range.current.style.width = `${maxPercent - minPercent}%`;
+//     }
+//   }, [minVal, maxVal, getPercent]);
+
+//   return (
+//     <div className="container" dir={dir(locale)}>
+//       <input
+//         type="range"
+//         min={minRange}
+//         max={maxRange}
+//         value={minVal}
+//         onChange={handleMinChange}
+//         className="thumb thumb--left"
+//         style={{ zIndex: minVal > max - 100 && "5" }}
+//       />
+//       <input
+//         type="range"
+//         min={minRange}
+//         max={maxRange}
+//         value={maxVal}
+//         onChange={handleMaxChange}
+//         className="thumb thumb--right"
+//       />
+
+//       <div className="slider">
+//         <div className="slider__track" />
+//         <div ref={range} className="slider__range" />
+//         <div className="slider__left-value text-lg font-medium text-[var(--blue)]">{`${minVal} ${tCommon("currency")}`}</div>
+//         <div className="slider__right-value text-lg font-medium text-[var(--blue)]">{`${maxVal} ${tCommon("currency")}`}</div>
+//       </div>
+//     </div>
+//   );
+// };

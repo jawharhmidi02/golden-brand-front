@@ -231,9 +231,9 @@
     },
     "description": "Golden Brand Stainless Steel offers premium-quality stainless steel kitchens, handrails, and aluminum products. With a commitment to durability, precision, and modern design, we provide customized solutions for both residential and commercial spaces.",
     "importantTerms": {
-      "Refund & Returns": "Refund & Returns",
-      "Privacy Policy": "Privacy Policy",
-      "Shipping & Delivery": "Shipping & Delivery"
+      "refundAndReturns": "Refund & Returns",
+      "privacyPolicy": "Privacy Policy",
+      "shippingAndDelivery": "Shipping & Delivery"
     },
     "copyright": {
       "copyright": "Copyright",
@@ -566,6 +566,86 @@
       "OrderType": "Order Type",
       "Products": "Products",
       "empty": "You Don't have Orders Yet!"
+    }
+  },
+  "products": {
+    "toast": {
+      "error": {
+        "title": "Error",
+        "generic": "Something went wrong, Please Try Again!",
+        "fetchProducts": "Failed to fetch products",
+        "fetchCategories": "Failed to fetch categories"
+      }
+    },
+    "sort": {
+      "date": "Date",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "priceAsc": "Price (Low to High)",
+      "priceDesc": "Price (High to Low)",
+      "mostpopular": "Most Popular"
+    },
+    "filters": {
+      "title": "Filters",
+      "sort": "Sort",
+      "price": "Price",
+      "categories": "Categories"
+    },
+    "button": {
+      "apply": "Apply",
+      "reset": "Reset",
+      "search": "Search",
+      "next": "Next",
+      "previous": "Previous"
+    },
+    "empty": "Sorry! No Products Found."
+  },
+  "product": {
+    "toast": {
+      "error": {
+        "title": "Error",
+        "generic": "Something went wrong, Please Try Again!",
+        "fetchProducts": "Failed to fetch products",
+        "fetchCategories": "Failed to fetch categories",
+        "selectVariant": "Please select a Variant first!"
+      },
+      "item": {
+        "success": {
+          "title": "Success",
+          "description": "Item has been added to your cart!"
+        }
+      }
+    },
+    "button": {
+      "addToCart": "ADD TO CART",
+      "buyNow": "BUY NOW"
+    },
+    "table": {
+      "th": {
+        "materialsDescription": "Materials Description",
+        "chooseDimensionBelow": "Choose a dimension below"
+      },
+      "td": {
+        "dimensions": "Dimensions",
+        "price": "Price"
+      }
+    },
+    "delivery": {
+      "title": "Delivery",
+      "free": "Free standard shipping on orders over",
+      "businessDay": "Business Day",
+      "businessDays": "Business Days",
+      "table": {
+        "type": {
+          "title": "TYPE",
+          "standardDelivery": "Standard delivery",
+          "expressDelivery": "Express delivery",
+          "pickStore": "Pick up in store",
+          "free": "Free",
+          "howLong": "HOW LONG",
+          "howMuch": "HOW MUCH"
+        }
+      }
     }
   }
 }

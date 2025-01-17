@@ -1,8 +1,11 @@
 import { useContext } from "react";
+import { useTranslations } from "next-intl";
 
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { cn } from "@/lib/utils";
 
 const ProductHeader = ({ cat, product }) => {
+  const tCommon = useTranslations("common");
   const { ChangeUrl } = useContext(UserAuthContext);
 
   return (
@@ -11,9 +14,16 @@ const ProductHeader = ({ cat, product }) => {
         onClick={() => ChangeUrl("/")}
         className="self-center font-lato text-lg font-semibold text-neutral-400 transition-all duration-300 hover:cursor-pointer hover:text-neutral-500"
       >
-        Home
+        {tCommon("navigation.home")}
       </div>
-      <i className="fa-solid fa-chevron-right self-center text-neutral-400"></i>
+      <i
+        className={cn(
+          "fa-solid self-center text-neutral-400",
+          tCommon("language.lng") === "en"
+            ? "fa-chevron-right"
+            : "fa-chevron-left",
+        )}
+      ></i>
       <div
         onClick={() =>
           ChangeUrl(
@@ -26,7 +36,14 @@ const ProductHeader = ({ cat, product }) => {
       >
         {product.category.name}
       </div>
-      <i className="fa-solid fa-chevron-right hidden self-center text-neutral-400 sm:block"></i>
+      <i
+        className={cn(
+          "fa-solid hidden self-center text-neutral-400 sm:block",
+          tCommon("language.lng") === "en"
+            ? "fa-chevron-right"
+            : "fa-chevron-left",
+        )}
+      ></i>
       <div className="hidden self-center font-lato text-lg font-semibold text-neutral-800 sm:block">
         {product.name}
       </div>

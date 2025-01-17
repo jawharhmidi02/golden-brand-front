@@ -2,17 +2,20 @@
 
 import "./page.css";
 
-import { useEffect, useTransition, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 
+import { UserAuthContext } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import ProductHeader from "@/components/ProductHeader/ProductHeader";
 import SkeletonProductHeader from "@/components/ProductHeader/SkeletonProductHeader";
-import { UserAuthContext } from "@/contexts/AuthContext";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tProduct = useTranslations("product");
   const searchParams = useParams();
   const id = searchParams.productID;
   const { ChangeUrl, updateCart } = useContext(UserAuthContext);
@@ -58,8 +61,8 @@ const page = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, Please Try Again!",
+        title: tProduct("toast.error.tile"),
+        description: tProduct("toast.error.generic"),
         variant: "destructive",
       });
       setLoadingProduct(false);
@@ -70,8 +73,8 @@ const page = () => {
   const handleAddToCart = async () => {
     if (Object.keys(selectedVariant).length < 2) {
       toast({
-        title: "Error",
-        description: "Please select a variant!",
+        title: tProduct("toast.error.tile"),
+        description: tProduct("toast.error.selectVariant"),
         variant: "destructive",
       });
       return;
@@ -88,8 +91,8 @@ const page = () => {
     updateCart();
 
     toast({
-      title: "Item Added",
-      description: "Item has been added to your cart!",
+      title: tProduct("toast.item.success.title"),
+      description: tProduct("toast.item.success.description"),
       variant: "success",
       duration: 3000,
     });
@@ -169,7 +172,7 @@ const page = () => {
                   ) : (
                     `${selectedVariant && productNumber * selectedVariant.price}`
                   )}{" "}
-                  QR
+                  {tCommon("currency")}
                 </span>
               </div>
 
@@ -184,7 +187,7 @@ const page = () => {
                       <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                     </div>
                   ) : (
-                    "ADD TO CART"
+                    tProduct("button.addToCart")
                   )}
                 </button>
                 <button
@@ -197,15 +200,11 @@ const page = () => {
                       <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
                     </div>
                   ) : (
-                    "BUY NOW"
+                    tProduct("button.buyNow")
                   )}
                 </button>
               </div>
             </div>
-            {/* 
-          { productNumber * selectedVariant.price >= 10000 && (
-            <span className="text-center font-bold text-green-500 font-lato">Free delivery acquired !</span>
-          )} */}
           </div>
 
           <div className="flex flex-col gap-6">
@@ -221,7 +220,7 @@ const page = () => {
             <table>
               <tbody className="header bg-[var(--theme)] text-center font-lato text-xl font-semibold text-neutral-100 sm:text-2xl">
                 <tr>
-                  <th>Materials Description</th>
+                  <th>{tProduct("table.th.materialsDescription")}</th>
                 </tr>
               </tbody>
               {loadingProduct
@@ -252,7 +251,7 @@ const page = () => {
             </table>
 
             <span className="text-center font-lato text-xl font-semibold text-neutral-900 xxsm:text-2xl">
-              Choose a dimension below
+              {tProduct("table.th.chooseDimensionBelow")}
             </span>
 
             {/* Product Dimension / information table  */}
@@ -265,7 +264,7 @@ const page = () => {
                 <tbody>
                   <tr className="header bg-[var(--theme)] text-center font-lato font-semibold text-neutral-100 xsm:text-xl">
                     <td></td>
-                    <td>Dimensions</td>
+                    <td>{tProduct("table.td.dimensions")}</td>
                     {product.productsVariants.length !== 0 &&
                       Object.keys(
                         product.productsVariants[0].additionalFeatures,
@@ -273,7 +272,7 @@ const page = () => {
                         <td key={index}>{additionalItem}</td>
                       ))}
 
-                    <td>Price</td>
+                    <td>{tProduct("table.td.price")}</td>
                   </tr>
                 </tbody>
                 {product.productsVariants.map((item, index) => (
@@ -301,6 +300,7 @@ const page = () => {
                         <label
                           className="hover:cursor-pointer"
                           htmlFor={`radio-${index}`}
+                          dir="ltr"
                         >
                           {item.dimension}
                         </label>
@@ -321,7 +321,7 @@ const page = () => {
                         <label
                           className="hover:cursor-pointer"
                           htmlFor={`radio-${index}`}
-                        >{`${item.price} QR`}</label>
+                        >{`${item.price} ${tCommon("currency")}`}</label>
                       </td>
                     </tr>
                   </tbody>
@@ -331,20 +331,26 @@ const page = () => {
 
             {/* Delivery Guide Interface */}
             <span className="text-center font-lato text-xl font-semibold text-neutral-900">
-              Delivery
+              {tProduct("delivery.title")}
             </span>
             <span className="text-center font-montserrat text-lg text-neutral-600">
-              Free standard shipping on orders over{" "}
-              <span className="font-semibold">10000 QR</span> before tax.
+              {tProduct("delivery.free")}{" "}
+              <span className="font-semibold">
+                10000 {tCommon("currency")}.
+              </span>{" "}
             </span>
 
             <div className="flex justify-center">
               <table className="-mt-2 w-full text-sm xsm:text-base md:text-lg xl:text-xl">
                 <tbody className="text-neutral-400">
                   <tr>
-                    <td>TYPE</td>
-                    <td className="text-center">HOW LONG</td>
-                    <td className="text-end">HOW MUCH</td>
+                    <td>{tProduct("delivery.table.type.title")}</td>
+                    <td className="text-center">
+                      {tProduct("delivery.table.type.howLong")}
+                    </td>
+                    <td className="text-end">
+                      {tProduct("delivery.table.type.howMuch")}
+                    </td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -356,9 +362,11 @@ const page = () => {
                 </tbody>
                 <tbody>
                   <tr>
-                    <td>Standard delivery</td>
-                    <td className="text-center">1-4 business days</td>
-                    <td className="text-end">4.50 QR</td>
+                    <td>{tProduct("delivery.table.type.standardDelivery")}</td>
+                    <td className="text-center">
+                      1-4 {tProduct("delivery.businessDays")}
+                    </td>
+                    <td className="text-end">4.50 {tCommon("currency")}</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -370,9 +378,11 @@ const page = () => {
                 </tbody>
                 <tbody>
                   <tr>
-                    <td>Express delivery</td>
-                    <td className="text-center">1 business day</td>
-                    <td className="text-end">10.00 QR</td>
+                    <td>{tProduct("delivery.table.type.expressDelivery")}</td>
+                    <td className="text-center">
+                      1 {tProduct("delivery.businessDay")}
+                    </td>
+                    <td className="text-end">10.00 {tCommon("currency")}</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -384,9 +394,13 @@ const page = () => {
                 </tbody>
                 <tbody>
                   <tr>
-                    <td>Pick up in store</td>
-                    <td className="text-center">1-3 business days</td>
-                    <td className="text-end">Free</td>
+                    <td>{tProduct("delivery.table.type.pickStore")}</td>
+                    <td className="text-center">
+                      1-3 {tProduct("delivery.businessDays")}
+                    </td>
+                    <td className="text-end">
+                      {tProduct("delivery.table.type.free")}
+                    </td>
                   </tr>
                 </tbody>
               </table>
