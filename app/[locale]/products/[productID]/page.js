@@ -65,9 +65,7 @@ const page = () => {
         description: tProduct("toast.error.generic"),
         variant: "destructive",
       });
-      setLoadingProduct(false);
     }
-    setLoadingProduct(false);
   };
 
   const handleAddToCart = async () => {
