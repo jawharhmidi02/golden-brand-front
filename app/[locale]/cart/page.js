@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 
 import { UserAuthContext } from "@/contexts/AuthContext";
 import CartItem from "@/components/CartItem/CartItem";
+import { useTranslations } from "next-intl";
 
 const page = () => {
   const tCommon = useTranslations("common");
@@ -33,12 +34,10 @@ const page = () => {
               <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
             </svg>
             <span className="text-center font-lato text-3xl font-bold text-neutral-800 md:text-5xl">
-              Your cart is currently empty.
+              {tCart("empty.text")}
             </span>
             <span className="max-w-[500px] text-center font-lato font-semibold text-neutral-400 md:text-lg">
-              Before proceeding to checkout you must add some products to your
-              shopping cart. You will find a lot of interesting products on our
-              Products page.
+              {tCart("empty.description")}
             </span>
             <button
               onClick={() => {
@@ -47,7 +46,7 @@ const page = () => {
               type="button"
               className="bg-[var(--theme2)] px-6 py-3 font-lato font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-[var(--theme)]"
             >
-              RETURN TO SHOP
+              {tCart("empty.buttonText")}
             </button>
           </div>
         </div>
@@ -61,11 +60,11 @@ const page = () => {
                     <tr className="border-b-2 border-neutral-200 font-lato text-lg font-bold">
                       <td className="p-[10px]"></td>
                       <td className="p-[10px]"></td>
-                      <td className="p-[10px]">PRODUCT</td>
-                      <td className="p-[10px]">DIMENSION</td>
-                      <td className="p-[10px]">PRICE</td>
-                      <td className="p-[10px]">QUANTITY</td>
-                      <td className="p-[10px]">SUBTOTAL</td>
+                      <td className="p-[10px]">{tCart("table.PRODUCT")}</td>
+                      <td className="p-[10px]">{tCart("table.DIMENSION")}</td>
+                      <td className="p-[10px]">{tCart("table.PRICE")}</td>
+                      <td className="p-[10px]">{tCart("table.QUANTITY")}</td>
+                      <td className="p-[10px]">{tCart("table.SUBTOTAL")}</td>
                     </tr>
                   </tbody>
 
@@ -85,21 +84,21 @@ const page = () => {
 
               <div className="flex h-fit w-full flex-col justify-between gap-3 border-[1px] border-neutral-200 p-7 shadow-md drop-shadow-md lg:max-w-[400px]">
                 <span className="font-lato text-xl font-bold text-[var(--theme2)]">
-                  CART TOTALS
+                  {tCart("cartTotals")}
                 </span>
                 <div className="flex flex-col">
                   <div className="flex flex-row justify-between px-2 py-4">
                     <span className="font-lato text-lg font-semibold text-neutral-800">
-                      Subtotal
+                      {tCart("subtotal")}
                     </span>
                     <span className="text-lg text-neutral-500">
-                      {sumValues(totalPrice)} QR
+                      {sumValues(totalPrice)} {tCommon("currency")}
                     </span>
                   </div>
                   <div className="border-mask h-[1px] w-full bg-neutral-300"></div>
                   <div className="flex flex-row items-center justify-between gap-5 px-2 py-4">
                     <span className="font-lato text-lg font-semibold text-neutral-800">
-                      Shipping
+                      {tCart("shipping")}
                     </span>
                     <div className="flex flex-col gap-4 text-right text-neutral-600">
                       <div>
@@ -111,7 +110,7 @@ const page = () => {
                             defaultChecked
                             className="relative left-[2px] top-2 float-end accent-emerald-700 hover:cursor-pointer"
                           />
-                          Receipt from the company's headquarters (QATAR){" "}
+                          {tCart("receipt")}{" "}
                         </label>
                       </div>
                       <div>
@@ -122,20 +121,19 @@ const page = () => {
                             name="shipping"
                             className="relative left-[2px] top-2 float-end accent-emerald-700 hover:cursor-pointer"
                           />
-                          A shipping truck for several products (from{" "}
+                          {tCart("delivery.part1")}{" "}
                           <font className="font-bold text-[var(--theme2)]">
                             500
                           </font>{" "}
-                          to{" "}
+                          {tCart("delivery.part2")}{" "}
                           <font className="font-bold text-[var(--theme2)]">
-                            2000 QR
+                            2000 {tCommon("currency")}
                           </font>
-                          ) contact customer service after ordering for shipping
-                          cost.
+                          {tCart("delivery.part3")}{" "}
                         </label>
                         {sumValues(totalPrice) >= 10000 && (
                           <div className="font-lato text-sm text-neutral-400">
-                            (YOU HAVE FREE DELIVERY!!!)
+                            ({tCart("delivery.free")})
                           </div>
                         )}
                       </div>
@@ -145,11 +143,11 @@ const page = () => {
 
                   <div className="flex flex-row items-center justify-between px-2 py-4">
                     <span className="font-lato text-lg font-semibold text-neutral-800">
-                      Total
+                      {tCart("total")}
                     </span>
                     <div className="flex flex-col justify-between">
                       <span className="font-lato text-2xl font-bold text-[var(--theme2)]">
-                        {sumValues(totalPrice)} QR
+                        {sumValues(totalPrice)} {tCommon("currency")}
                       </span>
                     </div>
                   </div>
@@ -161,7 +159,7 @@ const page = () => {
                     ChangeUrl("/checkout");
                   }}
                 >
-                  PROCEED TO CHECKOUT
+                  {tCart("proceedToCheckout")}
                 </button>
               </div>
             </div>

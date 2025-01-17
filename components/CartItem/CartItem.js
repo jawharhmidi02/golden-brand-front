@@ -6,6 +6,7 @@ import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 import { Skeleton } from "../ui/skeleton";
+import { useTranslations } from "next-intl";
 
 const CartItem = ({
   productVariantID,
@@ -15,6 +16,8 @@ const CartItem = ({
   items,
   setItems,
 }) => {
+  const tCommon = useTranslations("common");
+  const tCart = useTranslations("cart");
   const { ChangeUrl, updateCart } = useContext(UserAuthContext);
   const [productVariant, setProductVariant] = useState({});
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
@@ -45,8 +48,8 @@ const CartItem = ({
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed",
-        description: "Something went wrong, please try again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")},${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
     }
@@ -184,12 +187,15 @@ const CartItem = ({
             {loadingProductVariant ? (
               <Skeleton className={"my-1 h-6 w-[50px] bg-neutral-300"} />
             ) : (
-              `${productVariant.price} QR`
+              `${productVariant.price} ${tCommon("currency")}`
             )}
           </span>
         </td>
         <td className="p-[10px]">
-          <div className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300">
+          <div
+            dir="ltr"
+            className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300"
+          >
             <button
               type="button"
               onClick={() => {
@@ -228,7 +234,7 @@ const CartItem = ({
         <td className="p-[10px]">
           <span className="text-lg font-bold text-[var(--theme2)]">
             {" "}
-            {`${loadingProductVariant ? 0 : productVariant.price * quantity} QR`}
+            {`${loadingProductVariant ? 0 : productVariant.price * quantity} ${tCommon("currency")}`}
           </span>
         </td>
       </tr>
@@ -274,7 +280,7 @@ const CartItem = ({
               </div>
               <div className="flex w-full flex-row justify-between gap-1 py-2 min-[400px]:gap-0">
                 <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                  Dimension
+                  {tCommon("dimension")}
                 </div>
                 <div className="text-end font-medium text-neutral-500">
                   {loadingProductVariant ? (
@@ -287,14 +293,14 @@ const CartItem = ({
               <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
               <div className="flex w-full flex-row justify-between py-2">
                 <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                  Price
+                  {tCommon("price")}
                 </div>
-                <div className="font-medium text-[var(--theme2)]">{`${productVariant.price || 0} QR`}</div>
+                <div className="font-medium text-[var(--theme2)]">{`${productVariant.price || 0} ${tCommon("currency")}`}</div>
               </div>
               <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
               <div className="flex w-full flex-row justify-between py-2">
                 <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                  Quantity
+                  {tCommon("quantity")}
                 </div>
                 <div className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300">
                   <button
@@ -337,9 +343,9 @@ const CartItem = ({
               <div className="border-mask h-[1px] w-full bg-neutral-200"></div>
               <div className="flex w-full flex-row justify-between py-2">
                 <div className="my-auto font-lato text-[17px] font-semibold text-neutral-800">
-                  Subtotal
+                  {tCart("subtotal")}
                 </div>
-                <div className="font-medium text-[var(--theme2)]">{`${(productVariant.price || 0) * quantity} QR`}</div>
+                <div className="font-medium text-[var(--theme2)]">{`${(productVariant.price || 0) * quantity} ${tCommon("currency")}`}</div>
               </div>
             </div>
           </div>

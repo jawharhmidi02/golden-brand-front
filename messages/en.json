@@ -97,7 +97,8 @@
         "delete": "Are you sure you want to delete this item?",
         "unsavedChanges": "You have unsaved changes. Are you sure you want to leave?",
         "logout": "Are you sure you want to log out?"
-      }
+      },
+      "wait": "Please wait..."
     },
     "form": {
       "required": "Required",
@@ -132,7 +133,9 @@
     },
     "currency": "QR",
     "side": "right",
-    "dimension": "Dimension"
+    "dimension": "Dimension",
+    "price": "Price",
+    "quantity": "Quantity"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -150,7 +153,18 @@
       "PRICE": "PRICE",
       "QUANTITY": "QUANTITY",
       "SUBTOTAL": "SUBTOTAL"
-    }
+    },
+    "shipping": "Shipping",
+    "cartTotals": "CART TOTALS",
+    "subtotal": "Subtotal",
+    "delivery": {
+      "free": "YOU HAVE FREE DELIVERY!!!",
+      "part1": "A shipping truck for several products (from",
+      "part2": "to",
+      "part3": ") contact customer service after ordering for shipping cost."
+    },
+    "receipt": "Receipt from the company's headquarters (QATAR)",
+    "proceedToCheckout": "PROCEED TO CHECKOUT"
   },
   "hero": {
     "description": "Elevate your space with premium stainless steel craftsmanship. From sleek kitchens to durable handrails, Golden Brand Stainless Steel offers high-quality, custom solutions for homes and businesses. Discover our range of products designed to enhance functionality and style. Built to last, built to impress."
@@ -366,5 +380,46 @@
         }
       }
     }
+  },
+  "checkout": {
+    "toast": {
+      "description": {
+        "Pleaseenteryourfirstname": "Please enter your first name",
+        "Pleaseenteryourlastname": "Please enter your last name",
+        "Pleaseenteryourphonenumber": "Please enter your phone number",
+        "Pleaseenteravalidemailaddress": "Please enter a valid email address",
+        "Pleaseenteryouraddress": "Please enter your address",
+        "Pleaseaddproductstothecart": "Please add products to the cart",
+        "Submittingyourorder": "Submitting your order...",
+        "Thankyouforusingourservices": "Thank you for using our services!",
+        "Anerroroccurredwhilesubmittingtheorder": "An error occurred while submitting the order"
+      }
+    },
+    "billingAndShipping": "BILLING & SHIPPING",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "Country": "Country",
+    "State": "State",
+    "StreetDistrictAddress": "Street / District Address",
+    "Phone": "Phone",
+    "Email": "Email",
+    "YOURORDER": "YOUR ORDER",
+    "PRODUCT": "PRODUCT",
+    "SUBTOTAL": "SUBTOTAL",
+    "Duration": "Duration",
+    "Shippingbusinessdays": "Shipping within 4-10 business days",
+    "privacy": {
+      "text": "privacy policy",
+      "description": "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our"
+    },
+    "placeOrder": "PLACE ORDER"
+  },
+  "transaction": {
+    "successMessage": "Transaction Successful!",
+    "description": "Thank you for shopping with us. Your order has been received, and we will contact you shortly to confirm it.",
+    "orderDetails": "Order Details",
+    "orderID": "Order ID",
+    "orderDate": "Order Date",
+    "returnToHomepage": "Return to Homepage"
   }
 }

@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Skeleton } from "../ui/skeleton";
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { useTranslations } from "next-intl";
 
 const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
+  const tCommon = useTranslations("common");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [productVariant, setProductVariant] = useState();
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
@@ -35,8 +37,8 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed!",
-        description: "Something went wrong, please try again!",
+        title: tCommon("titles.error"),
+        description: `${tCommon("messages.error.generic")},${tCommon("messages.error.tryAgain")}`,
         variant: "destructive",
       });
     }
@@ -56,6 +58,7 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
               ChangeUrl(`/products/${productVariant.product.id}`);
             }
           }}
+          dir="ltr"
         >
           <font className="font-bold">{`${quantity} x `}</font>
           {loadingProductVariant ? (
@@ -65,7 +68,8 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
           )}
         </span>
         <span className="min-w-[90px] text-end font-medium text-neutral-500">
-          {loadingProductVariant ? 0 : quantity * productVariant.price} QR
+          {loadingProductVariant ? 0 : quantity * productVariant.price}{" "}
+          {tCommon("currency")}
         </span>
       </div>
       <div className="border-mask h-[1px] w-full bg-zinc-200 px-2"></div>

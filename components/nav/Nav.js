@@ -130,7 +130,10 @@ const Nav = () => {
 
             <div className="total-number">{Object.keys(items).length}</div>
           </SheetTrigger>
-          <SheetContent className="w-[300px] bg-[var(--tertiary)] p-0">
+          <SheetContent
+            side={tCommon("side")}
+            className="w-[300px] bg-[var(--tertiary)] p-0"
+          >
             <SheetTitle />
             <div className="flex h-full flex-col justify-between">
               <div className="border-b-[1px] border-neutral-300 py-3 text-center">

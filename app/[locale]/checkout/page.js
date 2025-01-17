@@ -8,12 +8,17 @@ import {
   cn,
   validateEmail,
   validateNumberInput,
-  formattedDate,
+  escapeOutput,
+  unescapeOutput,
 } from "@/lib/utils";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import CheckoutCartItem from "@/components/CartItem/CheckoutCartItem";
+import { useTranslations } from "next-intl";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tCheckout = useTranslations("checkout");
+  const tCart = useTranslations("cart");
   const { items, ChangeUrl, userData, updateCart, checkUser } =
     useContext(UserAuthContext);
   const firstNameRef = useRef(null);
@@ -33,24 +38,24 @@ const page = () => {
 
     if (!firstNameRef.current.value.trim()) {
       toast({
-        title: "Error",
-        description: "Please enter your first name",
+        title: tCommon("titles.error"),
+        description: tCheckout("toast.description.Pleaseenteryourfirstname"),
         variant: "destructive",
       });
       return;
     }
     if (!lastNameRef.current.value.trim()) {
       toast({
-        title: "Error",
-        description: "Please enter your last name",
+        title: tCommon("titles.error"),
+        description: tCheckout("toast.description.Pleaseenteryourlastname"),
         variant: "destructive",
       });
       return;
     }
     if (!phoneRef.current.value.trim()) {
       toast({
-        title: "Error",
-        description: "Please enter your phone number",
+        title: tCommon("titles.error"),
+        description: tCheckout("toast.description.Pleaseenteryourphonenumber"),
         variant: "destructive",
       });
       return;
@@ -60,16 +65,18 @@ const page = () => {
       !validateEmail(emailRef.current.value.trim())
     ) {
       toast({
-        title: "Error",
-        description: "Please enter a valid email address",
+        title: tCommon("titles.error"),
+        description: tCheckout(
+          "toast.description.Pleaseenteravalidemailaddress",
+        ),
         variant: "destructive",
       });
       return;
     }
     if (!addressRef.current.value.trim()) {
       toast({
-        title: "Error",
-        description: "Please enter your address",
+        title: tCommon("titles.error"),
+        description: tCheckout("toast.description.Pleaseenteryouraddress"),
         variant: "destructive",
       });
       return;
@@ -77,28 +84,26 @@ const page = () => {
 
     if (sumValues(cart) < 1) {
       toast({
-        title: "Error",
-        description: "Please add products to the cart",
+        title: tCommon("titles.error"),
+        description: tCheckout("toast.description.Pleaseaddproductstothecart"),
         variant: "destructive",
       });
       return;
     }
-    // please wait toast
     toast({
-      title: "Please wait",
-      description: "Submitting your order...",
+      title: tCommon("messages.wait"),
+      description: tCheckout("toast.description.Submittingyourorder"),
     });
 
     const order = {
-      first_name: firstNameRef.current.value.trim(),
-      last_name: lastNameRef.current.value.trim(),
-      email: emailRef.current.value.trim(),
-      phone: phoneRef.current.value.trim(),
-      address: addressRef.current.value.trim(),
+      first_name: escapeOutput(firstNameRef.current.value.trim()),
+      last_name: escapeOutput(lastNameRef.current.value.trim()),
+      email: escapeOutput(emailRef.current.value.trim()),
+      phone: escapeOutput(phoneRef.current.value.trim()),
+      address: escapeOutput(addressRef.current.value.trim()),
       deliveryPrice,
       cart: cart,
       type,
-      created_At: new Date(),
     };
 
     try {
@@ -131,8 +136,8 @@ const page = () => {
       checkUser();
 
       toast({
-        title: "Order Completed",
-        description: "Thank you for using our services!",
+        title: tCommon("titles.success"),
+        description: tCheckout("toast.description.Thankyouforusingourservices"),
         variant: "success",
         duration: 10000,
       });
@@ -144,8 +149,10 @@ const page = () => {
       setLoadingOrder(false);
       console.error(error);
       toast({
-        title: "Error",
-        description: "An error occurred while submitting the order",
+        title: tCommon("titles.error"),
+        description: tCheckout(
+          "toast.description.Anerroroccurredwhilesubmittingtheorder",
+        ),
         variant: "destructive",
       });
     }
@@ -156,18 +163,21 @@ const page = () => {
       <div className="grid w-full max-w-[1300px] grid-cols-1 gap-8 px-3 xsm:px-6 sm:px-10 lg:grid-cols-2">
         <div className="flex flex-col gap-5 pt-6">
           <div className="font-lato text-2xl font-bold text-neutral-800">
-            BILLING & SHIPPING
+            {tCheckout("billingAndShipping")}
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <div className="flex flex-col gap-1">
               <label htmlFor="first-name" className="font-lato text-lg">
-                First Name <font className="text-rose-500">*</font>
+                {tCheckout("FirstName")}{" "}
+                <font className="text-rose-500">*</font>
               </label>
               <input
-                placeholder="First Name"
+                placeholder={tCheckout("FirstName")}
                 type="text"
                 ref={firstNameRef}
-                defaultValue={userData?.full_name?.split(" ")[0]}
+                defaultValue={unescapeOutput(
+                  userData?.full_name?.split(" ")[0],
+                )}
                 id="first-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -175,17 +185,17 @@ const page = () => {
             </div>
             <div className="flex flex-col gap-1">
               <label htmlFor="last-name" className="font-lato text-lg">
-                Last Name <font className="text-rose-500">*</font>
+                {tCheckout("LastName")} <font className="text-rose-500">*</font>
               </label>
               <input
-                placeholder="Last Name"
+                placeholder={tCheckout("LastName")}
                 type="text"
                 ref={lastNameRef}
-                defaultValue={
+                defaultValue={unescapeOutput(
                   userData?.full_name?.split(" ").length > 1
                     ? userData?.full_name?.split(" ")[1]
-                    : ""
-                }
+                    : "",
+                )}
                 id="last-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -193,37 +203,13 @@ const page = () => {
             </div>
           </div>
 
-          <div className="flex flex-col gap-1">
-            <label htmlFor="company" className="font-lato text-lg">
-              Company (optional)
-            </label>
-            <input
-              placeholder="Example Inc."
-              type="text"
-              id="company"
-              className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label htmlFor="tax-number" className="font-lato text-lg">
-              Tax Number (optional)
-            </label>
-            <input
-              placeholder="Tax Identification Number"
-              type="text"
-              id="tax-number"
-              className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
-            />
-          </div>
-
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <div className="flex flex-col gap-1">
               <label htmlFor="country" className="font-lato text-lg">
-                Country <font className="text-rose-500">*</font>
+                {tCheckout("Country")} <font className="text-rose-500">*</font>
               </label>
               <input
-                placeholder="Country"
+                placeholder={tCheckout("Country")}
                 type="text"
                 id="country"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
@@ -235,10 +221,10 @@ const page = () => {
             </div>
             <div className="flex flex-col gap-1">
               <label htmlFor="state" className="font-lato text-lg">
-                State <font className="text-rose-500">*</font>
+                {tCheckout("State")} <font className="text-rose-500">*</font>
               </label>
               <input
-                placeholder="State"
+                placeholder={tCheckout("State")}
                 type="text"
                 id="state"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
@@ -252,14 +238,15 @@ const page = () => {
 
           <div className="flex flex-col gap-1">
             <label htmlFor="address" className="font-lato text-lg">
-              Street / District Address <font className="text-rose-500">*</font>
+              {tCheckout("StreetDistrictAddress")}{" "}
+              <font className="text-rose-500">*</font>
             </label>
             <input
               type="text"
               ref={addressRef}
               id="address"
-              defaultValue={userData?.address}
-              placeholder="Street / District Address"
+              defaultValue={unescapeOutput(userData?.address)}
+              placeholder={tCheckout("StreetDistrictAddress")}
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
             />
@@ -267,29 +254,30 @@ const page = () => {
 
           <div className="flex flex-col gap-1">
             <label htmlFor="phone" className="font-lato text-lg">
-              Phone <font className="text-rose-500">*</font>
+              {tCheckout("Phone")} <font className="text-rose-500">*</font>
             </label>
             <input
               type="tel"
               ref={phoneRef}
               onInput={() => validateNumberInput(phoneRef)}
               id="phone"
-              defaultValue={userData?.phone}
+              defaultValue={unescapeOutput(userData?.phone)}
               placeholder="+974 123 456 78"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
+              dir="rtl"
             />
           </div>
 
           <div className="flex flex-col gap-1">
             <label htmlFor="email" className="font-lato text-lg">
-              Email <font className="text-rose-500">*</font>
+              {tCheckout("Email")} <font className="text-rose-500">*</font>
             </label>
             <input
               type="email"
               ref={emailRef}
               id="email"
-              defaultValue={userData?.email}
+              defaultValue={unescapeOutput(userData?.email)}
               placeholder="Example@domain.com"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -299,16 +287,16 @@ const page = () => {
 
         <div className="flex flex-col gap-8 bg-[#f1f1f1] p-6 shadow-sm drop-shadow-sm">
           <span className="self-center font-lato text-2xl font-bold text-neutral-800">
-            YOUR ORDER
+            {tCheckout("YOURORDER")}
           </span>
           <div className="flex h-fit w-full flex-col justify-between gap-3 self-center bg-[#f7f7f7] p-7">
             <div className="flex flex-col">
               <div className="flex flex-row justify-between px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  PRODUCT
+                  {tCheckout("PRODUCT")}
                 </span>
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  SUBTOTAL
+                  {tCheckout("SUBTOTAL")}
                 </span>
               </div>
               <div className="h-[2px] w-full bg-neutral-200"></div>
@@ -322,16 +310,16 @@ const page = () => {
               ))}
               <div className="flex flex-row justify-between px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  Subtotal
+                  {tCart("subtotal")}
                 </span>
                 <span className="text-lg font-medium text-[var(--theme2)]">
-                  {sumValues(totalPrice)} QR
+                  {sumValues(totalPrice)} {tCommon("currency")}
                 </span>
               </div>
               <div className="h-[2px] w-full bg-neutral-200"></div>
               <div className="flex flex-row items-center justify-between gap-5 px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  Shipping
+                  {tCart("shipping")}
                 </span>
                 <div className="flex flex-col gap-4 text-right text-neutral-600">
                   <div>
@@ -349,7 +337,7 @@ const page = () => {
                         }}
                         className="relative left-[2px] top-[6px] float-end accent-emerald-700 hover:cursor-pointer"
                       />
-                      Receipt from the company's headquarters (QATAR){" "}
+                      {tCart("receipt")}{" "}
                     </label>
                   </div>
                   <div>
@@ -370,20 +358,19 @@ const page = () => {
                         }}
                         className="relative left-[2px] top-[6px] float-end accent-emerald-700 hover:cursor-pointer"
                       />
-                      A shipping truck for several products (from{" "}
+                      {tCart("delivery.part1")}{" "}
                       <font className="font-bold text-[var(--theme2)]">
                         500
                       </font>{" "}
-                      to{" "}
+                      {tCart("delivery.part2")}{" "}
                       <font className="font-bold text-[var(--theme2)]">
-                        2000 QR
+                        2000 {tCommon("currency")}
                       </font>
-                      ) contact customer service after ordering for shipping
-                      cost.
+                      {tCart("delivery.part3")}
                     </label>
                     {sumValues(totalPrice) >= 10000 && (
                       <div className="font-lato text-sm text-neutral-400">
-                        (YOU HAVE FREE DELIVERY!!!)
+                        ({tCart("delivery.free")})
                       </div>
                     )}
                   </div>
@@ -392,10 +379,10 @@ const page = () => {
               <div className="h-[2px] w-full bg-neutral-200"></div>
               <div className="flex flex-row items-center justify-between gap-2 px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  Duration
+                  {tCheckout("Duration")}
                 </span>
                 <span className="text-end font-lato text-[17px] font-semibold text-[var(--theme2)]">
-                  Shipping within 4-10 business days
+                  {tCheckout("Shippingbusinessdays")}
                 </span>
               </div>
 
@@ -403,32 +390,27 @@ const page = () => {
 
               <div className="flex flex-row items-center justify-between px-2 py-4">
                 <span className="font-lato text-lg font-semibold text-neutral-800">
-                  Total
+                  {tCart("total")}
                 </span>
                 <div className="flex flex-col justify-between">
                   <span className="font-lato text-2xl font-bold text-[var(--theme2)]">
-                    {sumValues(totalPrice) + deliveryPrice} QR
+                    {sumValues(totalPrice) + deliveryPrice}{" "}
+                    {tCommon("currency")}
                   </span>
-                  {/* <span className="font-lato text-sm text-neutral-400">
-                    (includes{" "}
-                    <span className="text-[var(--theme2)]">1000 QR</span> Tax)
-                  </span> */}
                 </div>
               </div>
             </div>
           </div>
           <div className="h-[1px] w-full bg-neutral-300"></div>
           <div className="text-neutral-500">
-            Your personal data will be used to process your order, support your
-            experience throughout this website, and for other purposes described
-            in our{" "}
+            {tCheckout("privacy.text")}
             <font
               onClick={() => {
                 ChangeUrl("/terms-and-conditions#privacy");
               }}
               className="font-bold text-neutral-700 transition-colors duration-200 hover:cursor-pointer hover:text-[var(--theme)]"
             >
-              privacy policy
+              {tCheckout("privacy.description")}
             </font>
             .
           </div>
@@ -450,7 +432,7 @@ const page = () => {
                 <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
               </div>
             ) : (
-              "PLACE ORDER"
+              tCheckout("placeOrder")
             )}
           </button>
         </div>

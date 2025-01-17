@@ -3,9 +3,12 @@
 import { Suspense, useContext } from "react";
 import { useSearchParams } from "next/navigation";
 import { UserAuthContext } from "@/contexts/AuthContext";
-import { formattedDate } from "@/lib/utils";
+import { cn, formattedDate } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const SuccessPage = () => {
+  const tCommon = useTranslations("common");
+  const tTransaction = useTranslations("transaction");
   const { ChangeUrl } = useContext(UserAuthContext);
   const searchParam = useSearchParams();
 
@@ -32,21 +35,29 @@ const SuccessPage = () => {
         </div>
 
         <h1 className="mb-2 text-2xl font-bold text-green-600">
-          Transaction Successful!
+          {tTransaction("successMessage")}
         </h1>
 
-        <p className="mb-4 text-neutral-600">
-          Thank you for shopping with us. Your order has been received, and we
-          will contact you shortly to confirm it.
-        </p>
+        <p className="mb-4 text-neutral-600">{tTransaction("description")}</p>
 
-        <div className="mb-4 rounded-lg bg-neutral-100 p-4 text-left">
-          <p className="font-medium text-neutral-700">Order Details:</p>
-          <p className="text-sm text-neutral-600">
-            Order ID: {searchParam.get("productId")}
+        <div
+          className={cn(
+            "mb-4 rounded-lg bg-neutral-100 p-4",
+            tCommon("language.lng") === "en" ? "text-left" : "text-right",
+          )}
+        >
+          <p className="font-medium text-neutral-700">
+            {tTransaction("orderDetails")}:
           </p>
           <p className="text-sm text-neutral-600">
-            Order Date: {formattedDate(searchParam.get("productDate"))}
+            {tTransaction("orderID")}: {searchParam.get("productId")}
+          </p>
+          <p className="text-sm text-neutral-600">
+            {tTransaction("orderDate")}:{" "}
+            {formattedDate(
+              searchParam.get("productDate"),
+              tCommon("language.lng"),
+            )}
           </p>
         </div>
 
@@ -56,7 +67,7 @@ const SuccessPage = () => {
           }}
           className="mt-4 w-full rounded-lg bg-[var(--theme)] px-4 py-2 text-lg font-semibold text-white transition-all hover:bg-[var(--theme3)]"
         >
-          Return to Homepage
+          {tTransaction("returnToHomepage")}
         </button>
       </div>
     </div>
