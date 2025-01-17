@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 
 import { cn, validateEmail, validateNumberInput } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tContact = useTranslations("contact");
   const [day, setDay] = useState(false);
   const [time, setTime] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,13 +26,13 @@ const page = () => {
       const phone = formData.get("phone")?.trim();
       const email = formData.get("email")?.trim();
       const address = formData.get("address")?.trim();
-      const topic = formData.get("topic")?.trim();
+      const subject = formData.get("subject")?.trim();
       const message = formData.get("message")?.trim();
 
       if (!name) {
         toast({
-          title: "Error",
-          description: "Name field is required",
+          title: tCommon("titles.error"),
+          description: tContact("toast.nameRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -38,8 +41,8 @@ const page = () => {
 
       if (!phone) {
         toast({
-          title: "Error",
-          description: "Phone field is required",
+          title: tCommon("titles.error"),
+          description: tContact("toast.phoneRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -48,8 +51,8 @@ const page = () => {
 
       if (!email || !validateEmail(email)) {
         toast({
-          title: "Error",
-          description: "Please enter a valid email address",
+          title: tCommon("titles.error"),
+          description: tContact("toast.messageRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -58,8 +61,8 @@ const page = () => {
 
       if (!message) {
         toast({
-          title: "Error",
-          description: "Message field is required",
+          title: tCommon("titles.error"),
+          description: tContact("toast.validEmailAddress"),
           variant: "destructive",
           duration: 2000,
         });
@@ -80,8 +83,8 @@ const page = () => {
       event.target.reset();
 
       toast({
-        title: "Success",
-        description: "Your message has been sent successfully",
+        title: tCommon("titles.success"),
+        description: tContact("toast.messageSentSuccessfully"),
         variant: "success",
         duration: 3000,
       });
@@ -96,7 +99,7 @@ const page = () => {
             : "Failed to send message. Please try again later.";
 
       toast({
-        title: "Error",
+        title: tCommon("titles.error"),
         description: errorMessage,
         variant: "destructive",
         duration: 3000,
@@ -117,12 +120,12 @@ const page = () => {
           <div className="flex w-full flex-row items-center justify-center gap-3">
             <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
             <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl md:text-7xl">
-              Contact
+              {tCommon("navigation.contact")}
             </span>
             <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
           </div>
           <span className="text-center font-lato text-lg text-slate-700 sm:text-xl md:text-2xl lg:text-3xl">
-            Reach Out
+            {tContact("reachOut")}
           </span>
         </div>
 
@@ -133,9 +136,11 @@ const page = () => {
                 <i className="fa-regular fa-map text-3xl text-[var(--theme)]"></i>
               </div>
               <span className="font-raleway text-xl font-bold text-neutral-400">
-                SERVICE AREA
+                {tContact("serviceArea")}
               </span>
-              <span className="text-md font-lato font-medium">Doha, Qatar</span>
+              <span className="text-md font-lato font-medium">
+                {tCommon("contact.address")}
+              </span>
             </div>
 
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -144,7 +149,7 @@ const page = () => {
                   <i className="fa-regular fa-envelope text-3xl text-[var(--theme)]"></i>
                 </div>
                 <span className="font-raleway text-xl font-bold text-neutral-400">
-                  SEND US AN EMAIL
+                  {tContact("sendUsAnEmail")}
                 </span>
                 <span className="text-md font-lato font-medium">
                   sales@goldenbrandqa.com
@@ -156,9 +161,9 @@ const page = () => {
                   <i className="fa-solid fa-phone text-3xl text-[var(--theme)]"></i>
                 </div>
                 <span className="font-raleway text-xl font-bold text-neutral-400">
-                  CALL US
+                  {tContact("callUs")}
                 </span>
-                <span className="text-md font-lato font-medium">
+                <span className="text-md font-lato font-medium" dir="ltr">
                   +974 7748 0070
                 </span>
               </div>
@@ -176,14 +181,14 @@ const page = () => {
                 <input
                   name="name"
                   type="text"
-                  placeholder="Name"
+                  placeholder={tCommon("form.name")}
                   className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
                 />
                 <input
                   name="email"
                   type="email"
                   ref={emailRef}
-                  placeholder="Email"
+                  placeholder={tCommon("form.email")}
                   className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
                 />
               </div>
@@ -192,26 +197,27 @@ const page = () => {
                   name="phone"
                   type="tel"
                   ref={phoneRef}
-                  onInput={() => validateNumberInput(phoneRef)}
-                  placeholder="Phone"
+                  dir="rtl"
+                  onChange={() => validateNumberInput(phoneRef)}
+                  placeholder={tCommon("form.phone")}
                   className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
                 />
                 <input
                   name="address"
                   type="text"
-                  placeholder="Address"
+                  placeholder={tCommon("form.address")}
                   className="border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
                 />
               </div>
               <input
-                name="topic"
+                name="subject"
                 type="text"
-                placeholder="Topic"
+                placeholder={tCommon("form.subject")}
                 className="w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
               />
               <textarea
                 name="message"
-                placeholder="Message"
+                placeholder={tCommon("form.message")}
                 className="min-h-36 w-full border-[1px] border-neutral-300 px-3 py-2 outline-[var(--theme)]"
               ></textarea>
               <button
@@ -227,7 +233,7 @@ const page = () => {
                     <div className="size-6 animate-spin rounded-full border-2 border-white border-t-transparent" />
                   </div>
                 ) : (
-                  "Send"
+                  tCommon("button.sendMessage")
                 )}
               </button>
             </div>
@@ -272,10 +278,10 @@ const page = () => {
                     day && "text-[var(--theme)]",
                   )}
                 >
-                  From Saturday to Thursday
+                  {tContact("days")}
                 </span>
                 <span className="text-neutral-600">
-                  We are available all week to meet your needs.
+                  {tContact("daysDescription")}
                 </span>
               </div>
             </div>
@@ -309,10 +315,10 @@ const page = () => {
                     time && "text-[var(--theme)]",
                   )}
                 >
-                  From 7:00 to 17:00
+                  {tContact("time")}
                 </span>
                 <span className="text-neutral-600">
-                  Our store is open extended hours to fit your schedule.
+                  {tContact("timeDescription")}
                 </span>
               </div>
             </div>

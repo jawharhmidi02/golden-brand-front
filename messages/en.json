@@ -107,6 +107,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "phone": "Phone",
+      "address": "Address",
       "message": "Message",
       "subject": "Subject",
       "password": "Password",
@@ -137,7 +138,19 @@
     "title": "Shopping Cart",
     "total": "Total",
     "viewCart": "View Cart",
-    "checkout": "Checkout"
+    "checkout": "Checkout",
+    "empty": {
+      "text": "Your cart is currently empty.",
+      "description": "Before proceeding to checkout you must add some products to your shopping cart. You will find a lot of interesting products on our Products page.",
+      "buttonText": "RETURN TO SHOP"
+    },
+    "table": {
+      "PRODUCT": "PRODUCT",
+      "DIMENSION": "DIMENSION",
+      "PRICE": "PRICE",
+      "QUANTITY": "QUANTITY",
+      "SUBTOTAL": "SUBTOTAL"
+    }
   },
   "hero": {
     "description": "Elevate your space with premium stainless steel craftsmanship. From sleek kitchens to durable handrails, Golden Brand Stainless Steel offers high-quality, custom solutions for homes and businesses. Discover our range of products designed to enhance functionality and style. Built to last, built to impress."
@@ -211,6 +224,147 @@
     "copyright": {
       "copyright": "Copyright",
       "allRightsReserved": "All rights reserved."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "faqCards": {
+      "question1": {
+        "question": "1. What products does Golden Brand specialize in?",
+        "answer": "Golden Brand specializes in high-quality stainless steel and aluminum products, including kitchens, handrails, work tables, cabinets, sink tables, shelves, trolleys, and custom hoods designed for both residential and commercial use."
+      },
+      "question2": {
+        "question": "2. Why choose stainless steel for kitchen and handrail products?",
+        "answer": "Stainless steel is durable, resistant to rust and corrosion, and easy to clean, making it an ideal choice for kitchens and handrails. Its sleek, modern appearance also enhances any space, and it withstands high temperatures, ensuring long-lasting performance."
+      },
+      "question3": {
+        "question": "3. Are Golden Brand’s products customizable?",
+        "answer": "Yes, we offer customization for most of our products. Our team can work with your specifications to create items tailored to your specific needs and space requirements. Contact us to discuss custom options."
+      },
+      "question4": {
+        "question": "4. How do I place an order?",
+        "answer": "You can browse our product catalog on our website, add items to your cart, and complete the order through our checkout page. For custom orders or specific inquiries, please reach out through our contact form."
+      },
+      "question5": {
+        "question": "5. What payment methods are accepted?",
+        "answer": "We accept various payment methods for your convenience, including Visa, Mastercard, Apple Pay, and cash on delivery for qualifying orders."
+      },
+      "question6": {
+        "question": "6. What is the delivery time for orders?",
+        "answer": "Delivery times may vary depending on the item and your location. Standard orders are typically delivered within 7-10 business days. For custom or bulk orders, please allow additional time. We offer free delivery for orders over 10,000 QAR."
+      },
+      "question7": {
+        "question": "7. Does Golden Brand ship internationally?",
+        "answer": "Currently, we primarily serve customers in Qatar. However, for large or special orders, please contact us directly, and we can discuss international shipping options."
+      },
+      "question8": {
+        "question": "8. What is the return policy for Golden Brand products?",
+        "answer": "We offer a satisfaction guarantee for our products. If you are not satisfied with your purchase, please contact us within 7 days of delivery for returns or exchanges, following our return policy guidelines."
+      },
+      "question9": {
+        "question": "9. How should I care for and maintain stainless steel products?",
+        "answer": "Stainless steel is low-maintenance but benefits from regular cleaning with mild soap and water or a stainless steel cleaner. Avoid abrasive materials to prevent scratches and keep the finish looking new."
+      },
+      "question10": {
+        "question": "10. Do you offer installation services?",
+        "answer": "Yes, we offer professional installation services for our products to ensure they are securely fitted and meet quality standards. Installation details and fees can be discussed at the time of purchase."
+      },
+      "question11": {
+        "question": "11. Are bulk order discounts available?",
+        "answer": "Yes, we offer special pricing for bulk orders. For large quantities, please contact our sales team to discuss potential discounts and lead times."
+      },
+      "question12": {
+        "question": "12. What sets Golden Brand apart from other suppliers?",
+        "answer": "Golden Brand is committed to using high-grade stainless steel and aluminum, guaranteeing durability, aesthetic appeal, and hygiene in every product. We prioritize quality, customizability, and exceptional customer service for all our clients.F"
+      }
+    },
+    "whoWeAre": "Who We Are",
+    "ourCompany": "Our Company",
+    "aboutOurOnlineStore": "About our online store",
+    "description": "At Golden Brand Stainless Steel, we are committed to delivering premium-quality stainless steel kitchens, handrails, and aluminum products tailored to meet the needs of our clients. With years of expertise in the industry, we pride ourselves on our craftsmanship, attention to detail, and innovative designs. Our products are built to last, ensuring both functionality and style for residential, commercial, and industrial projects. Whether you need customized stainless steel solutions or ready-made products, we offer a wide range of options to suit your specifications. At Golden Brand, our mission is to provide durable, high-quality materials backed by exceptional service and fast, reliable delivery.",
+    "FAQ": "FAQ",
+    "afterSaleServices": "After Sale Services",
+    "aboutCards": {
+      "spareParts": "Spare Parts",
+      "maintenance": "Maintenance",
+      "technicalSupport": "Technical Support",
+      "warranty": "Warranty"
+    }
+  },
+  "contact": {
+    "toast": {
+      "nameRequired": "Name field is required",
+      "phoneRequired": "Phone field is required",
+      "messageRequired": "Message field is required",
+      "validEmailAddress": "Please enter a valid email address",
+      "messageSentSuccessfully": "Your message has been sent successfully"
+    },
+    "reachOut": "Reach Out",
+    "serviceArea": "SERVICE AREA",
+    "sendUsAnEmail": "SEND US AN EMAIL",
+    "callUs": "CALL US",
+    "days": "From Saturday to Thursday",
+    "daysDescription": "We are available all week to meet your needs.",
+    "time": "From 7:00 to 17:00",
+    "timeDescription": "Our store is open extended hours to fit your schedule."
+  },
+  "services": {
+    "title": "What We Do",
+    "serviceCardData": {
+      "counselingServices": {
+        "title": "Counseling Services",
+        "description": "At Golden Brand Stainless Steel, we understand that every project is unique, and selecting the right products and designs can be a complex process. Our expert counseling services are here to guide you through every step of your project, offering professional advice on selecting the best stainless steel and aluminum products for your specific needs. Whether you're working on a commercial kitchen, handrails, or custom solutions, our team helps you make informed decisions that align with your project goals, budget, and long-term vision."
+      },
+      "engineeringServices": {
+        "title": "Engineering Services",
+        "description": "Our engineering services at Golden Brand Stainless Steel are designed to bring your vision to life with precision and innovation. Our experienced engineers work closely with clients to develop detailed plans and technical drawings that meet exact specifications. Whether you're creating custom stainless steel structures, kitchens, or industrial installations, our engineering team provides solutions that enhance functionality, durability, and aesthetics. We use the latest technology to ensure that every design is both practical and efficient, meeting industry standards and exceeding client expectations."
+      },
+      "manufactureAndSupplyOfEquipment": {
+        "title": "Manufacture and Supply of Equipment",
+        "description": "Golden Brand Stainless Steel takes pride in manufacturing and supplying top-quality equipment for a wide range of industries. Our products are made from the finest stainless steel and aluminum materials, ensuring durability, hygiene, and resistance to corrosion. From commercial kitchen equipment to custom-made industrial solutions, we offer a broad range of products tailored to meet the specific needs of our clients. Our advanced manufacturing processes and stringent quality control standards guarantee that every piece of equipment we supply meets the highest performance expectations."
+      },
+      "afterSaleServices": {
+        "title": "After Sale Services",
+        "description": "At Golden Brand Stainless Steel, our commitment to customers doesn’t end with the sale. We offer comprehensive after-sale services to ensure the continued performance and maintenance of our products. Whether you need regular maintenance, repairs, or technical support, our dedicated team is always ready to assist you. We aim to build long-lasting relationships with our clients by providing reliable service that keeps your equipment in optimal condition for years to come."
+      }
+    },
+    "serviceDescData": {
+      "counselingServices": {
+        "title": "Counseling Services",
+        "description": "Our counseling services are designed to ensure that every client receives expert advice tailored to the specific needs of their project. Whether you are looking to upgrade an existing kitchen or plan a new stainless steel installation, our team provides personalized recommendations that balance functionality, style, and budget. We work closely with you to understand your requirements and offer solutions that enhance the value and performance of your space.",
+        "items": {
+          "item1": "Personalized consultation tailored to your project.",
+          "item2": "Expert guidance on material selection and design.",
+          "item3": "Support from concept to installation, ensuring seamless execution."
+        }
+      },
+      "engineeringServices": {
+        "title": "Engineering Services",
+        "description": "Golden Brand Stainless Steel's engineering services focus on providing custom solutions to complex design challenges. Our team combines technical expertise with a creative approach to ensure that your stainless steel and aluminum projects are executed with precision and care. From concept development to final implementation, we work alongside you to bring your vision to life, guaranteeing a result that is both practical and aesthetically pleasing.",
+        "items": {
+          "item1": "Detailed technical drawings and planning.",
+          "item2": "Customized solutions for complex design challenges.",
+          "item3": "Expertise in optimizing materials for strength and efficiency."
+        }
+      },
+      "manufactureAndSupplyOfEquipment": {
+        "title": "Manufacture and Supply of Equipment",
+        "description": "We manufacture and supply premium-quality stainless steel and aluminum equipment to meet the diverse needs of our clients. Our manufacturing process is built around high standards of craftsmanship, ensuring that each piece is durable, hygienic, and built to last. Whether you're in the market for standard products or custom-made solutions, our team ensures that you receive equipment that performs reliably in even the most demanding environments.",
+        "items": {
+          "item1": "High-grade stainless steel and aluminum materials.",
+          "item2": "Customized equipment to meet specific industry requirements.",
+          "item3": "Rigorous quality control for optimal performance and longevity."
+        }
+      },
+      "afterSaleServices": {
+        "title": "After Sale Services",
+        "description": "Our after-sale services are designed to provide long-term support for all the products we supply. We are committed to ensuring that your equipment remains in peak condition through regular maintenance, repair services, and technical assistance. Whether it's troubleshooting a minor issue or performing comprehensive repairs, our team is always ready to help. Our goal is to provide peace of mind, knowing that your investment in our equipment is backed by dedicated service.",
+        "items": {
+          "item1": "Regular maintenance and repair services.",
+          "item2": "Fast and responsive technical support.",
+          "item3": "Spare parts and replacements available when needed."
+        }
+      }
     }
   }
 }

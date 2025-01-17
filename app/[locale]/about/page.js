@@ -10,93 +10,81 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const page = () => {
+  const tAbout = useTranslations("about");
   const faqCards = [
     {
-      question: "1. What products does Golden Brand specialize in?",
-      answer:
-        "Golden Brand specializes in high-quality stainless steel and aluminum products, including kitchens, handrails, work tables, cabinets, sink tables, shelves, trolleys, and custom hoods designed for both residential and commercial use.",
+      question: tAbout("faqCards.question1.question"),
+      answer: tAbout("faqCards.question1.answer"),
     },
     {
-      question:
-        "2. Why choose stainless steel for kitchen and handrail products?",
-      answer:
-        "Stainless steel is durable, resistant to rust and corrosion, and easy to clean, making it an ideal choice for kitchens and handrails. Its sleek, modern appearance also enhances any space, and it withstands high temperatures, ensuring long-lasting performance.",
+      question: tAbout("faqCards.question2.question"),
+      answer: tAbout("faqCards.question2.answer"),
     },
     {
-      question: "3. Are Golden Brand’s products customizable?",
-      answer:
-        "Yes, we offer customization for most of our products. Our team can work with your specifications to create items tailored to your specific needs and space requirements. Contact us to discuss custom options.",
+      question: tAbout("faqCards.question3.question"),
+      answer: tAbout("faqCards.question3.answer"),
     },
     {
-      question: "4. How do I place an order?",
-      answer:
-        "You can browse our product catalog on our website, add items to your cart, and complete the order through our checkout page. For custom orders or specific inquiries, please reach out through our contact form.",
+      question: tAbout("faqCards.question4.question"),
+      answer: tAbout("faqCards.question4.answer"),
     },
     {
-      question: "5. What payment methods are accepted?",
-      answer:
-        "We accept various payment methods for your convenience, including Visa, Mastercard, Apple Pay, and cash on delivery for qualifying orders.",
+      question: tAbout("faqCards.question5.question"),
+      answer: tAbout("faqCards.question5.answer"),
     },
     {
-      question: "6. What is the delivery time for orders?",
-      answer:
-        "Delivery times may vary depending on the item and your location. Standard orders are typically delivered within 7-10 business days. For custom or bulk orders, please allow additional time. We offer free delivery for orders over 10,000 QAR.",
+      question: tAbout("faqCards.question6.question"),
+      answer: tAbout("faqCards.question6.answer"),
     },
     {
-      question: "7. Does Golden Brand ship internationally?",
-      answer:
-        "Currently, we primarily serve customers in Qatar. However, for large or special orders, please contact us directly, and we can discuss international shipping options.",
+      question: tAbout("faqCards.question7.question"),
+      answer: tAbout("faqCards.question7.answer"),
     },
     {
-      question: "8. What is the return policy for Golden Brand products?",
-      answer:
-        "We offer a satisfaction guarantee for our products. If you are not satisfied with your purchase, please contact us within 7 days of delivery for returns or exchanges, following our return policy guidelines.",
+      question: tAbout("faqCards.question8.question"),
+      answer: tAbout("faqCards.question8.answer"),
     },
     {
-      question:
-        "9. How should I care for and maintain stainless steel products?",
-      answer:
-        "Stainless steel is low-maintenance but benefits from regular cleaning with mild soap and water or a stainless steel cleaner. Avoid abrasive materials to prevent scratches and keep the finish looking new.",
+      question: tAbout("faqCards.question9.question"),
+      answer: tAbout("faqCards.question9.answer"),
     },
     {
-      question: "10. Do you offer installation services?",
-      answer:
-        "Yes, we offer professional installation services for our products to ensure they are securely fitted and meet quality standards. Installation details and fees can be discussed at the time of purchase.",
+      question: tAbout("faqCards.question10.question"),
+      answer: tAbout("faqCards.question10.answer"),
     },
     {
-      question: "11. Are bulk order discounts available?",
-      answer:
-        "Yes, we offer special pricing for bulk orders. For large quantities, please contact our sales team to discuss potential discounts and lead times.",
+      question: tAbout("faqCards.question11.question"),
+      answer: tAbout("faqCards.question11.answer"),
     },
     {
-      question: "12. What sets Golden Brand apart from other suppliers?",
-      answer:
-        "Golden Brand is committed to using high-grade stainless steel and aluminum, guaranteeing durability, aesthetic appeal, and hygiene in every product. We prioritize quality, customizability, and exceptional customer service for all our clients.F",
+      question: tAbout("faqCards.question12.question"),
+      answer: tAbout("faqCards.question12.answer"),
     },
   ];
   const aboutCards = [
     {
-      text: "Spare Parts",
+      text: tAbout("aboutCards.spareParts"),
       logo: (
         <i className="fa-solid fa-arrows-rotate text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
-      text: "Maintenance",
+      text: tAbout("aboutCards.maintenance"),
       logo: (
         <i className="fa-solid fa-screwdriver-wrench text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
-      text: "Technical Support",
+      text: tAbout("aboutCards.technicalSupport"),
       logo: (
         <i className="fa-solid fa-comments text-7xl text-[var(--theme)]"></i>
       ),
     },
     {
-      text: "Warranty",
+      text: tAbout("aboutCards.warranty"),
       logo: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -116,31 +104,32 @@ const page = () => {
   useEffect(() => {
     document.title = "GoldenBrand: About";
   }, []);
+
   return (
     <div className="m-6 mx-auto flex w-full flex-col items-center justify-center gap-10">
       <div className="flex w-full flex-col items-center justify-center gap-2 self-center">
         <div className="flex w-full flex-row items-center justify-center gap-3">
           <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
           <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl md:text-7xl">
-            About Us
+            {tAbout("title")}
           </span>
           <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
         </div>
         <span className="text-center font-lato text-lg text-slate-700 sm:text-xl md:text-2xl lg:text-3xl">
-          Who We Are
+          {tAbout("whoWeAre")}
         </span>
       </div>
 
       <div className="group mx-10 grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div className="flex flex-col items-center justify-evenly">
           <div className="relative hidden font-lato text-4xl font-semibold before:absolute before:left-full before:top-3 before:h-10 before:w-10 before:border-b-2 before:border-r-2 before:border-[var(--theme)] before:content-[''] after:absolute after:-left-10 after:-top-2 after:h-10 after:w-10 after:border-l-2 after:border-t-2 after:border-[var(--theme)] after:bg-transparent after:transition-all after:content-[''] lg:block">
-            <span>Our Company</span>
+            <span>{tAbout("ourCompany")}</span>
           </div>
 
           <img
             src="/images/icon.png"
             className="max-h-[200px] w-72 max-w-[500px] min-[500px]:w-[340px] sm:w-[400px] md:w-[450px] lg:w-[500px]"
-          ></img>
+          />
         </div>
 
         <div
@@ -148,26 +137,16 @@ const page = () => {
           className="flex max-w-[600px] flex-col gap-4 rounded-md border-[1px] border-neutral-200 bg-white px-6 py-8 shadow-md drop-shadow-md xsm:px-12"
         >
           <span className="text-center font-lato text-xl font-semibold text-[var(--theme)] xxsm:text-2xl">
-            About our online store
+            {tAbout("aboutOurOnlineStore")}
           </span>
           <span className="font-raleway text-neutral-800">
-            At Golden Brand Stainless Steel, we are committed to delivering
-            premium-quality stainless steel kitchens, handrails, and aluminum
-            products tailored to meet the needs of our clients. With years of
-            expertise in the industry, we pride ourselves on our craftsmanship,
-            attention to detail, and innovative designs. Our products are built
-            to last, ensuring both functionality and style for residential,
-            commercial, and industrial projects. Whether you need customized
-            stainless steel solutions or ready-made products, we offer a wide
-            range of options to suit your specifications. At Golden Brand, our
-            mission is to provide durable, high-quality materials backed by
-            exceptional service and fast, reliable delivery.
+            {tAbout("description")}
           </span>
         </div>
       </div>
 
       <span className="mt-5 border-b-2 border-[var(--theme)] pb-2 text-center font-lato text-4xl font-semibold">
-        FAQ
+        {tAbout("FAQ")}
       </span>
       <div className="mx-5 flex w-10/12 flex-col gap-3 sm:max-w-[800px]">
         <Accordion type="single" collapsible className="w-full">
@@ -183,7 +162,7 @@ const page = () => {
       </div>
 
       <span className="mt-5 border-b-2 border-[var(--theme)] pb-2 text-center font-lato text-4xl font-semibold">
-        After Sale Services
+        {tAbout("afterSaleServices")}
       </span>
 
       <div className="grid w-full grid-cols-1 place-items-center gap-6 px-10 md:grid-cols-2 min-[1360px]:grid-cols-4 min-[1550px]:px-28 min-[1700px]:px-36 min-[1900px]:px-48">

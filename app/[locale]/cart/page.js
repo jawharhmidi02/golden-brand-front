@@ -8,6 +8,8 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 import CartItem from "@/components/CartItem/CartItem";
 
 const page = () => {
+  const tCommon = useTranslations("common");
+  const tCart = useTranslations("cart");
   const { ChangeUrl, items, setItems } = useContext(UserAuthContext);
   const [totalPrice, setTotalPrice] = useState({});
 

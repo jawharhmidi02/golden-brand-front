@@ -1,14 +1,7 @@
+import { escapeOutput } from "@/lib/utils";
 import { NextResponse } from "next/server";
+
 const nodemailer = require("nodemailer");
-
-function validateEmail(email) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return regex.test(email);
-}
-
-function validatePhone(phone) {
-  return phone.length >= 8 && /^[0-9+\-\s()]+$/.test(phone);
-}
 
 function validateRequired(field, fieldName) {
   if (!field || !field.trim()) {
@@ -24,12 +17,22 @@ export async function POST(request) {
 
   try {
     const formData = await request.formData();
-    const name = validateRequired(formData.get("name"), "Name");
-    const email = validateRequired(formData.get("email"), "Email");
-    const phone = validateRequired(formData.get("phone"), "Phone");
-    const address = formData.get("address")?.trim() || "Not provided";
-    const topic = formData.get("topic")?.trim() || "Not provided";
-    const message = validateRequired(formData.get("message"), "Message");
+    const name = escapeOutput(validateRequired(formData.get("name"), "Name"));
+    const email = escapeOutput(
+      validateRequired(formData.get("email"), "Email"),
+    );
+    const phone = escapeOutput(
+      validateRequired(formData.get("phone"), "Phone"),
+    );
+    const address = escapeOutput(
+      formData.get("address")?.trim() || "Not provided",
+    );
+    const subject = escapeOutput(
+      formData.get("subject")?.trim() || "Not provided",
+    );
+    const message = escapeOutput(
+      validateRequired(formData.get("message"), "Message"),
+    );
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -42,7 +45,7 @@ export async function POST(request) {
     const mail = await transporter.sendMail({
       from: username,
       to: receiver,
-      subject: `New Contact Request: ${name} - ${topic}`,
+      subject: `New Contact Request: ${name} - ${subject}`,
       html: `<div style="font-family: Arial, sans-serif; color: #064e3b; padding: 20px; background-color: #e9eaec;">
           <div style="max-width: 600px; margin: auto; background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
             <header style="background-color: #059669; padding: 20px; text-align: center; color: #fff;">
@@ -69,7 +72,7 @@ export async function POST(request) {
                 <strong>Address:</strong> ${address}
               </p>
               <p style="font-size: 18px; line-height: 1.6; margin: 10px 0;">
-                <strong>Topic:</strong> ${topic}
+                <strong>Topic:</strong> ${subject}
               </p>
 
               <div style="background-color: #ffd700; padding: 10px; margin: 20px 0; border-radius: 5px;">
