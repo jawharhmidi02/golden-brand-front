@@ -137,7 +137,10 @@ const page = () => {
             {/* Buy / add to cart Interface */}
             <div className="flex flex-col items-center justify-center gap-2 xsm:flex-row xsm:justify-between">
               <div className="grid grid-cols-2 gap-14 xsm:gap-4">
-                <div className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300">
+                <div
+                  className="flex flex-row items-center justify-center gap-2 rounded-md border-[1px] border-neutral-300"
+                  dir="ltr"
+                >
                   <button
                     type="button"
                     onClick={() => {
