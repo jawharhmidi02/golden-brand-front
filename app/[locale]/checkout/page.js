@@ -360,11 +360,11 @@ const page = () => {
                       />
                       {tCart("delivery.part1")}{" "}
                       <font className="font-bold text-[var(--theme2)]">
-                        500
+                        100
                       </font>{" "}
                       {tCart("delivery.part2")}{" "}
                       <font className="font-bold text-[var(--theme2)]">
-                        2000 {tCommon("currency")}
+                        500 {tCommon("currency")}
                       </font>
                       {tCart("delivery.part3")}
                     </label>
@@ -403,14 +403,14 @@ const page = () => {
           </div>
           <div className="h-[1px] w-full bg-neutral-300"></div>
           <div className="text-neutral-500">
-            {tCheckout("privacy.text")}
+            {tCheckout("privacy.description")}{" "}
             <font
               onClick={() => {
                 ChangeUrl("/terms-and-conditions#privacy");
               }}
               className="font-bold text-neutral-700 transition-colors duration-200 hover:cursor-pointer hover:text-[var(--theme)]"
             >
-              {tCheckout("privacy.description")}
+              {tCheckout("privacy.text")}
             </font>
             .
           </div>
