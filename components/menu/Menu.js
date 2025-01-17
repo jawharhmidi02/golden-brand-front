@@ -21,7 +21,11 @@ const Menu = ({ orientation }) => {
     >
       <div>
         <div
-          className={cn("link text-neutral-700", pathname === "/" && "active")}
+          className={cn(
+            "link text-neutral-700",
+            pathname === "/" && "active",
+            tCommon("language.lng"),
+          )}
         >
           <a
             onClick={() => {
@@ -38,6 +42,7 @@ const Menu = ({ orientation }) => {
           className={cn(
             "link text-neutral-700",
             pathname.includes("products") && "active",
+            tCommon("language.lng"),
           )}
         >
           <a
@@ -55,6 +60,7 @@ const Menu = ({ orientation }) => {
           className={cn(
             "link text-neutral-700",
             pathname.includes("services") && "active",
+            tCommon("language.lng"),
           )}
         >
           <a
@@ -72,6 +78,7 @@ const Menu = ({ orientation }) => {
           className={cn(
             "link text-neutral-700",
             pathname.includes("about") && "active",
+            tCommon("language.lng"),
           )}
         >
           <a
@@ -89,6 +96,7 @@ const Menu = ({ orientation }) => {
           className={cn(
             "link text-neutral-700",
             pathname.includes("contact") && "active",
+            tCommon("language.lng"),
           )}
         >
           <a

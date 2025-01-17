@@ -12,6 +12,14 @@
   transition: all 0.5s;
 }
 
+.menu .link.en a::after {
+  right: 100%;
+}
+
+.menu .link.ar a::after {
+  left: 100%;
+}
+
 .menu .link a::after {
   content: "";
   position: absolute;
@@ -19,14 +27,21 @@
   transition: all 0.5s;
   width: 100%;
   bottom: -5px;
-  left: 100%;
   background: var(--first-color-primary);
 }
 
-.menu .link.active a::after {
+.menu .link.active.ar a::after {
   left: 0%;
 }
 
-.menu .link a:hover::after {
+.menu .link.ar a:hover::after {
   left: 0%;
+}
+
+.menu .link.active.en a::after {
+  right: 0%;
+}
+
+.menu .link.en a:hover::after {
+  right: 0%;
 }
