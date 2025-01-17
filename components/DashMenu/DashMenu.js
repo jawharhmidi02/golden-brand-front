@@ -23,6 +23,11 @@ const DashMenu = () => {
       icon: "fa-solid fa-sliders",
     },
     {
+      title: "Special Photos",
+      path: "/special-photos",
+      icon: "fas fa-th-large",
+    },
+    {
       title: "Users",
       path: "/users",
       icon: "fa-solid fa-users",
