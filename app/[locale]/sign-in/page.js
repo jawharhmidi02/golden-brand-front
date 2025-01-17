@@ -65,7 +65,8 @@ const page = () => {
         if (check) {
           expires = 30;
         }
-        Cookies.setSignIn("access_token", data.data.access_token, { expires });
+        Cookies.set("access_token", data.data.access_token, { expires });
+
         toast({
           title: tSignIn("toasts.loginSuccess.title"),
           description: tSignIn("toasts.loginSuccess.description"),

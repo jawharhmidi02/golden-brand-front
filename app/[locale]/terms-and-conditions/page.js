@@ -1,6 +1,9 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 
 const page = () => {
+  const tTermsAndConditins = useTranslations("termsAndConditions");
+
   return (
     <div className="mx-auto mt-6 flex h-full w-full items-center justify-center">
       {/* Title */}
@@ -9,7 +12,7 @@ const page = () => {
         <div className="flex w-full flex-row items-center justify-center gap-3">
           <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20"></div>
           <span className="text-center font-lato text-5xl font-bold text-neutral-800 sm:text-6xl">
-            Terms & Conditions
+            {tTermsAndConditins("title")}
           </span>
           <div className="h-[2px] w-10 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20"></div>
         </div>

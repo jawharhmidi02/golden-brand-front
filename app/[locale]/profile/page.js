@@ -7,6 +7,8 @@ import {
   validateNumberInput,
   cities,
   formattedDate,
+  unescapeOutput,
+  escapeOutput,
 } from "@/lib/utils";
 import {
   useRef,
@@ -19,8 +21,10 @@ import {
 import { useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { useTranslations } from "next-intl";
 
 const ProfilePage = () => {
+  const tProfile = useTranslations("profile");
   const { setLoadingPage, userData, ChangeUrl, setUserData } =
     useContext(UserAuthContext);
   const searchParams = useSearchParams();
@@ -36,12 +40,12 @@ const ProfilePage = () => {
 
   const handleEdit = async () => {
     if (isEditing) {
-      var errorTest = false;
+      let errorTest = false;
 
       if (!firstNameRef.current.value.trim()) {
         toast({
-          title: "Failed!",
-          description: "Please enter First Name first!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.firstNameRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -49,8 +53,8 @@ const ProfilePage = () => {
       }
       if (!lastNameRef.current.value.trim()) {
         toast({
-          title: "Failed!",
-          description: "Please enter Last Name first!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.lastNameRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -61,8 +65,8 @@ const ProfilePage = () => {
         !validateEmail(emailRef.current.value.trim())
       ) {
         toast({
-          title: "Failed!",
-          description: "Please enter valid E-mail first!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.emailInvalid"),
           variant: "destructive",
           duration: 2000,
         });
@@ -70,8 +74,8 @@ const ProfilePage = () => {
       }
       if (!phoneRef.current.value.trim()) {
         toast({
-          title: "Failed!",
-          description: "Please enter valid Phone Number first!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.phoneRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -79,8 +83,8 @@ const ProfilePage = () => {
       }
       if (!addressRef.current.value.trim()) {
         toast({
-          title: "Failed!",
-          description: "Please enter valid Address first!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.addressRequired"),
           variant: "destructive",
           duration: 2000,
         });
@@ -89,10 +93,7 @@ const ProfilePage = () => {
 
       if (errorTest) {
         firstNameRef.current.value = userData.full_name?.split(" ")[0];
-        lastNameRef.current.value =
-          userData.full_name?.split(" ").length > 1
-            ? userData.full_name?.split(" ")[1]
-            : "";
+        lastNameRef.current.value = userData.full_name?.split(" ")[1] || "";
         emailRef.current.value = userData.email;
         phoneRef.current.value = userData.phone;
         addressRef.current.value = userData.address;
@@ -101,10 +102,12 @@ const ProfilePage = () => {
       }
 
       const body = {
-        full_name: `${firstNameRef.current.value.trim()} ${lastNameRef.current.value.trim()}`,
-        email: emailRef.current.value.trim(),
-        phone: phoneRef.current.value.trim(),
-        address: addressRef.current.value.trim(),
+        full_name: escapeOutput(
+          `${firstNameRef.current.value.trim()} ${lastNameRef.current.value.trim()}`,
+        ),
+        email: escapeOutput(emailRef.current.value.trim()),
+        phone: escapeOutput(phoneRef.current.value.trim()),
+        address: escapeOutput(addressRef.current.value.trim()),
       };
 
       try {
@@ -123,10 +126,9 @@ const ProfilePage = () => {
         const data = await response.json();
         if (data.data == null) {
           if (data.message === "Email already exists") {
-            setLoadingPage(false);
             toast({
-              title: "Failed!",
-              description: "Email Address is already Taken!",
+              title: tProfile("toast.failedTitle"),
+              description: tProfile("toast.emailTaken"),
               variant: "destructive",
               duration: 2500,
             });
@@ -137,8 +139,8 @@ const ProfilePage = () => {
         }
         if (data.message === "User updated successfully") {
           toast({
-            title: "Done!",
-            description: "Data successfully Changed!",
+            title: tProfile("toast.successTitle"),
+            description: tProfile("toast.updateSuccess"),
             variant: "success",
             duration: 2000,
           });
@@ -148,14 +150,13 @@ const ProfilePage = () => {
       } catch (error) {
         console.error(error);
         toast({
-          title: "Failed!",
-          description: "an Error appeared, Please try again or contact us!",
+          title: tProfile("toast.failedTitle"),
+          description: tProfile("toast.errorOccurred"),
           variant: "destructive",
           duration: 2000,
         });
         setLoadingPage(false);
       }
-    } else {
     }
     setIsEditing(!isEditing);
   };
@@ -163,8 +164,8 @@ const ProfilePage = () => {
   const savePassword = async () => {
     if (!passwordRef.current.value) {
       toast({
-        title: "Failed!",
-        description: "Please Enter a valid Password",
+        title: tProfile("toast.failedTitle"),
+        description: tProfile("toast.passwordRequired"),
         variant: "destructive",
         duration: 2000,
       });
@@ -173,8 +174,8 @@ const ProfilePage = () => {
 
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
       toast({
-        title: "Failed!",
-        description: "Confirm Password doesn't match with the new Password!",
+        title: tProfile("toast.failedTitle"),
+        description: tProfile("toast.passwordMismatch"),
         variant: "destructive",
         duration: 2000,
       });
@@ -182,7 +183,7 @@ const ProfilePage = () => {
     }
 
     const body = {
-      password: passwordRef.current.value,
+      password: escapeOutput(passwordRef.current.value),
     };
 
     try {
@@ -211,8 +212,8 @@ const ProfilePage = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: emailRef.current.value.trim(),
-              password: passwordRef.current.value,
+              email: escapeOutput(emailRef.current.value.trim()),
+              password: escapeOutput(passwordRef.current.value),
             }),
           },
         );
@@ -227,8 +228,8 @@ const ProfilePage = () => {
               expires,
             });
             toast({
-              title: "Done!",
-              description: "Password Changed Successfully!",
+              title: tProfile("toast.successTitle"),
+              description: tProfile("toast.passwordChangeSuccess"),
               variant: "success",
               duration: 2000,
             });
@@ -241,8 +242,8 @@ const ProfilePage = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "Failed!",
-        description: "an Error appeared, Please try again or contact us!",
+        title: tProfile("toast.failedTitle"),
+        description: tProfile("toast.errorOccurred"),
         variant: "destructive",
         duration: 2000,
       });
@@ -253,14 +254,22 @@ const ProfilePage = () => {
   const parseButton = (state) => {
     if (state === "Waiting to get Accepted...")
       return (
-        <span className="py-1.5 font-semibold text-blue-500">{state}</span>
+        <span className="py-1.5 font-semibold text-blue-500">
+          {tProfile(`state.waiting`)}
+        </span>
       );
     if (state === "Accepted")
       return (
-        <span className="py-1.5 font-semibold text-green-500">{state}</span>
+        <span className="py-1.5 font-semibold text-green-500">
+          {tProfile(`state.${state}`)}
+        </span>
       );
     if (state === "Cancelled")
-      return <span className="py-1.5 font-semibold text-red-500">{state}</span>;
+      return (
+        <span className="py-1.5 font-semibold text-red-500">
+          {tProfile(`state.${state}`)}
+        </span>
+      );
   };
 
   return (
@@ -303,7 +312,9 @@ const ProfilePage = () => {
                 <div className="flex w-full flex-col gap-1">
                   <div className="text-neutral-400">First Name</div>
                   <input
-                    defaultValue={userData.full_name?.split(" ")[0]}
+                    defaultValue={unescapeOutput(
+                      userData.full_name?.split(" ")[0],
+                    )}
                     ref={firstNameRef}
                     readOnly={!isEditing}
                     type="text"
@@ -320,11 +331,11 @@ const ProfilePage = () => {
                 <div className="flex w-full flex-col gap-1">
                   <div className="text-neutral-400">Last Name </div>
                   <input
-                    defaultValue={
+                    defaultValue={unescapeOutput(
                       userData.full_name?.split(" ").length > 1
                         ? userData.full_name?.split(" ")[1]
-                        : ""
-                    }
+                        : "",
+                    )}
                     ref={lastNameRef}
                     readOnly={!isEditing}
                     type="text"
@@ -342,7 +353,7 @@ const ProfilePage = () => {
               <div className="flex flex-col gap-1">
                 <div className="text-neutral-400">E-mail</div>
                 <input
-                  defaultValue={userData.email}
+                  defaultValue={unescapeOutput(userData.email)}
                   ref={emailRef}
                   readOnly={!isEditing}
                   type="email"
@@ -360,7 +371,7 @@ const ProfilePage = () => {
                 <div className="text-neutral-400">Phone Number</div>
                 <input
                   ref={phoneRef}
-                  defaultValue={userData.phone}
+                  defaultValue={unescapeOutput(userData.phone)}
                   readOnly={!isEditing}
                   type="tel"
                   placeholder="Phone Number"
@@ -371,7 +382,7 @@ const ProfilePage = () => {
                       : "border-[var(--theme)] outline-[var(--theme)]",
                   )}
                   disabled={!isEditing}
-                  onInput={() => validateNumberInput(phoneRef)}
+                  onChange={() => validateNumberInput(phoneRef)}
                 />
               </div>
 
@@ -379,7 +390,7 @@ const ProfilePage = () => {
                 <div className="text-neutral-400">Address Location</div>
                 <input
                   ref={addressRef}
-                  defaultValue={userData.address}
+                  defaultValue={unescapeOutput(userData.address)}
                   readOnly={!isEditing}
                   type="text"
                   placeholder="Address Location"

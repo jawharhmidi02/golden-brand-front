@@ -513,5 +513,30 @@
         "description": "Something went wrong"
       }
     }
+  },
+  "termsAndConditions": {
+    "title": "Terms & Conditions"
+  },
+  "profile": {
+    "toast": {
+      "failedTitle": "Failed!",
+      "successTitle": "Done!",
+      "firstNameRequired": "Please enter First Name first!",
+      "lastNameRequired": "Please enter Last Name first!",
+      "emailInvalid": "Please enter valid E-mail first!",
+      "phoneRequired": "Please enter valid Phone Number first!",
+      "addressRequired": "Please enter valid Address first!",
+      "emailTaken": "Email Address is already Taken!",
+      "updateSuccess": "Data successfully Changed!",
+      "errorOccurred": "An Error appeared, Please try again or contact us!",
+      "passwordRequired": "Please Enter a valid Password",
+      "passwordMismatch": "Confirm Password doesn't match with the new Password!",
+      "passwordChangeSuccess": "Password Changed Successfully!"
+    },
+    "state": {
+      "waiting": "Waiting to get Accepted...",
+      "Accepted": "Accepted",
+      "Cancelled": "Cancelled"
+    }
   }
 }

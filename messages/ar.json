@@ -513,5 +513,30 @@
         "description": "حدث خطأ ما"
       }
     }
+  },
+  "termsAndConditions": {
+    "title": "الشروط والأحكام"
+  },
+  "profile": {
+    "toast": {
+      "failedTitle": "فشل!",
+      "successTitle": "تم!",
+      "firstNameRequired": "الرجاء إدخال الاسم الأول أولاً!",
+      "lastNameRequired": "الرجاء إدخال اسم العائلة أولاً!",
+      "emailInvalid": "الرجاء إدخال بريد إلكتروني صحيح أولاً!",
+      "phoneRequired": "الرجاء إدخال رقم هاتف صحيح أولاً!",
+      "addressRequired": "الرجاء إدخال عنوان صحيح أولاً!",
+      "emailTaken": "عنوان البريد الإلكتروني مأخوذ بالفعل!",
+      "updateSuccess": "تم تغيير البيانات بنجاح!",
+      "errorOccurred": "حدث خطأ، الرجاء المحاولة مرة أخرى أو الاتصال بنا!",
+      "passwordRequired": "الرجاء إدخال كلمة مرور صحيحة!",
+      "passwordMismatch": "كلمة المرور الجديدة لا تتطابق مع تأكيد كلمة المرور!",
+      "passwordChangeSuccess": "تم تغيير كلمة المرور بنجاح!"
+    },
+    "state": {
+      "waiting": "في انتظار الحصول على القبول...",
+      "Accepted": "تم القبول",
+      "Cancelled": "تم الإلغاء"
+    }
   }
 }
