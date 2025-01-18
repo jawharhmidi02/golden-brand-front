@@ -50,12 +50,12 @@ const SuccessPage = () => {
             {tTransaction("orderDetails")}:
           </p>
           <p className="text-sm text-neutral-600">
-            {tTransaction("orderID")}: {searchParam.get("productId")}
+            {tTransaction("orderID")}: {searchParam.get("orderId")}
           </p>
           <p className="text-sm text-neutral-600">
             {tTransaction("orderDate")}:{" "}
             {formattedDate(
-              searchParam.get("productDate"),
+              searchParam.get("orderDate"),
               tCommon("language.lng"),
             )}
           </p>

@@ -265,7 +265,6 @@ const page = () => {
               placeholder="+974 123 456 78"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
-              dir="rtl"
             />
           </div>
 
