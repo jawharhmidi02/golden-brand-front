@@ -14,6 +14,7 @@ import LookingForCustom from "@/components/LookingForCustom/LookingForCustom";
 import FeatureServices from "@/components/featureServices/FeatureServices";
 import ProductsByCategory from "@/components/ProductsByCategory/ProductsByCategory";
 import SpecialPhotos from "@/components/SpecialPhotos/SpecialPhotos";
+import Testimonials from "@/components/Testimonials/Testimonials";
 
 export default function Home({}) {
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function Home({}) {
       <FeaturedProducts />
       <FeatureServices />
       <ProductsByCategory />
+      <Testimonials />
     </main>
   );
 }

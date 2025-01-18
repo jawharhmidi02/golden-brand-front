@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import Testimonials from "@/components/Testimonials/Testimonials";
 
 const page = () => {
   const tAbout = useTranslations("about");
@@ -160,6 +161,8 @@ const page = () => {
           ))}
         </Accordion>
       </div>
+
+      <Testimonials />
 
       <span className="mt-5 border-b-2 border-[var(--theme)] pb-2 text-center font-lato text-4xl font-semibold">
         {tAbout("afterSaleServices")}

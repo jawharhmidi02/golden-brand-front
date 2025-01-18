@@ -1,6 +1,7 @@
 "use client";
 import ServiceCard from "@/components/ServiceCard/ServiceCard";
 import ServiceDescCard from "@/components/ServiceDescCard/ServiceDescCard";
+import Testimonials from "@/components/Testimonials/Testimonials";
 import { useTranslations } from "next-intl";
 
 const page = () => {
@@ -120,6 +121,8 @@ const page = () => {
           />
         ))}
       </div>
+
+      <Testimonials />
     </div>
   );
 };
