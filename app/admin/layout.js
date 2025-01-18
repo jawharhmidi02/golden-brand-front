@@ -7,6 +7,7 @@ import "../animations.css";
 import "../globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "GoldenBrand: Admin",
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
         <AdminLayout>{children}</AdminLayout>
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

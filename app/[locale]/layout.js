@@ -7,6 +7,7 @@ import "../animations.css";
 import "../globals.css";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { dir } from "i18next";
@@ -68,6 +69,7 @@ export default async function RootLayout({ children, params: { locale } }) {
         </NextIntlClientProvider>
         <Toaster />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
