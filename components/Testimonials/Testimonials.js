@@ -120,8 +120,8 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-12" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="max-w-screen-xl py-12" dir={isRTL ? "rtl" : "ltr"}>
+      <div className="mx-auto max-w-[100dvw] px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
           <span className="mb-2 block text-center text-sm font-medium text-gray-500">
             {isRTL ? "آراء العملاء" : "TESTIMONIALS"}
@@ -142,11 +142,11 @@ const Testimonials = () => {
         </div>
 
         <Swiper
-          dir={isRTL ? "rtl" : "ltr"}
+          // dir={isRTL ? "rtl" : "ltr"}
           modules={[Pagination, Navigation, Autoplay]}
-          speed={600}
-          loop={true}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          // speed={600}
+          // loop={true}
+          // autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{
             el: ".swiper-pagination",
             clickable: true,
@@ -164,11 +164,10 @@ const Testimonials = () => {
               slidesPerView: 3,
             },
           }}
-          className="mySwiper"
         >
           {testimonials[locale].map((testimonial, index) => (
             <SwiperSlide key={index}>
-              <div className="slide_active:border-amber-600 group mx-auto flex min-h-[345px] w-full flex-col justify-between rounded-xl border border-solid border-gray-300 bg-white p-6 transition-all duration-500 hover:border-amber-600 hover:shadow-sm">
+              <div className="slide_active:border-amber-600 group mx-auto flex flex-col justify-between rounded-xl border border-solid border-gray-300 bg-white p-6 transition-all duration-500 hover:border-amber-600 hover:shadow-sm">
                 <div>
                   <div className="mb-7 flex items-center gap-2 text-amber-500 transition-all duration-500">
                     <svg
