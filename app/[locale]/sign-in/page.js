@@ -46,6 +46,7 @@ const page = () => {
           body: JSON.stringify({
             email: escapeOutput(emailRef.current.value.trim()),
             password: passwordRef.current.value,
+            rememberMe: check,
           }),
         },
       );
@@ -172,7 +173,11 @@ const page = () => {
                   )}
                 >
                   {tSignIn("rememberMe")}
-                  <input type="checkbox" onChange={() => setCheck(!check)} />
+                  <input
+                    type="checkbox"
+                    disabled={loading}
+                    onChange={() => setCheck((prev) => !prev)}
+                  />
                   <div className="control__indicator"></div>
                 </label>
               </div>

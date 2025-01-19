@@ -4,7 +4,7 @@ import "./page.css";
 
 import { useContext, useRef, useState } from "react";
 
-import { cn, validateEmail } from "@/lib/utils";
+import { cn, escapeOutput, validateEmail } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
@@ -32,7 +32,7 @@ const page = () => {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/recoverpass/${emailInput.current.value.trim()}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/recoverpass/${escapeOutput(emailInput.current.value.trim())}`,
         {
           method: "POST",
           headers: {

@@ -5,7 +5,7 @@ import "./page.css";
 import { useContext, useRef, useState } from "react";
 import Cookies from "js-cookie";
 
-import { cn, validateEmail } from "@/lib/utils";
+import { cn, escapeOutput, validateEmail } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
@@ -15,7 +15,6 @@ const page = () => {
   const { ChangeUrl, setLoadingPage } = useContext(AdminAuthContext);
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
-  const checkInput = useRef(null);
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -52,8 +51,9 @@ const page = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: emailInput.current.value.trim(),
+            email: escapeOutput(emailInput.current.value.trim()),
             password: passwordInput.current.value,
+            rememberMe: check,
           }),
         },
       );
@@ -173,11 +173,10 @@ const page = () => {
             >
               Remember Me
               <input
-                ref={checkInput}
                 type="checkbox"
                 disabled={loading}
                 onChange={() => {
-                  setCheck(!check);
+                  setCheck((prev) => !prev);
                 }}
               />
               <div className="control__indicator"></div>
