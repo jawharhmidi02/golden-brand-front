@@ -15,7 +15,7 @@ const Menu = ({ orientation }) => {
   return (
     <div
       className={cn(
-        "menu hidden flex-row items-center gap-8 min-[1260px]:flex",
+        "menu flex flex-row items-center gap-8",
         orientation == "col" && "mt-4 flex flex-col items-start gap-7 text-lg",
       )}
     >

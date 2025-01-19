@@ -114,7 +114,6 @@ const Nav = () => {
       </div>
       <div className="right flex flex-row gap-3">
         {/* CART  */}
-
         <Sheet>
           <SheetTrigger className="cart">
             <svg
@@ -185,7 +184,6 @@ const Nav = () => {
         </Sheet>
 
         {/* PROFILE  */}
-
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -201,7 +199,7 @@ const Nav = () => {
                 }}
                 className={cn(
                   "hover:cursor-pointer",
-                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer ",
+                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer",
                   loadingUser && "hover:cursor-not-allowed",
                 )}
               >
@@ -238,23 +236,7 @@ const Nav = () => {
           </Tooltip>
         </TooltipProvider>
 
-        {/* MOBILE MENU  */}
-
-        <Sheet>
-          <SheetTrigger asChild>
-            <div className="flex self-center p-2 min-[1180px]:hidden">
-              <i className="fa-solid fa-bars self-center text-2xl" />
-            </div>
-          </SheetTrigger>
-          <SheetContent side={tCommon("side")} className="w-[220px] bg-white">
-            <SheetTitle />
-            <Menu orientation="col" />
-            <SheetClose className="hidden" ref={closeButton} />
-          </SheetContent>
-        </Sheet>
-
         {/* LOGOUT  */}
-
         {isUserSigned && (
           <TooltipProvider>
             <Tooltip>
@@ -274,6 +256,20 @@ const Nav = () => {
             </Tooltip>
           </TooltipProvider>
         )}
+
+        {/* MOBILE MENU  */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <div className="flex self-center p-2 min-[1180px]:hidden">
+              <i className="fa-solid fa-bars self-center text-2xl" />
+            </div>
+          </SheetTrigger>
+          <SheetContent side={tCommon("side")} className="w-[220px] bg-white">
+            <SheetTitle />
+            <Menu orientation="col" />
+            <SheetClose className="hidden" ref={closeButton} />
+          </SheetContent>
+        </Sheet>
       </div>
     </nav>
   );
