@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import SelectInterface from "../SelectInterface/SelectInterface";
 import CategorieItem from "../CategorieItem/CategorieItem";
 import MultiRangeSlider from "../multiRangeSlider/multiRangeSlider";

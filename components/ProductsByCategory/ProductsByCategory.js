@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { Skeleton } from "../ui/skeleton";

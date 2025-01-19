@@ -120,8 +120,8 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="max-w-screen-xl py-12" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="mx-auto max-w-[100dvw] px-4 sm:px-6 lg:px-8">
+    <section className="py-12" dir={isRTL ? "rtl" : "ltr"}>
+      <div className="mx-auto max-w-[95dvw]">
         <div className="mb-16">
           <span className="mb-2 block text-center text-sm font-medium text-gray-500">
             {isRTL ? "آراء العملاء" : "TESTIMONIALS"}

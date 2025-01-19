@@ -1,9 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+
 import Cookies from "js-cookie";
+
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+
 import {
   Dialog,
   DialogContent,
@@ -12,34 +15,34 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
-import SpecialPhoto from "@/components/SpecialPhoto/SpecialPhoto";
+import Gallery from "@/components/Gallery/Gallery";
 
 const page = () => {
-  const specialPhotoRef = useRef(null);
+  const galleryRef = useRef(null);
   const imageInput = useRef(null);
   const fileInput = useRef(null);
   const [imageValue, setImageValue] = useState(null);
   const [loaded, setLoaded] = useState(false);
-  const [loadingSpecialPhoto, setLoadingSpecialPhoto] = useState(false);
-  const [loadingSpecialPhotos, setLoadingSpecialPhotos] = useState(true);
-  const [specialPhotos, setSpecialPhotos] = useState([]);
+  const [loadingGallery, setLoadingGallery] = useState(false);
+  const [loadingGalleries, setLoadingGalleries] = useState(true);
+  const [galleries, setGalleries] = useState([]);
   const addDialogClose = useRef(null);
 
-  const addSpecialPhoto = async () => {
+  const addGallery = async () => {
     if (!imageInput.current.src.trim()) {
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Please select an image",
+        title: "خطأ",
+        description: "الرجاء إختيار صورة ",
         duration: 2000,
       });
       return;
     }
 
     try {
-      setLoadingSpecialPhoto(true);
+      setLoadingGallery(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/specialPhoto`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/gallery`,
         {
           method: "POST",
           headers: {
@@ -58,30 +61,30 @@ const page = () => {
 
       toast({
         variant: "success",
-        title: "Success",
-        description: "Special offer created successfully",
+        title: "تم",
+        description: "تم إنشاء العرض بنجاح",
         duration: 2000,
       });
-      fetchSpecialPhotos();
-      setLoadingSpecialPhoto(false);
+      fetchGalleries();
+      setLoadingGallery(false);
       addDialogClose.current?.click();
     } catch (error) {
       console.error(error);
       toast({
         variant: "destructive",
-        title: "Error",
-        description: "Error while creating the special offer",
+        title: "خطأ",
+        description: "حدث خطأ أثناء إنشاء العرض",
         duration: 2000,
       });
-      setLoadingSpecialPhoto(false);
+      setLoadingGallery(false);
     }
   };
 
-  const fetchSpecialPhotos = async (search = null) => {
-    setLoadingSpecialPhotos(true);
+  const fetchGalleries = async (search = null) => {
+    setLoadingGalleries(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/specialPhoto?${search ? `name=${search.trim()}` : ``}&page=1&limit=999`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/gallery?${search ? `name=${search.trim()}` : ``}&page=1&limit=999`,
         {
           method: "GET",
           headers: {
@@ -96,22 +99,24 @@ const page = () => {
         throw new Error(data.message);
       }
 
-      setSpecialPhotos(data.data.data);
-      setLoadingSpecialPhotos(false);
+      setGalleries(data.data.data);
+
+      setLoadingGalleries(false);
     } catch (error) {
       console.error(error);
       toast({
-        title: "Error",
-        description: "Something went wrong, please try again!",
+        title: "خطأ",
+        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
         variant: "destructive",
       });
-      setLoadingSpecialPhotos(false);
+
+      setLoadingGalleries(false);
     }
-    setLoadingSpecialPhotos(false);
+    setLoadingGalleries(false);
   };
 
   useEffect(() => {
-    fetchSpecialPhotos();
+    fetchGalleries();
   }, []);
 
   return (
@@ -129,7 +134,7 @@ const page = () => {
                   <div className="mb-1">+</div>
                 </div>
                 <div className="text-center text-xl font-semibold text-neutral-300">
-                  Add Special Offer
+                  Add Photo
                 </div>
               </div>
             </div>
@@ -160,7 +165,7 @@ const page = () => {
                     setLoaded(true);
                   }}
                   ref={fileInput}
-                  disabled={loadingSpecialPhoto}
+                  disabled={loadingGallery}
                   type="file"
                   accept="image/*"
                   className="hidden"
@@ -195,22 +200,22 @@ const page = () => {
               </div>
               <button
                 onClick={() => {
-                  addSpecialPhoto();
+                  addGallery();
                 }}
                 type="button"
                 className={cn(
                   "w-3/4 rounded-lg bg-[var(--dash-theme6)] p-3 text-xl font-semibold text-white transition-all duration-200 hover:bg-[var(--dash-theme5)]",
-                  loadingSpecialPhoto
+                  loadingGallery
                     ? "hover:cursor-not-allowed"
                     : "hover:cursor-pointer",
                 )}
               >
-                {loadingSpecialPhoto ? (
+                {loadingGallery ? (
                   <div className="flex items-center justify-center">
                     <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
                   </div>
                 ) : (
-                  "Add Offer"
+                  "Add Photo"
                 )}
               </button>
             </div>
@@ -218,7 +223,7 @@ const page = () => {
           <DialogClose ref={addDialogClose} className="hidden" />
         </Dialog>
 
-        {loadingSpecialPhotos
+        {loadingGalleries
           ? Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
@@ -227,11 +232,11 @@ const page = () => {
                 <Skeleton className={"aspect-square w-full bg-neutral-200"} />
               </div>
             ))
-          : specialPhotos.map((specialPhoto) => (
-              <SpecialPhoto
-                key={specialPhoto.id}
-                specialPhoto={specialPhoto}
-                fetchSpecialPhotos={() => fetchSpecialPhotos()}
+          : galleries.map((gallery) => (
+              <Gallery
+                key={gallery.id}
+                gallery={gallery}
+                fetchGalleries={() => fetchGalleries()}
               />
             ))}
       </div>

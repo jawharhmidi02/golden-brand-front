@@ -2,7 +2,7 @@
 
 import "./multiRangeSlider.css";
 
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import  { useCallback, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { dir } from "i18next";

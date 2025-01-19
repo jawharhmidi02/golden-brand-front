@@ -77,6 +77,24 @@ const Menu = ({ orientation }) => {
         <div
           className={cn(
             "link text-neutral-700",
+            pathname.includes("services") && "active",
+            tCommon("language.lng"),
+          )}
+        >
+          <a
+            onClick={() => {
+              ChangeUrl("/gallery");
+            }}
+            className="hover:cursor-pointer"
+          >
+            {tCommon("navigation.gallery")}
+          </a>
+        </div>
+      </div>
+      <div>
+        <div
+          className={cn(
+            "link text-neutral-700",
             pathname.includes("about") && "active",
             tCommon("language.lng"),
           )}

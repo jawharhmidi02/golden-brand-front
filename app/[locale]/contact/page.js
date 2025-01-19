@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 
 import { cn, validateEmail, validateNumberInput } from "@/lib/utils";

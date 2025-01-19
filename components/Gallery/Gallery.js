@@ -12,10 +12,10 @@ import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import Cookies from "js-cookie";
 
-const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
+const Gallery = ({ gallery, fetchGalleries = null }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [loadingSpecialPhoto, setLoadingSpecialPhoto] = useState(false);
-  const [imageValue, setImageValue] = useState(specialPhoto.img);
+  const [loadingGallery, setLoadingGallery] = useState(false);
+  const [imageValue, setImageValue] = useState(gallery.img);
   const imageRef = useRef(null);
   const fileInput = useRef(null);
   const confirmDeleteRef = useRef(null);
@@ -26,9 +26,9 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
       description: "Deleting special offer...",
     });
     try {
-      setLoadingSpecialPhoto(true);
+      setLoadingGallery(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/specialPhoto/${specialPhoto.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/gallery/${gallery.id}`,
         {
           method: "DELETE",
           headers: {
@@ -47,8 +47,8 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
         variant: "success",
         duration: 3000,
       });
-      setLoadingSpecialPhoto(false);
-      if (fetchSpecialPhotos) fetchSpecialPhotos();
+      setLoadingGallery(false);
+      if (fetchGalleries) fetchGalleries();
     } catch (error) {
       console.error(error);
       toast({
@@ -56,7 +56,7 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
         description: "Error deleting special offer. Please try again later.",
         variant: "destructive",
       });
-      setLoadingSpecialPhoto(false);
+      setLoadingGallery(false);
     }
   };
 
@@ -78,20 +78,20 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
               Warning
             </div>
             <div className="text-medium w-3/4 text-center text-xl text-white">
-              Deleting this offer will remove all associated data
+              Deleting this Photo will remove all associated data
             </div>
             <button
               onClick={() => handleDelete()}
-              disabled={loadingSpecialPhoto}
+              disabled={loadingGallery}
               type="button"
               className={cn(
                 "mt-4 w-3/4 rounded-lg border-2 bg-red-900 py-2 text-lg font-semibold text-[#ffffff] transition-all duration-200",
-                loadingSpecialPhoto
+                loadingGallery
                   ? "opacity-50 hover:cursor-not-allowed"
                   : "hover:bg-red-500",
               )}
             >
-              {loadingSpecialPhoto ? (
+              {loadingGallery ? (
                 <div className="flex items-center justify-center">
                   <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white" />
                 </div>
@@ -111,8 +111,8 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
         >
           <div className="flex h-full w-full items-center justify-center rounded-xl bg-[var(--dash-theme2)] px-4 py-4 text-center text-2xl font-semibold text-neutral-300 transition-all duration-200 hover:scale-[1.02] hover:cursor-pointer hover:bg-[#2c2d33]">
             <img
-              src={specialPhoto.img}
-              alt={specialPhoto.id}
+              src={gallery.img}
+              alt={gallery.id}
               className="aspect-square w-full rounded-lg object-cover"
             />
           </div>
@@ -140,13 +140,13 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
             />
             <img
               onClick={() => {
-                if (isEditing && !loadingSpecialPhoto) {
+                if (isEditing && !loadingGallery) {
                   fileInput.current.click();
                 }
               }}
               ref={imageRef}
               src={imageValue}
-              alt={specialPhoto.id}
+              alt={gallery.id}
               className={cn(
                 "mb-2 h-[150px] w-3/4 rounded-lg object-scale-down",
                 isEditing ? "hover:cursor-pointer" : "hover:cursor-not-allowed",
@@ -156,7 +156,7 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
               <button
                 onClick={() => confirmDeletePopUp()}
                 type="button"
-                disabled={loadingSpecialPhoto}
+                disabled={loadingGallery}
                 className="w-full rounded-lg border-2 border-red-500 bg-red-500 py-2 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent hover:text-red-500"
               >
                 Delete
@@ -169,4 +169,4 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
   );
 };
 
-export default SpecialPhoto;
+export default Gallery;
