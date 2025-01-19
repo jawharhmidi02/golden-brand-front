@@ -32,6 +32,9 @@ export default function ClientLayout({ children }) {
 
   const checkUser = async () => {
     try {
+      if (!Cookies.get("access_token")) {
+        throw new Error();
+      }
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/account`,
         {

@@ -28,6 +28,9 @@ export default function AdminLayout({ children }) {
 
   const checkAdmin = async () => {
     try {
+      if (!Cookies.get("admin_access_token")) {
+        throw new Error();
+      }
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/admins/account`,
         {
