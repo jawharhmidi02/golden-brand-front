@@ -66,7 +66,7 @@ const page = () => {
     fetchGallery();
   }, []);
   return (
-    <div className="mx-auto mt-16 w-full items-center justify-center">
+    <div className="mx-auto mt-16 w-full max-w-screen-xl items-center justify-center">
       <div className="flex w-full max-w-[1300px] flex-col gap-20 sm:mx-10 xl:mx-28">
         <div className="flex w-full flex-col items-center justify-center gap-2 self-center">
           <div className="flex w-full flex-row items-center justify-center gap-3">

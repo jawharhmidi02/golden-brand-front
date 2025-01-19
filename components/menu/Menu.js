@@ -77,7 +77,7 @@ const Menu = ({ orientation }) => {
         <div
           className={cn(
             "link text-neutral-700",
-            pathname.includes("services") && "active",
+            pathname.includes("gallery") && "active",
             tCommon("language.lng"),
           )}
         >

@@ -121,7 +121,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-12" dir={isRTL ? "rtl" : "ltr"}>
-      <div className="mx-auto max-w-[95dvw]">
+      <div className="mx-auto max-w-screen-xl">
         <div className="mb-16">
           <span className="mb-2 block text-center text-sm font-medium text-gray-500">
             {isRTL ? "آراء العملاء" : "TESTIMONIALS"}
@@ -142,11 +142,11 @@ const Testimonials = () => {
         </div>
 
         <Swiper
-          // dir={isRTL ? "rtl" : "ltr"}
+          dir={isRTL ? "rtl" : "ltr"}
           modules={[Pagination, Navigation, Autoplay]}
-          // speed={600}
-          // loop={true}
-          // autoplay={{ delay: 5000, disableOnInteraction: false }}
+          speed={600}
+          loop={true}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{
             el: ".swiper-pagination",
             clickable: true,
@@ -164,6 +164,7 @@ const Testimonials = () => {
               slidesPerView: 3,
             },
           }}
+          className="max-w-[95dvw]"
         >
           {testimonials[locale].map((testimonial, index) => (
             <SwiperSlide key={index}>
