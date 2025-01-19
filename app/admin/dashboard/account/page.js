@@ -5,16 +5,143 @@ import Cookies from "js-cookie";
 import { cn, validateEmail } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { AdminAuthContext } from "@/contexts/AuthContext";
+import { Check, X } from "lucide-react";
 
 const page = () => {
   const { adminData, setAdminData } = useContext(AdminAuthContext);
   const [loadingUser, setLoadingUser] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [shownPasswordRules, setShownPasswordRules] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const emailRef = useRef(null);
   const currentPasswordRef = useRef(null);
   const currentPasswordEmailRef = useRef(null);
   const newPasswordRef = useRef(null);
   const confirmNewPasswordRef = useRef(null);
+
+  const passwordRules = {
+    minLength: password.length >= 8,
+    hasUppercase: /[A-Z]/.test(password),
+    hasLowercase: /[a-z]/.test(password),
+    hasNumber: /\d/.test(password),
+    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    matches: password === confirmPassword && password !== "",
+  };
+  const ruleTexts = {
+    minLength: "At least 8 characters long",
+    uppercase: "Contains uppercase letter",
+    lowercase: "Contains lowercase letter",
+    number: "Contains number",
+    special: "Contains special character",
+    match: "Passwords match",
+  };
+
+  const PasswordRule = ({ satisfied, text }) => (
+    <div className="flex items-center gap-2">
+      {satisfied ? (
+        <Check className="h-4 w-4 text-[#10b981]" />
+      ) : (
+        <X className="h-4 w-4 text-gray-400" />
+      )}
+      <span
+        className={cn(
+          "text-sm transition-colors",
+          satisfied ? "text-[#10b981]" : "text-gray-400",
+        )}
+      >
+        {text}
+      </span>
+    </div>
+  );
+
+  const savePassword = async () => {
+    if (!Object.values(passwordRules).every((rule) => rule)) {
+      toast({
+        title: "Failed!",
+        description: "Please ensure all password requirements are met",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (!currentPasswordRef.current.value.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter your current password",
+        variant: "destructive",
+        duration: 2000,
+      });
+      return;
+    }
+
+    toast({
+      title: "Loading",
+      description: "Please wait a moment...",
+    });
+
+    try {
+      setLoadingUser(true);
+      const body = {
+        password: newPasswordRef.current.value.trim(),
+        current_password: currentPasswordRef.current.value.trim(),
+      };
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/user/${adminData.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            admin_access_token: Cookies.get("admin_access_token"),
+          },
+          body: JSON.stringify(body),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.data == null) {
+        if (data.message === "Invalid password") {
+          toast({
+            title: "Error",
+            description: "Invalid password",
+            variant: "destructive",
+            duration: 2500,
+          });
+          setLoadingUser(false);
+          return;
+        }
+        throw new Error(data.message);
+      }
+
+      toast({
+        title: "Success",
+        description: "Password changed successfully",
+        variant: "success",
+        duration: 2000,
+      });
+
+      currentPasswordRef.current.value = "";
+      newPasswordRef.current.value = "";
+      confirmNewPasswordRef.current.value = "";
+      setShownPasswordRules(false);
+      setConfirmPassword("");
+      setPassword("");
+      setLoadingUser(false);
+      setIsEditing(false);
+    } catch (error) {
+      console.error(error);
+      setLoadingUser(false);
+      toast({
+        title: "Error",
+        description: "An error occurred while changing the password",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  };
 
   const saveEmail = async () => {
     if (
@@ -103,109 +230,6 @@ const page = () => {
       toast({
         title: "Error",
         description: "An error occurred while changing the email",
-        variant: "destructive",
-        duration: 3000,
-      });
-    }
-  };
-
-  const savePassword = async () => {
-    if (!currentPasswordRef.current.value.trim()) {
-      toast({
-        title: "Error",
-        description: "Please enter your current password",
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-    if (!newPasswordRef.current.value.trim()) {
-      toast({
-        title: "Error",
-        description: "Please enter a new password",
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-    if (!confirmNewPasswordRef.current.value.trim()) {
-      toast({
-        title: "Error",
-        description: "Please confirm your new password",
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-    if (
-      newPasswordRef.current.value.trim() !==
-      confirmNewPasswordRef.current.value.trim()
-    ) {
-      toast({
-        title: "Error",
-        description: "Passwords do not match",
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-
-    toast({
-      title: "Loading",
-      description: "Please wait a moment",
-    });
-    try {
-      setLoadingUser(true);
-      const body = {
-        password: newPasswordRef.current.value.trim(),
-        current_password: currentPasswordRef.current.value.trim(),
-      };
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/user/${adminData.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            admin_access_token: Cookies.get("admin_access_token"),
-          },
-          body: JSON.stringify(body),
-        },
-      );
-
-      const data = await response.json();
-
-      if (data.data == null) {
-        if (data.message === "Invalid password") {
-          toast({
-            title: "Error",
-            description: "Invalid password",
-            variant: "destructive",
-            duration: 2500,
-          });
-          setLoadingUser(false);
-          return;
-        }
-        throw new Error(data.message);
-      }
-
-      toast({
-        title: "Success",
-        description: "Password changed successfully",
-        variant: "success",
-        duration: 2000,
-      });
-      currentPasswordRef.current.value = "";
-      newPasswordRef.current.value = "";
-      confirmNewPasswordRef.current.value = "";
-      setLoadingUser(false);
-      setIsEditing(false);
-    } catch (error) {
-      console.error(error);
-      setLoadingUser(false);
-      toast({
-        title: "Error",
-        description: "An error occurred while changing the password",
         variant: "destructive",
         duration: 3000,
       });
@@ -343,22 +367,54 @@ const page = () => {
           </div>
           <input
             ref={newPasswordRef}
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
             className="w-full bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
             placeholder="New Password"
+            onFocus={() => setShownPasswordRules(true)}
           />
         </div>
         <div className="flex w-full flex-col gap-2">
           <div className="text-lg font-medium text-[var(--dash-theme5)]">
-            Confirm Password
+            Confirm New Password
           </div>
           <input
             ref={confirmNewPasswordRef}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             type="password"
             className="w-full bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
             placeholder="Confirm Password"
+            onFocus={() => setShownPasswordRules(true)}
           />
         </div>
+        {shownPasswordRules && (
+          <div className="w-full max-w-[400px] rounded-lg border border-gray-200 p-4">
+            <PasswordRule
+              satisfied={passwordRules.minLength}
+              text={ruleTexts.minLength}
+            />
+            <PasswordRule
+              satisfied={passwordRules.hasUppercase}
+              text={ruleTexts.uppercase}
+            />
+            <PasswordRule
+              satisfied={passwordRules.hasLowercase}
+              text={ruleTexts.lowercase}
+            />
+            <PasswordRule
+              satisfied={passwordRules.hasNumber}
+              text={ruleTexts.number}
+            />
+            <PasswordRule
+              satisfied={passwordRules.hasSpecialChar}
+              text={ruleTexts.special}
+            />
+            <PasswordRule
+              satisfied={passwordRules.matches}
+              text={ruleTexts.match}
+            />
+          </div>
+        )}
         <div
           onClick={() => {
             forgetPassword();

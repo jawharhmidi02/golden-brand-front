@@ -23,15 +23,21 @@ import Cookies from "js-cookie";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { useTranslations } from "next-intl";
 import { dir } from "i18next";
+import { Check, X } from "lucide-react";
 
 const ProfilePage = () => {
   const tCommon = useTranslations("common");
   const tProfile = useTranslations("profile");
+  const locale = tCommon("language.lng");
   const { setLoadingPage, userData, ChangeUrl, setUserData } =
     useContext(UserAuthContext);
   const searchParams = useSearchParams();
-  var menu = parseInt(searchParams.get("menu")) || 1;
+  const menu = parseInt(searchParams.get("menu")) || 1;
   const [isEditing, setIsEditing] = useState(false);
+  const [shownPasswordRules, setShownPasswordRules] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
@@ -39,6 +45,137 @@ const ProfilePage = () => {
   const addressRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+
+  const passwordRules = {
+    minLength: password.length >= 8,
+    hasUppercase: /[A-Z]/.test(password),
+    hasLowercase: /[a-z]/.test(password),
+    hasNumber: /\d/.test(password),
+    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    matches: password === confirmPassword && password !== "",
+  };
+  const ruleTexts = {
+    en: {
+      minLength: "At least 8 characters long",
+      uppercase: "Contains uppercase letter",
+      lowercase: "Contains lowercase letter",
+      number: "Contains number",
+      special: "Contains special character",
+      match: "Passwords match",
+    },
+    ar: {
+      minLength: "8 أحرف على الأقل",
+      uppercase: "يحتوي على حرف كبير",
+      lowercase: "يحتوي على حرف صغير",
+      number: "يحتوي على رقم",
+      special: "يحتوي على حرف خاص",
+      match: "كلمات المرور متطابقة",
+    },
+  };
+
+  const PasswordRule = ({ satisfied, text }) => (
+    <div className="flex items-center gap-2">
+      {satisfied ? (
+        <Check className="h-4 w-4 text-[#059669]" />
+      ) : (
+        <X className="h-4 w-4 text-gray-400" />
+      )}
+      <span
+        className={cn(
+          "text-sm transition-colors",
+          satisfied ? "text-[#059669]" : "text-gray-400",
+        )}
+      >
+        {text}
+      </span>
+    </div>
+  );
+
+  const savePassword = async () => {
+    if (!Object.values(passwordRules).every((rule) => rule)) {
+      toast({
+        title: tProfile("toast.failedTitle"),
+        description:
+          locale === "ar"
+            ? "يرجى التأكد من استيفاء جميع متطلبات كلمة المرور"
+            : "Please ensure all password requirements are met",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+
+    const body = {
+      password: escapeOutput(passwordRef.current.value),
+    };
+
+    try {
+      setLoadingPage(true);
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${userData.id}`,
+        {
+          method: "PUT",
+          headers: {
+            access_token: Cookies.get("access_token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        },
+      );
+
+      const data = await response.json();
+
+      if (data.message === "User updated successfully") {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/users/signin`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: escapeOutput(emailRef.current.value.trim()),
+              password: passwordRef.current.value,
+            }),
+          },
+        );
+
+        if (res.ok) {
+          const dataRes = await res.json();
+
+          const expires = 30;
+
+          if (dataRes.data !== null) {
+            Cookies.set("access_token", dataRes.data?.access_token, {
+              expires,
+            });
+            toast({
+              title: tProfile("toast.successTitle"),
+              description: tProfile("toast.passwordChangeSuccess"),
+              variant: "success",
+              duration: 2000,
+            });
+            setShownPasswordRules(false);
+            passwordRef.current.value = "";
+            confirmPasswordRef.current.value = "";
+            setConfirmPassword("");
+            setPassword("");
+          }
+        }
+      }
+      setLoadingPage(false);
+    } catch (error) {
+      console.error(error);
+      toast({
+        title: tProfile("toast.failedTitle"),
+        description: tProfile("toast.errorOccurred"),
+        variant: "destructive",
+        duration: 2000,
+      });
+      setLoadingPage(false);
+    }
+  };
 
   const handleEdit = async () => {
     if (isEditing) {
@@ -161,96 +298,6 @@ const ProfilePage = () => {
       }
     }
     setIsEditing(!isEditing);
-  };
-
-  const savePassword = async () => {
-    if (!passwordRef.current.value) {
-      toast({
-        title: tProfile("toast.failedTitle"),
-        description: tProfile("toast.passwordRequired"),
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      toast({
-        title: tProfile("toast.failedTitle"),
-        description: tProfile("toast.passwordMismatch"),
-        variant: "destructive",
-        duration: 2000,
-      });
-      return;
-    }
-
-    const body = {
-      password: passwordRef.current.value,
-    };
-
-    try {
-      setLoadingPage(true);
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/${userData.id}`,
-        {
-          method: "PUT",
-          headers: {
-            access_token: Cookies.get("access_token"),
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(body),
-        },
-      );
-
-      const data = await response.json();
-
-      if (data.message === "User updated successfully") {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/users/signin`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: escapeOutput(emailRef.current.value.trim()),
-              password: passwordRef.current.value,
-            }),
-          },
-        );
-
-        if (res.ok) {
-          const dataRes = await res.json();
-
-          const expires = 30;
-
-          if (dataRes.data !== null) {
-            Cookies.set("access_token", dataRes.data?.access_token, {
-              expires,
-            });
-            toast({
-              title: tProfile("toast.successTitle"),
-              description: tProfile("toast.passwordChangeSuccess"),
-              variant: "success",
-              duration: 2000,
-            });
-            passwordRef.current.value = "";
-            confirmPasswordRef.current.value = "";
-          }
-        }
-      }
-      setLoadingPage(false);
-    } catch (error) {
-      console.error(error);
-      toast({
-        title: tProfile("toast.failedTitle"),
-        description: tProfile("toast.errorOccurred"),
-        variant: "destructive",
-        duration: 2000,
-      });
-      setLoadingPage(false);
-    }
   };
 
   const parseButton = (state) => {
@@ -429,8 +476,10 @@ const ProfilePage = () => {
                     {tProfile("password.newPassword")}
                   </div>
                   <input
-                    placeholder="New Password"
+                    placeholder={tProfile("password.newPassword")}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
+                    onFocus={() => setShownPasswordRules(true)}
                     ref={passwordRef}
                     className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
                   />
@@ -440,13 +489,47 @@ const ProfilePage = () => {
                     {tProfile("password.confirmPassword")}
                   </div>
                   <input
-                    placeholder="Confirm New Password"
+                    placeholder={tProfile("password.confirmPassword")}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                     ref={confirmPasswordRef}
                     type="password"
+                    onFocus={() => setShownPasswordRules(true)}
                     className="w-full border-[1px] border-[var(--theme)] bg-[var(--theme4)!important] px-3 py-2 text-lg placeholder-neutral-300 outline-[var(--theme)]"
                   />
                 </div>
               </div>
+              {shownPasswordRules && (
+                <div
+                  className="w-full max-w-[400px] rounded-lg border border-gray-200 p-4"
+                  dir={dir(locale)}
+                >
+                  <PasswordRule
+                    satisfied={passwordRules.minLength}
+                    text={ruleTexts[locale].minLength}
+                  />
+                  <PasswordRule
+                    satisfied={passwordRules.hasUppercase}
+                    text={ruleTexts[locale].uppercase}
+                  />
+                  <PasswordRule
+                    satisfied={passwordRules.hasLowercase}
+                    text={ruleTexts[locale].lowercase}
+                  />
+                  <PasswordRule
+                    satisfied={passwordRules.hasNumber}
+                    text={ruleTexts[locale].number}
+                  />
+                  <PasswordRule
+                    satisfied={passwordRules.hasSpecialChar}
+                    text={ruleTexts[locale].special}
+                  />
+                  <PasswordRule
+                    satisfied={passwordRules.matches}
+                    text={ruleTexts[locale].match}
+                  />
+                </div>
+              )}
+
               <button
                 onClick={() => savePassword()}
                 type="button"

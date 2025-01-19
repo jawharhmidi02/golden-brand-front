@@ -472,6 +472,8 @@
     "emailPlaceholder": "Example@domain.com",
     "password": "PASSWORD",
     "passwordPlaceholder": "Password",
+    "confirmPassword": "CONFIRM PASSWORD",
+    "confirmPasswordPlaceholder": "Confirm Password",
     "welcomeAboard": "Welcome Aboard!",
     "haveAccount": "Already have an account?",
     "signInText": "Sign In",

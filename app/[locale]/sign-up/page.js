@@ -1,30 +1,95 @@
 "use client";
 
 import { useState, useRef, useContext } from "react";
+import { useTranslations } from "next-intl";
+import { Check, X } from "lucide-react";
 
 import { cn, escapeOutput, validateNumberInput } from "@/lib/utils";
-import { toast } from "@/hooks/use-toast";
 import { UserAuthContext } from "@/contexts/AuthContext";
+import { toast } from "@/hooks/use-toast";
+import { dir } from "i18next";
 
 import AccountDecoration from "@/components/AccountDecoration/AccountDecoration";
-import { useTranslations } from "next-intl";
-import { dir } from "i18next";
 
 const page = () => {
   const tCommon = useTranslations("common");
   const tSignUp = useTranslations("signUp");
+  const tProfile = useTranslations("profile");
   const { ChangeUrl } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(false);
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
+  const addressRef = useRef(null);
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
-  const addressRef = useRef(null);
+
+  const locale = tCommon("language.lng");
+  const passwordRules = {
+    minLength: password.length >= 8,
+    hasUppercase: /[A-Z]/.test(password),
+    hasLowercase: /[a-z]/.test(password),
+    hasNumber: /\d/.test(password),
+    hasSpecialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+    matches: password === confirmPassword && password !== "",
+  };
+  const ruleTexts = {
+    en: {
+      minLength: "At least 8 characters long",
+      uppercase: "Contains uppercase letter",
+      lowercase: "Contains lowercase letter",
+      number: "Contains number",
+      special: "Contains special character",
+      match: "Passwords match",
+    },
+    ar: {
+      minLength: "8 أحرف على الأقل",
+      uppercase: "يحتوي على حرف كبير",
+      lowercase: "يحتوي على حرف صغير",
+      number: "يحتوي على رقم",
+      special: "يحتوي على حرف خاص",
+      match: "كلمات المرور متطابقة",
+    },
+  };
+
+  const PasswordRule = ({ satisfied, text }) => (
+    <div className="flex items-center gap-2">
+      {satisfied ? (
+        <Check className="h-4 w-4 text-[#059669]" />
+      ) : (
+        <X className="h-4 w-4 text-gray-400" />
+      )}
+      <span
+        className={cn(
+          "text-sm transition-colors",
+          satisfied ? "text-[#059669]" : "text-gray-400",
+        )}
+      >
+        {text}
+      </span>
+    </div>
+  );
 
   const register = async () => {
+    if (!Object.values(passwordRules).every((rule) => rule)) {
+      toast({
+        title: tProfile("toast.failedTitle"),
+        description:
+          locale === "ar"
+            ? "يرجى التأكد من استيفاء جميع متطلبات كلمة المرور"
+            : "Please ensure all password requirements are met",
+        variant: "destructive",
+        duration: 3000,
+      });
+      return;
+    }
+
     if (
       !emailRef.current.value.trim() ||
-      !passwordRef.current.value ||
+      !password ||
       !nameRef.current.value.trim() ||
       !phoneRef.current.value.trim() ||
       !addressRef.current.value.trim()
@@ -37,6 +102,7 @@ const page = () => {
       });
       return;
     }
+
     try {
       setLoading(true);
       const response = await fetch(
@@ -48,7 +114,7 @@ const page = () => {
           },
           body: JSON.stringify({
             email: escapeOutput(emailRef.current.value.trim()),
-            password: passwordRef.current.value,
+            password: escapeOutput(password),
             full_name: escapeOutput(nameRef.current.value.trim()),
             phone: escapeOutput(phoneRef.current.value.trim()),
             address: escapeOutput(addressRef.current.value.trim()),
@@ -76,9 +142,7 @@ const page = () => {
         duration: 2500,
       });
       ChangeUrl("/sign-in");
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       toast({
         title: tSignUp("toasts.registerError.title"),
         description: tSignUp("toasts.registerError.description"),
@@ -108,6 +172,7 @@ const page = () => {
               {tSignUp("title")}
             </span>
 
+            {/* Previous input fields remain the same until password fields */}
             <div className="flex w-full max-w-[400px] flex-col gap-1">
               <label
                 dir={dir(tCommon("language.lng"))}
@@ -192,30 +257,112 @@ const page = () => {
               <input
                 dir={dir(tCommon("language.lng"))}
                 type="password"
-                ref={passwordRef}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder={tSignUp("passwordPlaceholder")}
                 id="password"
                 className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
               />
             </div>
 
-            <button
-              type="button"
-              onClick={register}
-              disabled={loading}
-              className={cn(
-                "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
-                loading && "hover:cursor-not-allowed",
-              )}
+            <div className="flex w-full max-w-[400px] flex-col gap-1">
+              <label
+                dir={dir(tCommon("language.lng"))}
+                htmlFor="confirmPassword"
+                className="font-lato text-sm font-bold"
+              >
+                {tSignUp("confirmPassword")}
+              </label>
+              <input
+                dir={dir(tCommon("language.lng"))}
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder={tSignUp("confirmPasswordPlaceholder")}
+                id="confirmPassword"
+                className="rounded-full bg-[var(--secondary)] p-3 outline-[var(--theme2)]"
+              />
+            </div>
+
+            <div
+              className="w-full max-w-[400px] rounded-lg border border-gray-200 p-4"
+              dir={dir(locale)}
             >
-              {loading ? (
-                <div className="flex items-center justify-center">
-                  <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
-                </div>
-              ) : (
-                tSignUp("title")
-              )}
-            </button>
+              <PasswordRule
+                satisfied={passwordRules.minLength}
+                text={ruleTexts[locale].minLength}
+              />
+              <PasswordRule
+                satisfied={passwordRules.hasUppercase}
+                text={ruleTexts[locale].uppercase}
+              />
+              <PasswordRule
+                satisfied={passwordRules.hasLowercase}
+                text={ruleTexts[locale].lowercase}
+              />
+              <PasswordRule
+                satisfied={passwordRules.hasNumber}
+                text={ruleTexts[locale].number}
+              />
+              <PasswordRule
+                satisfied={passwordRules.hasSpecialChar}
+                text={ruleTexts[locale].special}
+              />
+              <PasswordRule
+                satisfied={passwordRules.matches}
+                text={ruleTexts[locale].match}
+              />
+            </div>
+
+            <div>
+              <button
+                type="button"
+                onClick={register}
+                disabled={loading}
+                className={cn(
+                  "w-full max-w-[400px] rounded-full border-2 border-[#ffffff] border-[var(--theme2)] bg-[var(--theme2)] py-3 font-lato text-[#ffffff] outline-none transition-colors duration-200 hover:bg-[var(--hover-theme2)] hover:text-[var(--theme2)]",
+                  loading && "hover:cursor-not-allowed",
+                )}
+              >
+                {loading ? (
+                  <div className="flex items-center justify-center">
+                    <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-white"></div>
+                  </div>
+                ) : (
+                  tSignUp("title")
+                )}
+              </button>
+              <p
+                className="mt-2 w-full max-w-[400px] text-center text-sm text-gray-600"
+                dir={dir(locale)}
+              >
+                {locale === "ar" ? (
+                  <>
+                    بالنقر على زر التسجيل، فإنك توافق على{" "}
+                    <font
+                      onClick={() => {
+                        ChangeUrl("/terms-and-conditions#privacy");
+                      }}
+                      className="font-bold text-[var(--theme)] transition-colors duration-200 hover:cursor-pointer"
+                    >
+                      سياسة الخصوصية والشروط.
+                    </font>
+                  </>
+                ) : (
+                  <>
+                    By clicking the Sign Up button, you agree to our{" "}
+                    <font
+                      onClick={() => {
+                        ChangeUrl("/terms-and-conditions#privacy");
+                      }}
+                      className="font-bold text-[var(--theme)] transition-colors duration-200 hover:cursor-pointer"
+                    >
+                      privacy policy & terms.
+                    </font>
+                  </>
+                )}
+              </p>
+            </div>
           </div>
         </div>
         <AccountDecoration

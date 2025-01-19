@@ -52,7 +52,7 @@ const page = () => {
           },
           body: JSON.stringify({
             email: escapeOutput(emailInput.current.value.trim()),
-            password: passwordInput.current.value,
+            password: escapeOutput(passwordInput.current.value),
             rememberMe: check,
           }),
         },
