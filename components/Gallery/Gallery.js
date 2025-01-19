@@ -22,8 +22,8 @@ const Gallery = ({ gallery, fetchGalleries = null }) => {
 
   const handleDelete = async () => {
     toast({
-      title: "Delete Special Offer",
-      description: "Deleting special offer...",
+      title: "Delete Photo",
+      description: "Deleting photo...",
     });
     try {
       setLoadingGallery(true);
@@ -43,7 +43,7 @@ const Gallery = ({ gallery, fetchGalleries = null }) => {
       }
       toast({
         title: "Success",
-        description: "Special offer deleted successfully!",
+        description: "Photo deleted successfully!",
         variant: "success",
         duration: 3000,
       });
@@ -53,7 +53,7 @@ const Gallery = ({ gallery, fetchGalleries = null }) => {
       console.error(error);
       toast({
         title: "Error",
-        description: "Error deleting special offer. Please try again later.",
+        description: "Error deleting photo. Please try again later.",
         variant: "destructive",
       });
       setLoadingGallery(false);

@@ -32,8 +32,8 @@ const page = () => {
     if (!imageInput.current.src.trim()) {
       toast({
         variant: "destructive",
-        title: "خطأ",
-        description: "الرجاء إختيار صورة ",
+        title: "Failed!",
+        description: "Please Pick a Photo first!",
         duration: 2000,
       });
       return;
@@ -61,8 +61,8 @@ const page = () => {
 
       toast({
         variant: "success",
-        title: "تم",
-        description: "تم إنشاء العرض بنجاح",
+        title: "Done!",
+        description: "Photo uploaded successfully",
         duration: 2000,
       });
       fetchGalleries();
@@ -72,8 +72,8 @@ const page = () => {
       console.error(error);
       toast({
         variant: "destructive",
-        title: "خطأ",
-        description: "حدث خطأ أثناء إنشاء العرض",
+        title: "Failed!",
+        description: "Something wrong happened, please try again later!",
         duration: 2000,
       });
       setLoadingGallery(false);
@@ -105,8 +105,8 @@ const page = () => {
     } catch (error) {
       console.error(error);
       toast({
-        title: "خطأ",
-        description: "حدث خطأ ما، يرجى المحاولة مرة أخرى!",
+        title: "Failed!",
+        description: "Something wrong happened, please try again later!",
         variant: "destructive",
       });
 

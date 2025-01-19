@@ -201,7 +201,7 @@ const Nav = () => {
                 }}
                 className={cn(
                   "hover:cursor-pointer",
-                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-200 hover:scale-105 hover:cursor-pointer hover:bg-zinc-100",
+                  "flex flex-row items-center gap-2 rounded-lg p-2 text-lg transition-all duration-300 hover:scale-105 hover:cursor-pointer ",
                   loadingUser && "hover:cursor-not-allowed",
                 )}
               >
