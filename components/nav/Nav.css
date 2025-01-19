@@ -148,10 +148,13 @@ nav .right .cart .total-number {
   top: -10px;
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1180px) {
   nav .menu {
     display: none;
   }
+}
+
+@media screen and (max-width: 950px) {
   nav .right {
     gap: 5px;
   }
