@@ -120,7 +120,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="py-12" dir={isRTL ? "rtl" : "ltr"}>
+    <div className="py-12" dir={isRTL ? "rtl" : "ltr"}>
       <div className="mx-auto max-w-screen-xl">
         <div className="mb-16">
           <span className="mb-2 block text-center text-sm font-medium text-gray-500">
@@ -214,7 +214,7 @@ const Testimonials = () => {
           ))}
         </Swiper>
       </div>
-    </section>
+    </div>
   );
 };
 

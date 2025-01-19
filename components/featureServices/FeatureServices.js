@@ -68,7 +68,7 @@ const FeaturedServices = () => {
         >
           <div
             className={cn(
-              "flex-col items-center gap-y-0 space-y-6 p-3 md:flex-row md:space-x-6 md:space-y-0",
+              "flex-col items-center gap-y-0 space-y-6 p-3 gap-x-3 md:flex-row md:space-x-6 md:space-y-0",
               selectedService === index ? "flex" : "hidden",
             )}
           >
@@ -79,7 +79,7 @@ const FeaturedServices = () => {
               <h3 className="text-3xl font-semibold text-[var(--theme2)]"></h3>
               <p className="mt-4 text-neutral-600">{item.desc}</p>
             </div>
-            <div className="animate-fadeinright text-center opacity-0 md:w-1/2">
+            <div className="ml-0 animate-fadeinright text-center opacity-0 md:w-1/2">
               <Image
                 width={500}
                 height={500}

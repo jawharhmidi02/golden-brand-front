@@ -35,6 +35,7 @@ export default function ClientLayout({ children }) {
       if (!Cookies.get("access_token")) {
         throw new Error();
       }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/users/account`,
         {
@@ -46,9 +47,11 @@ export default function ClientLayout({ children }) {
         },
       );
       const data = await response.json();
+
       if (data.data === null) {
         throw new Error(data.message);
       }
+
       setUserData(data.data);
       setIsUserSigned(true);
       setLoadingUser(false);
@@ -56,6 +59,7 @@ export default function ClientLayout({ children }) {
       localStorage.setItem("cart", JSON.stringify(data.data.cart || {}));
       setItems(data.data.cart || {});
     } catch (error) {
+      setItems(JSON.parse(localStorage.getItem("cart") || ""));
       setIsUserSigned(false);
       setLoadingUser(false);
     }

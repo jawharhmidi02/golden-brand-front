@@ -120,7 +120,7 @@ const page = () => {
 
       {/* Masonry Gallery */}
 
-      <section className="mx-0 mt-0 pb-4 pt-8">
+      <div className="mx-0 mt-0 pb-4 pt-8">
         <div className="flex w-full items-center justify-center">
           <div className="w-full max-w-[1400px] px-4 md:px-8">
             {loadingGallery ? (
@@ -163,7 +163,7 @@ const page = () => {
             )}
           </div>
         </div>
-      </section>
+      </div>
 
       <Testimonials />
     </div>

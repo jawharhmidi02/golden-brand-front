@@ -19,7 +19,7 @@ const page = () => {
   const tCommon = useTranslations("common");
   const tCheckout = useTranslations("checkout");
   const tCart = useTranslations("cart");
-  const { items, ChangeUrl, userData, updateCart, checkUser } =
+  const { items, ChangeUrl, userData, updateCart, checkUser, isUserSigned } =
     useContext(UserAuthContext);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
@@ -175,9 +175,11 @@ const page = () => {
                 placeholder={tCheckout("FirstName")}
                 type="text"
                 ref={firstNameRef}
-                defaultValue={unescapeOutput(
-                  userData?.full_name?.split(" ")[0],
-                )}
+                defaultValue={
+                  isUserSigned
+                    ? unescapeOutput(userData?.full_name?.split(" ")[0] || "")
+                    : ""
+                }
                 id="first-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -191,11 +193,15 @@ const page = () => {
                 placeholder={tCheckout("LastName")}
                 type="text"
                 ref={lastNameRef}
-                defaultValue={unescapeOutput(
-                  userData?.full_name?.split(" ").length > 1
-                    ? userData?.full_name?.split(" ")[1]
-                    : "",
-                )}
+                defaultValue={
+                  isUserSigned
+                    ? unescapeOutput(
+                        userData?.full_name?.split(" ").length > 1
+                          ? userData?.full_name?.split(" ")[1]
+                          : "",
+                      )
+                    : ""
+                }
                 id="last-name"
                 className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
                 required
@@ -245,7 +251,9 @@ const page = () => {
               type="text"
               ref={addressRef}
               id="address"
-              defaultValue={unescapeOutput(userData?.address)}
+              defaultValue={
+                isUserSigned ? unescapeOutput(userData?.address || "") : ""
+              }
               placeholder={tCheckout("StreetDistrictAddress")}
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -261,7 +269,9 @@ const page = () => {
               ref={phoneRef}
               onInput={() => validateNumberInput(phoneRef)}
               id="phone"
-              defaultValue={unescapeOutput(userData?.phone)}
+              defaultValue={
+                isUserSigned ? unescapeOutput(userData?.phone || "") : ""
+              }
               placeholder="+974 123 456 78"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
@@ -276,7 +286,9 @@ const page = () => {
               type="email"
               ref={emailRef}
               id="email"
-              defaultValue={unescapeOutput(userData?.email)}
+              defaultValue={
+                isUserSigned ? unescapeOutput(userData?.email || "") : ""
+              }
               placeholder="Example@domain.com"
               className="rounded-sm border border-neutral-300 bg-transparent px-4 py-2 outline-[var(--theme2)]"
               required
