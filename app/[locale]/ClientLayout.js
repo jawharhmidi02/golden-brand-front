@@ -103,7 +103,7 @@ export default function ClientLayout({ children }) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            cart: JSON.parse(localStorage.getItem("cart")) || {},
+            cart: JSON.parse(localStorage.getItem("cart") || "{}"),
           }),
         });
       } catch (error) {
