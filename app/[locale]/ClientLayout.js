@@ -59,7 +59,7 @@ export default function ClientLayout({ children }) {
       localStorage.setItem("cart", JSON.stringify(data.data.cart || {}));
       setItems(data.data.cart || {});
     } catch (error) {
-      setItems(JSON.parse(localStorage.getItem("cart") || ""));
+      setItems(JSON.parse(localStorage.getItem("cart") || "{}"));
       setIsUserSigned(false);
       setLoadingUser(false);
     }
