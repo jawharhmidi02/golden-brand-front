@@ -7,7 +7,14 @@ import { cn, validatePriceInputWithEvent } from "@/lib/utils";
 import { AdminAuthContext } from "@/contexts/AuthContext";
 import { toast } from "@/hooks/use-toast";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import DashCategoryInterface from "@/components/DashCategoryInterface/DashCategoryInterface";
+import DashSimilarProducts from "@/components/DashSimilarProducts/DashSimilarProducts";
 
 const page = () => {
   const { ChangeUrl } = useContext(AdminAuthContext);
@@ -23,6 +30,7 @@ const page = () => {
     price: "",
     additionalFeatures: {},
   });
+  const [similarProducts, setSimilarProducts] = useState([]);
   const [image, setImage] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -213,8 +221,9 @@ const page = () => {
         img: image,
         description: descriptions,
         category: { id: selectedCategory },
-        additionalFeatures: additionalFeatures,
-        productsVariants: productsVariants,
+        additionalFeatures,
+        productsVariants,
+        similarProducts,
       };
 
       const response = await fetch(
@@ -426,6 +435,76 @@ const page = () => {
 
   const handleDeleteVariant = (indx) => {
     setProductsVariants((prev) => prev.filter((_, index) => index !== indx));
+  };
+
+  const addProduct = async (similarProduct) => {
+    if (!similarProduct) {
+      toast({
+        title: "Error",
+        description: "Something went wrong!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setLoadingProduct(true);
+
+      setSimilarProducts((prev) => [...prev, similarProduct]);
+      toast({
+        title: "Done!",
+        description: "Product Added successfully to the similar Products!",
+        variant: "success",
+        duration: 3000,
+      });
+
+      setLoadingProduct(false);
+    } catch (error) {
+      console.error(error);
+      setLoadingProduct(false);
+
+      toast({
+        title: "Failed adding similar product",
+        description: "Something went wrong, please try again!",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const removeSimilarProduct = async (similarProduct) => {
+    if (!similarProduct) {
+      toast({
+        title: "Error",
+        description: "Something went wrong!",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setLoadingProduct(true);
+
+      setSimilarProducts((prev) =>
+        prev.filter((item) => item.id !== similarProduct.id),
+      );
+      toast({
+        title: "Done!",
+        description: "Product Removed successfully to the similar Products!",
+        variant: "success",
+        duration: 3000,
+      });
+
+      setLoadingProduct(false);
+    } catch (error) {
+      console.error(error);
+      setLoadingProduct(false);
+
+      toast({
+        title: "Failed Removing similar product",
+        description: "Something went wrong, please try again!",
+        variant: "destructive",
+      });
+    }
   };
 
   useEffect(() => {
@@ -653,233 +732,261 @@ const page = () => {
           </div>
         )}
       </div>
-      <div className="text-4xl font-bold text-[var(--dash-theme5)]">
-        Add Product Variant
-      </div>
-      <div className="flex w-full max-w-[800px] flex-col gap-4 rounded-lg bg-[var(--dash-theme2)] px-4 py-8 sm:p-10">
-        <div className="flex flex-col gap-2">
-          <div className="text-lg font-medium text-[var(--dash-theme5)]">
-            Product Variant Code <font className="text-red-500">*</font>
-          </div>
-          <input
-            disabled={loadingProduct}
-            value={addProductVariantData.code}
-            onChange={(e) =>
-              setAddProductVariantData((prev) => ({
-                ...prev,
-                code: e.target.value,
-              }))
-            }
-            type="text"
-            placeholder="Product code"
-            className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <div className="text-lg font-medium text-[var(--dash-theme5)]">
-            Product Variant Dimension <font className="text-red-500">*</font>
-          </div>
-          <input
-            disabled={loadingProduct}
-            value={addProductVariantData.dimension}
-            onChange={(e) =>
-              setAddProductVariantData((prev) => ({
-                ...prev,
-                dimension: e.target.value,
-              }))
-            }
-            type="text"
-            placeholder="Product dimension"
-            className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-          />
-        </div>
-        <div className="flex flex-col gap-2">
-          <div className="text-lg font-medium text-[var(--dash-theme5)]">
-            Product Variant Price <font className="text-red-500">*</font>
-          </div>
-          <input
-            disabled={loadingProduct}
-            value={addProductVariantData.price}
-            onChange={(e) => {
-              validatePriceInputWithEvent(e);
-              setAddProductVariantData((prev) => ({
-                ...prev,
-                price: e.target.value,
-              }));
-            }}
-            type="text"
-            placeholder="Product price"
-            className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-          />
-        </div>
-        {additionalFeatures.map((additionalFeature, index) => (
-          <div className="flex flex-col gap-2" key={index}>
-            <div className="text-lg font-medium text-[var(--dash-theme5)]">
-              {additionalFeature}
-              <font className="text-red-500">*</font>
+      <Accordion type="multiple" collapsible={"false"} className="w-full">
+        <AccordionItem value="ProductVariants">
+          <AccordionTrigger className="text-white">
+            Product Variants
+          </AccordionTrigger>
+          <AccordionContent className="mx-auto flex max-w-[800px] flex-col items-center gap-10 text-white">
+            <div className="text-4xl font-bold text-[var(--dash-theme5)]">
+              Add Product Variant
             </div>
-            <input
-              disabled={loadingProduct}
-              value={
-                addProductVariantData.additionalFeatures[additionalFeature] ||
-                ""
-              }
-              onChange={(e) =>
-                setAddProductVariantData((prev) => ({
-                  ...prev,
-                  additionalFeatures: {
-                    ...prev["additionalFeatures"],
-                    [additionalFeature]: e.target.value,
-                  },
-                }))
-              }
-              type="text"
-              placeholder={`Product ${additionalFeature}`}
-              className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-            />
-          </div>
-        ))}
-        <button
-          disabled={loadingProduct}
-          onClick={() => {
-            handleAddVariant();
-          }}
-          type="button"
-          className={cn(
-            "mt-1 w-[200px] border-2 border-[var(--dash-theme5)] bg-[var(--dash-theme5)] px-1.5 py-2.5 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent hover:text-[var(--dash-theme5)]",
-            loadingProduct && "hover:cursor-not-allowed",
-          )}
-        >
-          Add Product Variant
-        </button>
-      </div>
-      {productsVariants.length !== 0 && (
-        <div className="text-4xl font-bold text-[var(--dash-theme5)]">
-          Product Variants
-        </div>
-      )}
-      {productsVariants.map((productVariant, index) => (
-        <div
-          className="flex w-full max-w-[800px] flex-col gap-4 rounded-lg bg-[var(--dash-theme2)] px-4 py-8 sm:p-10"
-          key={productVariant.id || index}
-        >
-          <div className="flex flex-col gap-2">
-            <div className="text-lg font-medium text-[var(--dash-theme5)]">
-              Product Variant Code <font className="text-red-500">*</font>
-            </div>
-            <input
-              disabled={loadingProduct || !productVariant.isEditing}
-              onChange={(e) => {
-                setProductsVariants((prev) =>
-                  prev.map((variant, indx) =>
-                    indx === index
-                      ? { ...variant, code: e.target.value }
-                      : variant,
-                  ),
-                );
-              }}
-              value={productVariant.code}
-              type="text"
-              placeholder="Product Code"
-              className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-lg font-medium text-[var(--dash-theme5)]">
-              Product Variant Dimension <font className="text-red-500">*</font>
-            </div>
-            <input
-              disabled={loadingProduct || !productVariant.isEditing}
-              onChange={(e) => {
-                setProductsVariants((prev) =>
-                  prev.map((variant, indx) =>
-                    indx === index
-                      ? { ...variant, dimension: e.target.value }
-                      : variant,
-                  ),
-                );
-              }}
-              value={productVariant.dimension}
-              type="text"
-              placeholder="Product Dimension"
-              className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <div className="text-lg font-medium text-[var(--dash-theme5)]">
-              Product Variant Price <font className="text-red-500">*</font>
-            </div>
-            <input
-              disabled={loadingProduct || !productVariant.isEditing}
-              onChange={(e) => {
-                validatePriceInputWithEvent(e);
-                setProductsVariants((prev) =>
-                  prev.map((variant, indx) =>
-                    indx === index
-                      ? { ...variant, price: e.target.value }
-                      : variant,
-                  ),
-                );
-              }}
-              value={productVariant.price}
-              type="text"
-              placeholder="Product Price"
-              className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-            />
-          </div>
-          {additionalFeatures.map((additionalFeature, ind) => (
-            <div className="flex flex-col gap-2" key={ind}>
-              <div className="text-lg font-medium text-[var(--dash-theme5)]">
-                {additionalFeature}
-                <font className="text-red-500">*</font>
+            <div className="flex w-full max-w-[800px] flex-col gap-4 rounded-lg bg-[var(--dash-theme2)] px-4 py-8 sm:p-10">
+              <div className="flex flex-col gap-2">
+                <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                  Product Variant Code <font className="text-red-500">*</font>
+                </div>
+                <input
+                  disabled={loadingProduct}
+                  value={addProductVariantData.code}
+                  onChange={(e) =>
+                    setAddProductVariantData((prev) => ({
+                      ...prev,
+                      code: e.target.value,
+                    }))
+                  }
+                  type="text"
+                  placeholder="Product code"
+                  className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                />
               </div>
-              <input
-                disabled={loadingProduct || !productVariant.isEditing}
-                onChange={(e) => {
-                  setProductsVariants((prev) =>
-                    prev.map((variant, indx) =>
-                      indx === index
-                        ? {
-                            ...variant,
-                            additionalFeatures: {
-                              ...variant["additionalFeatures"],
-                              [additionalFeature]: e.target.value,
-                            },
-                          }
-                        : variant,
-                    ),
-                  );
+              <div className="flex flex-col gap-2">
+                <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                  Product Variant Dimension{" "}
+                  <font className="text-red-500">*</font>
+                </div>
+                <input
+                  disabled={loadingProduct}
+                  value={addProductVariantData.dimension}
+                  onChange={(e) =>
+                    setAddProductVariantData((prev) => ({
+                      ...prev,
+                      dimension: e.target.value,
+                    }))
+                  }
+                  type="text"
+                  placeholder="Product dimension"
+                  className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                  Product Variant Price <font className="text-red-500">*</font>
+                </div>
+                <input
+                  disabled={loadingProduct}
+                  value={addProductVariantData.price}
+                  onChange={(e) => {
+                    validatePriceInputWithEvent(e);
+                    setAddProductVariantData((prev) => ({
+                      ...prev,
+                      price: e.target.value,
+                    }));
+                  }}
+                  type="text"
+                  placeholder="Product price"
+                  className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                />
+              </div>
+              {additionalFeatures.map((additionalFeature, index) => (
+                <div className="flex flex-col gap-2" key={index}>
+                  <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                    {additionalFeature}
+                    <font className="text-red-500">*</font>
+                  </div>
+                  <input
+                    disabled={loadingProduct}
+                    value={
+                      addProductVariantData.additionalFeatures[
+                        additionalFeature
+                      ] || ""
+                    }
+                    onChange={(e) =>
+                      setAddProductVariantData((prev) => ({
+                        ...prev,
+                        additionalFeatures: {
+                          ...prev["additionalFeatures"],
+                          [additionalFeature]: e.target.value,
+                        },
+                      }))
+                    }
+                    type="text"
+                    placeholder={`Product ${additionalFeature}`}
+                    className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                  />
+                </div>
+              ))}
+              <button
+                disabled={loadingProduct}
+                onClick={() => {
+                  handleAddVariant();
                 }}
-                value={productVariant.additionalFeatures[additionalFeature]}
-                type="text"
-                placeholder={`Product ${additionalFeature}`}
-                className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
-              />
+                type="button"
+                className={cn(
+                  "mt-1 w-[200px] border-2 border-[var(--dash-theme5)] bg-[var(--dash-theme5)] px-1.5 py-2.5 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent hover:text-[var(--dash-theme5)]",
+                  loadingProduct && "hover:cursor-not-allowed",
+                )}
+              >
+                Add Product Variant
+              </button>
             </div>
-          ))}
-          <div className="mb-5 flex w-full max-w-[800px] flex-row gap-2">
-            <button
-              onClick={() => handleEditVariant(index)}
-              type="button"
-              className={cn(
-                "w-[120px] self-start border-2 py-3 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent",
-                productVariant.isEditing
-                  ? "border-emerald-500 bg-emerald-500 hover:text-emerald-500"
-                  : "border-blue-500 bg-blue-500 hover:text-blue-500",
-              )}
-            >
-              {productVariant.isEditing ? "Save" : "Edit"}
-            </button>
-            <button
-              onClick={() => handleDeleteVariant(index)}
-              type="button"
-              className="w-[120px] bg-red-900 py-3 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-red-500"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      ))}
+            {productsVariants.length !== 0 && (
+              <div className="text-4xl font-bold text-[var(--dash-theme5)]">
+                Product Variants
+              </div>
+            )}
+            {productsVariants.map((productVariant, index) => (
+              <div
+                className="flex w-full max-w-[800px] flex-col gap-4 rounded-lg bg-[var(--dash-theme2)] px-4 py-8 sm:p-10"
+                key={productVariant.id || index}
+              >
+                <div className="flex flex-col gap-2">
+                  <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                    Product Variant Code <font className="text-red-500">*</font>
+                  </div>
+                  <input
+                    disabled={loadingProduct || !productVariant.isEditing}
+                    onChange={(e) => {
+                      setProductsVariants((prev) =>
+                        prev.map((variant, indx) =>
+                          indx === index
+                            ? { ...variant, code: e.target.value }
+                            : variant,
+                        ),
+                      );
+                    }}
+                    value={productVariant.code}
+                    type="text"
+                    placeholder="Product Code"
+                    className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                    Product Variant Dimension{" "}
+                    <font className="text-red-500">*</font>
+                  </div>
+                  <input
+                    disabled={loadingProduct || !productVariant.isEditing}
+                    onChange={(e) => {
+                      setProductsVariants((prev) =>
+                        prev.map((variant, indx) =>
+                          indx === index
+                            ? { ...variant, dimension: e.target.value }
+                            : variant,
+                        ),
+                      );
+                    }}
+                    value={productVariant.dimension}
+                    type="text"
+                    placeholder="Product Dimension"
+                    className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                    Product Variant Price{" "}
+                    <font className="text-red-500">*</font>
+                  </div>
+                  <input
+                    disabled={loadingProduct || !productVariant.isEditing}
+                    onChange={(e) => {
+                      validatePriceInputWithEvent(e);
+                      setProductsVariants((prev) =>
+                        prev.map((variant, indx) =>
+                          indx === index
+                            ? { ...variant, price: e.target.value }
+                            : variant,
+                        ),
+                      );
+                    }}
+                    value={productVariant.price}
+                    type="text"
+                    placeholder="Product Price"
+                    className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                  />
+                </div>
+                {additionalFeatures.map((additionalFeature, ind) => (
+                  <div className="flex flex-col gap-2" key={ind}>
+                    <div className="text-lg font-medium text-[var(--dash-theme5)]">
+                      {additionalFeature}
+                      <font className="text-red-500">*</font>
+                    </div>
+                    <input
+                      disabled={loadingProduct || !productVariant.isEditing}
+                      onChange={(e) => {
+                        setProductsVariants((prev) =>
+                          prev.map((variant, indx) =>
+                            indx === index
+                              ? {
+                                  ...variant,
+                                  additionalFeatures: {
+                                    ...variant["additionalFeatures"],
+                                    [additionalFeature]: e.target.value,
+                                  },
+                                }
+                              : variant,
+                          ),
+                        );
+                      }}
+                      value={
+                        productVariant.additionalFeatures[additionalFeature]
+                      }
+                      type="text"
+                      placeholder={`Product ${additionalFeature}`}
+                      className="bg-[var(--dash-theme)] p-3 text-lg font-semibold text-white outline-none focus:outline-[var(--dash-theme5)]"
+                    />
+                  </div>
+                ))}
+                <div className="mb-5 flex w-full max-w-[800px] flex-row gap-2">
+                  <button
+                    onClick={() => handleEditVariant(index)}
+                    type="button"
+                    className={cn(
+                      "w-[120px] self-start border-2 py-3 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-transparent",
+                      productVariant.isEditing
+                        ? "border-emerald-500 bg-emerald-500 hover:text-emerald-500"
+                        : "border-blue-500 bg-blue-500 hover:text-blue-500",
+                    )}
+                  >
+                    {productVariant.isEditing ? "Save" : "Edit"}
+                  </button>
+                  <button
+                    onClick={() => handleDeleteVariant(index)}
+                    type="button"
+                    className="w-[120px] bg-red-900 py-3 text-lg font-semibold text-[#ffffff] transition-all duration-200 hover:bg-red-500"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="SimilarProducts">
+          <AccordionTrigger className="text-white">
+            Similar Products
+          </AccordionTrigger>
+          <AccordionContent className="text-white">
+            <DashSimilarProducts
+              similarProducts={similarProducts}
+              setSimilarProducts={setSimilarProducts}
+              addProduct={addProduct}
+              removeSimilarProduct={removeSimilarProduct}
+            />
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
 
       <div className="flex w-full max-w-[800px] flex-row gap-2 pr-4 sm:pr-10">
         <button

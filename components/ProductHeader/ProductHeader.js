@@ -27,7 +27,7 @@ const ProductHeader = ({ cat, product }) => {
       <div
         onClick={() =>
           ChangeUrl(
-            `/en/products?selectedCategories=${encodeURIComponent(
+            `/products?selectedCategories=${encodeURIComponent(
               JSON.stringify(cat),
             )}`,
           )

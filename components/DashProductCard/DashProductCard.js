@@ -24,7 +24,7 @@ const DashProductCard = ({
   const handleAddProduct = async () => {
     setLoadingProduct(true);
     if (addProduct) {
-      await addProduct(product.id);
+      await addProduct(product);
       setLoadingProduct(false);
     }
   };

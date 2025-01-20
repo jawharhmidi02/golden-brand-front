@@ -10,7 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { UserAuthContext } from "@/contexts/AuthContext";
 import { Skeleton } from "../ui/skeleton";
@@ -173,7 +173,7 @@ const ProductsByCategory = () => {
                         var cats = {};
                         cats[product.category.name] = true;
                         ChangeUrl(
-                          `/en/products?selectedCategories=${encodeURIComponent(
+                          `/products?selectedCategories=${encodeURIComponent(
                             JSON.stringify(cats),
                           )}`,
                         );
@@ -192,7 +192,7 @@ const ProductsByCategory = () => {
                         tCommon("language.lng"),
                       )}
                       onClick={() => {
-                        ChangeUrl(`/en/products/${product.id}`);
+                        ChangeUrl(`/products/${product.id}`);
                       }}
                     />
                   </div>
