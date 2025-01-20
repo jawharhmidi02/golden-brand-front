@@ -42,9 +42,10 @@ const DashSimilarProducts = ({
   const [limit, setLimit] = useState(7);
   const [pages, setPages] = useState([]);
   const [loadingProduct, setLoadingProduct] = useState(false);
+  const [searchState, setSearchState] = useState(false);
   const maxVisiblePages = 3;
 
-  const fetchProducts = async (search = null) => {
+  const fetchProducts = async () => {
     try {
       setLoadingProducts(true);
 
@@ -58,7 +59,7 @@ const DashSimilarProducts = ({
       }
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/product?${search ? `name=${search.trim()}&` : ``}${ignoredProducts ? `ignoredProducts=${ignoredProducts}&` : ``}page=${CurrentPage}&limit=${limit}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/product?${searchState ? `name=${searchState.trim()}&` : ``}${ignoredProducts ? `ignoredProducts=${ignoredProducts}&` : ``}page=${CurrentPage}&limit=${limit}`,
         {
           method: "GET",
           headers: {
@@ -128,7 +129,7 @@ const DashSimilarProducts = ({
   useEffect(() => {
     fetchProducts();
     createPageNumbers();
-  }, [CurrentPage, similarProducts]);
+  }, [CurrentPage, similarProducts, searchState]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -217,8 +218,9 @@ const DashSimilarProducts = ({
       <div className="flex w-full flex-col gap-10 pb-10 pt-5 md:pt-8 lg:pt-10">
         <DashSearch
           placeholder="EXAMPLE: GARBAGE BIN, WORK TABLE WITH UNDERSHELF..."
-          search={fetchProducts}
+          setSearchQuery={setSearchState}
         />
+
         <div className="grid w-full auto-rows-fr gap-6 min-[500px]:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {loadingProducts
             ? Array.from({ length: limit }).map((_, index) => (
