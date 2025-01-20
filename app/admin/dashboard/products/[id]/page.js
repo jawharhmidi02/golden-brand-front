@@ -199,7 +199,6 @@ const page = () => {
         throw new Error(data.message);
       }
 
-      console.log(data.data);
       setProduct(data.data);
       setSelectedCategory(data.data.category.id);
       setDescriptions(data.data.description);
