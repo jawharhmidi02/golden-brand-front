@@ -427,9 +427,9 @@ const page = () => {
               <span className="block text-center text-sm font-medium text-gray-500">
                 Explore other Products
               </span>
-              <div className="flex w-full flex-row items-center justify-center gap-3">
+              <div className="flex w-full flex-row items-center justify-center gap-3 px-3">
                 <div className="h-[2px] w-8 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
-                <h2 className="text-center text-4xl font-bold text-gray-900">
+                <h2 className="text-center text-2xl font-bold text-gray-900 min-[432px]:text-3xl min-[490px]:text-4xl sm:text-4xl">
                   SIMILAR PRODUCTS
                 </h2>
                 <div className="h-[2px] w-8 bg-[var(--theme)] xxsm:w-12 xsm:w-14 md:w-16 lg:w-20 xl:w-24"></div>
