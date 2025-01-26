@@ -6,7 +6,7 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 import { cn, formattedDate } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-const SuccessPage = () => {
+const SuccessPageContent = () => {
   const tCommon = useTranslations("common");
   const tTransaction = useTranslations("transaction");
   const { ChangeUrl } = useContext(UserAuthContext);
@@ -74,7 +74,7 @@ const SuccessPage = () => {
   );
 };
 
-const Page = () => {
+export default function Page() {
   return (
     <Suspense
       fallback={
@@ -83,9 +83,9 @@ const Page = () => {
         </div>
       }
     >
-      <SuccessPage />
+      <SuccessPageContent />
     </Suspense>
   );
-};
+}
 
-export default Page;
+export const dynamic = "force-static";

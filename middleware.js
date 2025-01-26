@@ -7,16 +7,6 @@ export default createMiddleware({
   localePrefix: "always",
 });
 
-/*
-export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest|/images/|_next).*)",
-    "/",
-    "/(ar|en)/:path*",
-  ],
- }; 
-*/
-
 export const config = {
   matcher: ["/((?!api|_next|_vercel|.*\\..*).*)", "/(ar|en)/:path*"],
 };

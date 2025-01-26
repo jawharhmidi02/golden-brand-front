@@ -14,6 +14,7 @@ import { dir } from "i18next";
 
 import { Toaster } from "@/components/ui/toaster";
 import ClientLayout from "./ClientLayout";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata = {
   title: "GoldenBrand",
@@ -26,6 +27,7 @@ export function generateStaticParams() {
 }
 
 export default async function RootLayout({ children, params: { locale } }) {
+  setRequestLocale(locale);
   const locales = ["en", "ar"];
 
   if (!locales.includes(locale)) {
