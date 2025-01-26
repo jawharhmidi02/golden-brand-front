@@ -45,6 +45,13 @@ module.exports = {
   },
   changefreq: "daily",
   priority: 0.7,
+  generateSitemap: true,
+  sitemapBaseFileName: "sitemap",
+  transforms: {
+    addDefaultChangefreq: false,
+    addLastmod: true,
+  },
+  outDir: "./public",
   transform: async (config, path) => {
     const locales = ["en", "ar"];
 
