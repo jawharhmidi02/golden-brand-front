@@ -1,21 +1,21 @@
-.ProductsByCategory button.open-product {
+.ProductsByCategory .open-product {
   transition: all 0.5s;
   position: relative;
   overflow: hidden;
   height: 45px;
 }
 
-.ProductsByCategory button.open-product:hover {
+.ProductsByCategory .open-product:hover {
   background: var(--theme);
 }
 
-.ProductsByCategory button.open-product:hover::after,
-.ProductsByCategory button.open-product:hover::before {
+.ProductsByCategory .open-product:hover::after,
+.ProductsByCategory .open-product:hover::before {
   transform: translateY(-100%);
 }
 
-.ProductsByCategory button.open-product::after,
-.ProductsByCategory button.open-product::before {
+.ProductsByCategory .open-product::after,
+.ProductsByCategory .open-product::before {
   position: absolute;
   left: 0;
   display: flex;
@@ -26,25 +26,25 @@
   width: calc(100% - 3px);
 }
 
-.ProductsByCategory button.open-product.en::after {
+.ProductsByCategory .open-product.en::after {
   content: "Open Product";
 }
 
-.ProductsByCategory button.open-product.ar::after {
+.ProductsByCategory .open-product.ar::after {
   content: "إفتح المنتج";
 }
 
-.ProductsByCategory button.open-product::before {
+.ProductsByCategory .open-product::before {
   content: "\f35d";
   font-weight: 900;
   font-family: "Font Awesome 6 Free";
   font-size: 1.5rem;
 }
 
-.ProductsByCategory button.open-product::after {
+.ProductsByCategory .open-product::after {
   top: 0;
 }
 
-.ProductsByCategory button.open-product::before {
+.ProductsByCategory .open-product::before {
   top: 100%;
 }

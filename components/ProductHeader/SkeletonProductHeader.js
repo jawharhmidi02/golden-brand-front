@@ -4,15 +4,16 @@ import { Skeleton } from "../ui/skeleton";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 const SkeletonProductHeader = () => {
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   return (
     <div className="flex flex-row gap-2 text-center">
-      <div
+      <Link
         onClick={() => ChangeUrl("/")}
+        href="/"
         className="self-center font-lato text-lg font-semibold text-neutral-400 transition-all duration-300 hover:cursor-pointer hover:text-neutral-500"
       >
         Home
-      </div>
+      </Link>
       <i className="fa-solid fa-chevron-right self-center text-neutral-400"></i>
       <div className="self-center font-lato text-lg font-semibold text-neutral-400 transition-all duration-300 hover:cursor-pointer hover:text-neutral-500">
         <Skeleton className={"h-5 w-[100px] bg-neutral-300"} />

@@ -49,7 +49,7 @@ const Category = ({
       return;
     }
 
-    if (!categoryRef.current.value.trim()) {
+    if (!categoryRef.current?.value.trim()) {
       toast({
         variant: "destructive",
         title: "Failed!",
@@ -59,7 +59,7 @@ const Category = ({
       return;
     }
 
-    if (!imageRef.current.src.trim()) {
+    if (!imageRef.current?.src.trim()) {
       toast({
         variant: "destructive",
         title: "Failed!",
@@ -72,9 +72,9 @@ const Category = ({
     try {
       setLoadingCategory(true);
       const body = {};
-      body["name"] = categoryRef.current.value.trim();
-      if (category.img.trim() != imageRef.current.src.trim()) {
-        body["img"] = imageRef.current.src.trim();
+      body["name"] = categoryRef.current?.value.trim();
+      if (category.img.trim() != imageRef.current?.src.trim()) {
+        body["img"] = imageRef.current?.src.trim();
       }
 
       const response = await fetch(
@@ -99,7 +99,7 @@ const Category = ({
             variant: "destructive",
             duration: 2500,
           });
-          categoryRef.current.value = category.name;
+          categoryRef.current.value =category.name;
           setIsEditing(!isEditing);
 
           return;
@@ -165,7 +165,7 @@ const Category = ({
   };
 
   const confirmDeletePopUp = () => {
-    confirmDeleteRef.current.click();
+    confirmDeleteRef.current?.click();
   };
 
   return (
@@ -247,7 +247,7 @@ const Category = ({
                 />
                 <input
                   onChange={() => {
-                    const file = fileInput.current.files[0];
+                    const file = fileInput.current?.files[0];
                     const reader = new FileReader();
                     reader.onloadend = () => {
                       imageRef.current.src = reader.result;
@@ -263,7 +263,7 @@ const Category = ({
                 <img
                   onClick={() => {
                     if (isEditing && !loadingCategory) {
-                      fileInput.current.click();
+                      fileInput.current?.click();
                     }
                   }}
                   ref={imageRef}

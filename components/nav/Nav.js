@@ -33,6 +33,7 @@ const Nav = () => {
     loadingUser,
     userData,
     ChangeUrl,
+    Link,
     setLoadingPage,
     items,
   } = useContext(UserAuthContext);
@@ -86,13 +87,13 @@ const Nav = () => {
 
   useEffect(() => {
     if (closeButton.current) {
-      closeButton.current.click();
+      closeButton.current?.click();
     }
     if (closeCartButton.current) {
-      closeCartButton.current.click();
+      closeCartButton.current?.click();
     }
     if (closeCartButton.current) {
-      closeCartButton.current.click();
+      closeCartButton.current?.click();
     }
   });
 
@@ -159,24 +160,24 @@ const Nav = () => {
                     {sumValues(totalPrice)} {tCommon("currency")}
                   </span>
                 </div>
-                <button
-                  type="button"
-                  className="bg-zinc-200 py-3 text-sm font-bold text-neutral-700 transition-colors duration-200 hover:bg-zinc-300"
+                <Link
+                  href="/cart"
+                  className="flex items-center justify-center bg-zinc-200 py-3 text-sm font-bold text-neutral-700 transition-colors duration-200 hover:bg-zinc-300"
                   onClick={() => {
                     ChangeUrl("/cart");
                   }}
                 >
                   {tCart("viewCart")}
-                </button>
-                <button
-                  type="button"
-                  className="bg-[var(--theme2)] py-3 text-sm font-bold text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)]"
+                </Link>
+                <Link
+                  href="/checkout"
+                  className="flex items-center justify-center bg-[var(--theme2)] py-3 text-sm font-bold text-[#ffffff] transition-colors duration-200 hover:bg-[var(--theme)]"
                   onClick={() => {
                     ChangeUrl("/checkout");
                   }}
                 >
                   {tCart("checkout")}
-                </button>
+                </Link>
               </div>
             </div>
             <SheetClose className="hidden" ref={closeCartButton} />

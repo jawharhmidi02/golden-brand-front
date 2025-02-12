@@ -24,7 +24,7 @@ import {
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
 const page = () => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
   const params = useParams();
   const id = params.id;
   const searchParams = useSearchParams();
@@ -36,7 +36,7 @@ const page = () => {
   const deleteRef = useRef(null);
 
   const deletePopUp = () => {
-    deleteRef.current.click();
+    deleteRef.current?.click();
   };
 
   const handleEdit = async () => {
@@ -188,8 +188,9 @@ const page = () => {
       </div>
       <div className="flex w-full max-w-[800px] flex-col gap-4 rounded-lg bg-[var(--dash-theme2)]">
         <div className="flex items-center justify-center gap-6 border-b-[3px] border-[var(--dash-theme)]">
-          <div
+          <Link
             onClick={() => ChangeUrl(`/admin/dashboard/orders/${id}?menu=1`)}
+            href={`/admin/dashboard/orders/${id}?menu=1`}
             className={cn(
               "border-b-4 border-neutral-200 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 1 &&
@@ -199,9 +200,10 @@ const page = () => {
             <span className="text-xl font-semibold text-neutral-200">
               Client Detail
             </span>
-          </div>
-          <div
+          </Link>
+          <Link
             onClick={() => ChangeUrl(`/admin/dashboard/orders/${id}?menu=2`)}
+            href={`/admin/dashboard/orders/${id}?menu=2`}
             className={cn(
               "border-b-4 border-neutral-200 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 2 &&
@@ -211,7 +213,7 @@ const page = () => {
             <span className="text-xl font-semibold text-neutral-200">
               Products
             </span>
-          </div>
+          </Link>
         </div>
         {menu === 1 && (
           <div className="flex flex-col gap-3 px-4 py-6 sm:px-10">
@@ -425,12 +427,13 @@ const page = () => {
                 Products Details
               </div>
               {order.order_Products?.map((order_Product, index) => (
-                <div
+                <Link
                   onClick={() =>
                     ChangeUrl(
                       `/admin/dashboard/products/${order_Product.ProductsVariant.product.id}`,
                     )
                   }
+                  href={`/admin/dashboard/products/${order_Product.ProductsVariant?.product?.id}`}
                   key={index}
                   className="flex w-full items-start justify-between rounded-lg bg-cyan-100/70 p-4 shadow transition-all duration-200 hover:scale-105 hover:cursor-pointer hover:bg-cyan-100/80"
                 >
@@ -455,7 +458,7 @@ const page = () => {
                       className="h-full w-full rounded-lg object-cover"
                     />
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
             <div className="mb-5 flex w-full max-w-[800px] flex-row gap-2 px-4 pr-4 sm:px-10 sm:pr-10">

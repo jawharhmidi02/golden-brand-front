@@ -12,7 +12,7 @@ import { AdminAuthContext } from "@/contexts/AuthContext";
 import DashSignHeader from "@/components/DashSignHeader/DashSignHeader";
 
 const page = () => {
-  const { ChangeUrl, setLoadingPage } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link, setLoadingPage } = useContext(AdminAuthContext);
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
   const [check, setCheck] = useState(false);
@@ -20,8 +20,8 @@ const page = () => {
 
   const handleSignIn = async () => {
     if (
-      emailInput.current.value.trim() === "" ||
-      !validateEmail(emailInput.current.value.trim())
+      emailInput.current?.value.trim() === "" ||
+      !validateEmail(emailInput.current?.value.trim())
     ) {
       toast({
         description: "Verify the email!",
@@ -31,7 +31,7 @@ const page = () => {
       return;
     }
 
-    if (passwordInput.current.value === "") {
+    if (passwordInput.current?.value === "") {
       toast({
         description: "Verify the password!",
         variant: "destructive",
@@ -51,8 +51,8 @@ const page = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: escapeOutput(emailInput.current.value.trim()),
-            password: escapeOutput(passwordInput.current.value),
+            email: escapeOutput(emailInput.current?.value.trim()),
+            password: escapeOutput(passwordInput.current?.value),
             rememberMe: check,
           }),
         },
@@ -183,16 +183,17 @@ const page = () => {
             </label>
           </div>
 
-          <span
+          <Link
             className="mt-[2px] font-medium text-purple-200 transition-colors duration-200 hover:cursor-pointer hover:text-purple-400"
             onClick={() => {
               if (!loading) {
                 ChangeUrl("./reset-password");
               }
             }}
+            href="./reset-password"
           >
             Forgot Password?
-          </span>
+          </Link>
         </div>
       </div>
     </div>

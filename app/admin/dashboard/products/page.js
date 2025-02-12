@@ -21,7 +21,7 @@ import DashSearch from "@/components/DashSearch/DashSearch";
 import SkeletonDashProductCard from "@/components/DashProductCard/SkeletonDashProductCard";
 
 const page = () => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [products, setProducts] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
@@ -107,10 +107,11 @@ const page = () => {
       />
       <div className="grid w-full auto-rows-fr gap-6 min-[500px]:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {/* ADD PRODUCT */}
-        <div
+        <Link
           onClick={() => {
             ChangeUrl("/admin/dashboard/products/add");
           }}
+          href="/admin/dashboard/products/add"
           className="flex min-h-[300px] items-center justify-center rounded-xl bg-[var(--dash-theme2)] px-4 py-5 transition-all duration-200 hover:scale-[1.02] hover:cursor-pointer hover:bg-[#2b2b36]"
         >
           <div className="flex flex-col items-center justify-between gap-2">
@@ -121,7 +122,7 @@ const page = () => {
               Add New Product
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* PRODUCTS */}
         {loadingProducts

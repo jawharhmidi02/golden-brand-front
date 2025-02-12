@@ -16,7 +16,7 @@ const page = () => {
 
   const sendRecoverEmail = async () => {
     setLoading(true);
-    if (!emailRef.current.value.trim()) {
+    if (!emailRef.current?.value.trim()) {
       toast({
         title: tForgotPassword("toasts.emptyFields.title"),
         description: tForgotPassword("toasts.emptyFields.description"),
@@ -27,7 +27,7 @@ const page = () => {
     }
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/users/recoverpass/${escapeOutput(emailRef.current.value.trim())}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/recoverpass/${escapeOutput(emailRef.current?.value.trim())}`,
         {
           method: "POST",
           headers: {

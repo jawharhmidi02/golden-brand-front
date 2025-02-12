@@ -10,6 +10,7 @@ import { AdminAuthContext } from "@/contexts/AuthContext";
 //import NewOrder from "@/notifications/NewOrder/NewOrder";
 
 import DashNav from "@/components/DashNav/DashNav";
+import Link from "next/link";
 
 export default function AdminLayout({ children }) {
   const router = useRouter();
@@ -19,11 +20,17 @@ export default function AdminLayout({ children }) {
   const [loadingPage, setLoadingPage] = useState(true);
   const [adminData, setAdminData] = useState({});
   const [isPending, startTransition] = useTransition();
+  const [prevPath, setPrevPath] = useState(pathname);
 
-  const ChangeUrl = (url, options = {}) => {
-    startTransition(() => {
-      router.push(url, options);
-    });
+  // const ChangeUrl = (url, options = {}) => {
+  //   startTransition(() => {
+  //     router.push(url, options);
+  //   });
+  // };
+
+  const ChangeUrl = (url) => {
+    setLoadingPage(true);
+    router.push(url);
   };
 
   const checkAdmin = async () => {
@@ -97,6 +104,13 @@ export default function AdminLayout({ children }) {
   }, [isPending]);
 
   useEffect(() => {
+    if (prevPath !== pathname) {
+      setLoadingPage(false);
+      setPrevPath(pathname);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     checkAdmin();
   }, []);
 
@@ -139,6 +153,7 @@ export default function AdminLayout({ children }) {
         loadingPage,
         setLoadingPage,
         checkAdmin,
+        Link: Link,
       }}
     >
       {loadingPage && (

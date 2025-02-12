@@ -6,16 +6,17 @@ import { cn } from "@/lib/utils";
 
 const ProductHeader = ({ cat, product }) => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
     <div className="flex flex-row gap-2 text-center">
-      <div
+      <Link
         onClick={() => ChangeUrl("/")}
+        href="/"
         className="self-center font-lato text-lg font-semibold text-neutral-400 transition-all duration-300 hover:cursor-pointer hover:text-neutral-500"
       >
         {tCommon("navigation.home")}
-      </div>
+      </Link>
       <i
         className={cn(
           "fa-solid self-center text-neutral-400",
@@ -24,7 +25,7 @@ const ProductHeader = ({ cat, product }) => {
             : "fa-chevron-left",
         )}
       ></i>
-      <div
+      <Link
         onClick={() =>
           ChangeUrl(
             `/products?selectedCategories=${encodeURIComponent(
@@ -32,10 +33,13 @@ const ProductHeader = ({ cat, product }) => {
             )}`,
           )
         }
+        href={`/products?selectedCategories=${encodeURIComponent(
+          JSON.stringify(cat),
+        )}`}
         className="self-center font-lato text-lg font-semibold text-neutral-400 transition-all duration-300 hover:cursor-pointer hover:text-neutral-500"
       >
         {product.category.name}
-      </div>
+      </Link>
       <i
         className={cn(
           "fa-solid hidden self-center text-neutral-400 sm:block",

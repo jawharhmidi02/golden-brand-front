@@ -43,7 +43,7 @@ const page = () => {
   const handleCheckout = async () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "{}");
 
-    if (!firstNameRef.current.value.trim()) {
+    if (!firstNameRef.current?.value.trim()) {
       toast({
         title: tCommon("titles.error"),
         description: tCheckout("toast.description.Pleaseenteryourfirstname"),
@@ -51,7 +51,7 @@ const page = () => {
       });
       return;
     }
-    if (!lastNameRef.current.value.trim()) {
+    if (!lastNameRef.current?.value.trim()) {
       toast({
         title: tCommon("titles.error"),
         description: tCheckout("toast.description.Pleaseenteryourlastname"),
@@ -59,7 +59,7 @@ const page = () => {
       });
       return;
     }
-    if (!phoneRef.current.value.trim()) {
+    if (!phoneRef.current?.value.trim()) {
       toast({
         title: tCommon("titles.error"),
         description: tCheckout("toast.description.Pleaseenteryourphonenumber"),
@@ -68,8 +68,8 @@ const page = () => {
       return;
     }
     if (
-      !emailRef.current.value.trim() ||
-      !validateEmail(emailRef.current.value.trim())
+      !emailRef.current?.value.trim() ||
+      !validateEmail(emailRef.current?.value.trim())
     ) {
       toast({
         title: tCommon("titles.error"),
@@ -80,7 +80,7 @@ const page = () => {
       });
       return;
     }
-    if (!addressRef.current.value.trim()) {
+    if (!addressRef.current?.value.trim()) {
       toast({
         title: tCommon("titles.error"),
         description: tCheckout("toast.description.Pleaseenteryouraddress"),
@@ -103,11 +103,11 @@ const page = () => {
     });
 
     const order = {
-      first_name: escapeOutput(firstNameRef.current.value.trim()),
-      last_name: escapeOutput(lastNameRef.current.value.trim()),
-      email: escapeOutput(emailRef.current.value.trim()),
-      phone: escapeOutput(phoneRef.current.value.trim()),
-      address: escapeOutput(addressRef.current.value.trim()),
+      first_name: escapeOutput(firstNameRef.current?.value.trim()),
+      last_name: escapeOutput(lastNameRef.current?.value.trim()),
+      email: escapeOutput(emailRef.current?.value.trim()),
+      phone: escapeOutput(phoneRef.current?.value.trim()),
+      address: escapeOutput(addressRef.current?.value.trim()),
       deliveryPrice,
       cart: cart,
       type,

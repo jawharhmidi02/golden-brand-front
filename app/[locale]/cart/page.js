@@ -153,15 +153,14 @@ const page = () => {
                     </div>
                   </div>
                 </div>
-                <Link href="/products" passHref legacyBehavior>
-                  <a
-                    className="w-full bg-[var(--theme2)] py-2 font-lato font-semibold text-white transition-colors duration-200 hover:bg-[var(--theme)]"
-                    onClick={() => {
-                      ChangeUrl("/checkout");
-                    }}
-                  >
-                    {tCart("proceedToCheckout")}
-                  </a>
+                <Link
+                  href="/checkout"
+                  className="flex w-full items-center justify-center bg-[var(--theme2)] py-2 font-lato font-semibold text-white transition-colors duration-200 hover:bg-[var(--theme)]"
+                  onClick={() => {
+                    ChangeUrl("/checkout");
+                  }}
+                >
+                  {tCart("proceedToCheckout")}
                 </Link>
               </div>
             </div>

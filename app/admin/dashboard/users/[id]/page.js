@@ -30,7 +30,7 @@ import {
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
 const UserPage = () => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
   const params = useParams();
   const id = params.id;
   const searchParams = useSearchParams();
@@ -49,14 +49,14 @@ const UserPage = () => {
   const deleteRef = useRef(null);
 
   const deletePopUp = () => {
-    deleteRef.current.click();
+    deleteRef.current?.click();
   };
 
   const handleEdit = async () => {
     if (isEditing) {
       var errorTest = false;
 
-      if (!firstNameRef.current.value.trim()) {
+      if (!firstNameRef.current?.value.trim()) {
         toast({
           title: "Error",
           description: "Please enter the first name",
@@ -65,7 +65,7 @@ const UserPage = () => {
         });
         errorTest = true;
       }
-      if (!lastNameRef.current.value.trim()) {
+      if (!lastNameRef.current?.value.trim()) {
         toast({
           title: "Error",
           description: "Please enter the last name",
@@ -75,8 +75,8 @@ const UserPage = () => {
         errorTest = true;
       }
       if (
-        !emailRef.current.value.trim() ||
-        !validateEmail(emailRef.current.value.trim())
+        !emailRef.current?.value.trim() ||
+        !validateEmail(emailRef.current?.value.trim())
       ) {
         toast({
           title: "Error",
@@ -86,7 +86,7 @@ const UserPage = () => {
         });
         errorTest = true;
       }
-      if (!phoneRef.current.value.trim()) {
+      if (!phoneRef.current?.value.trim()) {
         toast({
           title: "Error",
           description: "Please enter a phone number",
@@ -95,7 +95,7 @@ const UserPage = () => {
         });
         errorTest = true;
       }
-      if (!addressRef.current.value.trim()) {
+      if (!addressRef.current?.value.trim()) {
         toast({
           title: "Error",
           description: "Please enter the address",
@@ -106,24 +106,24 @@ const UserPage = () => {
       }
 
       if (errorTest) {
-        firstNameRef.current.value = user.full_name?.split(" ")[0];
-        lastNameRef.current.value =
+        firstNameRef.current.value =user.full_name?.split(" ")[0];
+        lastNameRef.current?.value =
           user.full_name?.split(" ").length > 1
             ? user.full_name?.split(" ")[1]
             : "";
-        emailRef.current.value = user.email;
-        phoneRef.current.value = user.phone;
-        addressRef.current.value = user.address;
+        emailRef.current.value =user.email;
+        phoneRef.current.value =user.phone;
+        addressRef.current.value =user.address;
         setSelectedCity(user.city);
         setIsEditing(false);
         return;
       }
 
       const body = {
-        full_name: `${firstNameRef.current.value.trim()} ${lastNameRef.current.value.trim()}`,
-        email: emailRef.current.value.trim(),
-        phone: phoneRef.current.value.trim(),
-        address: addressRef.current.value.trim(),
+        full_name: `${firstNameRef.current?.value.trim()} ${lastNameRef.current?.value.trim()}`,
+        email: emailRef.current?.value.trim(),
+        phone: phoneRef.current?.value.trim(),
+        address: addressRef.current?.value.trim(),
         city: selectedCity,
       };
       if (role !== user.role) {
@@ -154,7 +154,7 @@ const UserPage = () => {
               variant: "destructive",
               duration: 2500,
             });
-            emailRef.current.value = user.email;
+            emailRef.current.value =user.email;
             return;
           }
           throw new Error(data.message);
@@ -274,8 +274,9 @@ const UserPage = () => {
       </div>
       <div className="flex w-full max-w-[600px] flex-col rounded-lg bg-[var(--dash-theme2)] shadow-lg min-[600px]:mx-4">
         <div className="flex items-center justify-center gap-6 border-b-2 border-[var(--dash-theme)]">
-          <div
+          <Link
             onClick={() => ChangeUrl(`/admin/dashboard/users/${id}?menu=1`)}
+            href={`/admin/dashboard/users/${id}?menu=1`}
             className={cn(
               "border-b-4 border-neutral-200 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-500",
               menu === 1 &&
@@ -285,9 +286,10 @@ const UserPage = () => {
             <span className="text-xl font-semibold text-neutral-200">
               Account
             </span>
-          </div>
-          <div
+          </Link>
+          <Link
             onClick={() => ChangeUrl(`/admin/dashboard/users/${id}?menu=2`)}
+            href={`/admin/dashboard/users/${id}?menu=2`}
             className={cn(
               "border-b-4 border-neutral-200 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-500",
               menu === 2 &&
@@ -297,7 +299,7 @@ const UserPage = () => {
             <span className="text-xl font-semibold text-neutral-200">
               Orders
             </span>
-          </div>
+          </Link>
         </div>
 
         {menu === 1 && (

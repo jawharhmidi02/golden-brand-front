@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AdminAuthContext } from "@/contexts/AuthContext";
 
 export default function NotFound() {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
 
   return (
     <section className="flex min-h-screen w-full items-center bg-[#171821]">
@@ -22,12 +22,13 @@ export default function NotFound() {
             back to the dashboard.
           </p>
           <div className="flex justify-center gap-3">
-            <button
+            <Link
               onClick={() => ChangeUrl("/admin/dashboard")}
+              href="/admin/dashboard"
               className="my-4 inline-flex rounded-lg bg-[#73cabe] px-5 py-2.5 text-center text-sm font-medium text-[#1c1d27] transition-colors hover:bg-[#a9dfd8] focus:outline-none focus:ring-4 focus:ring-[#a9dfd8]"
             >
               Back to Dashboard
-            </button>
+            </Link>
           </div>
         </div>
       </div>

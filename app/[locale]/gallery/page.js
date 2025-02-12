@@ -147,7 +147,7 @@ const page = () => {
                 columnClassName="masonry-grid_column"
               >
                 {gallery.map((photo, index) => (
-                  <Link
+                  <div
                     key={index}
                     className="relative transition-all duration-300 hover:scale-[1.02] hover:cursor-pointer"
                     href={photo.img}
@@ -158,7 +158,7 @@ const page = () => {
                       alt={`Gallery image ${index}`}
                       className="h-full max-h-[600px] w-full rounded-lg"
                     />
-                  </Link>
+                  </div>
                 ))}
               </Masonry>
             )}

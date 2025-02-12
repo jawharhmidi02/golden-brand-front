@@ -20,7 +20,7 @@ import { useTranslations } from "next-intl";
 const ProductsByCategory = () => {
   const tCommon = useTranslations("common");
   const tProductsByCategory = useTranslations("productsByCategory");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [products, setProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -167,26 +167,27 @@ const ProductsByCategory = () => {
                     <div className="text-center text-sm font-semibold">
                       {product.name}
                     </div>
-                    <div
+                    <Link
                       className="text-center text-sm text-neutral-400 transition-all duration-200 hover:cursor-pointer hover:text-neutral-700"
                       onClick={() => {
-                        var cats = {};
-                        cats[product.category.name] = true;
                         ChangeUrl(
                           `/products?selectedCategories=${encodeURIComponent(
-                            JSON.stringify(cats),
+                            JSON.stringify({ [product.category.name]: true }),
                           )}`,
                         );
                       }}
+                      href={`/products?selectedCategories=${encodeURIComponent(
+                        JSON.stringify({ [product.category.name]: true }),
+                      )}`}
                     >
                       {product.category.name}
-                    </div>
+                    </Link>
                   </div>
                   <div className="mt-auto w-full font-semibold text-[var(--theme)]">
                     ~ {product.productsVariants[0].price} {tCommon("currency")}
                   </div>
                   <div className="flex w-full flex-col items-center">
-                    <button
+                    <Link
                       className={cn(
                         "open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300",
                         tCommon("language.lng"),
@@ -194,6 +195,7 @@ const ProductsByCategory = () => {
                       onClick={() => {
                         ChangeUrl(`/products/${product.id}`);
                       }}
+                      href={`/products/${product.id}`}
                     />
                   </div>
                 </div>

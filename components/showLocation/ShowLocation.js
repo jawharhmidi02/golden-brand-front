@@ -15,7 +15,7 @@ import {
 
 const ShowLocation = () => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
     <NavigationMenu className="p-0">
@@ -38,8 +38,8 @@ const ShowLocation = () => {
                   />
                 </NavigationMenuLink>
               </li>
-              <li className="z-99 row-span-3 my-3 flex flex-col gap-4">
-                <div className="flex cursor-default flex-col gap-0">
+              <li className="z-99 row-span-3 my-3 flex flex-col items-center justify-center gap-1">
+                <div className="flex cursor-default flex-col items-center justify-center gap-1">
                   <div className="text-center">
                     {tCommon("contact.workDays")}
                   </div>
@@ -49,8 +49,8 @@ const ShowLocation = () => {
                     </span>
                   </div>
                 </div>
-                <div className="flex cursor-default flex-col gap-0">
-                  <div className="flex flex-row items-center justify-center text-center">
+                <div className="flex cursor-default flex-col items-center justify-center gap-1">
+                  <div className="flex flex-row items-center justify-center gap-1 text-center text-neutral-500">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="ml-auto size-5 text-neutral-500"
@@ -67,7 +67,7 @@ const ShowLocation = () => {
                     </svg>
                     +974 7748 0070
                   </div>
-                  <div>
+                  <div className="flex flex-row items-center gap-1">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="size-5 shrink-0 text-neutral-500"
@@ -93,15 +93,16 @@ const ShowLocation = () => {
                   </div>
                 </div>
                 <div>
-                  <button
-                    className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--blue)] px-4 py-1 text-[#ffffff] transition-all duration-200 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)] active:scale-95"
-                    type="button"
+                  <Link
+                    className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--blue)] px-4 py-1 text-white transition-all duration-200 hover:border-[var(--blue)] hover:bg-[#ffffff] hover:text-[var(--blue)!important] active:scale-95"
+                    style={{ color: "white", }}
                     onClick={() => {
                       ChangeUrl("./contact");
                     }}
+                    href="/contact"
                   >
                     {tCommon("contact.contactUs")}
-                  </button>
+                  </Link>
                 </div>
               </li>
             </ul>

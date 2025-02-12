@@ -25,15 +25,17 @@ export default function ClientLayout({ children }) {
   const [items, setItems] = useState({});
   const [prevPath, setPrevPath] = useState(pathname);
 
-  // const ChangeUrl = (url, options = {}) => {
-  //   startTransition(() => {
-  //     router.push(url, options);
-  //   });
-  // };
+  const OldChangeUrl = (url, options = {}) => {
+    startTransition(() => {
+      router.push(url, options);
+    });
+  };
 
-  const ChangeUrl = (url) => {
-    setLoadingPage(true);
-    router.push(url);
+  const ChangeUrl = (url, options = {}, loading = true) => {
+    if (loading) {
+      setLoadingPage(true);
+    }
+    router.push(url, options);
   };
 
   const checkUser = async () => {
@@ -174,6 +176,7 @@ export default function ClientLayout({ children }) {
         userData,
         setUserData,
         ChangeUrl,
+        OldChangeUrl,
         router,
         pathname,
         loadingPage,
@@ -182,7 +185,7 @@ export default function ClientLayout({ children }) {
         items,
         setItems,
         updateCart,
-        Link,
+        Link: Link,
       }}
     >
       <div>

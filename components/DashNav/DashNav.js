@@ -19,7 +19,7 @@ const DashNav = () => {
 
   useEffect(() => {
     if (closeButton.current) {
-      closeButton.current.click();
+      closeButton.current?.click();
     }
   });
 

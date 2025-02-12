@@ -22,9 +22,9 @@
   color: var(--fourth-color-primary);
 }
 
-.top-header .left div,
-.top-header .middle div,
-.top-header .right div {
+.top-header .left a,
+.top-header .middle a,
+.top-header .right a {
   display: flex;
   gap: 5px;
   justify-content: center;
@@ -34,9 +34,9 @@
   cursor: pointer;
 }
 
-.top-header .left div:hover,
-.top-header .middle div:hover,
-.top-header .right div:hover {
+.top-header .left a:hover,
+.top-header .middle a:hover,
+.top-header .right a:hover {
   color: var(--background-color-secondary);
   scale: 1.02;
 }

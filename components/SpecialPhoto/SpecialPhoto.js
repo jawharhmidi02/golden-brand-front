@@ -61,7 +61,7 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
   };
 
   const confirmDeletePopUp = () => {
-    confirmDeleteRef.current.click();
+    confirmDeleteRef.current?.click();
   };
 
   return (
@@ -125,7 +125,7 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
           <div className="flex w-full flex-col items-center justify-center gap-4">
             <input
               onChange={() => {
-                const file = fileInput.current.files[0];
+                const file = fileInput.current?.files[0];
                 const reader = new FileReader();
                 reader.onloadend = () => {
                   imageRef.current.src = reader.result;
@@ -141,7 +141,7 @@ const SpecialPhoto = ({ specialPhoto, fetchSpecialPhotos = null }) => {
             <img
               onClick={() => {
                 if (isEditing && !loadingSpecialPhoto) {
-                  fileInput.current.click();
+                  fileInput.current?.click();
                 }
               }}
               ref={imageRef}

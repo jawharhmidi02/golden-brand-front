@@ -17,7 +17,7 @@ import DashCategoryInterface from "@/components/DashCategoryInterface/DashCatego
 import DashSimilarProducts from "@/components/DashSimilarProducts/DashSimilarProducts";
 
 const page = () => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loadingProduct, setLoadingProduct] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -51,7 +51,7 @@ const page = () => {
       return;
     }
 
-    const file = fileInput.current.files[0];
+    const file = fileInput.current?.files[0];
     const reader = new FileReader();
 
     reader.onloadend = () => {
@@ -68,7 +68,7 @@ const page = () => {
       setLoaded(false);
 
       if (fileInput.current) {
-        fileInput.current.value = "";
+        fileInput.current.value ="";
       }
     };
 
@@ -84,7 +84,7 @@ const page = () => {
   };
 
   const handleAddDescription = () => {
-    if (!descRef.current.value.trim()) {
+    if (!descRef.current?.value.trim()) {
       toast({
         title: "Failed!",
         variant: "destructive",
@@ -93,12 +93,12 @@ const page = () => {
       return;
     }
 
-    setDescriptions((prev) => [...prev, descRef.current.value.trim()]);
-    descRef.current.value = "";
+    setDescriptions((prev) => [...prev, descRef.current?.value.trim()]);
+    descRef.current.value ="";
   };
 
   const handleAddAdditionalFeature = () => {
-    const text = additionalFeatureRef.current.value.trim();
+    const text = additionalFeatureRef.current?.value.trim();
 
     if (!text) {
       toast({
@@ -126,7 +126,7 @@ const page = () => {
       },
     }));
     setAdditionalFeatures((prev) => [...prev, text]);
-    additionalFeatureRef.current.value = "";
+    additionalFeatureRef.current.value ="";
   };
 
   const fetchCategories = async () => {
@@ -163,7 +163,7 @@ const page = () => {
   };
 
   const handleSaveProduct = async () => {
-    if (!nameRef.current.value.trim()) {
+    if (!nameRef.current?.value.trim()) {
       toast({
         title: "Failed",
         variant: "destructive",
@@ -217,7 +217,7 @@ const page = () => {
       });
 
       const body = {
-        name: nameRef.current.value.trim(),
+        name: nameRef.current?.value.trim(),
         img: image,
         description: descriptions,
         category: { id: selectedCategory },
@@ -248,7 +248,7 @@ const page = () => {
             variant: "destructive",
             duration: 2500,
           });
-          nameRef.current.value = "";
+          nameRef.current.value ="";
           return;
         }
         throw new Error(data.message);
@@ -662,7 +662,7 @@ const page = () => {
 
           <div
             onClick={() => {
-              fileInput.current.click();
+              fileInput.current?.click();
             }}
             className={cn(
               "relative flex h-[300px] w-full max-w-[300px] items-center justify-center rounded-lg border-[var(--dash-theme5)] hover:cursor-pointer",
@@ -672,7 +672,7 @@ const page = () => {
             <input
               disabled={loadingProduct}
               onChange={() => {
-                const file = fileInput.current.files[0];
+                const file = fileInput.current?.files[0];
                 const reader = new FileReader();
                 reader.onloadend = () => {
                   imageInput.current.src = reader.result;

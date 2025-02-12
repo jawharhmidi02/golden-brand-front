@@ -2,7 +2,7 @@
 
 import "./multiRangeSlider.css";
 
-import  { useCallback, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { dir } from "i18next";
@@ -103,83 +103,3 @@ const MultiRangeSlider = ({ changePrice, locale }) => {
 };
 
 export default MultiRangeSlider;
-
-// const MultiRangeSliders = ({ changePrice, locale }) => {
-//   const tCommon = useTranslations("common");
-//   const useParams = useSearchParams();
-//   const min = useParams.get("minPrice") || 0;
-//   const max = useParams.get("maxPrice") || 15000;
-//   const minRange = 0;
-//   const maxRange = 15000;
-
-//   const [minVal, setMinVal] = useState(min);
-//   const [maxVal, setMaxVal] = useState(max);
-//   const minValRef = useRef(min);
-//   const maxValRef = useRef(max);
-//   const range = useRef(null);
-
-//   const getPercent = useCallback(
-//     (value) => Math.round(((value - minRange) / (maxRange - minRange)) * 100),
-//     [minRange, maxRange],
-//   );
-
-//   const handleMinChange = (event) => {
-//     const value = Math.min(Number(event.target.value), maxVal - 1);
-//     setMinVal(value);
-//     minValRef.current = value;
-//     changePrice(value, maxVal);
-//   };
-
-//   const handleMaxChange = (event) => {
-//     const value = Math.max(Number(event.target.value), minVal + 1);
-//     setMaxVal(value);
-//     maxValRef.current = value;
-//     changePrice(minVal, value);
-//   };
-
-//   useEffect(() => {
-//     setMinVal(min);
-//     setMaxVal(max);
-//     minValRef.current = min;
-//     maxValRef.current = max;
-//   }, [min, max]);
-
-//   useEffect(() => {
-//     const minPercent = getPercent(minVal);
-//     const maxPercent = getPercent(maxVal);
-
-//     if (range.current) {
-//       range.current.style.left = `${minPercent}%`;
-//       range.current.style.width = `${maxPercent - minPercent}%`;
-//     }
-//   }, [minVal, maxVal, getPercent]);
-
-//   return (
-//     <div className="container" dir={dir(locale)}>
-//       <input
-//         type="range"
-//         min={minRange}
-//         max={maxRange}
-//         value={minVal}
-//         onChange={handleMinChange}
-//         className="thumb thumb--left"
-//         style={{ zIndex: minVal > max - 100 && "5" }}
-//       />
-//       <input
-//         type="range"
-//         min={minRange}
-//         max={maxRange}
-//         value={maxVal}
-//         onChange={handleMaxChange}
-//         className="thumb thumb--right"
-//       />
-
-//       <div className="slider">
-//         <div className="slider__track" />
-//         <div ref={range} className="slider__range" />
-//         <div className="slider__left-value text-lg font-medium text-[var(--blue)]">{`${minVal} ${tCommon("currency")}`}</div>
-//         <div className="slider__right-value text-lg font-medium text-[var(--blue)]">{`${maxVal} ${tCommon("currency")}`}</div>
-//       </div>
-//     </div>
-//   );
-// };

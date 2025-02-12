@@ -37,8 +37,8 @@ const DashSearch = ({ placeholder, search, setSearchQuery = null }) => {
       </label>
       <button
         onClick={() => {
-          if (search) search(searchRef.current.value);
-          if (setSearchQuery) setSearchQuery(searchRef.current.value);
+          if (search) search(searchRef.current?.value);
+          if (setSearchQuery) setSearchQuery(searchRef.current?.value);
         }}
         type="button"
         className="my-2.5 mr-2.5 rounded-lg bg-[var(--dash-theme5)] px-3 py-1.5 text-center text-lg font-semibold text-white transition-all duration-200 hover:bg-[var(--dash-theme6)] active:scale-95"

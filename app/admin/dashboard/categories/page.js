@@ -27,7 +27,7 @@ const page = () => {
   const addDialogClose = useRef(null);
 
   const addCategory = async () => {
-    if (!categoryRef.current.value.trim()) {
+    if (!categoryRef.current?.value.trim()) {
       toast({
         variant: "destructive",
         title: "Error",
@@ -37,7 +37,7 @@ const page = () => {
       return;
     }
 
-    if (!imageInput.current.src.trim()) {
+    if (!imageInput.current?.src.trim()) {
       toast({
         variant: "destructive",
         title: "Error",
@@ -58,8 +58,8 @@ const page = () => {
             admin_access_token: Cookies.get("admin_access_token"),
           },
           body: JSON.stringify({
-            name: categoryRef.current.value.trim(),
-            img: imageInput.current.src.trim(),
+            name: categoryRef.current?.value.trim(),
+            img: imageInput.current?.src.trim(),
           }),
         },
       );
@@ -73,7 +73,7 @@ const page = () => {
             variant: "destructive",
             duration: 2500,
           });
-          categoryRef.current.value = "";
+          categoryRef.current.value ="";
           return;
         }
         throw new Error(data.message);
@@ -180,7 +180,7 @@ const page = () => {
 
               <div
                 onClick={() => {
-                  fileInput.current.click();
+                  fileInput.current?.click();
                 }}
                 className={cn(
                   "relative flex h-[150px] w-3/4 items-center justify-center rounded-lg border-[var(--dash-theme6)] hover:cursor-pointer",
@@ -189,7 +189,7 @@ const page = () => {
               >
                 <input
                   onChange={() => {
-                    const file = fileInput.current.files[0];
+                    const file = fileInput.current?.files[0];
                     const reader = new FileReader();
                     reader.onloadend = () => {
                       imageInput.current.src = reader.result;

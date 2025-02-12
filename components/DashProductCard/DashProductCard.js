@@ -38,7 +38,7 @@ const DashProductCard = ({
   };
 
   const confirmDeletePopUp = () => {
-    confirmDeleteRef.current.click();
+    confirmDeleteRef.current?.click();
   };
 
   return (

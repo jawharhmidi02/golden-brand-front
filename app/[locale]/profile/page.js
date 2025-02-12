@@ -106,7 +106,7 @@ const ProfilePage = () => {
     }
 
     const body = {
-      password: escapeOutput(passwordRef.current.value),
+      password: escapeOutput(passwordRef.current?.value),
     };
 
     try {
@@ -135,8 +135,8 @@ const ProfilePage = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              email: escapeOutput(emailRef.current.value.trim()),
-              password: passwordRef.current.value,
+              email: escapeOutput(emailRef.current?.value.trim()),
+              password: passwordRef.current?.value,
             }),
           },
         );
@@ -181,7 +181,7 @@ const ProfilePage = () => {
     if (isEditing) {
       let errorTest = false;
 
-      if (!firstNameRef.current.value.trim()) {
+      if (!firstNameRef.current?.value.trim()) {
         toast({
           title: tProfile("toast.failedTitle"),
           description: tProfile("toast.firstNameRequired"),
@@ -190,7 +190,7 @@ const ProfilePage = () => {
         });
         errorTest = true;
       }
-      if (!lastNameRef.current.value.trim()) {
+      if (!lastNameRef.current?.value.trim()) {
         toast({
           title: tProfile("toast.failedTitle"),
           description: tProfile("toast.lastNameRequired"),
@@ -200,8 +200,8 @@ const ProfilePage = () => {
         errorTest = true;
       }
       if (
-        !emailRef.current.value.trim() ||
-        !validateEmail(emailRef.current.value.trim())
+        !emailRef.current?.value.trim() ||
+        !validateEmail(emailRef.current?.value.trim())
       ) {
         toast({
           title: tProfile("toast.failedTitle"),
@@ -211,7 +211,7 @@ const ProfilePage = () => {
         });
         errorTest = true;
       }
-      if (!phoneRef.current.value.trim()) {
+      if (!phoneRef.current?.value.trim()) {
         toast({
           title: tProfile("toast.failedTitle"),
           description: tProfile("toast.phoneRequired"),
@@ -220,7 +220,7 @@ const ProfilePage = () => {
         });
         errorTest = true;
       }
-      if (!addressRef.current.value.trim()) {
+      if (!addressRef.current?.value.trim()) {
         toast({
           title: tProfile("toast.failedTitle"),
           description: tProfile("toast.addressRequired"),
@@ -242,11 +242,11 @@ const ProfilePage = () => {
 
       const body = {
         full_name: escapeOutput(
-          `${firstNameRef.current.value.trim()} ${lastNameRef.current.value.trim()}`,
+          `${firstNameRef.current?.value.trim()} ${lastNameRef.current?.value.trim()}`,
         ),
-        email: escapeOutput(emailRef.current.value.trim()),
-        phone: escapeOutput(phoneRef.current.value.trim()),
-        address: escapeOutput(addressRef.current.value.trim()),
+        email: escapeOutput(emailRef.current?.value.trim()),
+        phone: escapeOutput(phoneRef.current?.value.trim()),
+        address: escapeOutput(addressRef.current?.value.trim()),
       };
 
       try {
@@ -331,7 +331,7 @@ const ProfilePage = () => {
               "border-b-4 border-neutral-300 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 1 && "border-[var(--theme)] hover:border-[var(--theme)]",
             )}
-            onClick={ChangeUrl("/profile?menu=1")}
+            // onClick={() => ChangeUrl("/profile?menu=1")}
           >
             <span className="text-xl font-semibold text-neutral-700">
               {tProfile("menu.profile")}
@@ -343,7 +343,7 @@ const ProfilePage = () => {
               "border-b-4 border-neutral-300 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 2 && "border-[var(--theme)] hover:border-[var(--theme)]",
             )}
-            onClick={ChangeUrl("/profile?menu=2")}
+            // onClick={() => ChangeUrl("/profile?menu=2")}
           >
             <span className="text-xl font-semibold text-neutral-700">
               {tProfile("menu.orders")}

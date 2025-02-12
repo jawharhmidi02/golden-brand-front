@@ -126,7 +126,7 @@ const Testimonials = () => {
   useEffect(() => {
     if (swiperContainerRef.current) {
       const slides =
-        swiperContainerRef.current.querySelectorAll(".swiper-slide");
+        swiperContainerRef.current?.querySelectorAll(".swiper-slide");
       let maxHeight = 0;
 
       slides.forEach((slide) => {

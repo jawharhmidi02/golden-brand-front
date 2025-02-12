@@ -66,7 +66,7 @@ const page = () => {
       return;
     }
 
-    if (!currentPasswordRef.current.value.trim()) {
+    if (!currentPasswordRef.current?.value.trim()) {
       toast({
         title: "Error",
         description: "Please enter your current password",
@@ -84,8 +84,8 @@ const page = () => {
     try {
       setLoadingUser(true);
       const body = {
-        password: newPasswordRef.current.value.trim(),
-        current_password: currentPasswordRef.current.value.trim(),
+        password: newPasswordRef.current?.value.trim(),
+        current_password: currentPasswordRef.current?.value.trim(),
       };
 
       const response = await fetch(
@@ -145,8 +145,8 @@ const page = () => {
 
   const saveEmail = async () => {
     if (
-      !emailRef.current.value.trim() ||
-      !validateEmail(emailRef.current.value)
+      !emailRef.current?.value.trim() ||
+      !validateEmail(emailRef.current?.value)
     ) {
       toast({
         title: "Error",
@@ -156,7 +156,7 @@ const page = () => {
       });
       return;
     }
-    if (!currentPasswordEmailRef.current.value.trim()) {
+    if (!currentPasswordEmailRef.current?.value.trim()) {
       toast({
         title: "Error",
         description: "Please enter your current password",
@@ -173,8 +173,8 @@ const page = () => {
     try {
       setLoadingUser(true);
       const body = {
-        email: emailRef.current.value.trim(),
-        current_password: currentPasswordEmailRef.current.value.trim(),
+        email: emailRef.current?.value.trim(),
+        current_password: currentPasswordEmailRef.current?.value.trim(),
       };
 
       const response = await fetch(
@@ -199,7 +199,7 @@ const page = () => {
             variant: "destructive",
             duration: 2500,
           });
-          emailRef.current.value = brand.name;
+          emailRef.current.value =brand.name;
           return;
         }
         if (data.message === "Invalid password") {

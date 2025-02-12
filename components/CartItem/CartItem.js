@@ -159,7 +159,7 @@ const CartItem = ({
         </td>
         <td className="p-[10px]">
           <Link
-            href={`/products/${productVariant.product.id}`}
+            href={`/products/${productVariant.product?.id}`}
             onClick={() => {
               ChangeUrl(`/products/${productVariant.product.id}`);
             }}
@@ -267,10 +267,10 @@ const CartItem = ({
               <div className="flex w-full flex-row justify-between pb-2">
                 <Link
                   className="text-lg font-bold text-neutral-800"
+                  href={`/products/${productVariant.product?.id}`}
                   onClick={() => {
                     ChangeUrl(`/products/${productVariant.product.id}`);
                   }}
-                  href={`/products/${productVariant.product.id}`}
                 >
                   {loadingProductVariant ? (
                     <Skeleton className={"mx-1 h-7 w-[160px] bg-neutral-300"} />

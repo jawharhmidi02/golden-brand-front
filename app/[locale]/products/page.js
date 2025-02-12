@@ -37,7 +37,8 @@ import SkeletonCategorieItem from "@/components/CategorieItem/SkeletonCategorieI
 const ProductPage = () => {
   const tCommon = useTranslations("common");
   const tProducts = useTranslations("products");
-  const { ChangeUrl, loadingPage, Link } = useContext(UserAuthContext);
+  const { ChangeUrl, OldChangeUrl, loadingPage, Link } =
+    useContext(UserAuthContext);
   const [limit, setLimit] = useState(12);
   const [products, setProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -91,7 +92,7 @@ const ProductPage = () => {
 
       const categoriesString = encodeURIComponent(categories.join(","));
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/product/search${searchInputRef.current.value.trim() ? `?name=${escapeOutput(searchInputRef.current.value.trim())}` : "?"}${categoriesString ? `&categories=${escapeOutput(categoriesString)}` : ""}${sortBy ? `&sortBy=${sortBy}` : ""}${sort_order ? `&sortOrder=${sort_order}` : ""}${minPrice ? `&min_price=${minPrice}` : ""}${maxPrice ? `&max_price=${maxPrice}` : ""}${CurrentPage ? `&page=${CurrentPage}` : ""}${limit ? `&limit=${limit}` : ""}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/product/search${searchInputRef.current?.value.trim() ? `?name=${escapeOutput(searchInputRef.current?.value.trim())}` : "?"}${categoriesString ? `&categories=${escapeOutput(categoriesString)}` : ""}${sortBy ? `&sortBy=${sortBy}` : ""}${sort_order ? `&sortOrder=${sort_order}` : ""}${minPrice ? `&min_price=${minPrice}` : ""}${maxPrice ? `&max_price=${maxPrice}` : ""}${CurrentPage ? `&page=${CurrentPage}` : ""}${limit ? `&limit=${limit}` : ""}`,
         {
           method: "GET",
         },
@@ -168,7 +169,7 @@ const ProductPage = () => {
   };
 
   const resetFilters = () => {
-    ChangeUrl("?");
+    OldChangeUrl("?", {}, false);
   };
 
   const changeSelectedCategorie = (categorie) => {
@@ -213,96 +214,97 @@ const ProductPage = () => {
           side={tCommon("side")}
           className="w-[280px] overflow-scroll"
         >
-          <SheetTitle></SheetTitle>
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <span className="mb-2 text-3xl font-bold text-neutral-600">
-                {tProducts("filters.title")}:
-              </span>
-              <span className="text-xl font-semibold text-neutral-800">
-                {tProducts("filters.sort")}
-              </span>
-              <SelectInterface
-                placeHolder="Name: A-Z"
-                changeSortOption={(sortOption) => {
-                  changeSortOption(sortOption);
-                }}
-                values={[
-                  ["date", tProducts("sort.date")],
-                  ["nameAsc", tProducts("sort.nameAsc")],
-                  ["nameDesc", tProducts("sort.nameDesc")],
-                  ["priceAsc", tProducts("sort.priceAsc")],
-                  ["priceDesc", tProducts("sort.priceDesc")],
-                  ["mostpopular", tProducts("sort.mostpopular")],
-                ]}
-              />
-              <span className="mt-2 text-xl font-semibold text-neutral-800">
-                {tProducts("filters.price")}
-              </span>
-              <MultiRangeSlider
-                min={minPrice}
-                changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
-                max={maxPrice}
-                locale={tCommon("language.lng")}
-              />
-            </div>
-            <div className="mt-2 flex flex-col gap-2">
-              <span className="text-xl font-semibold text-neutral-800">
-                {tProducts("filters.categories")}
-              </span>
-              {loadingCategories
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <SkeletonCategorieItem key={index} />
-                  ))
-                : categories.map((categorie, index) => (
-                    <CategorieItem
-                      key={index}
-                      active={selectedCategories[categorie.name]}
-                      changeSelectedCategorie={(categorie) =>
-                        changeSelectedCategorie(categorie)
-                      }
-                      item={categorie.name}
-                    />
-                  ))}
-            </div>
-            <div className="mt-2 flex flex-col gap-1">
-              <Link
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
-                href={`?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+          <SheetTitle />
+          <Filter />
+          <SheetDescription />
+        </SheetContent>
+      </Sheet>
+    );
+  }
+
+  function Filter() {
+    return (
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
+          <span className="mb-2 text-3xl font-bold text-neutral-600">
+            {tProducts("filters.title")}:
+          </span>
+          <span className="text-xl font-semibold text-neutral-800">
+            {tProducts("filters.sort")}
+          </span>
+          <SelectInterface
+            placeHolder="Name: A-Z"
+            changeSortOption={(sortOption) => {
+              changeSortOption(sortOption);
+            }}
+            values={[
+              ["date", tProducts("sort.date")],
+              ["nameAsc", tProducts("sort.nameAsc")],
+              ["nameDesc", tProducts("sort.nameDesc")],
+              ["priceAsc", tProducts("sort.priceAsc")],
+              ["priceDesc", tProducts("sort.priceDesc")],
+              ["mostpopular", tProducts("sort.mostpopular")],
+            ]}
+          />
+          <span className="mt-2 text-xl font-semibold text-neutral-800">
+            {tProducts("filters.price")}
+          </span>
+          <MultiRangeSlider
+            min={minPrice}
+            changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
+            max={maxPrice}
+            locale={tCommon("language.lng")}
+          />
+        </div>
+        <div className="mt-2 flex flex-col gap-2">
+          <span className="text-xl font-semibold text-neutral-800">
+            {tProducts("filters.categories")}
+          </span>
+          {loadingCategories
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <SkeletonCategorieItem key={index} />
+              ))
+            : categories.map((categorie, index) => (
+                <CategorieItem
+                  key={index}
+                  active={selectedCategories[categorie.name]}
+                  changeSelectedCategorie={(categorie) =>
+                    changeSelectedCategorie(categorie)
+                  }
+                  item={categorie.name}
+                />
+              ))}
+        </div>
+        <div className="mt-2 flex flex-col gap-1">
+          <button
+            className="duration-400 flex w-full items-center justify-center rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
+            onClick={() =>
+              OldChangeUrl(
+                `?${searchInputRef.current?.value.trim() && `name=${escapeOutput(searchInputRef.current?.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                   isEmpty(selectedCategories)
                     ? ""
                     : `&selectedCategories=${encodeURIComponent(
                         JSON.stringify(selectedCategories),
                       )}`
-                }`}
-                onClick={() =>
-                  ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
-                      isEmpty(selectedCategories)
-                        ? ""
-                        : `&selectedCategories=${encodeURIComponent(
-                            JSON.stringify(selectedCategories),
-                          )}`
-                    }`,
-                  )
-                }
-              >
-                {tProducts("button.apply")}
-              </Link>
-              <button
-                type="button"
-                onClick={() => {
-                  resetFilters();
-                }}
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
-              >
-                {tProducts("button.reset")}
-              </button>
-            </div>
-          </div>
-          <SheetDescription></SheetDescription>
-        </SheetContent>
-      </Sheet>
+                }`,
+                {},
+                false,
+              )
+            }
+          >
+            {tProducts("button.apply")}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              resetFilters();
+            }}
+            className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
+          >
+            {tProducts("button.reset")}
+          </button>
+        </div>
+      </div>
     );
   }
 
@@ -325,92 +327,7 @@ const ProductPage = () => {
     <div className="mx-auto mt-6 flex w-full flex-row items-center justify-center gap-20">
       <div className="mx-5 flex flex-1 flex-row justify-center gap-10 xsm:mx-8 sm:mx-10">
         <div className="hidden lg:flex">
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <span className="mb-2 text-3xl font-bold text-neutral-600">
-                {tProducts("filters.title")}:
-              </span>
-              <span className="text-xl font-semibold text-neutral-800">
-                {tProducts("filters.sort")}
-              </span>
-              <SelectInterface
-                placeHolder="Name: A-Z"
-                changeSortOption={(sortOption) => {
-                  changeSortOption(sortOption);
-                }}
-                values={[
-                  ["date", tProducts("sort.date")],
-                  ["nameAsc", tProducts("sort.nameAsc")],
-                  ["nameDesc", tProducts("sort.nameDesc")],
-                  ["priceAsc", tProducts("sort.priceAsc")],
-                  ["priceDesc", tProducts("sort.priceDesc")],
-                  ["mostpopular", tProducts("sort.mostpopular")],
-                ]}
-              />
-              <span className="mt-2 text-xl font-semibold text-neutral-800">
-                {tProducts("filters.price")}
-              </span>
-              <MultiRangeSlider
-                min={minPrice}
-                changePrice={(MIN, MAX) => changePrice(MIN, MAX)}
-                max={maxPrice}
-                locale={tCommon("language.lng")}
-              />
-            </div>
-            <div className="mt-2 flex flex-col gap-2">
-              <span className="text-xl font-semibold text-neutral-800">
-                {tProducts("filters.categories")}
-              </span>
-              {loadingCategories
-                ? Array.from({ length: 6 }).map((_, index) => (
-                    <SkeletonCategorieItem key={index} />
-                  ))
-                : categories.map((categorie, index) => (
-                    <CategorieItem
-                      key={index}
-                      active={selectedCategories[categorie.name]}
-                      changeSelectedCategorie={(categorie) =>
-                        changeSelectedCategorie(categorie)
-                      }
-                      item={categorie.name}
-                    />
-                  ))}
-            </div>
-            <div className="mt-2 flex flex-col gap-1">
-              <Link
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
-                href={`?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
-                  isEmpty(selectedCategories)
-                    ? ""
-                    : `&selectedCategories=${encodeURIComponent(
-                        JSON.stringify(selectedCategories),
-                      )}`
-                }`}
-                onClick={() =>
-                  ChangeUrl(
-                    `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
-                      isEmpty(selectedCategories)
-                        ? ""
-                        : `&selectedCategories=${encodeURIComponent(
-                            JSON.stringify(selectedCategories),
-                          )}`
-                    }`,
-                  )
-                }
-              >
-                {tProducts("button.apply")}
-              </Link>
-              <button
-                type="button"
-                onClick={() => {
-                  resetFilters();
-                }}
-                className="duration-400 w-full rounded-md border-2 border-[var(--theme)] py-2 text-xl font-semibold text-[var(--theme)] transition-all active:scale-95"
-              >
-                {tProducts("button.reset")}
-              </button>
-            </div>
-          </div>
+          <Filter />
         </div>
         <div className="flex max-w-screen-lg flex-1 flex-col gap-4">
           {/* input interface */}

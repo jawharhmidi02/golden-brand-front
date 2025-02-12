@@ -17,9 +17,9 @@ const FastLinks = () => {
       document.body.scrollTop > 20 ||
       document.documentElement.scrollTop > 20
     ) {
-      Go_Top.current.classList.add("showGoTop");
+      Go_Top.current?.classList.add("showGoTop");
     } else {
-      Go_Top.current.classList.remove("showGoTop");
+      Go_Top.current?.classList.remove("showGoTop");
     }
   };
 

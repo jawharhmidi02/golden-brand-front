@@ -88,11 +88,11 @@ const page = () => {
     }
 
     if (
-      !emailRef.current.value.trim() ||
+      !emailRef.current?.value.trim() ||
       !password ||
-      !nameRef.current.value.trim() ||
-      !phoneRef.current.value.trim() ||
-      !addressRef.current.value.trim()
+      !nameRef.current?.value.trim() ||
+      !phoneRef.current?.value.trim() ||
+      !addressRef.current?.value.trim()
     ) {
       toast({
         title: tSignUp("toasts.emptyFields.title"),
@@ -113,11 +113,11 @@ const page = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: escapeOutput(emailRef.current.value.trim()),
+            email: escapeOutput(emailRef.current?.value.trim()),
             password: escapeOutput(password),
-            full_name: escapeOutput(nameRef.current.value.trim()),
-            phone: escapeOutput(phoneRef.current.value.trim()),
-            address: escapeOutput(addressRef.current.value.trim()),
+            full_name: escapeOutput(nameRef.current?.value.trim()),
+            phone: escapeOutput(phoneRef.current?.value.trim()),
+            address: escapeOutput(addressRef.current?.value.trim()),
           }),
         },
       );

@@ -69,7 +69,7 @@ const EmblaCarousel = ({ options }) => {
 const Hero = () => {
   const tCommon = useTranslations("common");
   const tHero = useTranslations("hero");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   return (
     <div className="hero">
       <div className="text">
@@ -86,11 +86,12 @@ const Hero = () => {
           {/* Golden Brand: <span>Stainless Steel</span> */}
         </h1>
         <p className="text-center">{tHero("description")}</p>
-        <button
+        <Link
           className={cn("button", tCommon("language.lng"))}
           onClick={() => {
             ChangeUrl("/products");
           }}
+          href="/products"
         />
       </div>
       <EmblaCarousel options={OPTIONS} />

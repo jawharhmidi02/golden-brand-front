@@ -11,14 +11,14 @@ import { AdminAuthContext } from "@/contexts/AuthContext";
 import DashSignHeader from "@/components/DashSignHeader/DashSignHeader";
 
 const page = () => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link } = useContext(AdminAuthContext);
   const emailInput = useRef(null);
   const [loading, setLoading] = useState(false);
 
   const handleSend = async () => {
     if (
-      !emailInput.current.value.trim() ||
-      !validateEmail(emailInput.current.value.trim())
+      !emailInput.current?.value.trim() ||
+      !validateEmail(emailInput.current?.value.trim())
     ) {
       toast({
         description: "Verify the email!",
@@ -32,7 +32,7 @@ const page = () => {
       setLoading(true);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/admins/recoverpass/${escapeOutput(emailInput.current.value.trim())}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/admins/recoverpass/${escapeOutput(emailInput.current?.value.trim())}`,
         {
           method: "POST",
           headers: {
@@ -79,14 +79,15 @@ const page = () => {
       <div className="mx-5 my-8 flex w-full max-w-[500px] flex-col items-center gap-4 rounded-xl border-2 border-purple-300 bg-gray-400 bg-opacity-20 bg-clip-padding px-5 pb-10 pt-6 backdrop-blur-sm backdrop-filter sm:px-10 md:px-14 md:pb-16 md:pt-12">
         <DashSignHeader />
         <div className="flex w-full max-w-[400px] flex-row items-center justify-between">
-          <div
+          <Link
             className="group hover:cursor-pointer"
             onClick={() => {
               ChangeUrl("./sign-in");
             }}
+            href="./sign-in"
           >
             <i className="fa-solid fa-arrow-left text-3xl text-[#ffffff] transition-colors duration-200 group-hover:text-purple-400"></i>
-          </div>
+          </Link>
           <div className="inline-block self-start bg-gradient-to-bl from-purple-300 to-purple-400 bg-clip-text pb-2 text-2xl font-semibold text-transparent sm:text-3xl">
             Password Recovery
           </div>

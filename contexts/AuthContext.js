@@ -1,4 +1,5 @@
-import { Link } from "@/lib/utils";
+import { Link as UserLink } from "@/lib/utils";
+import Link from "next/link";
 import { createContext } from "react";
 
 export const UserAuthContext = createContext({
@@ -8,6 +9,7 @@ export const UserAuthContext = createContext({
   userData: {},
   setUserData: () => {},
   ChangeUrl: () => {},
+  OldChangeUrl: () => {},
   router: null,
   pathname: null,
   loadingPage: true,
@@ -16,7 +18,7 @@ export const UserAuthContext = createContext({
   items: {},
   setItems: () => {},
   updateCart: () => {},
-  Link: typeof Link,
+  Link: UserLink,
 });
 
 export const AdminAuthContext = createContext({
@@ -25,11 +27,10 @@ export const AdminAuthContext = createContext({
   setIsAdminSigned: () => {},
   adminData: {},
   router: null,
-  ChangeUrl: () => {},
   setAdminData: () => {},
   ChangeUrl: () => {},
   loadingPage: true,
   setLoadingPage: () => {},
   checkAdmin: () => {},
-  Link: typeof Link,
+  Link: Link,
 });

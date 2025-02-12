@@ -25,7 +25,7 @@ const page = () => {
   const [check, setCheck] = useState(false);
 
   const login = async () => {
-    if (!emailRef.current.value.trim() || !passwordRef.current.value) {
+    if (!emailRef.current?.value.trim() || !passwordRef.current?.value) {
       toast({
         title: tSignIn("toasts.emptyFields.title"),
         description: tSignIn("toasts.emptyFields.description"),
@@ -44,8 +44,8 @@ const page = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            email: escapeOutput(emailRef.current.value.trim()),
-            password: escapeOutput(passwordRef.current.value),
+            email: escapeOutput(emailRef.current?.value.trim()),
+            password: escapeOutput(passwordRef.current?.value),
             rememberMe: check,
           }),
         },

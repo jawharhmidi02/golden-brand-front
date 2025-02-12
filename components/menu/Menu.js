@@ -10,7 +10,7 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 
 const Menu = ({ orientation }) => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl, pathname } = useContext(UserAuthContext);
+  const { ChangeUrl, Link, pathname } = useContext(UserAuthContext);
 
   return (
     <div
@@ -27,14 +27,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/"
             onClick={() => {
               ChangeUrl("/");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.home")}
-          </a>
+          </Link>
         </div>
       </div>
       <div>
@@ -45,14 +46,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/products"
             onClick={() => {
               ChangeUrl("/products");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.products")}
-          </a>
+          </Link>
         </div>
       </div>
       <div>
@@ -63,14 +65,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/services"
             onClick={() => {
               ChangeUrl("/services");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.services")}
-          </a>
+          </Link>
         </div>
       </div>
       <div>
@@ -81,14 +84,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/gallery"
             onClick={() => {
               ChangeUrl("/gallery");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.gallery")}
-          </a>
+          </Link>
         </div>
       </div>
       <div>
@@ -99,14 +103,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/about"
             onClick={() => {
               ChangeUrl("/about");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.about")}
-          </a>
+          </Link>
         </div>
       </div>
       <div>
@@ -117,14 +122,15 @@ const Menu = ({ orientation }) => {
             tCommon("language.lng"),
           )}
         >
-          <a
+          <Link
+            href="/contact"
             onClick={() => {
               ChangeUrl("/contact");
             }}
             className="hover:cursor-pointer"
           >
             {tCommon("navigation.contact")}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

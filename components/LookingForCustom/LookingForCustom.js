@@ -6,7 +6,7 @@ import { useContext } from "react";
 const LookingForCustom = () => {
   const tCommon = useTranslations("common");
   const tLookingForCustom = useTranslations("lookingForCustom");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
     <div className="my-[70px] flex flex-col items-center justify-center gap-5 bg-white px-[20px] py-[50px] md:flex-row">
@@ -31,15 +31,15 @@ const LookingForCustom = () => {
           {tLookingForCustom("description")}
         </div>
         <div className="mb-6 mt-3 flex w-full items-center justify-center">
-          <button
+          <Link
             className="w-fit self-center rounded-sm border-2 border-[#ffffff] bg-[var(--theme)] px-6 py-2 text-xl text-[#ffffff] transition-all duration-200 hover:border-[var(--theme)] hover:bg-[#ffffff] hover:text-[var(--theme)] active:scale-95"
-            type="button"
             onClick={() => {
               ChangeUrl("/contact");
             }}
+            href="/contact"
           >
             {tCommon("contact.contactUs")}
-          </button>
+          </Link>
         </div>
       </div>
       <div>

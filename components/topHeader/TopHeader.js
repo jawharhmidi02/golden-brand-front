@@ -13,88 +13,67 @@ import ShowLocation from "../showLocation/ShowLocation";
 
 const TopHeader = () => {
   const t = useTranslations("common");
-  const { ChangeUrl, pathname } = useContext(UserAuthContext);
+  const { ChangeUrl, Link, pathname } = useContext(UserAuthContext);
 
   return (
     <>
       <div className="top-header">
         <div className="left">
-          <div
-            className="phone"
-            onClick={() => {
-              window.open(`tel:${t("contact.phone")}`);
-            }}
-          >
-            <i className="fa-solid fa-phone"></i>
+          <Link className="phone" href={`tel:${t("contact.phone")}`}>
+            <i className="fa-solid fa-phone" />
             <abbr title={t("contact.phoneTitle")} dir="ltr">
               {t("contact.phone")}
             </abbr>
-          </div>
-          <div
-            className="mail"
-            onClick={() => {
-              window.open(`mailto:${t("contact.email")}`);
-            }}
-          >
-            <i className="fa-regular fa-envelope"></i>
+          </Link>
+          <Link className="mail" href={`mailto:${t("contact.email")}`}>
+            <i className="fa-regular fa-envelope" />
             <abbr title={t("contact.emailTitle")} dir="ltr">
               {t("contact.email")}
             </abbr>
-          </div>
+          </Link>
           <ShowLocation />
         </div>
         <div className="right">
           <div className="socials">
             <abbr title={t("social.facebook")}>
-              <i
-                className="fa-brands fa-facebook"
-                onClick={() => {
-                  window.open(
-                    "https://www.facebook.com/profile.php?id=100090249531663",
-                  );
-                }}
-              ></i>
+              <Link
+                href={"https://www.facebook.com/profile.php?id=100090249531663"}
+              >
+                <i className="fa-brands fa-facebook" />
+              </Link>
             </abbr>
             <abbr title={t("social.tiktok")}>
-              <i
-                className="fa-brands fa-tiktok"
-                onClick={() => {
-                  window.open("https://www.tiktok.com/@golden.brand52");
-                }}
-              ></i>
+              <Link href={"https://www.tiktok.com/@golden.brand52"}>
+                <i className="fa-brands fa-tiktok" />
+              </Link>
             </abbr>
             <abbr title={t("social.instagram")}>
-              <i
-                className="fa-brands fa-instagram"
-                onClick={() => {
-                  window.open(
-                    "https://www.instagram.com/goldenbrand_stainlesssteel/",
-                  );
-                }}
-              ></i>
+              <Link
+                href={"https://www.instagram.com/goldenbrand_stainlesssteel/"}
+              >
+                <i className="fa-brands fa-instagram" />
+              </Link>
             </abbr>
             <abbr title={t("social.whatsapp")}>
-              <i
-                className="fa-brands fa-whatsapp"
-                onClick={() => {
-                  window.open("https://wa.me/97477480070");
-                }}
-              ></i>
+              <Link href={"https://wa.me/97477480070"}>
+                <i className="fa-brands fa-whatsapp" />
+              </Link>
             </abbr>
           </div>
-          <div
+          <Link
             className="contact-us"
-            onClick={() => {
-              ChangeUrl("/contact");
-            }}
+            onClick={() => ChangeUrl("/contact")}
+            href="/contact"
           >
             {t("contact.contactUs")}
-          </div>
-          <div
-            className="language"
+          </Link>
+          <Link
+            className="language flex flex-row gap-1"
             onClick={() =>
               ChangeUrl(pathname, { locale: t("language.otherLng") })
             }
+            href={pathname}
+            locale={t("language.otherLng")}
           >
             <abbr title={t("language.switchToLanguage")}>
               {t("language.otherLanguage")}
@@ -105,7 +84,7 @@ const TopHeader = () => {
               height={20}
               alt={t("language.otherLanguage")}
             />
-          </div>
+          </Link>
         </div>
       </div>
       <Nav />

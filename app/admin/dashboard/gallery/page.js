@@ -29,7 +29,7 @@ const page = () => {
   const addDialogClose = useRef(null);
 
   const addGallery = async () => {
-    if (!imageInput.current.src.trim()) {
+    if (!imageInput.current?.src.trim()) {
       toast({
         variant: "destructive",
         title: "Failed!",
@@ -50,7 +50,7 @@ const page = () => {
             admin_access_token: Cookies.get("admin_access_token"),
           },
           body: JSON.stringify({
-            img: imageInput.current.src.trim(),
+            img: imageInput.current?.src.trim(),
           }),
         },
       );
@@ -147,7 +147,7 @@ const page = () => {
             <div className="flex w-full flex-col items-center justify-center gap-4">
               <div
                 onClick={() => {
-                  fileInput.current.click();
+                  fileInput.current?.click();
                 }}
                 className={cn(
                   "relative flex aspect-square h-[150px] w-3/4 items-center justify-center rounded-lg border-[var(--dash-theme6)] hover:cursor-pointer",
@@ -156,7 +156,7 @@ const page = () => {
               >
                 <input
                   onChange={() => {
-                    const file = fileInput.current.files[0];
+                    const file = fileInput.current?.files[0];
                     const reader = new FileReader();
                     reader.onloadend = () => {
                       imageInput.current.src = reader.result;
