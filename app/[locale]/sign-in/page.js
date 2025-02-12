@@ -17,7 +17,7 @@ import { dir } from "i18next";
 const page = () => {
   const tCommon = useTranslations("common");
   const tSignIn = useTranslations("signIn");
-  const { ChangeUrl, setLoadingPage } = useContext(UserAuthContext);
+  const { ChangeUrl, Link, setLoadingPage } = useContext(UserAuthContext);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -182,12 +182,13 @@ const page = () => {
                 </label>
               </div>
 
-              <span
-                className="mt-[2px] font-lato font-semibold text-neutral-500 transition-colors duration-200 hover:cursor-pointer hover:text-neutral-700"
+              <Link
+                href="./reset-password"
                 onClick={() => ChangeUrl("./reset-password")}
+                className="mt-[2px] font-lato font-semibold text-neutral-500 transition-colors duration-200 hover:cursor-pointer hover:text-neutral-700"
               >
                 {tSignIn("forgotPassword")}
-              </span>
+              </Link>
             </div>
           </div>
         </div>

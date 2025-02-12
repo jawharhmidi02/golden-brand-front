@@ -6,8 +6,8 @@ import { useTranslations } from "next-intl";
 
 const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl } = useContext(UserAuthContext);
-  const [productVariant, setProductVariant] = useState();
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
+  const [productVariant, setProductVariant] = useState({});
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
 
   const fetchProductVariant = async () => {
@@ -51,7 +51,7 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
   return (
     <div>
       <div className="flex flex-row justify-between gap-2 px-2 py-2.5">
-        <span
+        <Link
           className="font-lato text-neutral-500 transition-all duration-200 hover:cursor-pointer hover:text-neutral-700"
           onClick={() => {
             if (!loadingProductVariant) {
@@ -59,6 +59,7 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
             }
           }}
           dir="ltr"
+          href={`/products/${productVariant.product?.id}`}
         >
           <font className="font-bold">{`${quantity} x `}</font>
           {loadingProductVariant ? (
@@ -66,7 +67,7 @@ const CheckoutCartItem = ({ quantity, productVariantID, setTotalPrice }) => {
           ) : (
             productVariant.product.name
           )}
-        </span>
+        </Link>
         <span className="min-w-[90px] text-end font-medium text-neutral-500">
           {loadingProductVariant ? 0 : quantity * productVariant.price}{" "}
           {tCommon("currency")}

@@ -87,24 +87,24 @@ th {
   background: var(--theme) !important;
 }
 
-.similarProducts button.open-product {
+.similarProducts .open-product {
   transition: all 0.5s;
   position: relative;
   overflow: hidden;
   height: 45px;
 }
 
-.similarProducts button.open-product:hover {
+.similarProducts .open-product:hover {
   background: var(--theme);
 }
 
-.similarProducts button.open-product:hover::after,
-.similarProducts button.open-product:hover::before {
+.similarProducts .open-product:hover::after,
+.similarProducts .open-product:hover::before {
   transform: translateY(-100%);
 }
 
-.similarProducts button.open-product::after,
-.similarProducts button.open-product::before {
+.similarProducts .open-product::after,
+.similarProducts .open-product::before {
   position: absolute;
   left: 0;
   display: flex;
@@ -115,25 +115,25 @@ th {
   width: calc(100% - 3px);
 }
 
-.similarProducts button.open-product.en::after {
+.similarProducts .open-product.en::after {
   content: "Open Product";
 }
 
-.similarProducts button.open-product.ar::after {
+.similarProducts .open-product.ar::after {
   content: "إفتح المنتج";
 }
 
-.similarProducts button.open-product::before {
+.similarProducts .open-product::before {
   content: "\f35d";
   font-weight: 900;
   font-family: "Font Awesome 6 Free";
   font-size: 1.5rem;
 }
 
-.similarProducts button.open-product::after {
+.similarProducts .open-product::after {
   top: 0;
 }
 
-.similarProducts button.open-product::before {
+.similarProducts .open-product::before {
   top: 100%;
 }

@@ -1,3 +1,4 @@
+import { Link } from "@/lib/utils";
 import { createContext } from "react";
 
 export const UserAuthContext = createContext({
@@ -15,6 +16,7 @@ export const UserAuthContext = createContext({
   items: {},
   setItems: () => {},
   updateCart: () => {},
+  Link: typeof Link,
 });
 
 export const AdminAuthContext = createContext({
@@ -29,4 +31,5 @@ export const AdminAuthContext = createContext({
   loadingPage: true,
   setLoadingPage: () => {},
   checkAdmin: () => {},
+  Link: typeof Link,
 });

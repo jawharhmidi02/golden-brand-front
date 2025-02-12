@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 const page = () => {
   const tCommon = useTranslations("common");
   const tCart = useTranslations("cart");
-  const { ChangeUrl, items, setItems } = useContext(UserAuthContext);
+  const { ChangeUrl, items, setItems, Link } = useContext(UserAuthContext);
   const [totalPrice, setTotalPrice] = useState({});
 
   const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b, 0);
@@ -39,15 +39,16 @@ const page = () => {
             <span className="max-w-[500px] text-center font-lato font-semibold text-neutral-400 md:text-lg">
               {tCart("empty.description")}
             </span>
-            <button
-              onClick={() => {
-                ChangeUrl("/products");
-              }}
-              type="button"
-              className="bg-[var(--theme2)] px-6 py-3 font-lato font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-[var(--theme)]"
-            >
-              {tCart("empty.buttonText")}
-            </button>
+            <Link href="/products" passHref legacyBehavior>
+              <a
+                onClick={() => {
+                  ChangeUrl("/products");
+                }}
+                className="bg-[var(--theme2)] px-6 py-3 font-lato font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-[var(--theme)]"
+              >
+                {tCart("empty.buttonText")}
+              </a>
+            </Link>
           </div>
         </div>
       ) : (
@@ -152,15 +153,16 @@ const page = () => {
                     </div>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="w-full bg-[var(--theme2)] py-2 font-lato font-semibold text-white transition-colors duration-200 hover:bg-[var(--theme)]"
-                  onClick={() => {
-                    ChangeUrl("/checkout");
-                  }}
-                >
-                  {tCart("proceedToCheckout")}
-                </button>
+                <Link href="/products" passHref legacyBehavior>
+                  <a
+                    className="w-full bg-[var(--theme2)] py-2 font-lato font-semibold text-white transition-colors duration-200 hover:bg-[var(--theme)]"
+                    onClick={() => {
+                      ChangeUrl("/checkout");
+                    }}
+                  >
+                    {tCart("proceedToCheckout")}
+                  </a>
+                </Link>
               </div>
             </div>
           </div>

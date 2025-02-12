@@ -15,7 +15,7 @@ const page = () => {
   const tCommon = useTranslations("common");
   const tSignUp = useTranslations("signUp");
   const tProfile = useTranslations("profile");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -339,26 +339,28 @@ const page = () => {
                 {locale === "ar" ? (
                   <>
                     بالنقر على زر التسجيل، فإنك توافق على{" "}
-                    <font
+                    <Link
+                      href="/terms-and-conditions#privacy"
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions#privacy");
                       }}
                       className="font-bold text-[var(--theme)] transition-colors duration-200 hover:cursor-pointer"
                     >
                       سياسة الخصوصية والشروط.
-                    </font>
+                    </Link>
                   </>
                 ) : (
                   <>
                     By clicking the Sign Up button, you agree to our{" "}
-                    <font
+                    <Link
+                      href="/terms-and-conditions#privacy"
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions#privacy");
                       }}
                       className="font-bold text-[var(--theme)] transition-colors duration-200 hover:cursor-pointer"
                     >
                       privacy policy & terms.
-                    </font>
+                    </Link>
                   </>
                 )}
               </p>

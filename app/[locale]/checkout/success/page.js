@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 const SuccessPageContent = () => {
   const tCommon = useTranslations("common");
   const tTransaction = useTranslations("transaction");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const searchParam = useSearchParams();
 
   return (
@@ -61,14 +61,11 @@ const SuccessPageContent = () => {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            ChangeUrl("/");
-          }}
-          className="mt-4 w-full rounded-lg bg-[var(--theme)] px-4 py-2 text-lg font-semibold text-white transition-all hover:bg-[var(--theme3)]"
-        >
-          {tTransaction("returnToHomepage")}
-        </button>
+        <Link href="/" passHref legacyBehavior>
+          <a className="mt-4 w-full rounded-lg bg-[var(--theme)] px-4 py-2 text-lg font-semibold text-white transition-all hover:bg-[var(--theme3)]">
+            {tTransaction("returnToHomepage")}
+          </a>
+        </Link>
       </div>
     </div>
   );

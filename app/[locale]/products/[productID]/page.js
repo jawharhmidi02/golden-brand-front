@@ -27,7 +27,7 @@ const page = () => {
   const tProduct = useTranslations("product");
   const searchParams = useParams();
   const id = searchParams.productID;
-  const { ChangeUrl, updateCart } = useContext(UserAuthContext);
+  const { ChangeUrl, updateCart, Link } = useContext(UserAuthContext);
   const [product, setproduct] = useState({});
   const [loadingProduct, setLoadingProduct] = useState(true);
   const [productNumber, setProductNumber] = useState(1);
@@ -460,34 +460,40 @@ const page = () => {
                       <div className="text-center text-sm font-semibold">
                         {similarProduct.name}
                       </div>
-                      <div
+                      <Link
                         className="text-center text-sm text-neutral-400 transition-all duration-200 hover:cursor-pointer hover:text-neutral-700"
-                        onClick={() => {
-                          var cats = {};
-                          cats[similarProduct.category.name] = true;
+                        href={`/products?selectedCategories=${encodeURIComponent(
+                          JSON.stringify({
+                            [similarProduct.category.name]: true,
+                          }),
+                        )}`}
+                        onClick={() =>
                           ChangeUrl(
                             `/products?selectedCategories=${encodeURIComponent(
-                              JSON.stringify(cats),
+                              JSON.stringify({
+                                [similarProduct.category.name]: true,
+                              }),
                             )}`,
-                          );
-                        }}
+                          )
+                        }
                       >
                         {similarProduct.category.name}
-                      </div>
+                      </Link>
                     </div>
                     <div className="mt-auto w-full font-semibold text-[var(--theme)]">
                       ~ {similarProduct.productsVariants[0].price}{" "}
                       {tCommon("currency")}
                     </div>
                     <div className="flex w-full flex-col items-center">
-                      <button
+                      <Link
                         className={cn(
                           "open-product w-full bg-[var(--theme2)] px-4 py-1 text-white transition-all duration-300",
                           tCommon("language.lng"),
                         )}
-                        onClick={() => {
-                          ChangeUrl(`/products/${similarProduct.id}`);
-                        }}
+                        href={`/products/${similarProduct.id}`}
+                        onClick={() =>
+                          ChangeUrl(`/products/${similarProduct.id}`)
+                        }
                       />
                     </div>
                   </div>

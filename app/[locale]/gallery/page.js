@@ -22,11 +22,11 @@ import { UserAuthContext } from "@/contexts/AuthContext";
 
 const page = () => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const [loadingGallery, setLoadingGallery] = useState(true);
   const [gallery, setGallery] = useState([]);
   const breakpointColumnsObj = {
-    default: 4, // Number of columns for default screen size
+    default: 4,
     1100: 3,
     700: 2,
     500: 1,
@@ -147,9 +147,10 @@ const page = () => {
                 columnClassName="masonry-grid_column"
               >
                 {gallery.map((photo, index) => (
-                  <div
+                  <Link
                     key={index}
                     className="relative transition-all duration-300 hover:scale-[1.02] hover:cursor-pointer"
+                    href={photo.img}
                     onClick={() => ChangeUrl(photo.img)}
                   >
                     <img
@@ -157,7 +158,7 @@ const page = () => {
                       alt={`Gallery image ${index}`}
                       className="h-full max-h-[600px] w-full rounded-lg"
                     />
-                  </div>
+                  </Link>
                 ))}
               </Masonry>
             )}

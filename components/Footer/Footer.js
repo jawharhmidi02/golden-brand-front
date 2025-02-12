@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 const Footer = () => {
   const tCommon = useTranslations("common");
   const tFooter = useTranslations("footer");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
     <div className="mt-[100px]">
@@ -91,25 +91,27 @@ const Footer = () => {
         <div className="mx-auto max-w-screen-xl space-y-8 px-4 pt-16 sm:px-6 lg:space-y-16 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="flex flex-col items-center justify-center">
-              <div>
+              <Link
+                href="/"
+                onClick={() => {
+                  ChangeUrl("./");
+                }}
+              >
                 <Image
                   src="/images/dark-icon.png"
                   width={200}
                   height={200}
                   alt="icon"
                   loading="lazy"
-                  onClick={() => {
-                    ChangeUrl("./");
-                  }}
                   className="hover:cursor-pointer"
                 />
-              </div>
+              </Link>
               <p className="mt-4 max-w-xs text-center text-gray-400">
                 {tFooter("description")}
               </p>
               <ul className="mt-8 flex items-center gap-6">
                 <li>
-                  <a
+                  <Link
                     href="https://www.facebook.com/profile.php?id=100090249531663"
                     rel="noreferrer"
                     target="_blank"
@@ -130,10 +132,10 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://www.tiktok.com/@golden.brand52"
                     rel="noreferrer"
                     target="_blank"
@@ -141,10 +143,10 @@ const Footer = () => {
                   >
                     <span className="sr-only">{tCommon("social.tiktok")}</span>
                     <i className="fa-brands fa-tiktok text-xl"></i>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://www.instagram.com/goldenbrand_stainlesssteel/"
                     rel="noreferrer"
                     target="_blank"
@@ -165,10 +167,10 @@ const Footer = () => {
                         clipRule="evenodd"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
+                  <Link
                     href="https://wa.me/97477480070"
                     rel="noreferrer"
                     target="_blank"
@@ -193,7 +195,7 @@ const Footer = () => {
                         d="M435.689 74.468C387.754 26.471 324 .025 256.071 0 116.098 0 2.18 113.906 2.131 253.916c-.024 44.758 11.677 88.445 33.898 126.946L0 512.459l134.617-35.311c37.087 20.238 78.85 30.891 121.345 30.903h.109c139.949 0 253.88-113.917 253.928-253.928.024-67.855-26.361-131.645-74.31-179.643v-.012zm-179.618 390.7h-.085c-37.868-.011-75.016-10.192-107.428-29.417l-7.707-4.577-79.886 20.953 21.32-77.889-5.017-7.987c-21.125-33.605-32.29-72.447-32.266-112.322.049-116.366 94.729-211.046 211.155-211.046 56.373.025 109.364 22.003 149.214 61.903 39.853 39.888 61.781 92.927 61.757 149.313-.05 116.377-94.728 211.058-211.057 211.058v.011zm115.768-158.067c-6.344-3.178-37.537-18.52-43.358-20.639-5.82-2.119-10.044-3.177-14.27 3.178-4.225 6.357-16.388 20.651-20.09 24.875-3.702 4.238-7.403 4.762-13.747 1.583-6.343-3.178-26.787-9.874-51.029-31.487-18.86-16.827-31.597-37.598-35.297-43.955-3.702-6.355-.39-9.789 2.775-12.943 2.849-2.848 6.344-7.414 9.522-11.116s4.225-6.355 6.343-10.581c2.12-4.238 1.06-7.937-.522-11.117-1.584-3.177-14.271-34.409-19.568-47.108-5.151-12.37-10.385-10.69-14.269-10.897-3.703-.183-7.927-.219-12.164-.219s-11.105 1.582-16.925 7.939c-5.82 6.354-22.209 21.709-22.209 52.927 0 31.22 22.733 61.405 25.911 65.642 3.177 4.237 44.745 68.318 108.389 95.812 15.135 6.538 26.957 10.446 36.175 13.368 15.196 4.834 29.027 4.153 39.96 2.52 12.19-1.825 37.54-15.353 42.824-30.172 5.283-14.818 5.283-27.529 3.701-30.172-1.582-2.641-5.819-4.237-12.163-7.414l.011-.024z"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -204,44 +206,48 @@ const Footer = () => {
                 </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
-                    <a
+                    <Link
+                      href="/"
                       onClick={() => {
                         ChangeUrl("/");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.home")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="link">
-                    <a
+                    <Link
+                      href="/services"
                       onClick={() => {
                         ChangeUrl("/services");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.services")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="link">
-                    <a
+                    <Link
+                      href="/products"
                       onClick={() => {
                         ChangeUrl("/products");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.products")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="link">
-                    <a
+                    <Link
+                      href="/contact"
                       onClick={() => {
                         ChangeUrl("/contact");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.contact")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -251,24 +257,25 @@ const Footer = () => {
                 </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
-                    <a
+                    <Link
+                      href="/about"
                       onClick={() => {
                         ChangeUrl("/about");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.about")}
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="link">
-                    <a
+                    <Link
                       href="https://maps.app.goo.gl/rtN1scuA2BeAhhze7"
                       target="_blank"
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tFooter("company.googleMaps")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -278,45 +285,49 @@ const Footer = () => {
                 </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li className="link">
-                    <a
+                    <Link
+                      href="/terms-and-conditions"
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tFooter("importantLinks.termsAndConditions")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="link">
-                    <a
+                    <Link
+                      href="/about#faqs"
                       onClick={() => {
                         ChangeUrl("/about#faqs");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tFooter("importantLinks.faqs")}
-                    </a>
+                    </Link>
                   </li>
                   <li className="link">
-                    <a
+                    <Link
+                      href="/terms-and-conditions#payment"
                       onClick={() => {
                         ChangeUrl("/terms-and-conditions#payment");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tFooter("importantLinks.paymentsInfo")}
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="link">
-                    <a
+                    <Link
+                      href="/contact"
                       onClick={() => {
                         ChangeUrl("/contact");
                       }}
                       className="text-gray-300 transition hover:cursor-pointer hover:text-white"
                     >
                       {tCommon("navigation.contact")}
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -326,7 +337,7 @@ const Footer = () => {
                 </p>
                 <ul className="mt-4 space-y-4 text-sm">
                   <li>
-                    <a
+                    <Link
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                       href="mailto:sales@goldenbrandqa.com"
                     >
@@ -347,10 +358,10 @@ const Footer = () => {
                       <span className="flex-1 break-all text-gray-300">
                         sales@goldenbrandqa.com
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
+                    <Link
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
                       href="tel:+974 7748 0070"
                     >
@@ -371,7 +382,7 @@ const Footer = () => {
                       <span className="flex-1 text-gray-300" dir="ltr">
                         +974 7748 0070
                       </span>
-                    </a>
+                    </Link>
                   </li>
                   <li className="flex items-start justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                     <svg
@@ -435,48 +446,52 @@ const Footer = () => {
             className="links flex w-full items-center justify-center gap-10 font-medium text-neutral-300"
           >
             <div className="link">
-              <a
-                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
+              <Link
+                href="/terms-and-conditions#refund"
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#refund");
                 }}
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
               >
                 {tFooter("importantTerms.refundAndReturns")}
-              </a>
+              </Link>
             </div>
             <div className="link">
-              <a
-                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
+              <Link
+                href="/terms-and-conditions#privacy"
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#privacy");
                 }}
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
               >
                 {tFooter("importantTerms.privacyPolicy")}
-              </a>
+              </Link>
             </div>
             <div className="link">
-              <a
-                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
+              <Link
+                href="/terms-and-conditions#delivery"
                 onClick={() => {
                   ChangeUrl("/terms-and-conditions#delivery");
                 }}
+                className="duration-500 hover:scale-105 hover:cursor-pointer hover:text-white"
               >
                 {tFooter("importantTerms.shippingAndDelivery")}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
         <div className="border-mask h-[1px] w-full bg-white"></div>
         <div className="pb-3 pt-3 text-center text-white">
           {tFooter("copyright.copyright")} © {new Date().getFullYear()}{" "}
-          <a
+          <Link
+            href={"/"}
             onClick={() => {
               ChangeUrl("/");
             }}
             className="font-bold hover:cursor-pointer"
           >
             {tCommon("goldenBrand.GoldenBrand")}
-          </a>
+          </Link>
           . {tFooter("copyright.allRightsReserved")}
         </div>
       </footer>

@@ -37,7 +37,7 @@ import SkeletonCategorieItem from "@/components/CategorieItem/SkeletonCategorieI
 const ProductPage = () => {
   const tCommon = useTranslations("common");
   const tProducts = useTranslations("products");
-  const { ChangeUrl, loadingPage } = useContext(UserAuthContext);
+  const { ChangeUrl, loadingPage, Link } = useContext(UserAuthContext);
   const [limit, setLimit] = useState(12);
   const [products, setProducts] = useState([]);
   const [loadingProducts, setLoadingProducts] = useState(true);
@@ -266,10 +266,16 @@ const ProductPage = () => {
                   ))}
             </div>
             <div className="mt-2 flex flex-col gap-1">
-              <button
-                type="button"
+              <Link
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
-                onClick={() => {
+                href={`?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+                  isEmpty(selectedCategories)
+                    ? ""
+                    : `&selectedCategories=${encodeURIComponent(
+                        JSON.stringify(selectedCategories),
+                      )}`
+                }`}
+                onClick={() =>
                   ChangeUrl(
                     `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
@@ -278,11 +284,11 @@ const ProductPage = () => {
                             JSON.stringify(selectedCategories),
                           )}`
                     }`,
-                  );
-                }}
+                  )
+                }
               >
                 {tProducts("button.apply")}
-              </button>
+              </Link>
               <button
                 type="button"
                 onClick={() => {
@@ -371,10 +377,16 @@ const ProductPage = () => {
                   ))}
             </div>
             <div className="mt-2 flex flex-col gap-1">
-              <button
-                type="button"
+              <Link
                 className="duration-400 w-full rounded-md border-2 border-[var(--theme)] bg-[var(--theme)] py-2 text-xl font-semibold text-white transition-all active:scale-95"
-                onClick={() => {
+                href={`?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
+                  isEmpty(selectedCategories)
+                    ? ""
+                    : `&selectedCategories=${encodeURIComponent(
+                        JSON.stringify(selectedCategories),
+                      )}`
+                }`}
+                onClick={() =>
                   ChangeUrl(
                     `?${searchInputRef.current.value.trim() && `name=${escapeOutput(searchInputRef.current.value.trim())}`}${sortOption && sortOption !== "nameAsc" ? `&sortOption=${sortOption}` : ``}${minPrice && minPrice !== 0 ? `&minPrice=${minPrice}` : ``}${maxPrice && maxPrice !== 15000 ? `&maxPrice=${maxPrice}` : ``}${
                       isEmpty(selectedCategories)
@@ -383,11 +395,11 @@ const ProductPage = () => {
                             JSON.stringify(selectedCategories),
                           )}`
                     }`,
-                  );
-                }}
+                  )
+                }
               >
                 {tProducts("button.apply")}
-              </button>
+              </Link>
               <button
                 type="button"
                 onClick={() => {

@@ -18,7 +18,7 @@ const CartItem = ({
 }) => {
   const tCommon = useTranslations("common");
   const tCart = useTranslations("cart");
-  const { ChangeUrl, updateCart } = useContext(UserAuthContext);
+  const { ChangeUrl, Link, updateCart } = useContext(UserAuthContext);
   const [productVariant, setProductVariant] = useState({});
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
 
@@ -158,7 +158,8 @@ const CartItem = ({
           )}
         </td>
         <td className="p-[10px]">
-          <div
+          <Link
+            href={`/products/${productVariant.product.id}`}
             onClick={() => {
               ChangeUrl(`/products/${productVariant.product.id}`);
             }}
@@ -169,7 +170,7 @@ const CartItem = ({
             ) : (
               productVariant.product.name
             )}
-          </div>
+          </Link>
         </td>
         <td className="p-[10px]">
           <span className="text-neutral-500">
@@ -264,18 +265,19 @@ const CartItem = ({
             </div>
             <div className="flex w-full flex-col">
               <div className="flex w-full flex-row justify-between pb-2">
-                <div
+                <Link
                   className="text-lg font-bold text-neutral-800"
                   onClick={() => {
                     ChangeUrl(`/products/${productVariant.product.id}`);
                   }}
+                  href={`/products/${productVariant.product.id}`}
                 >
                   {loadingProductVariant ? (
                     <Skeleton className={"mx-1 h-7 w-[160px] bg-neutral-300"} />
                   ) : (
                     productVariant.product.name
                   )}
-                </div>
+                </Link>
                 <i className="fa-solid fa-x self-center text-[12px] text-neutral-500 transition-all duration-200 hover:cursor-pointer hover:text-emerald-700" />
               </div>
               <div className="flex w-full flex-row justify-between gap-1 py-2 min-[400px]:gap-0">

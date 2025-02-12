@@ -22,24 +22,24 @@
   left: 0;
 }
 
-.featured-product button {
+.featured-product .open-product {
   transition: all 0.5s;
   position: relative;
   overflow: hidden;
   height: 45px;
 }
 
-.featured-product button:hover {
+.featured-product .open-product:hover {
   background: var(--theme);
 }
 
-.featured-product button:hover::after,
-.featured-product button:hover::before {
+.featured-product .open-product:hover::after,
+.featured-product .open-product:hover::before {
   transform: translateY(-100%);
 }
 
-.featured-product button::after,
-.featured-product button::before {
+.featured-product .open-product::after,
+.featured-product .open-product::before {
   position: absolute;
   left: 0;
   display: flex;
@@ -50,25 +50,25 @@
   width: calc(100% - 3px);
 }
 
-.featured-product button.en::after {
+.featured-product .open-product.en::after {
   content: "Open Product";
 }
 
-.featured-product button.ar::after {
+.featured-product .open-product.ar::after {
   content: "إفتح المنتج";
 }
 
-.featured-product button::before {
+.featured-product .open-product::before {
   content: "\f35d";
   font-weight: 900;
   font-family: "Font Awesome 6 Free";
   font-size: 1.5rem;
 }
 
-.featured-product button::after {
+.featured-product .open-product::after {
   top: 0;
 }
 
-.featured-product button::before {
+.featured-product .open-product::before {
   top: 100%;
 }

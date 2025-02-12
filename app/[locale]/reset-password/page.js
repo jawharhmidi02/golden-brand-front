@@ -10,7 +10,7 @@ import { dir } from "i18next";
 const page = () => {
   const tCommon = useTranslations("common");
   const tForgotPassword = useTranslations("forgotPassword");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const [loading, setLoading] = useState(false);
   const emailRef = useRef(null);
 
@@ -80,14 +80,15 @@ const page = () => {
             className={cn("flex flex-col items-center justify-center gap-5")}
           >
             <div className="flex w-full max-w-[400px] flex-row justify-between">
-              <div
+              <Link
                 className="group hover:cursor-pointer"
                 onClick={() => {
                   ChangeUrl("/sign-in");
                 }}
+                href="/sign-in"
               >
                 <i className="fa-solid fa-arrow-left text-3xl text-neutral-900 transition-colors duration-200 group-hover:text-[var(--theme2)]"></i>
-              </div>
+              </Link>
               <span
                 dir={dir(tCommon("language.lng"))}
                 className="self-center font-lato text-xl font-semibold text-neutral-900"

@@ -1,12 +1,13 @@
-import  { useContext } from "react";
+import { useContext } from "react";
 import Image from "next/image";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 const Card = ({ product }) => {
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
-    <div
+    <Link
+      href={`/products/${product.id}`}
       onClick={() => {
         ChangeUrl(`/products/${product.id}`);
       }}
@@ -27,7 +28,7 @@ const Card = ({ product }) => {
           {product.category.name}
         </span>
       </div>
-    </div>
+    </Link>
   );
 };
 

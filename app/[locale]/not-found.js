@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { UserAuthContext } from "@/contexts/AuthContext";
 
 export default function NotFound() {
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
 
   return (
     <section className="flex min-h-screen items-center">
@@ -22,12 +22,14 @@ export default function NotFound() {
             back to the home page.
           </p>
           <div className="flex justify-center gap-3">
-            <button
-              onClick={() => ChangeUrl("/")}
-              className="my-4 inline-flex rounded-lg bg-[#059669] px-5 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-[#064e3b] focus:outline-none focus:ring-4 focus:ring-[#064e3b]"
-            >
-              Go to Homepage
-            </button>
+            <Link href={"/"} passHref legacyBehavior>
+              <a
+                onClick={() => ChangeUrl("/")}
+                className="my-4 inline-flex rounded-lg bg-[#059669] px-5 py-2.5 text-center text-sm font-medium text-white transition-colors hover:bg-[#064e3b] focus:outline-none focus:ring-4 focus:ring-[#064e3b]"
+              >
+                Go to Homepage
+              </a>
+            </Link>
           </div>
         </div>
       </div>

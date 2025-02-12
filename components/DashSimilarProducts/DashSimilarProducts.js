@@ -33,7 +33,6 @@ const DashSimilarProducts = ({
   removeSimilarProduct,
   productID = "",
 }) => {
-  const { ChangeUrl } = useContext(AdminAuthContext);
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [products, setProducts] = useState([]);
   const [totalItems, setTotalItems] = useState(0);

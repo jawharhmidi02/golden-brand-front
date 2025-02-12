@@ -19,7 +19,7 @@ import { Skeleton } from "../ui/skeleton";
 
 const Categories = () => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl } = useContext(UserAuthContext);
+  const { ChangeUrl, Link } = useContext(UserAuthContext);
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const cats = {};

@@ -19,8 +19,15 @@ const page = () => {
   const tCommon = useTranslations("common");
   const tCheckout = useTranslations("checkout");
   const tCart = useTranslations("cart");
-  const { items, ChangeUrl, userData, updateCart, checkUser, isUserSigned } =
-    useContext(UserAuthContext);
+  const {
+    items,
+    ChangeUrl,
+    userData,
+    updateCart,
+    checkUser,
+    isUserSigned,
+    Link,
+  } = useContext(UserAuthContext);
   const firstNameRef = useRef(null);
   const lastNameRef = useRef(null);
   const emailRef = useRef(null);
@@ -415,14 +422,12 @@ const page = () => {
           <div className="h-[1px] w-full bg-neutral-300"></div>
           <div className="text-neutral-500">
             {tCheckout("privacy.description")}{" "}
-            <font
-              onClick={() => {
-                ChangeUrl("/terms-and-conditions#privacy");
-              }}
+            <Link
+              href="/terms-and-conditions#privacy"
               className="font-bold text-neutral-700 transition-colors duration-200 hover:cursor-pointer hover:text-[var(--theme)]"
             >
               {tCheckout("privacy.text")}
-            </font>
+            </Link>
             .
           </div>
 

@@ -7,7 +7,7 @@ import { AdminAuthContext } from "@/contexts/AuthContext";
 import { cn } from "@/lib/utils";
 
 const DashMenuItem = ({ title, path, icon }) => {
-  const { ChangeUrl, setLoadingPage } = useContext(AdminAuthContext);
+  const { ChangeUrl, Link, setLoadingPage } = useContext(AdminAuthContext);
   const pathname = usePathname();
   const lighter = title == "Logout";
 
@@ -17,15 +17,36 @@ const DashMenuItem = ({ title, path, icon }) => {
     location.href = "/admin/sign-in";
   };
 
-  return (
-    <div
-      onClick={() => {
-        if (!lighter) {
-          ChangeUrl(`/admin/dashboard${path}`);
-        } else {
+  if (lighter) {
+    return (
+      <div
+        onClick={() => {
           logout();
-        }
+        }}
+        className={cn(
+          "w-full rounded-md bg-transparent px-3 py-2.5 font-semibold text-[var(--dash-theme3)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--dash-theme4)]",
+          pathname === `/admin/dashboard${path}` &&
+            "bg-[var(--dash-theme5)] text-[var(--dash-theme)] hover:bg-[var(--dash-theme6)]",
+          lighter && "text-[#82828c] hover:bg-[#21222d]",
+        )}
+      >
+        <div className="flex flex-row items-center gap-1.5">
+          <div className="flex size-[20px] items-center justify-center">
+            <i className={cn("text-[17px]", icon)}></i>
+          </div>
+
+          <div className="text-lg">{title}</div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      onClick={() => {
+        ChangeUrl(`/admin/dashboard${path}`);
       }}
+      href={`/admin/dashboard${path}`}
       className={cn(
         "w-full rounded-md bg-transparent px-3 py-2.5 font-semibold text-[var(--dash-theme3)] transition-all duration-200 hover:cursor-pointer hover:bg-[var(--dash-theme4)]",
         pathname === `/admin/dashboard${path}` &&
@@ -40,7 +61,7 @@ const DashMenuItem = ({ title, path, icon }) => {
 
         <div className="text-lg">{title}</div>
       </div>
-    </div>
+    </Link>
   );
 };
 

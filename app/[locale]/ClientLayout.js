@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { useRouter, usePathname } from "@/lib/utils";
+import { useRouter, usePathname, Link } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
 import Cookies from "js-cookie";
@@ -23,11 +23,17 @@ export default function ClientLayout({ children }) {
   const [userData, setUserData] = useState({});
   const [isPending, startTransition] = useTransition();
   const [items, setItems] = useState({});
+  const [prevPath, setPrevPath] = useState(pathname);
 
-  const ChangeUrl = (url, options = {}) => {
-    startTransition(() => {
-      router.push(url, options);
-    });
+  // const ChangeUrl = (url, options = {}) => {
+  //   startTransition(() => {
+  //     router.push(url, options);
+  //   });
+  // };
+
+  const ChangeUrl = (url) => {
+    setLoadingPage(true);
+    router.push(url);
   };
 
   const checkUser = async () => {
@@ -123,6 +129,13 @@ export default function ClientLayout({ children }) {
   }, [isPending]);
 
   useEffect(() => {
+    if (prevPath !== pathname) {
+      setLoadingPage(false);
+      setPrevPath(pathname);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     checkUser();
   }, []);
 
@@ -169,6 +182,7 @@ export default function ClientLayout({ children }) {
         items,
         setItems,
         updateCart,
+        Link,
       }}
     >
       <div>

@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 
 const SideCartItem = ({ productVariantId, quantity, index }) => {
   const tCommon = useTranslations("common");
-  const { ChangeUrl, updateCart } = useContext(UserAuthContext);
+  const { ChangeUrl, Link, updateCart } = useContext(UserAuthContext);
   const [productVariant, setProductVariant] = useState({});
   const [loadingProductVariant, setLoadingProductVariant] = useState(true);
 
@@ -57,11 +57,12 @@ const SideCartItem = ({ productVariantId, quantity, index }) => {
   }, []);
 
   return (
-    <div
+    <Link
       onClick={() => {
         ChangeUrl(`/products/${productVariant.product?.id}`);
       }}
       className="flex flex-col"
+      href={`/products/${productVariant.product?.id}`}
     >
       {index != 0 ? <Separator className="bg-neutral-300" /> : <></>}
       <div className="relative flex flex-row items-center gap-3 p-3 transition-colors duration-200 hover:cursor-pointer hover:bg-neutral-200">
@@ -121,7 +122,7 @@ const SideCartItem = ({ productVariantId, quantity, index }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

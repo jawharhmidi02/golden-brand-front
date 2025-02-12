@@ -29,7 +29,7 @@ const ProfilePage = () => {
   const tCommon = useTranslations("common");
   const tProfile = useTranslations("profile");
   const locale = tCommon("language.lng");
-  const { setLoadingPage, userData, ChangeUrl, setUserData } =
+  const { setLoadingPage, userData, ChangeUrl, Link, setUserData } =
     useContext(UserAuthContext);
   const searchParams = useSearchParams();
   const menu = parseInt(searchParams.get("menu")) || 1;
@@ -325,28 +325,30 @@ const ProfilePage = () => {
     <div className="mx-auto mt-20 flex w-full items-center justify-center">
       <div className="flex w-full max-w-[600px] flex-col rounded-lg bg-white shadow-lg min-[600px]:mx-4">
         <div className="flex items-center justify-center gap-6 border-b-2 border-[var(--theme4)]">
-          <div
-            onClick={() => ChangeUrl("/profile?menu=1")}
+          <Link
+            href="/profile?menu=1"
             className={cn(
               "border-b-4 border-neutral-300 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 1 && "border-[var(--theme)] hover:border-[var(--theme)]",
             )}
+            onClick={ChangeUrl("/profile?menu=1")}
           >
             <span className="text-xl font-semibold text-neutral-700">
               {tProfile("menu.profile")}
             </span>
-          </div>
-          <div
-            onClick={() => ChangeUrl("/profile?menu=2")}
+          </Link>
+          <Link
+            href="/profile?menu=2"
             className={cn(
               "border-b-4 border-neutral-300 p-3 transition-all duration-200 hover:cursor-pointer hover:border-neutral-400",
               menu === 2 && "border-[var(--theme)] hover:border-[var(--theme)]",
             )}
+            onClick={ChangeUrl("/profile?menu=2")}
           >
             <span className="text-xl font-semibold text-neutral-700">
               {tProfile("menu.orders")}
             </span>
-          </div>
+          </Link>
         </div>
 
         {/* PROFILE */}
@@ -598,34 +600,38 @@ const ProfilePage = () => {
                       </div>
                       <ul className="flex flex-col gap-4">
                         {order.order_Products.map((orderProduct) => (
-                          <li
-                            key={orderProduct.id}
-                            onClick={() =>
-                              ChangeUrl(
-                                `/products/${orderProduct.ProductsVariant.product.id}`,
-                              )
-                            }
-                            className="flex w-full items-start justify-between rounded-lg bg-white p-4 shadow transition-all duration-300 hover:scale-105 hover:cursor-pointer"
-                          >
-                            <div className="flex flex-col">
-                              <div className="text-neutral-800">
-                                {orderProduct.ProductsVariant.product.name}
+                          <li key={orderProduct.id}>
+                            <Link
+                              onClick={() =>
+                                ChangeUrl(
+                                  `/products/${orderProduct.ProductsVariant.product.id}`,
+                                )
+                              }
+                              href={`/products/${orderProduct.ProductsVariant.product.id}`}
+                              className="flex w-full items-start justify-between rounded-lg bg-white p-4 shadow transition-all duration-300 hover:scale-105 hover:cursor-pointer"
+                            >
+                              <div className="flex flex-col">
+                                <div className="text-neutral-800">
+                                  {orderProduct.ProductsVariant.product.name}
+                                </div>
+                                <div className="text-sm text-neutral-500">
+                                  {tCommon("quantity")}: {orderProduct.quantity}
+                                </div>
+                                <div className="text-sm text-neutral-500">
+                                  {tCommon("price")}: {orderProduct.price}{" "}
+                                  {tCommon("currency")}
+                                </div>
                               </div>
-                              <div className="text-sm text-neutral-500">
-                                {tCommon("quantity")}: {orderProduct.quantity}
+                              <div className="h-16 w-16">
+                                <img
+                                  src={orderProduct.ProductsVariant.product.img}
+                                  alt={
+                                    orderProduct.ProductsVariant.product.name
+                                  }
+                                  className="h-full w-full rounded-lg object-cover"
+                                />
                               </div>
-                              <div className="text-sm text-neutral-500">
-                                {tCommon("price")}: {orderProduct.price}{" "}
-                                {tCommon("currency")}
-                              </div>
-                            </div>
-                            <div className="h-16 w-16">
-                              <img
-                                src={orderProduct.ProductsVariant.product.img}
-                                alt={orderProduct.ProductsVariant.product.name}
-                                className="h-full w-full rounded-lg object-cover"
-                              />
-                            </div>
+                            </Link>
                           </li>
                         ))}
                       </ul>
