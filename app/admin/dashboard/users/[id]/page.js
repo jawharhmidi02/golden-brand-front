@@ -107,7 +107,7 @@ const UserPage = () => {
 
       if (errorTest) {
         firstNameRef.current.value =user.full_name?.split(" ")[0];
-        lastNameRef.current?.value =
+        lastNameRef.current.value =
           user.full_name?.split(" ").length > 1
             ? user.full_name?.split(" ")[1]
             : "";
