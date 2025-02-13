@@ -15,11 +15,49 @@ import { dir } from "i18next";
 import { Toaster } from "@/components/ui/toaster";
 import ClientLayout from "./ClientLayout";
 import { setRequestLocale } from "next-intl/server";
+import Script from "next/script";
 
 export const metadata = {
   title: "GoldenBrand",
   description:
     "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
+  keywords:
+    "stainless steel fabrication, custom metal work, commercial kitchen equipment, stainless steel kitchens, metal railings, aluminum fabrication, industrial metal solutions",
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ManufacturingBusiness",
+  name: "GoldenBrand",
+  description: metadata.description,
+  image: "https://goldenbrandqa.com/images/dash-icon.png",
+  url: "https://goldenbrandqa.com",
+  areaServed: "Qatar",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "910",
+    addressLocality: "Birkat Al Awamer",
+    addressCountry: "QA",
+  },
+  serviceType: [
+    "Stainless Steel Fabrication",
+    "Commercial Kitchen Equipment",
+    "Metal Railings",
+    "Custom Metal Work",
+    "Aluminum Products",
+    "counselingServices",
+    "engineeringServices",
+    "manufactureAndSupply",
+    "afterSaleServices",
+  ],
+  telephone: "+97477480070",
+  email: "sales@goldenbrandqa.com",
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=100090249531663",
+    "https://www.tiktok.com/@golden.brand52",
+    "https://www.instagram.com/goldenbrand_stainlesssteel/",
+    "https://wa.me/97477480070",
+  ],
 };
 
 export function generateStaticParams() {
@@ -64,6 +102,11 @@ export default async function RootLayout({ children, params: { locale } }) {
           rel="stylesheet"
         />
         <link rel="icon" href="/images/dash-icon.png" />
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="bg-[var(--primary)]">
         <NextIntlClientProvider locale={locale} messages={messages}>
