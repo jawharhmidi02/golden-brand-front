@@ -347,7 +347,7 @@ const ProductPage = () => {
                 if (loadingProducts || loadingCategories) return;
                 fetchProducts();
               }}
-              className="rounded-lg bg-[var(--theme)] px-2.5 py-1 font-raleway text-lg text-neutral-100 transition-all duration-300 hover:scale-95"
+              className="flex flex-row items-center justify-center gap-1.5 rounded-lg bg-[var(--theme)] px-2.5 py-1 font-raleway text-lg text-neutral-100 transition-all duration-300 hover:scale-95"
             >
               <span className="hidden xsm:block">
                 {tProducts("button.search")}
