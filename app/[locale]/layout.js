@@ -16,6 +16,7 @@ import { Toaster } from "@/components/ui/toaster";
 import ClientLayout from "./ClientLayout";
 import { setRequestLocale } from "next-intl/server";
 import Script from "next/script";
+import DynamicBreadcrumb from "@/components/DynamicBreadcrumb/DynamicBreadcrumb";
 
 export const metadata = {
   title: "GoldenBrand",
@@ -107,6 +108,7 @@ export default async function RootLayout({ children, params: { locale } }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <DynamicBreadcrumb locale={locale} />
       </head>
       <body className="bg-[var(--primary)]">
         <NextIntlClientProvider locale={locale} messages={messages}>
