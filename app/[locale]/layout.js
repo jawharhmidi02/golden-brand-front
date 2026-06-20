@@ -17,6 +17,7 @@ import ClientLayout from "./ClientLayout";
 import { setRequestLocale } from "next-intl/server";
 import Script from "next/script";
 import DynamicBreadcrumb from "@/components/DynamicBreadcrumb/DynamicBreadcrumb";
+import ComingSoon from "@/components/ComingSoon/ComingSoon";
 
 export const metadata = {
   title: "GoldenBrand",
@@ -24,6 +25,12 @@ export const metadata = {
     "GoldenBrand specializes in premium stainless steel kitchens, handrails, and high-quality aluminum products. Offering durable, sleek designs for residential and commercial spaces, we bring precision craftsmanship to every project.",
   keywords:
     "stainless steel fabrication, custom metal work, commercial kitchen equipment, stainless steel kitchens, metal railings, aluminum fabrication, industrial metal solutions",
+  // Maintenance mode: stop the site from being indexed while it is paused.
+  // Remove this together with <ComingSoon /> when going live.
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 const jsonLd = {
@@ -113,6 +120,9 @@ export default async function RootLayout({ children, params: { locale } }) {
       <body className="bg-[var(--primary)]">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientLayout>{children}</ClientLayout>
+          {/* Maintenance mode overlay — covers the entire public site.
+              Remove this line to go live (the admin dashboard stays exempt). */}
+          <ComingSoon locale={locale} />
         </NextIntlClientProvider>
         <Toaster />
         <Analytics />
